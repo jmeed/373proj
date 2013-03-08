@@ -15,12 +15,16 @@ Power System:
 
 Screen: 
 * uOLED-G2 : http://www.4dsystems.com.au/downloads/microOLED/uOLED-128-G2/Docs/uOLED-128-G2-Datasheet-REV1.pdf
+  * UART
 
 Bluetooth:
-* UNKNOW
+* SPI/UART
   
 Perf:
 * ADXL345 (Accelerometer): http://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL345.pdf
-* Vibrator (2 pins)
+  * SPI/I2C
+* Vibrator (2 pins) 
+  * 1 pin gpio. Other pin gnd
 * Joystick : http://www.sparkfun.com/datasheets/Components/Buttons/SF303GJ26-3.pdf
   *  NOTE: I am not sure how to get this on the board as it is big and the board will be covered on both sides.
+  *  5 pins GPIO. 1 pin power
