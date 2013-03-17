@@ -51,8 +51,8 @@
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
@@ -135,8 +135,8 @@
 <circle x="3.03" y="31.75" radius="1.6" width="0.1" layer="44"/>
 <text x="34.417" y="34.29" size="0.6096" layer="25" font="vector">Smart Watch Board V1</text>
 <text x="38.481" y="33.274" size="0.6096" layer="25" font="vector">373 W13</text>
-<text x="37.846" y="31.496" size="0.6096" layer="25" font="vector">Designed by</text>
-<text x="37.465" y="30.353" size="0.6096" layer="25" font="vector">Jonathan Meed</text>
+<text x="37.973" y="29.21" size="0.6096" layer="25" font="vector">Designed by</text>
+<text x="37.465" y="28.194" size="0.6096" layer="25" font="vector">Jonathan Meed</text>
 </plain>
 <libraries>
 <library name="lpc1100v1.1">

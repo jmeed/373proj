@@ -28,11 +28,11 @@ UsedLibrary="N:/373proj/eagle/lbr/SparkFun-Sensors.lbr"
 
 [Win_1]
 Type="Schematic Editor"
-Loc="100 100 699 499"
+Loc="150 150 749 549"
 State=0
 Number=2
-File="boardV2.sch"
-View="-105.722 -30.5935 341.942 208.647"
+File="boardV3.sch"
+View="-107.048 -30.5935 409.615 208.647"
 WireWidths=" 0 0.3048 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.1524"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
@@ -64,26 +64,15 @@ ArcDirection=0
 AddLevel=2
 PadsSameType=0
 Layer=91
-Views=" 1: -105.722 -30.5935 341.942 208.647"
 Sheet=1
 
 [Win_2]
-Type="Text Editor"
-Loc="25 25 524 524"
-State=2
-Number=1
-File="boardV2.sch.rpt"
-CursorPos="0 0"
-Font="Courier,11,-1,5,50,0,0,0,0,0"
-
-[Win_3]
 Type="Control Panel"
 Loc="959 378 1558 777"
 State=1
 Number=0
 
 [Desktop]
-Screen="1920 1200"
+Screen="2560 1440"
 Window="Win_1"
 Window="Win_2"
-Window="Win_3"
