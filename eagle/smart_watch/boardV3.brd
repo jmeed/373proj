@@ -51,8 +51,8 @@
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
@@ -119,31 +119,33 @@
 </layers>
 <board>
 <plain>
-<wire x1="45.306" y1="-0.254" x2="100" y2="0" width="0" layer="20"/>
+<wire x1="63.467" y1="0" x2="63.5" y2="0" width="0" layer="20"/>
+<wire x1="63.5" y1="0" x2="100" y2="0" width="0" layer="20"/>
 <wire x1="100" y1="0" x2="100" y2="80" width="0" layer="20"/>
 <wire x1="100" y1="80" x2="0" y2="80" width="0" layer="20"/>
 <wire x1="0" y1="80" x2="0" y2="36.073615625" width="0" layer="20"/>
 <wire x1="0" y1="0" x2="0" y2="36.073615625" width="0.254" layer="20"/>
-<wire x1="45.306" y1="-0.254" x2="45.56" y2="36.073615625" width="0.254" layer="20"/>
-<wire x1="0" y1="0" x2="45.306" y2="-0.254" width="0.254" layer="20"/>
-<wire x1="0" y1="36.073615625" x2="45.56" y2="36.073615625" width="0.254" layer="20"/>
+<wire x1="0" y1="0" x2="63.467" y2="0" width="0.254" layer="20"/>
+<wire x1="0" y1="36.073615625" x2="63.467" y2="36.073615625" width="0.254" layer="20"/>
 <circle x="30.1" y="30.36" radius="1.27" width="0.254" layer="19"/>
-<circle x="3.03" y="4.25" radius="1.6" width="0.1" layer="44"/>
-<circle x="42.53" y="31.75" radius="1.6" width="0.1" layer="44"/>
-<circle x="42.53" y="31.75" radius="1.6" width="0.1" layer="44"/>
-<circle x="42.53" y="4.25" radius="1.5" width="0.254" layer="44"/>
-<circle x="3.03" y="31.75" radius="1.6" width="0.1" layer="44"/>
 <text x="34.417" y="34.29" size="0.6096" layer="25" font="vector">Smart Watch Board V1</text>
 <text x="38.481" y="33.274" size="0.6096" layer="25" font="vector">373 W13</text>
 <text x="37.973" y="29.21" size="0.6096" layer="25" font="vector">Designed by</text>
 <text x="37.465" y="28.194" size="0.6096" layer="25" font="vector">Jonathan Meed</text>
-<wire x1="46.482" y1="8.128" x2="46.482" y2="25.908" width="0.4064" layer="20"/>
-<wire x1="46.482" y1="25.908" x2="62.992" y2="25.908" width="0.4064" layer="20"/>
-<wire x1="62.992" y1="25.908" x2="62.992" y2="8.128" width="0.4064" layer="20"/>
-<wire x1="62.992" y1="8.128" x2="46.482" y2="8.128" width="0.4064" layer="20"/>
 <text x="53.34" y="23.876" size="1.27" layer="25">Joystick V1</text>
 <text x="53.213" y="22.606" size="0.8128" layer="25">EECS 373 W2013</text>
 <text x="55.118" y="21.59" size="0.8128" layer="25">David Jackson</text>
+<wire x1="63.5" y1="0" x2="63.627" y2="0" width="0.254" layer="20"/>
+<wire x1="63.627" y1="0" x2="63.627" y2="36.068" width="0.254" layer="20"/>
+<wire x1="63.5" y1="26.67" x2="46.355" y2="26.67" width="0.254" layer="25"/>
+<wire x1="46.355" y1="26.67" x2="46.355" y2="7.239" width="0.254" layer="25"/>
+<wire x1="46.355" y1="7.239" x2="63.627" y2="7.239" width="0.254" layer="25"/>
+<wire x1="63.627" y1="7.239" x2="63.627" y2="7.366" width="0.254" layer="25"/>
+<wire x1="45.72" y1="35.941" x2="45.72" y2="0" width="0.254" layer="25"/>
+<hole x="42.53" y="31.75" drill="3.2"/>
+<hole x="3.03" y="31.75" drill="3.2"/>
+<hole x="3.03" y="4.25" drill="3.2"/>
+<hole x="42.53" y="4.25" drill="3.2"/>
 </plain>
 <libraries>
 <library name="lpc1100v1.1">
@@ -1219,16 +1221,16 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <attribute name="VALUE" x="0.742734375" y="12.455171875" size="0.4064" layer="27" rot="R270"/>
 </element>
 <element name="R14" library="SparkFun-Passives" package="0603-RES" value="330" x="3.32566875" y="7.78556875" smashed="yes" rot="R90">
-<attribute name="NAME" x="3.32566875" y="5.11856875" size="0.4064" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="3.83366875" y="4.99156875" size="0.4064" layer="27" font="vector" rot="R90"/>
+<attribute name="NAME" x="2.94466875" y="9.30956875" size="0.4064" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="3.83366875" y="9.30956875" size="0.4064" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="R15" library="SparkFun-Passives" package="0603-RES" value="10k" x="4.74328125" y="7.896846875" smashed="yes" rot="R90">
 <attribute name="NAME" x="4.87028125" y="4.975846875" size="0.4064" layer="25" font="vector" rot="R90"/>
 <attribute name="VALUE" x="5.63228125" y="4.975846875" size="0.4064" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="R16" library="SparkFun-Passives" package="0603-RES" value="330" x="1.83018125" y="7.774071875" smashed="yes" rot="R90">
-<attribute name="NAME" x="1.32218125" y="5.107071875" size="0.4064" layer="25" font="vector" rot="R90"/>
-<attribute name="VALUE" x="2.08418125" y="5.234071875" size="0.4064" layer="27" font="vector" rot="R90"/>
+<attribute name="NAME" x="1.06818125" y="5.742071875" size="0.4064" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="1.57618125" y="5.234071875" size="0.4064" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="LED3" library="SparkFun-LED" package="LED-0603" value="" x="41.103421875" y="8.970475" smashed="yes" rot="R180">
 <attribute name="VALUE" x="40.023921875" y="9.986475" size="0.4064" layer="27" rot="R270"/>
@@ -1365,7 +1367,7 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <vertex x="0.623490625" y="0.5198625"/>
 </polygon>
 <wire x1="3.436734375" y1="7.024503125" x2="3.32566875" y2="6.93556875" width="0.4064" layer="1"/>
-<via x="1.9412375" y="1.856378125" extent="1-16" drill="0.6"/>
+<via x="38.8982375" y="31.193378125" extent="1-16" drill="0.6"/>
 <wire x1="2.797775" y1="24.904134375" x2="2.7514625" y2="23.78049375" width="0.4064" layer="1"/>
 <wire x1="2.7514625" y1="23.78049375" x2="2.269103125" y2="23.739640625" width="0.4064" layer="1"/>
 <via x="3.83145" y="21.9744875" extent="1-16" drill="0.6"/>
@@ -1397,8 +1399,6 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="6.6743125" y1="6.87233125" x2="4.917796875" y2="6.87233125" width="0.254" layer="1"/>
 <wire x1="4.917796875" y1="6.87233125" x2="4.74328125" y2="7.046846875" width="0.254" layer="1"/>
 <wire x1="4.74328125" y1="7.046846875" x2="4.74328125" y2="6.543925" width="0.254" layer="1"/>
-<wire x1="4.74328125" y1="6.543925" x2="3.644525" y2="5.44516875" width="0.254" layer="1"/>
-<wire x1="3.644525" y1="5.44516875" x2="3.644525" y2="6.6167125" width="0.254" layer="1"/>
 <wire x1="3.644525" y1="6.6167125" x2="3.32566875" y2="6.93556875" width="0.254" layer="1"/>
 <via x="20.24741875" y="14.427375" extent="1-16" drill="0.6"/>
 <wire x1="18.792" y1="11.434" x2="19.339290625" y2="11.434" width="0.254" layer="1"/>
@@ -1478,6 +1478,9 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="20.574" y1="19.558" x2="21.1455" y2="20.1295" width="0.4064" layer="1"/>
 <wire x1="21.1455" y1="20.1295" x2="22.160646875" y2="20.1295" width="0.4064" layer="1"/>
 <wire x1="22.160646875" y1="20.1295" x2="22.305275" y2="19.984871875" width="0.4064" layer="1"/>
+<wire x1="4.74328125" y1="6.543925" x2="3.32566875" y2="6.543925" width="0.254" layer="1"/>
+<wire x1="3.32566875" y1="6.543925" x2="3.32566875" y2="6.93556875" width="0.254" layer="1"/>
+<wire x1="39.16324375" y1="4.160065625" x2="40.40091875" y2="5.838684375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="R2" pad="2"/>
@@ -2263,22 +2266,6 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="38.862" y1="25.615" x2="38.901" y2="25.654" width="0.254" layer="1"/>
 </signal>
 </signals>
-<errors>
-<approved hash="5,1,222ab645db2cb070"/>
-<approved hash="5,1,2c4352a2b2332da6"/>
-<approved hash="5,1,56908ea3639907c7"/>
-<approved hash="5,1,7fe35d27f238afae"/>
-<approved hash="5,1,ece1cc23b2384fac"/>
-<approved hash="5,1,85ad31b892defb9d"/>
-<approved hash="5,1,5de63f27b2396bab"/>
-<approved hash="5,1,76aa80b9b6dafb9a"/>
-<approved hash="5,1,c2e4ae3b72384ba9"/>
-<approved hash="5,1,d74f131761019bb1"/>
-<approved hash="5,1,8d1155a64d9d1d3c"/>
-<approved hash="5,1,8d1155a64d9d1d3c"/>
-<approved hash="5,1,4cf14f23a238212c"/>
-<approved hash="5,1,ac513a33627dac02"/>
-</errors>
 </board>
 </drawing>
 </eagle>
