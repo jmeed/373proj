@@ -1,0 +1,311 @@
+!SESSION 2013-03-24 15:24:40.072 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.ui 4 4 2013-03-24 15:28:41.333
+!MESSAGE Plug-in 'org.eclipse.cdt.ui' contributed an invalid Menu Extension (Path: 'project/org.eclipse.cdt.ui.prjmenu' is invalid): org.eclipse.cdt.ui.manageConfigsAction2
+
+!ENTRY org.eclipse.ui 4 4 2013-03-24 15:28:41.380
+!MESSAGE Plug-in 'org.eclipse.cdt.ui' contributed an invalid Menu Extension (Path: 'project/org.eclipse.cdt.ui.prjmenu' is invalid): org.eclipse.cdt.ui.buildConfigMenuAction
+
+!ENTRY org.eclipse.ui 4 4 2013-03-24 15:28:41.380
+!MESSAGE Plug-in 'org.eclipse.cdt.ui' contributed an invalid Menu Extension (Path: 'project/org.eclipse.cdt.ui.prjmenu' is invalid): org.eclipse.cdt.ui.wsselection
+
+!ENTRY org.eclipse.cdt.core 1 0 2013-03-24 15:33:22.326
+!MESSAGE Indexed 'blinky' (20 sources, 33 headers) in 2.40 sec: 937 declarations; 2,258 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2013-03-24 15:33:22.732
+!MESSAGE Indexed 'pwm' (9 sources, 21 headers) in 0.39 sec: 988 declarations; 2,808 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2013-03-24 15:33:23.948
+!MESSAGE Indexed 'uart' (7 sources, 19 headers) in 0.26 sec: 844 declarations; 1,613 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY com.crt.log 1 0 2013-03-24 15:34:34.067
+!MESSAGE Drivers loaded in 2425 milliseconds
+
+!ENTRY com.crt.ctrlcenter 4 -1 2013-03-24 15:34:41.791
+!MESSAGE Error while launching Debug\blinky.axf:
+Error in final launch sequence
+Failed to execute MI command:
+-target-select extended-remote | crt_emu_lpc11_13_nxp -msg-port=1539 -g -mi -2 -pLPC1114/302 -vendor=NXP -e0 -wire=hid
+Error message from debugger back end:
+Remote communication error.  Target disconnected.: No error.
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 15:34:42.136
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:34:42.136
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:34:42.136
+!MESSAGE Invalid, mismatched, or unknown part
+
+!ENTRY com.crt.log 1 0 2013-03-24 15:35:36.237
+!MESSAGE Drivers loaded in 1833 milliseconds
+
+!ENTRY com.crt.ctrlcenter 4 -1 2013-03-24 15:35:37.160
+!MESSAGE Error while launching Debug\blinky.axf:
+Error in final launch sequence
+Failed to execute MI command:
+-target-select extended-remote | crt_emu_lpc11_13_nxp -msg-port=1541 -g -mi -2 -pLPC1114/302 -vendor=NXP -wire=hid
+Error message from debugger back end:
+Remote communication error.  Target disconnected.: No error.
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 15:35:37.505
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:35:37.505
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:35:37.505
+!MESSAGE Invalid, mismatched, or unknown part
+
+!ENTRY com.crt.ctrlcenter 4 -1 2013-03-24 15:36:35.706
+!MESSAGE Error while launching Debug\blinky.axf:
+Error in final launch sequence
+Failed to execute MI command:
+-target-select extended-remote | crt_emu_lpc11_13_nxp -msg-port=1543 -g -mi -2 -pLPC1114/302 -vendor=NXP -wire=hid
+Error message from debugger back end:
+Remote communication error.  Target disconnected.: No error.
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 15:36:36.035
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:36:36.035
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:36:36.035
+!MESSAGE Invalid, mismatched, or unknown part
+
+!ENTRY com.crt.ctrlcenter 4 -1 2013-03-24 15:38:58.525
+!MESSAGE Error while launching Debug\blinky.axf:
+Error in final launch sequence
+Failed to execute MI command:
+-target-select extended-remote | crt_emu_lpc11_13_nxp -msg-port=1549 -g -mi -2 -pLPC1114/302 -vendor=NXP -wire=hid
+Error message from debugger back end:
+Remote communication error.  Target disconnected.: No error.
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 15:38:58.870
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:38:58.870
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:38:58.870
+!MESSAGE Invalid, mismatched, or unknown part
+
+!ENTRY com.crt.log 1 0 2013-03-24 15:42:47.185
+!MESSAGE Drivers loaded in 1888 milliseconds
+
+!ENTRY com.crt.ctrlcenter 4 -1 2013-03-24 15:42:48.087
+!MESSAGE Error while launching Debug\blinky.axf:
+Error in final launch sequence
+Failed to execute MI command:
+-target-select extended-remote | crt_emu_lpc11_13_nxp -msg-port=1588 -g -mi -2 -pLPC1114/302 -vendor=NXP -wire=hid
+Error message from debugger back end:
+Remote communication error.  Target disconnected.: No error.
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 15:42:48.430
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:42:48.430
+!MESSAGE 03: Failed on chip setup
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 15:42:48.430
+!MESSAGE Invalid, mismatched, or unknown part
+
+!ENTRY com.crt.log 1 0 2013-03-24 15:44:10.305
+!MESSAGE Drivers loaded in 1889 milliseconds
+!SESSION 2013-03-24 15:53:18.714 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.crt.log 1 0 2013-03-24 16:00:59.648
+!MESSAGE Drivers loaded in 1935 milliseconds
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 16:12:26.097
+!MESSAGE 10: Could not start execution from stop
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 16:12:26.097
+!MESSAGE 10: Could not start execution from stop
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 16:12:26.097
+!MESSAGE Cannot complete transaction, even after slowing speed.
+
+!ENTRY com.crt.dsfdebug 4 0 2013-03-24 16:12:32.287
+!MESSAGE 15: Target error from Register access
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 16:12:32.287
+!MESSAGE 15: Target error from Register access
+!SUBENTRY 1 com.crt.dsfdebug 4 0 2013-03-24 16:12:32.287
+!MESSAGE Cannot complete transaction, even after slowing speed.
+
+!ENTRY com.crt.log 1 0 2013-03-24 16:20:07.981
+!MESSAGE Drivers loaded in 1923 milliseconds
+
+!ENTRY org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for ALT+CTRL+I:
+Binding(ALT+CTRL+I,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.include.browser,Open Include Browser,
+		Open an include browser on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1ea487b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+CTRL+I,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.include.browser,Open Include Browser,
+		Open an include browser on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1ea487b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for ALT+SHIFT+R:
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3c9ddd,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3c9ddd,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Open an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1a04673,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Open an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1a04673,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.opentype,Open Element,
+		Open an element in an Editor,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@17149ae,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.opentype,Open Element,
+		Open an element in an Editor,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@17149ae,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for F4:
+Binding(F4,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.type.hierarchy,Open Type Hierarchy,
+		Open a type hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@9c3f3f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(F4,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.type.hierarchy,Open Type Hierarchy,
+		Open a type hierarchy on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@9c3f3f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for CTRL+G:
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.finddecl,Declaration,
+		Search for declarations of the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1fc5c14,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.finddecl,Declaration,
+		Search for declarations of the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1fc5c14,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for CTRL+SHIFT+G:
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.findrefs,References,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@10165aa,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.search.findrefs,References,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.ui.internal.MakeHandlersGo@10165aa,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for ALT+CTRL+H:
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.call.hierarchy,Open Call Hierarchy,
+		Open the call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@b99e44,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+CTRL+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.open.call.hierarchy,Open Call Hierarchy,
+		Open the call hierarchy for the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@b99e44,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-03-24 16:24:33.972
+!MESSAGE A conflict occurred for CTRL+SHIFT+H:
+Binding(CTRL+SHIFT+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.open.type.in.hierarchy,Open Type in Hierarchy,
+		Open a type in the type hierarchy view,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@458af0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+H,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.navigate.open.type.in.hierarchy,Open Type in Hierarchy,
+		Open a type in the type hierarchy view,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@458af0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cViewScope,,,system)
+
+!ENTRY com.crt.log 1 0 2013-03-24 16:24:57.581
+!MESSAGE Drivers loaded in 1863 milliseconds
+
+!ENTRY com.crt.log 1 0 2013-03-24 16:28:53.093
+!MESSAGE Drivers loaded in 1941 milliseconds
+
+!ENTRY com.crt.log 1 0 2013-03-24 16:33:36.462
+!MESSAGE Drivers loaded in 1920 milliseconds

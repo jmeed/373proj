@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="com.crt.lite.feature:5.1.2.201302200032"/>
+		<item value="org.eclipse.cdt.gdb:7.0.0.201209170703"/>
+		<item value="org.eclipse.cdt:8.1.1.201209170703"/>
+		<item value="org.eclipse.cvs:1.3.200.v20120525-1249-7B79FJJAkF7BF7VEH5IAJT"/>
+		<item value="org.eclipse.emf.common:2.8.0.v20120911-0500"/>
+		<item value="org.eclipse.emf.ecore:2.8.1.v20120911-0500"/>
+		<item value="org.eclipse.help:1.4.1.v20120726-051048-8R7xFOUFLWUl7MoSKV_RBXl27"/>
+		<item value="org.eclipse.platform:4.2.1.v20120814-120134-9JF7BHVGFyMveli1uX6aTH0q-eAap6PAgOP5mO"/>
+		<item value="org.eclipse.rcp:4.2.1.v20120814-120134-7IAPA8BrHQicS-rjP0GbqK780kMy"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+	</section>
+</section>
