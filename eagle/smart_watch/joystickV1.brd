@@ -125,6 +125,9 @@
 <wire x1="0" y1="17.78" x2="16.51" y2="17.78" width="0.4064" layer="20"/>
 <wire x1="16.51" y1="17.78" x2="16.51" y2="0" width="0.4064" layer="20"/>
 <wire x1="16.51" y1="0" x2="0" y2="0" width="0.4064" layer="20"/>
+<text x="6.858" y="15.748" size="1.27" layer="25">Joystick V1</text>
+<text x="6.731" y="14.478" size="0.8128" layer="25">EECS 373 W2013</text>
+<text x="8.636" y="13.462" size="0.8128" layer="25">David Jackson</text>
 </plain>
 <libraries>
 <library name="SparkFun-Electromechanical">
