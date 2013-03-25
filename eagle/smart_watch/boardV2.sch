@@ -5472,6 +5472,8 @@ ________
 <pinref part="U$2" gate="G$1" pin="GND5"/>
 <wire x1="218.44" y1="137.16" x2="223.52" y2="137.16" width="0.2032" layer="91"/>
 <pinref part="GND27" gate="1" pin="GND"/>
+<junction x="223.52" y="139.7"/>
+<junction x="223.52" y="142.24"/>
 </segment>
 <segment>
 <pinref part="R14" gate="G$1" pin="1"/>
@@ -5723,17 +5725,20 @@ ________
 </segment>
 <segment>
 <pinref part="SUPPLY6" gate="G$1" pin="3.3V"/>
-<pinref part="C10" gate="G$1" pin="1"/>
 <wire x1="218.44" y1="116.84" x2="218.44" y2="111.76" width="0.2032" layer="91"/>
 <pinref part="U$1" gate="LPC" pin="VDD1"/>
-<wire x1="218.44" y1="111.76" x2="218.44" y2="106.68" width="0.2032" layer="91"/>
-<wire x1="218.44" y1="106.68" x2="218.44" y2="101.6" width="0.2032" layer="91"/>
 <wire x1="236.22" y1="111.76" x2="218.44" y2="111.76" width="0.2032" layer="91"/>
+<pinref part="C10" gate="G$1" pin="1"/>
+<wire x1="218.44" y1="111.76" x2="218.44" y2="106.68" width="0.1524" layer="91"/>
+<junction x="218.44" y="111.76"/>
+<pinref part="U$1" gate="LPC" pin="VDD2"/>
+<wire x1="218.44" y1="106.68" x2="218.44" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="106.68" x2="236.22" y2="106.68" width="0.2032" layer="91"/>
 <pinref part="C11" gate="G$1" pin="1"/>
 <wire x1="228.6" y1="101.6" x2="228.6" y2="106.68" width="0.2032" layer="91"/>
-<pinref part="U$1" gate="LPC" pin="VDD2"/>
-<wire x1="228.6" y1="106.68" x2="236.22" y2="106.68" width="0.2032" layer="91"/>
-<wire x1="228.6" y1="106.68" x2="218.44" y2="106.68" width="0.2032" layer="91"/>
+<wire x1="228.6" y1="106.68" x2="218.44" y2="106.68" width="0.1524" layer="91"/>
+<junction x="228.6" y="106.68"/>
+<junction x="218.44" y="106.68"/>
 </segment>
 <segment>
 <pinref part="ACCELEROMETER" gate="G$1" pin="CS"/>
@@ -6171,6 +6176,14 @@ ________
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,236.22,106.68,U$1,VDD2,3.3V,,,"/>
+<approved hash="104,1,236.22,12.7,U$1,VSS2,GND,,,"/>
+<approved hash="104,1,236.22,17.78,U$1,VSS1,GND,,,"/>
+<approved hash="104,1,-2.54,60.96,U1,VIN,VBUS,,,"/>
+<approved hash="104,1,-22.86,60.96,U1,VBAT,VBATT,,,"/>
+<approved hash="104,1,-22.86,55.88,U1,VSS,GND,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>

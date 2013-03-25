@@ -377,18 +377,12 @@ UsedLibrary="/Users/jonny2112/ws/373/373proj/eagle/lbr/SparkFun-Sensors.lbr"
 UsedLibrary="/Users/jonny2112/ws/373/373proj/eagle/lbr/lpc1100v1.1.lbr"
 
 [Win_1]
-Type="Control Panel"
-Loc="360 248 959 647"
-State=2
-Number=0
-
-[Win_2]
 Type="Schematic Editor"
-Loc="0 22 1439 873"
-State=2
-Number=1
-File="board.sch"
-View="214.446 70.2591 274.826 127.517"
+Loc="360 248 959 647"
+State=0
+Number=2
+File="boardV3.sch"
+View="-105.722 -30.5935 341.942 208.647"
 WireWidths=" 0 0.3048 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.2032"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
@@ -427,57 +421,15 @@ ArcDirection=0
 AddLevel=2
 PadsSameType=0
 Layer=91
-Views=" 1: 214.446 70.2591 274.826 127.517"
 Sheet=1
 
-[Win_3]
-Type="Board Editor"
-Loc="28 55 1439 895"
-State=1
-Number=2
-File="board.brd"
-View="-58.718 -30.0448 98.642 53.1552"
-WireWidths=" 0 0.3048 1.016 1.4224 1.6764 1.778 1.9304 2.1844 3.81 6.4516 0.4064 2.54 0.6096 0.8128 1.27 0.254"
-PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
-PadDrills=" 0.508"
-ViaDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
-ViaDrills=" 0.508"
-HoleDrills=" 0.508"
-TextSizes=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.778"
-PolygonSpacings=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.27"
-PolygonIsolates=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
-MiterRadiuss=" 0.254 0.3175 0.635 1.27 2.54 1 2 2.5 5 7.5 10 0"
-DimensionWidths=" 0 0.127 0.254 0.1 0.26 0.13"
-DimensionExtWidths=" 0.127 0.254 0.1 0.13 0.26 0"
-DimensionExtLengths=" 1.27 2.54 1 2 3 0"
-DimensionExtOffsets=" 1.27 2.54 1 2 3 0"
-SmdSizes=" 0.3048 0.1524 0.4064 0.2032 0.6096 0.3048 0.8128 0.4064 1.016 0.508 1.27 0.6604 1.4224 0.7112 1.6764 0.8128 1.778 0.9144 1.9304 0.9652 2.1844 1.0668 2.54 1.27 3.81 1.9304 5.08 2.54 6.4516 3.2512 1.27 0.635"
-WireBend=1
-WireBendSet=0
-WireCap=1
-MiterStyle=0
-PadShape=1
-ViaShape=1
-PolygonPour=0
-PolygonRank=1
-PolygonThermals=1
-PolygonOrphans=0
-TextRatio=15
-DimensionUnit=1
-DimensionPrecision=2
-DimensionShowUnit=0
-PinDirection=3
-PinFunction=0
-PinLength=2
-PinVisible=3
-SwapLevel=0
-ArcDirection=0
-AddLevel=2
-PadsSameType=0
-Layer=16
+[Win_2]
+Type="Control Panel"
+Loc="360 248 959 647"
+State=2
+Number=0
 
 [Desktop]
 Screen="1440 900"
 Window="Win_1"
 Window="Win_2"
-Window="Win_3"
