@@ -5654,7 +5654,7 @@ Basic schematic elements and footprints for 0603, 1206, and PTH resistors.</desc
 <parts>
 <part name="U$1" library="lpc1100v1.1" deviceset="LPC1113/14-LQFP48" device=""/>
 <part name="U1" library="SparkFun-PowerIC" deviceset="MCP73831" device=""/>
-<part name="JP2" library="SparkFun-Connectors" deviceset="M02" device="-JST-2-PTH-NO_SILK"/>
+<part name="JP2" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
 <part name="C1" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="4.7uF"/>
 <part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -7035,6 +7035,7 @@ Basic schematic elements and footprints for 0603, 1206, and PTH resistors.</desc
 <approved hash="106,1,139.7,0,SCIO2,,,,,"/>
 <approved hash="106,1,144.78,-15.24,SCRESET,,,,,"/>
 <approved hash="115,1,-84.4973,61.1547,JP2,,,,,"/>
+<approved hash="115,1,330.877,133.545,JP4,,,,,"/>
 <approved hash="115,1,236.542,161.29,LED1,,,,,"/>
 <approved hash="115,1,256.862,171.45,LED2,,,,,"/>
 <approved hash="115,1,312.742,16.51,LED3,,,,,"/>
@@ -7045,6 +7046,7 @@ Basic schematic elements and footprints for 0603, 1206, and PTH resistors.</desc
 <approved hash="115,1,367.623,81.4747,SPI,,,,,"/>
 <approved hash="115,1,367.623,58.6147,I2C,,,,,"/>
 <approved hash="115,1,353.382,21.59,LED5,,,,,"/>
+<approved hash="115,1,165.512,48.0653,RECHARGE,,,,,"/>
 </errors>
 </schematic>
 </drawing>
