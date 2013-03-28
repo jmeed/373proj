@@ -32,13 +32,13 @@
 <layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
@@ -978,7 +978,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules name="default">
+<designrules name="default *">
 <description language="en">&lt;b&gt;EAGLE Design Rules for *2* Layer Designs (DS)&lt;/b&gt;
 &lt;p&gt;
 This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requirements for our double sided products. For questions, comments, suggestions, please contact Sunstone Customer Support: &lt;p&gt;&lt;b&gt;Email:&lt;/b&gt;  mailto:support@sunstone.com&lt;br&gt;&lt;b&gt;Phone:&lt;/b&gt; 800-228-8198.&lt;p&gt; v1.1Mod10/16/07~Layers-core reversal.Distance C/D.Restring%.Supply G%.&lt;p&gt; v1.2 Mod12/06/07~Distance C/D to 20mils.&lt;p&gt;v1.3Mod12/12/07~Supply/Annulus Value to 12.5mils&lt;p&gt;1/15/08 SSC-EAGLE-2Lyr_v1.0.0.3~For Release&lt;p&gt;10/3/08 Description Edit.&lt;p&gt;
@@ -1521,8 +1521,6 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="22.12185" y1="28.618934375" x2="22.12185" y2="28.38295" width="0.254" layer="1"/>
 <wire x1="22.12185" y1="28.38295" x2="21.0058" y2="27.2669" width="0.254" layer="1"/>
 <wire x1="26.409575" y1="22.400603125" x2="26.396875" y2="23.145825" width="0.254" layer="1"/>
-<wire x1="26.396875" y1="23.145825" x2="24.0792" y2="25.4635" width="0.254" layer="1"/>
-<wire x1="24.0792" y1="25.4635" x2="24.0665" y2="25.4635" width="0.254" layer="1"/>
 <wire x1="24.0665" y1="25.4635" x2="23.8125" y2="25.7175" width="0.254" layer="1"/>
 <wire x1="23.8125" y1="25.7175" x2="23.138096875" y2="25.7175" width="0.254" layer="1"/>
 <wire x1="23.138096875" y1="25.7175" x2="23.032828125" y2="25.82276875" width="0.254" layer="1"/>
@@ -1538,6 +1536,12 @@ This Sunstone Circuits 2 Layer .DRU has been set to cover our minimum requiremen
 <wire x1="28.543390625" y1="22.828109375" x2="28.30953125" y2="23.06196875" width="0.254" layer="1"/>
 <wire x1="32.108278125" y1="22.828109375" x2="32.108278125" y2="24.238828125" width="0.254" layer="1"/>
 <wire x1="32.108278125" y1="24.238828125" x2="32.112165625" y2="24.242715625" width="0.254" layer="1"/>
+<wire x1="24.0665" y1="25.4635" x2="24.0919" y2="25.4635" width="0.254" layer="1"/>
+<wire x1="24.0919" y1="25.4635" x2="25.273" y2="24.2824" width="0.254" layer="1"/>
+<wire x1="25.273" y1="24.2824" x2="25.273" y2="24.0411" width="0.254" layer="1"/>
+<wire x1="25.273" y1="24.0411" x2="25.2984" y2="24.0157" width="0.254" layer="1"/>
+<wire x1="25.2984" y1="24.0157" x2="25.92055" y2="24.0157" width="0.254" layer="1"/>
+<wire x1="25.92055" y1="24.0157" x2="26.59365" y2="23.3426" width="0.254" layer="1"/>
 </signal>
 <signal name="N$3">
 <contactref element="C3" pad="2"/>
