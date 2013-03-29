@@ -16,7 +16,6 @@ Power System:
 
 Screen: 
 * uOLED-G2 : http://www.4dsystems.com.au/downloads/microOLED/uOLED-128-G2/Docs/uOLED-128-G2-Datasheet-REV1.pdf
-			 Serial Communication documentation: http://www.4dsystems.com.au/downloads/Software/4D-Workshop4-IDE/Docs/Serial/GOLDELOX-SPE-COMMAND-SET-REV1.3.pdf
   * UART
 
 Bluetooth:
