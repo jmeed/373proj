@@ -1,0 +1,6 @@
+22:59:11 **** Incremental Build of configuration Release for project derp ****
+make all 
+make: Nothing to be done for `all'.
+
+22:59:12 Build Finished (took 90ms)
+

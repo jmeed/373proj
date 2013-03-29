@@ -1,0 +1,8 @@
+int main()
+{
+	bigdemo::main(1, 0);
+	while(1)
+	{
+
+	}
+}
