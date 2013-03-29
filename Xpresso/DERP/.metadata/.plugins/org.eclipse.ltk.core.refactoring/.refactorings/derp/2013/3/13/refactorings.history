@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;derp/Goldelox_Const4D.h&apos; to &apos;Goldelox_const4D.h&apos;" description="Rename resource &apos;Goldelox_Const4D.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Goldelox_Const4D.h" name="Goldelox_const4D.h" stamp="1364519522910" updateReferences="true"/>
-</session>
