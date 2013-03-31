@@ -40,3 +40,6 @@ gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+
+# Mac 
+*.DS_Store
