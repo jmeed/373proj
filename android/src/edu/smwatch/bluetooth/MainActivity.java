@@ -7,10 +7,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements IBluetoothServiceEventReceiver {
 	
 	public static final int REQUEST_ENABLE_BT = 1001;
 	
@@ -45,8 +43,10 @@ public class MainActivity extends Activity {
 		    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 		    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
-			bluetoot_is_enabled();
+			bluetoothEnabled();
 		}
+		
+		BluetoothService.initialize(getApplicationContext(), this);
 	}
 
 	@Override
@@ -63,9 +63,18 @@ public class MainActivity extends Activity {
 				if (!mBluetoothAdapter.isEnabled()) {
 					// TODO: Show the same error screen but with a Bluetooth inactive message
 				} else {
-					bluetoot_is_enabled();
+					bluetoothEnabled();
 				}
 				break;
+			}
+			case SELECT_DEVICE_BT: {
+				if (resultCode == Activity.RESULT_OK) {
+					// Get the device MAC address
+					String address = data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+
+					// Und verbinden
+					BluetoothService.connectToDevice(address);
+				}
 			}
 			default: {
 				super.onActivityResult(requestCode, resultCode, data);
@@ -74,14 +83,39 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	
-	public void bluetoot_is_enabled() {
-		startSearchDeviceIntent();
-	}
-
 	 
 	private void startSearchDeviceIntent() {
 		Intent serverIntent = new Intent(this, DeviceListActivity.class);
 		startActivityForResult(serverIntent, SELECT_DEVICE_BT);
+	}
+
+	@Override
+	public void bluetoothEnabling() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void bluetoothEnabled() {
+		startSearchDeviceIntent();
+		
+	}
+
+	@Override
+	public void bluetoothDisabling() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void bluetoothDisabled() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void connectedTo(String name, String address) {
+		// TODO Auto-generated method stub
+		
 	}
 }
