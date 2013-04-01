@@ -13,6 +13,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.util.UUID;
 
 public final class BluetoothService {
@@ -21,7 +23,8 @@ public final class BluetoothService {
 
 	private static final UUID uuidSpp = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	
-	private static final String sync_message = "smwatch\r\n\0";
+	private static final String sync_message = "00\0";
+	private static final int AUTHENTICATE = 0;
 
 	private static Context applicationContext;
 
@@ -47,6 +50,8 @@ public final class BluetoothService {
 	private static BufferedOutputStream outputStream;
 
 	private static BufferedInputStream inputStream;
+	
+	private static byte[] buffer = new byte[1024];
 
 	public static synchronized boolean initialize(Context applicationContext,
 			IBluetoothServiceEventReceiver eventReceiver) {
@@ -288,10 +293,9 @@ public final class BluetoothService {
 			outputStream.flush();
 			
 			// Receive the sync message to ensure pairing with the right device
-			byte[] buffer = new byte[1024];
-			int bytes = 0; // bytes returned from read()
-			bytes = inputStream.read(buffer);
-			if (buffer.toString() == sync_message) {
+			int length = readFromTarget();
+			int opcode = process_bl_msg(length);
+			if (opcode == AUTHENTICATE) {
 				System.out.println("Success");
 			} else {
 				System.out.println("Failure");
@@ -316,5 +320,48 @@ public final class BluetoothService {
 		} catch (NullPointerException e) {
 		}
 	}
-
+	
+	public static int readFromTarget() {
+		int index = 0;
+		byte[] tmp_buff = new byte[1024];
+		while(true) {
+			// Receive the sync message to ensure pairing with the right device
+			int bytes = 0; // bytes returned from read()
+			try {
+				bytes = inputStream.read(tmp_buff);
+				
+				// Copy to permenant buffer
+				for (int i = 0; i < bytes; i++) {
+					buffer[index] = tmp_buff[i];
+					index++;
+				}
+				
+				// If the last byte is \0 we are done
+				if(buffer[index - 1] == '\0') {
+					break;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return index;
+	}
+	
+	public static int process_bl_msg(int length) {
+		assert length >= 3;
+		int opcode = 10 * (buffer[0] - '0');
+		opcode = opcode + (buffer[1] - '0');
+		
+		System.out.println("BL recieved. opcode " + opcode + " " + length);
+		
+		switch (opcode) {
+		case AUTHENTICATE:
+			break;
+		default:
+			assert false;
+			break;
+		}
+		return opcode;
+	}
 }
