@@ -79,9 +79,9 @@ int main (void)
   I2CEngine();
 
   /* Be careful with below fixed delay. From device to device, or
-  even same device with different write length, or various I2C clock, 
-  below delay length may need to be changed accordingly. Having 
-  a break point before Write/Read start will be helpful to isolate 
+  even same device with different write length, or various I2C clock,
+  below delay length may need to be changed accordingly. Having
+  a break point before Write/Read start will be helpful to isolate
   the problem. */
   for ( i = 0; i < 0x200000; i++ );	/* Delay after write */
 
