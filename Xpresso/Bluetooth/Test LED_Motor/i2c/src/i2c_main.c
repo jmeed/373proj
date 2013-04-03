@@ -20,6 +20,7 @@
 #include "driver_config.h"
 #include "target_config.h"
 
+#include <stdio.h>
 #include "type.h"
 #include "i2c.h"
 
@@ -68,35 +69,96 @@ int main (void)
   after (I2CWriteLength + two devaddr) bytes. */
 
   /* Write SLA(W), address and one data byte */
-  I2CWriteLength = 6;
-  I2CReadLength = 0;
-  I2CMasterBuffer[0] = PCF8594_ADDR;
-  I2CMasterBuffer[1] = 0x00;		/* address */
-  I2CMasterBuffer[2] = 0x55;		/* Data0 */
-  I2CMasterBuffer[3] = 0xAA;		/* Data1 */
-  I2CMasterBuffer[4] = 0x12;		/* Data0 */
-  I2CMasterBuffer[5] = 0x34;		/* Data1 */
-  I2CEngine();
-
-  /* Be careful with below fixed delay. From device to device, or
-  even same device with different write length, or various I2C clock,
-  below delay length may need to be changed accordingly. Having
-  a break point before Write/Read start will be helpful to isolate
-  the problem. */
-  for ( i = 0; i < 0x200000; i++ );	/* Delay after write */
-
-  for ( i = 0; i < BUFSIZE; i++ )
-  {
-	I2CSlaveBuffer[i] = 0x00;
-  }
+//  I2CWriteLength = 6;
+//  I2CReadLength = 0;
+//  I2CMasterBuffer[0] = PCF8594_ADDR;
+//  I2CMasterBuffer[1] = 0x00;		/* address */
+//  I2CMasterBuffer[2] = 0x55;		/* Data0 */
+//  I2CMasterBuffer[3] = 0xAA;		/* Data1 */
+//  I2CMasterBuffer[4] = 0x12;		/* Data0 */
+//  I2CMasterBuffer[5] = 0x34;		/* Data1 */
+//  I2CEngine();
+//
+//  /* Be careful with below fixed delay. From device to device, or
+//  even same device with different write length, or various I2C clock,
+//  below delay length may need to be changed accordingly. Having
+//  a break point before Write/Read start will be helpful to isolate
+//  the problem. */
+//  for ( i = 0; i < 0x200000; i++ );	/* Delay after write */
+//
+//  for ( i = 0; i < BUFSIZE; i++ )
+//  {
+//	I2CSlaveBuffer[i] = 0x00;
+//  }
   /* Write SLA(W), address, SLA(R), and read one byte back. */
-  I2CWriteLength = 2;
-  I2CReadLength = 4;
-  I2CMasterBuffer[0] = PCF8594_ADDR;
-  I2CMasterBuffer[1] = 0x00;		/* address */
-  I2CMasterBuffer[2] = PCF8594_ADDR | RD_BIT;
-  I2CEngine();
+//  I2CWriteLength = 2;
+//  I2CReadLength = 4;
+//  I2CMasterBuffer[0] = PCF8594_ADDR;
+//  I2CMasterBuffer[1] = 0x1C;		/* address */
+//  I2CMasterBuffer[2] = PCF8594_ADDR | RD_BIT;
 
+  uint32_t result = 0;
+
+//  // WHO I AM
+//  I2CWriteLength = 0;
+//  I2CReadLength = 1;
+//  I2CMasterBuffer[0] = 0x3A;
+//  I2CMasterBuffer[1] = 0x0D;
+//  I2CMasterBuffer[2] = 0x3B;
+//  result = I2CEngine();
+
+//  for(i = 0; i < I2CReadLength; i++) {
+//	  printf("%d", I2CSlaveBuffer[i]);
+//  }
+  // END WRITE
+// Set to active mode
+  // BEGIN WRITE
+    I2CWriteLength = 3;
+    I2CReadLength = 0;
+    I2CMasterBuffer[0] = 0x3A;
+    I2CMasterBuffer[1] = 0x2A;
+    I2CMasterBuffer[2] = 0x01;
+    result = I2CEngine();
+
+
+    // END WRITE
+
+
+  //while(1);
+  while(1) {
+	  int i = 0;
+	  printf("Got new input\n");
+
+
+	  // Get X
+	  I2CWriteLength = 0;
+	  I2CReadLength = 1;
+	  I2CMasterBuffer[0] = 0x3A;
+	  I2CMasterBuffer[1] = 0x01;
+	  I2CMasterBuffer[2] = 0x3B;
+	  result = I2CEngine();
+
+	  for(i = 0; i < I2CReadLength; i++) {
+		  printf("%d", I2CSlaveBuffer[i]);
+	  }
+
+
+//	  I2CWriteLength = 0;
+//	  I2CReadLength = 1;
+//	  I2CMasterBuffer[0] = 0x3A;
+//	  I2CMasterBuffer[1] = 0x02;
+//	  I2CMasterBuffer[2] = 0x3B;
+//	  result = I2CEngine();
+//
+//	  for(i = 0; i < I2CReadLength; i++) {
+//		  printf("%d", I2CSlaveBuffer[i]);
+//	  }
+	  printf("\n");
+
+	  // Busy wait
+	  for (i=0; i < 0x200000; i++);
+
+  }
   /* Check the content of the Master and slave buffer */
   while ( 1 );
   return 0;
