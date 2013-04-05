@@ -33,7 +33,6 @@ void process_bl_msg();
 int main(void) {
 	// Initialize
 	UARTInit(UART_BAUD);
-
 	// Main loop code
 	while(1) {
 		// Check bluetooth status

@@ -24,11 +24,44 @@
 #include "type.h"
 #include "i2c.h"
 
+#define WAADR 0x90
+#define RAADR 0x91
+
+#define THR        0x00 << 3
+#define RHR        0x00 << 3
+#define IER        0x01 << 3
+#define FCR        0x02 << 3
+#define IIR        0x02 << 3
+#define LCR        0x03 << 3
+#define MCR        0x04 << 3
+#define LSR        0x05 << 3
+#define MSR        0x06 << 3
+#define SPR        0x07 << 3
+#define TXLVL      0x08 << 3
+#define RXLVL      0x09 << 3
+#define DLAB       0x80 << 3
+#define IODIR      0x0A << 3
+#define IOSTATE    0x0B << 3
+#define IOINTMSK   0x0C << 3
+#define IOCTRL     0x0E << 3
+#define EFCR       0x0F << 3
+
+#define DLL        0x00 << 3
+#define DLM        0x01 << 3
+#define EFR        0x02 << 3
+#define XON1       0x04 << 3
+#define XON2       0x05 << 3
+#define XOFF1      0x06 << 3
+#define XOFF2      0x07 << 3
+
 extern volatile uint32_t I2CCount;
 extern volatile uint8_t I2CMasterBuffer[BUFSIZE];
 extern volatile uint8_t I2CSlaveBuffer[BUFSIZE];
 extern volatile uint32_t I2CMasterState;
 extern volatile uint32_t I2CReadLength, I2CWriteLength;
+
+uint32_t write_register(uint8_t reg, uint8_t addr);
+uint8_t read_register(uint8_t reg, uint8_t addr);
 
 /*******************************************************************************
 **   Main Function  main()
@@ -39,7 +72,7 @@ int main (void)
 	   * from the startup code. SystemInit() and chip settings are defined
 	   * in the CMSIS system_<part family>.c file.
 	   */
-
+	printf("Hello\n");
   uint32_t i;
 
   if ( I2CInit( (uint32_t)I2CMASTER ) == FALSE )	/* initialize I2c */
@@ -118,10 +151,60 @@ int main (void)
   // Bluetooth
 
 
+  // Configure the UART Baud rate
+  write_register(LCR, 0x80);
+  while(1);
+
+  I2CWriteLength = 3;
+  I2CReadLength = 0;
+  I2CMasterBuffer[0] = 0x90;
+  //0x01
+  I2CMasterBuffer[1] = 0x01 << 3;
+  I2CMasterBuffer[2] = 0x01;
+  result = I2CEngine();
+  //0x02
+  I2CMasterBuffer[1] = 0x02 << 3;
+  I2CMasterBuffer[2] = 0xC0;
+  result = I2CEngine();
+  //0x03
+  I2CMasterBuffer[1] = 0x03 << 3;
+  I2CMasterBuffer[2] = 0x80;
+  result = I2CEngine();
+  //for ( i = 0; i < 0x200000; i++ );
+
+  // Read 0x01
+  I2CWriteLength = 2;
+  I2CMasterBuffer[0] = 0x90;
+  I2CMasterBuffer[1] = 0x01 << 3;
+  result = I2CEngine();
   I2CWriteLength = 0;
-  I2CReadLength = 10;
+  I2CReadLength = 1;
   I2CMasterBuffer[0] = 0x91;
   result = I2CEngine();
+
+
+  for ( i = 0; i < 0x20000; i++ );
+  // Read 0x02 -- UNABLE TO CONFIRM THAT THIS WRITE WORKS
+ I2CWriteLength = 2;
+ I2CReadLength = 0;
+ I2CMasterBuffer[0] = 0x90;
+ I2CMasterBuffer[1] = 0x02 << 3;
+ result = I2CEngine();
+ I2CWriteLength = 0;
+ I2CReadLength = 1;
+ I2CMasterBuffer[0] = 0x91;
+ result = I2CEngine();
+
+ // Read 0x03
+ I2CWriteLength = 2;
+ I2CReadLength = 0;
+ I2CMasterBuffer[0] = 0x90;
+ I2CMasterBuffer[1] = 0x03 << 3;
+ result = I2CEngine();
+ I2CWriteLength = 0;
+ I2CReadLength = 1;
+ I2CMasterBuffer[0] = 0x91;
+ result = I2CEngine();
 
 
 
@@ -186,6 +269,22 @@ int main (void)
   /* Check the content of the Master and slave buffer */
   while ( 1 );
   return 0;
+}
+
+
+uint32_t write_register(uint8_t reg, uint8_t addr) {
+	  I2CWriteLength = 3;
+	  I2CReadLength = 0;
+	  I2CMasterBuffer[0] = WAADR;
+	  I2CMasterBuffer[1] = reg;
+	  I2CMasterBuffer[2] = addr;
+	  uint32_t result = I2CEngine();
+	  printf("foov %d", result);
+	  return result;
+}
+
+uint8_t read_register(uint8_t reg, uint8_t addr) {
+
 }
 
 /******************************************************************************
