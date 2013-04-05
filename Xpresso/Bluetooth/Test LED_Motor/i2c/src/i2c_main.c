@@ -157,6 +157,12 @@ int main (void)
   // BEGIN WRITE
 
 
+  // Fuel gage
+//  read_register(IER)
+
+
+
+
   // Configure the I2C and UART
 
 
@@ -164,18 +170,29 @@ int main (void)
   write_register(DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
   write_register(DLL, 0x08); // The desired baud rate is 115200
 
-  write_register(LCR, 0xBF); // access EFR register
-  write_register(EFR, EFR_ENABLE_CTS | EFR_ENABLE_RTS | EFR_ENABLE_ENHANCED_FUNCTIONS); // enable enhanced registers
+//  write_register(LCR, 0xBF); // access EFR register
+//  write_register(EFR, EFR_ENABLE_ENHANCED_FUNCTIONS); // enable enhanced registers
+//  printf("EFR %d\n", read_register(EFR));
+
+//  printf("EFR %d\n", read_register(EFR));
+//  write_register(MCR, 0x00);
+//  printf("MCR %d\n", read_register(MCR));
+//  printf("EFR %d\n", read_register(EFR));
+//  write_register(0x06, 0x48);
+//  write_register(0x07, 0x11);
+//  printf("TCR %d\n", read_register(0x06));
+//  printf("TLR %d\n", read_register(0x07));
   write_register(LCR, 0x03); // 8 data bit, 1 stop bit, no parity
   write_register(FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
   write_register(FCR, 0x01); // enable FIFO mode
-//  write_register(IER, 0x01); // enable RHR interrupt
-  //write_register(IOCTRL, 0x01); //
+  write_register(IER, 0x01); // enable RHR interrupt
+//  write_register(IOCTRL, 0x01); //
 
 //  if(!uartConnected()){
 //    assert(0);
 //    };
 //  while(1);
+  printf("LSR %d\n", read_register(LSR));
   printf("started\n");
   fflush(stdout);
 
@@ -186,13 +203,12 @@ int main (void)
 
   // Try to read something
 //  printf("THR %d\n", read_register(THR));
-//  printf("RHR %d\n", read_register(RHR));
-//  printf("IER %d\n", read_register(IER));
-//  printf("FCR %d\n", read_register(FCR));
-//  printf("IIR %d\n", read_register(IIR));
-//  printf("LCR %d\n", read_register(LCR));
-//  printf("MCR %d\n", read_register(MCR));
-//  printf("LSR %d\n", read_register(LSR));
+  printf("IER %d\n", read_register(IER));
+  printf("FCR %d\n", read_register(FCR));
+  printf("IIR %d\n", read_register(IIR));
+  printf("LCR %d\n", read_register(LCR));
+  printf("MCR %d\n", read_register(MCR));
+  printf("LSR %d\n", read_register(LSR));
 //  printf("MSR %d\n", read_register(MSR));
 //  printf("SPR %d\n", read_register(SPR));
 //  printf("TXLVL %d\n", read_register(TXLVL));
@@ -208,6 +224,7 @@ int main (void)
   while(1) {
 	  if(read_register(LSR) & 0x01) {
 		  printf("%c", ((char) read_register(RHR)));
+		  printf("LSR %d\n", read_register(LSR));
 		  fflush(stdout);
 	  }
   }
@@ -344,7 +361,7 @@ uint32_t write_register(uint8_t reg, uint8_t value) {
 	  // Assert if the I2C is not in ok mode
 	  assert(I2CMasterState == I2C_OK);
 	  int i = 0 ;
-//	  for ( i = 0; i < 0x200000; i++ );
+	  for ( i = 0; i < 0x200000; i++ );
 	  return I2CMasterState;
 }
 
