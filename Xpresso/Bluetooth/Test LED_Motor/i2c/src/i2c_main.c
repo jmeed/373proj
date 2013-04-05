@@ -113,6 +113,30 @@ int main (void)
   // END WRITE
 // Set to active mode
   // BEGIN WRITE
+
+
+  // Bluetooth
+
+
+  I2CWriteLength = 0;
+  I2CReadLength = 10;
+  I2CMasterBuffer[0] = 0x91;
+  result = I2CEngine();
+
+
+
+
+
+
+
+
+
+  while(1);
+
+  // Accelerometer
+
+
+
     I2CWriteLength = 3;
     I2CReadLength = 0;
     I2CMasterBuffer[0] = 0x3A;
