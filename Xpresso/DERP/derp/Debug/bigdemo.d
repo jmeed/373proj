@@ -1,10 +1,12 @@
-bigdemo.d: ../bigdemo.c C:\Users\David\Desktop\DERP\derp/windows.h \
- C:\Users\David\Desktop\DERP\derp/bigdemo.h ../Goldelox_const4D.h \
- ../Goldelox_Serial_4DLibrary.h ../GOLDELOX_TYPES4D.H
+bigdemo.d: ../bigdemo.c \
+ /Users/jonny2112/ws/373/373proj/Xpresso/DERP/derp/windows.h \
+ /Users/jonny2112/ws/373/373proj/Xpresso/DERP/derp/bigdemo.h \
+ ../Goldelox_const4D.h ../Goldelox_Serial_4DLibrary.h \
+ ../GOLDELOX_TYPES4D.H
 
-C:\Users\David\Desktop\DERP\derp/windows.h:
+/Users/jonny2112/ws/373/373proj/Xpresso/DERP/derp/windows.h:
 
-C:\Users\David\Desktop\DERP\derp/bigdemo.h:
+/Users/jonny2112/ws/373/373proj/Xpresso/DERP/derp/bigdemo.h:
 
 ../Goldelox_const4D.h:
 
