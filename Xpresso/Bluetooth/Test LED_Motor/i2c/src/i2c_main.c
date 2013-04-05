@@ -21,6 +21,7 @@
 #include "target_config.h"
 
 #include <stdio.h>
+#include <assert.h>
 #include "type.h"
 #include "i2c.h"
 
@@ -72,7 +73,7 @@ int main (void)
 	   * from the startup code. SystemInit() and chip settings are defined
 	   * in the CMSIS system_<part family>.c file.
 	   */
-	printf("Hello\n");
+	printf("I2C to UART for Bluetooth started\n");
   uint32_t i;
 
   if ( I2CInit( (uint32_t)I2CMASTER ) == FALSE )	/* initialize I2c */
@@ -153,6 +154,7 @@ int main (void)
 
   // Configure the UART Baud rate
   write_register(LCR, 0x80);
+  uint8_t f = read_register(LCR, 0x80);
   while(1);
 
   I2CWriteLength = 3;
@@ -278,13 +280,28 @@ uint32_t write_register(uint8_t reg, uint8_t addr) {
 	  I2CMasterBuffer[0] = WAADR;
 	  I2CMasterBuffer[1] = reg;
 	  I2CMasterBuffer[2] = addr;
-	  uint32_t result = I2CEngine();
-	  printf("foov %d", result);
-	  return result;
+	  I2CEngine();
+	  printf("W reg result: %d\n", I2CMasterState);
+	  fflush(stdout);
+
+	  // Assert if the I2C is not in ok mode
+	  assert(I2CMasterState == I2C_OK);
+	  return I2CMasterState;
 }
 
 uint8_t read_register(uint8_t reg, uint8_t addr) {
+	  I2CWriteLength = 2;
+	  I2CReadLength = 1;
+	  I2CMasterBuffer[0] = WAADR;
+	  I2CMasterBuffer[1] = reg;
+	  I2CMasterBuffer[2] = RAADR;
+	  I2CEngine();
+	  printf("R reg result: %d\n", I2CMasterState);
+	  fflush(stdout);
 
+	  // Assert if the I2C is not in ok mode
+	  assert(I2CMasterState == I2C_OK);
+	  return I2CSlaveBuffer[0];
 }
 
 /******************************************************************************
