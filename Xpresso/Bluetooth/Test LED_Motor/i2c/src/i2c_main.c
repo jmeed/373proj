@@ -25,8 +25,8 @@
 #include "type.h"
 #include "i2c.h"
 
-#define WAADR 0x90
-#define RAADR 0x91
+#define WAADR 0x6C
+#define RAADR 0x6D
 
 #define DIVL 0x00
 #define DIVM 0x08
@@ -158,9 +158,12 @@ int main (void)
 
 
   // Fuel gage
-//  read_register(IER)
 
-
+  while(1) {
+	  printf("%d", read_register(0x02));
+	  printf("%d\n", read_register(0x03));
+	  fflush(stdout);
+  }
 
 
   // Configure the I2C and UART
