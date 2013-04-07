@@ -24,9 +24,10 @@
 #include <assert.h>
 #include "type.h"
 #include "i2c.h"
+#include "shared.h"
 
-#define WAADR 0x6C
-#define RAADR 0x6D
+#define WAADR 0x90 //0x6C
+#define RAADR 0x91 //0x6D
 
 #define DIVL 0x00
 #define DIVM 0x08
@@ -68,9 +69,14 @@ extern volatile uint8_t I2CSlaveBuffer[BUFSIZE];
 extern volatile uint32_t I2CMasterState;
 extern volatile uint32_t I2CReadLength, I2CWriteLength;
 
+char msg[BUFSIZE];
+uint32_t msg_count;
+
 uint32_t write_register(uint8_t reg, uint8_t value);
 uint8_t read_register(uint8_t reg);
 uint32_t uartConnected();
+void process_bl_msg();
+void send_bl_msg();
 
 /*******************************************************************************
 **   Main Function  main()
@@ -159,11 +165,11 @@ int main (void)
 
   // Fuel gage
 
-  while(1) {
-	  printf("%d", read_register(0x02));
-	  printf("%d\n", read_register(0x03));
-	  fflush(stdout);
-  }
+//  while(1) {
+//	  printf("%d", read_register(0x02));
+//	  printf("%d\n", read_register(0x03));
+//	  fflush(stdout);
+//  }
 
 
   // Configure the I2C and UART
@@ -224,11 +230,18 @@ int main (void)
 //  printf("EFCR %d\n", read_register(EFCR));
 
   printf("------\n\n");
+  msg_count = 0;
   while(1) {
 	  if(read_register(LSR) & 0x01) {
-		  printf("%c", ((char) read_register(RHR)));
-		  printf("LSR %d\n", read_register(LSR));
-		  fflush(stdout);
+		  msg[msg_count] = (char) read_register(RHR);
+		  msg_count++;
+		  if(msg[msg_count - 1] == '\0') {
+			  process_bl_msg();
+			  msg_count = 0;
+		  }
+//		  printf("%c", ((char) read_register(RHR)));
+//		  printf("LSR %d\n", read_register(LSR));
+//		  fflush(stdout);
 	  }
   }
 
@@ -376,7 +389,7 @@ uint8_t read_register(uint8_t reg) {
 	  I2CMasterBuffer[2] = RAADR;
 	  I2CEngine();
 	  //printf("R reg result: %d\n", I2CMasterState);
-	  fflush(stdout);
+	  //fflush(stdout);
 
 	  // Assert if the I2C is not in ok mode
 	  assert(I2CMasterState == I2C_OK);
@@ -396,6 +409,43 @@ uint32_t uartConnected() {
 
   return (read_register(SPR) == TEST_CHARACTER);
 }
+
+void process_bl_msg() {
+	assert(msg_count >= 3); // Ensure that the length is at least 3/enough to cover the opcode "00\0"
+	// The first two characters are actually the bluetooth code
+	int opcode = 10 * (msg[0] - '0');
+	opcode = opcode + (msg[1] - '0');
+	printf("BL received. opcode: %d\n", opcode);
+	switch(opcode) {
+	case AUTHENTICATE:
+		send_bl_msg();
+//		UARTSend((uint8_t *) UARTBuffer, UARTCount);
+//		UARTCount = 0;
+//		LPC_UART ->IER = ENABLE_IRQ; /* Re-enable RBR */
+		break;
+	default:
+		printf("ERR: opcode [%d] from bluetooth receive not valid\n", opcode);
+		assert(0);
+		break;
+	}
+}
+
+void send_bl_msg() {
+	  I2CWriteLength = 2 + msg_count;
+	  I2CReadLength = 0;
+	  I2CMasterBuffer[0] = WAADR;
+	  I2CMasterBuffer[1] = THR;
+	  int i;
+	  for(i = 0; i < msg_count; i++) {
+		  I2CMasterBuffer[i + 2] = msg[i];
+	  }
+	  I2CEngine();
+
+	  // Assert if the I2C is not in ok mode
+	  assert(I2CMasterState == I2C_OK);
+	  for ( i = 0; i < 0x200000; i++ );
+}
+
 
 /******************************************************************************
 **                            End Of File

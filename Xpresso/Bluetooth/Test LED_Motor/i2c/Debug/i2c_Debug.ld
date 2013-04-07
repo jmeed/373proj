@@ -1,9 +1,9 @@
 /*
  * GENERATED FILE - DO NOT EDIT
  * (C) Code Red Technologies Ltd, 2008-2013
- * Generated linker script file for LPC1114/302
+ * Generated linker script file for LPC1115/303
  * Created from generic_c.ld (vLPCXpresso v5.1 (2 [Build 2065] [2013-02-20] ))
- * By LPCXpresso v5.1.2 [Build 2065] [2013-02-20]  on Sat Apr 06 21:20:55 EDT 2013
+ * By LPCXpresso v5.1.2 [Build 2065] [2013-02-20]  on Sun Apr 07 14:06:15 EDT 2013
  */
 
 
@@ -43,7 +43,7 @@ SECTIONS
         *(.rodata .rodata.*)
         . = ALIGN(4);
         
-    } > MFlash32
+    } > MFlash64
 
     /*
      * for exception handling/unwind - some Newlib functions (in common
@@ -52,13 +52,13 @@ SECTIONS
     .ARM.extab : ALIGN(4)
     {
     	*(.ARM.extab* .gnu.linkonce.armextab.*)
-    } > MFlash32
+    } > MFlash64
     __exidx_start = .;
     
     .ARM.exidx : ALIGN(4)
     {
     	*(.ARM.exidx* .gnu.linkonce.armexidx.*)
-    } > MFlash32
+    } > MFlash64
     __exidx_end = .;
     
     _etext = .;
@@ -82,7 +82,7 @@ SECTIONS
         *(.data*)
         . = ALIGN(4) ;
         _edata = .;
-    } > RamLoc8 AT>MFlash32
+    } > RamLoc8 AT>MFlash64
 
 
     /* MAIN BSS SECTION */
