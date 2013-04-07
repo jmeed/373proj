@@ -324,21 +324,21 @@ OUTPUT(timedwakeup.axf elf32-littlearm)
  .debug_macinfo
                 0x0001dec1     0x5edd ./cmsis/system_LPC11xx.o
 
-.debug_str      0x00000000      0xbb0
- .debug_str     0x00000000      0x168 ./startup/cr_startup_lpc11.o
-                                0x187 (size before relaxing)
- .debug_str     0x00000168      0x79f ./src/main.o
-                                0x883 (size before relaxing)
- .debug_str     0x00000907       0x19 ./driver/crp.o
-                                0x135 (size before relaxing)
- .debug_str     0x00000920       0x11 ./driver/gpio.o
-                                0x124 (size before relaxing)
- .debug_str     0x00000931      0x177 ./driver/timer16.o
-                                0x90e (size before relaxing)
- .debug_str     0x00000aa8       0xbf ./cmsis/core_cm0.o
-                                0x1fa (size before relaxing)
- .debug_str     0x00000b67       0x49 ./cmsis/system_LPC11xx.o
-                                0x421 (size before relaxing)
+.debug_str      0x00000000      0xbba
+ .debug_str     0x00000000      0x172 ./startup/cr_startup_lpc11.o
+                                0x191 (size before relaxing)
+ .debug_str     0x00000172      0x79f ./src/main.o
+                                0x88d (size before relaxing)
+ .debug_str     0x00000911       0x19 ./driver/crp.o
+                                0x13f (size before relaxing)
+ .debug_str     0x0000092a       0x11 ./driver/gpio.o
+                                0x12e (size before relaxing)
+ .debug_str     0x0000093b      0x177 ./driver/timer16.o
+                                0x918 (size before relaxing)
+ .debug_str     0x00000ab2       0xbf ./cmsis/core_cm0.o
+                                0x204 (size before relaxing)
+ .debug_str     0x00000b71       0x49 ./cmsis/system_LPC11xx.o
+                                0x42b (size before relaxing)
 
 .comment        0x00000000       0xe0
  .comment       0x00000000       0x70 ./startup/cr_startup_lpc11.o

@@ -3,7 +3,7 @@
  * (C) Code Red Technologies Ltd, 2008-2013
  * Generated linker script file for LPC1115/303
  * Created from generic_c.ld (vLPCXpresso v5.1 (2 [Build 2065] [2013-02-20] ))
- * By LPCXpresso v5.1.2 [Build 2065] [2013-02-20]  on Fri Apr 05 02:36:56 EDT 2013
+ * By LPCXpresso v5.1.2 [Build 2065] [2013-02-20]  on Sat Apr 06 21:17:35 EDT 2013
  */
 
 
