@@ -26,8 +26,17 @@
 #include "i2c.h"
 #include "shared.h"
 
-#define WAADR 0x90 //0x6C
-#define RAADR 0x91 //0x6D
+// Bluetooth slave address
+#define BL_WAADR 0x90
+#define BL_RAADR (BL_WAADR | 0x01)
+
+//Accelerometer slave address
+#define AC_WAADR 0x3A
+#define AC_RAADR (AC_WAADR | 0x01)
+
+// Fuel gauge slave address
+#define FG_WAADR 0x6C
+#define FG_RAADR (FG_WAADR | 0x01)
 
 #define DIVL 0x00
 #define DIVM 0x08
@@ -72,11 +81,13 @@ extern volatile uint32_t I2CReadLength, I2CWriteLength;
 char msg[BUFSIZE];
 uint32_t msg_count;
 
-uint32_t write_register(uint8_t reg, uint8_t value);
-uint8_t read_register(uint8_t reg);
+uint32_t write_byte_to_register(uint8_t addr, uint8_t reg, uint8_t value);
+uint32_t send_i2c_msg(uint8_t addr, uint8_t reg);
+uint8_t read_byte_from_register(uint8_t r_addr, uint8_t w_addr, uint8_t reg);
 uint32_t uartConnected();
 void process_bl_msg();
 void send_bl_msg();
+uint8_t configure_i2c();
 
 /*******************************************************************************
 **   Main Function  main()
@@ -87,13 +98,55 @@ int main (void)
 	   * from the startup code. SystemInit() and chip settings are defined
 	   * in the CMSIS system_<part family>.c file.
 	   */
-	printf("I2C to UART for Bluetooth started\n");
+	printf("I2C to UART for Bluetooth started \n");
   uint32_t i;
 
   if ( I2CInit( (uint32_t)I2CMASTER ) == FALSE )	/* initialize I2c */
   {
 	while ( 1 );				/* Fatal error */
   }
+
+
+
+  configure_i2c();
+  printf("I2C configured\n");
+  while(1) {
+	  // Check the Bluetooth
+	  while(read_byte_from_register(BL_RAADR, BL_WAADR, LSR) & 0x01) {
+		  msg[msg_count] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
+		  msg_count++;
+		  if(msg[msg_count - 1] == '\0') {
+			  printf("%s\n", msg);
+			  fflush(stdout);
+			  process_bl_msg();
+			  msg_count = 0;
+		  }
+	  }
+
+	  // Check the accelerometer
+
+
+	  // Check the fuel gauge
+	  printf("%d", read_byte_from_register(FG_RAADR, FG_WAADR, 0x02));
+	  printf("%d\n", read_byte_from_register(FG_RAADR, FG_WAADR, 0x03));
+	  fflush(stdout);
+
+	  // Sleep
+	  int i;
+	  for ( i = 0; i < 0x200000; i++ );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   /* In order to start the I2CEngine, the all the parameters 
   must be set in advance, including I2CWriteLength, I2CReadLength,
@@ -363,33 +416,38 @@ int main (void)
   return 0;
 }
 
-
-uint32_t write_register(uint8_t reg, uint8_t value) {
-	  I2CWriteLength = 3;
+uint32_t send_i2c_msg(uint8_t addr, uint8_t reg) {
+	  I2CWriteLength = 2 + msg_count;
 	  I2CReadLength = 0;
-	  I2CMasterBuffer[0] = WAADR;
+	  I2CMasterBuffer[0] = addr;
 	  I2CMasterBuffer[1] = reg;
-	  I2CMasterBuffer[2] = value;
+	  int i;
+	  for(i = 0; i < msg_count; i++) {
+		  I2CMasterBuffer[i + 2] = msg[i];
+	  }
 	  I2CEngine();
-	  //printf("W reg result: %d\n", I2CMasterState);
-	  fflush(stdout);
 
 	  // Assert if the I2C is not in ok mode
 	  assert(I2CMasterState == I2C_OK);
-	  int i = 0 ;
 	  for ( i = 0; i < 0x200000; i++ );
 	  return I2CMasterState;
 }
 
-uint8_t read_register(uint8_t reg) {
+uint32_t write_byte_to_register(uint8_t addr, uint8_t reg, uint8_t value) {
+	msg_count = 1;
+	msg[0] = value;
+	send_i2c_msg(addr, reg);
+	msg_count = 0;
+	return I2CMasterState;
+}
+
+uint8_t read_byte_from_register(uint8_t r_addr, uint8_t w_addr, uint8_t reg) {
 	  I2CWriteLength = 2;
 	  I2CReadLength = 1;
-	  I2CMasterBuffer[0] = WAADR;
+	  I2CMasterBuffer[0] = w_addr;
 	  I2CMasterBuffer[1] = reg;
-	  I2CMasterBuffer[2] = RAADR;
+	  I2CMasterBuffer[2] = r_addr;
 	  I2CEngine();
-	  //printf("R reg result: %d\n", I2CMasterState);
-	  //fflush(stdout);
 
 	  // Assert if the I2C is not in ok mode
 	  assert(I2CMasterState == I2C_OK);
@@ -418,10 +476,7 @@ void process_bl_msg() {
 	printf("BL received. opcode: %d\n", opcode);
 	switch(opcode) {
 	case AUTHENTICATE:
-		send_bl_msg();
-//		UARTSend((uint8_t *) UARTBuffer, UARTCount);
-//		UARTCount = 0;
-//		LPC_UART ->IER = ENABLE_IRQ; /* Re-enable RBR */
+		send_i2c_msg(BL_WAADR, THR);
 		break;
 	default:
 		printf("ERR: opcode [%d] from bluetooth receive not valid\n", opcode);
@@ -430,20 +485,16 @@ void process_bl_msg() {
 	}
 }
 
-void send_bl_msg() {
-	  I2CWriteLength = 2 + msg_count;
-	  I2CReadLength = 0;
-	  I2CMasterBuffer[0] = WAADR;
-	  I2CMasterBuffer[1] = THR;
-	  int i;
-	  for(i = 0; i < msg_count; i++) {
-		  I2CMasterBuffer[i + 2] = msg[i];
-	  }
-	  I2CEngine();
-
-	  // Assert if the I2C is not in ok mode
-	  assert(I2CMasterState == I2C_OK);
-	  for ( i = 0; i < 0x200000; i++ );
+uint8_t configure_i2c() {
+	// Set up Bluetooth
+	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
+	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
+	write_byte_to_register(BL_WAADR, DLL, 0x08); // The desired baud rate is 115200
+	write_byte_to_register(BL_WAADR, LCR, 0x03); // 8 data bit, 1 stop bit, no parity
+	write_byte_to_register(BL_WAADR, FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
+	write_byte_to_register(BL_WAADR, FCR, 0x01); // enable FIFO mode
+	write_byte_to_register(BL_WAADR, IER, 0x01); // enable RHR interrupt
+	return I2CMasterState;
 }
 
 
