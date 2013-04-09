@@ -1,0 +1,586 @@
+Archive member included because of file (symbol)
+
+C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+                              ./driver/debug_printf.o (printf_format_nofloat)
+C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+                              C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o) (prints)
+C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+                              ./driver/debug_printf.o (small_strlen)
+c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+                              ./startup/cr_startup_lpc11.o (__main)
+c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+                              ./driver/debug_printf.o (__write)
+c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                              ./driver/debug_printf.o (__aeabi_idivmod)
+c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                              ./src/adc_main.o (__aeabi_dmul)
+c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+                              c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o) (__aeabi_lmul)
+
+Allocating common symbols
+Common symbol       size              file
+
+fseek               0x4               ./driver/debug_printf.o
+fclose              0x4               ./driver/debug_printf.o
+ADCValue            0x20              ./driver/adc.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 ./startup/cr_startup_lpc11.o
+ .data          0x00000000        0x0 ./startup/cr_startup_lpc11.o
+ .bss           0x00000000        0x0 ./startup/cr_startup_lpc11.o
+ .text          0x00000000        0x0 ./src/adc_main.o
+ .data          0x00000000        0x0 ./src/adc_main.o
+ .bss           0x00000000        0x0 ./src/adc_main.o
+ .text.ConvertDigital
+                0x00000000       0x4c ./src/adc_main.o
+ .text          0x00000000        0x0 ./driver/adc.o
+ .data          0x00000000        0x0 ./driver/adc.o
+ .bss           0x00000000        0x0 ./driver/adc.o
+ .text.ADCBurstRead
+                0x00000000       0x48 ./driver/adc.o
+ .text          0x00000000        0x0 ./driver/crp.o
+ .data          0x00000000        0x0 ./driver/crp.o
+ .bss           0x00000000        0x0 ./driver/crp.o
+ .text          0x00000000        0x0 ./driver/debug_printf.o
+ .data          0x00000000        0x0 ./driver/debug_printf.o
+ .bss           0x00000000        0x0 ./driver/debug_printf.o
+ .bss.debug_read_buf
+                0x00000000       0x18 ./driver/debug_printf.o
+ .text._debug_getstr
+                0x00000000       0x58 ./driver/debug_printf.o
+ .text._debug_puts
+                0x00000000       0x30 ./driver/debug_printf.o
+ COMMON         0x00000000        0x8 ./driver/debug_printf.o
+ .text          0x00000000        0x0 ./cmsis/core_cm0.o
+ .data          0x00000000        0x0 ./cmsis/core_cm0.o
+ .bss           0x00000000        0x0 ./cmsis/core_cm0.o
+ .text.__get_PSP
+                0x00000000        0x8 ./cmsis/core_cm0.o
+ .text.__set_PSP
+                0x00000000        0x6 ./cmsis/core_cm0.o
+ .text.__get_MSP
+                0x00000000        0x8 ./cmsis/core_cm0.o
+ .text.__set_MSP
+                0x00000000        0x6 ./cmsis/core_cm0.o
+ .text.__get_PRIMASK
+                0x00000000        0x6 ./cmsis/core_cm0.o
+ .text.__set_PRIMASK
+                0x00000000        0x6 ./cmsis/core_cm0.o
+ .text.__get_CONTROL
+                0x00000000        0x6 ./cmsis/core_cm0.o
+ .text.__set_CONTROL
+                0x00000000        0x6 ./cmsis/core_cm0.o
+ .text.__REV    0x00000000        0x4 ./cmsis/core_cm0.o
+ .text.__REV16  0x00000000        0x4 ./cmsis/core_cm0.o
+ .text.__REVSH  0x00000000        0x4 ./cmsis/core_cm0.o
+ .text          0x00000000        0x0 ./cmsis/system_LPC11xx.o
+ .data          0x00000000        0x0 ./cmsis/system_LPC11xx.o
+ .bss           0x00000000        0x0 ./cmsis/system_LPC11xx.o
+ .text          0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .data          0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .bss           0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .text.func_printf_nofloat
+                0x00000000       0x16 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .text.nsprintf
+                0x00000000       0x24 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .text          0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .data          0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .bss           0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .text.nsprintf_write_init
+                0x00000000       0x1c C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .text.nsprintf_write
+                0x00000000       0x30 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .bss.nsprintf_buffer_index
+                0x00000000        0x4 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .bss.nsprintf_buffer
+                0x00000000        0x4 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .bss.nsprintf_buffer_length
+                0x00000000        0x4 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .text          0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .data          0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .bss           0x00000000        0x0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text.small_strlen
+                0x00000000       0x12 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text.small_strcmp
+                0x00000000       0x1e C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text.small_stricmp
+                0x00000000       0x34 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text.small_strim
+                0x00000000       0x2c C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text.gethex   0x00000000       0x34 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text.small_fmodf
+                0x00000000       0x68 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+ .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+ .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+ .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+ .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+ .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+ .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_uldivmod
+                0x00000000       0x5a c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_ldivmod
+                0x00000000       0x32 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_ldiv0
+                0x00000000        0x2 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_idivq31+15
+                0x00000000      0x188 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_drsub
+                0x00000000       0x28 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dneg
+                0x00000000       0x10 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2f
+                0x00000000       0x5c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2uiz
+                0x00000000       0x38 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2lz
+                0x00000000       0x78 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_d2ulz
+                0x00000000       0x58 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__bhs_ul2d
+                0x00000000       0xb4 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_l2d
+                0x00000000       0x20 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_ul2d
+                0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmpeq
+                0x00000000       0x40 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmplt
+                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmpgt
+                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmple
+                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmpge
+                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_dcmpun
+                0x00000000       0x1c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_cdcmple
+                0x00000000       0x2e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text.__aeabi_cdrcmple
+                0x00000000       0x14 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .text.__aeabi_llong_llsl
+                0x00000000       0x18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .text.__aeabi_llong_llsr
+                0x00000000       0x18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .text.__aeabi_llong_lasr
+                0x00000000       0x18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .text.__aeabi_llong_lcmp
+                0x00000000       0x14 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+ .text.__aeabi_llong_ulcmp
+                0x00000000       0x10 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+MFlash32         0x00000000         0x00008000         xr
+RamLoc8          0x10000000         0x00002000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./startup/cr_startup_lpc11.o
+LOAD ./src/adc_main.o
+LOAD ./driver/adc.o
+LOAD ./driver/crp.o
+LOAD ./driver/debug_printf.o
+LOAD ./cmsis/core_cm0.o
+LOAD ./cmsis/system_LPC11xx.o
+LOAD C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a
+START GROUP
+LOAD c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a
+LOAD c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a
+LOAD c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a
+END GROUP
+                0x00008000                __top_MFlash32 = 0x8000
+                0x10002000                __top_RamLoc8 = 0x10002000
+
+.text           0x00000000     0x14b7
+ FILL mask 0xff
+ *(.isr_vector)
+ .isr_vector    0x00000000       0xc0 ./startup/cr_startup_lpc11.o
+                0x00000000                g_pfnVectors
+ *(.text.Reset_Handler .text.SystemInit)
+ .text.SystemInit
+                0x000000c0       0xb0 ./cmsis/system_LPC11xx.o
+                0x000000c0                SystemInit
+                0x000002fc                . = 0x2fc
+ *fill*         0x00000170      0x18c ff
+ *(.crp)
+ .crp           0x000002fc        0x4 ./driver/crp.o
+                0x000002fc                CRP_WORD
+ *(.text*)
+ .text.ResetISR
+                0x00000300       0x64 ./startup/cr_startup_lpc11.o
+                0x00000300                ResetISR
+ .text.NMI_Handler
+                0x00000364        0x8 ./startup/cr_startup_lpc11.o
+                0x00000364                NMI_Handler
+ .text.HardFault_Handler
+                0x0000036c        0x8 ./startup/cr_startup_lpc11.o
+                0x0000036c                HardFault_Handler
+ .text.SVCall_Handler
+                0x00000374        0x8 ./startup/cr_startup_lpc11.o
+                0x00000374                SVCall_Handler
+ .text.PendSV_Handler
+                0x0000037c        0x8 ./startup/cr_startup_lpc11.o
+                0x0000037c                PendSV_Handler
+ .text.SysTick_Handler
+                0x00000384        0x8 ./startup/cr_startup_lpc11.o
+                0x00000384                SysTick_Handler
+ .text.IntDefaultHandler
+                0x0000038c        0x8 ./startup/cr_startup_lpc11.o
+                0x0000038c                TIMER16_0_IRQHandler
+                0x0000038c                UART_IRQHandler
+                0x0000038c                TIMER32_0_IRQHandler
+                0x0000038c                TIMER32_1_IRQHandler
+                0x0000038c                IntDefaultHandler
+                0x0000038c                PIOINT1_IRQHandler
+                0x0000038c                CAN_IRQHandler
+                0x0000038c                SSP0_IRQHandler
+                0x0000038c                TIMER16_1_IRQHandler
+                0x0000038c                SSP1_IRQHandler
+                0x0000038c                PIOINT2_IRQHandler
+                0x0000038c                BOD_IRQHandler
+                0x0000038c                WAKEUP_IRQHandler
+                0x0000038c                PIOINT0_IRQHandler
+                0x0000038c                I2C_IRQHandler
+                0x0000038c                WDT_IRQHandler
+                0x0000038c                PIOINT3_IRQHandler
+ .text.FillString
+                0x00000394       0x44 ./src/adc_main.o
+                0x00000394                FillString
+ .text.ADCBar   0x000003d8      0x130 ./src/adc_main.o
+                0x000003d8                ADCBar
+ .text.main     0x00000508       0x54 ./src/adc_main.o
+                0x00000508                main
+ .text.NVIC_EnableIRQ
+                0x0000055c       0x2c ./driver/adc.o
+ .text.ADC_IRQHandler
+                0x00000588       0xe8 ./driver/adc.o
+                0x00000588                ADC_IRQHandler
+ .text.ADCInit  0x00000670      0x138 ./driver/adc.o
+                0x00000670                ADCInit
+ .text.ADCRead  0x000007a8       0x54 ./driver/adc.o
+                0x000007a8                ADCRead
+ .text._debug_printf_flush
+                0x000007fc       0xa8 ./driver/debug_printf.o
+                0x000007fc                _debug_printf_flush
+ .text._debug_putchar
+                0x000008a4       0x88 ./driver/debug_printf.o
+                0x000008a4                _debug_putchar
+ .text._debug_printf
+                0x0000092c       0x30 ./driver/debug_printf.o
+                0x0000092c                _debug_printf
+ .text.SystemCoreClockUpdate
+                0x0000095c       0xac ./cmsis/system_LPC11xx.o
+                0x0000095c                SystemCoreClockUpdate
+ .text.printf_format_nofloat
+                0x00000a08      0x18c C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+                0x00000a08                printf_format_nofloat
+ .text.prints   0x00000b94       0x7a C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+                0x00000b94                prints
+ .text.printi   0x00000c0e       0xa4 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+                0x00000c0e                printi
+ .text.__weak_main
+                0x00000cb2        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+                0x00000cb2                __weak_main
+                0x00000cb2                __main
+ .text.__sys_write
+                0x00000cba        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+                0x00000cba                __sys_write
+                0x00000cba                __write
+ .text.__aeabi_division_idivmod
+                0x00000cc6        0x6 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                0x00000cc6                __aeabi_idivmod
+                0x00000cc6                __aeabi_idiv
+ .text.__aeabi_division_uidivmod
+                0x00000ccc       0x72 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                0x00000ccc                __aeabi_uidivmod
+                0x00000ccc                __aeabi_uidiv
+ .text.__aeabi_division_idiv0
+                0x00000d3e        0x2 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                0x00000d3e                __aeabi_idiv0
+ .text.__aeabi_dmul
+                0x00000d40      0x180 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00000d40                __aeabi_dmul
+ .text.__aeabi_ddiv
+                0x00000ec0      0x178 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00000ec0                __aeabi_ddiv
+ .text.__aeabi_dsub
+                0x00001038      0x1d8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00001038                __aeabi_dsub
+ .text.__aeabi_dadd
+                0x00001210      0x140 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00001210                __aeabi_dadd
+ .text.__aeabi_d2iz
+                0x00001350       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00001350                __aeabi_d2iz
+ .text.__bhs_ui2d
+                0x0000139c       0x5e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x0000139c                __bhs_ui2d
+ .text.__aeabi_i2d
+                0x000013fa       0x16 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x000013fa                __aeabi_i2d
+ .text.__aeabi_ui2d
+                0x00001410        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00001410                __aeabi_ui2d
+ .text.__aeabi_llong_lmul
+                0x0000141c       0x2e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+                0x0000141c                __aeabi_lmul
+ *(.rodata*)
+ *fill*         0x0000144a        0x2 00
+ .rodata        0x0000144c       0x24 ./src/adc_main.o
+ .rodata.CSWTCH.7
+                0x00001470       0x40 ./cmsis/system_LPC11xx.o
+ .rodata.str1.1
+                0x000014b0        0x7 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+
+.glue_7         0x000014b8        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000014b8        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000014b8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000014b8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x000014b8                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x000014b8                __exidx_end = .
+                0x000014b8                _etext = .
+
+.data           0x10000000        0x4 load address 0x000014b8
+                0x10000000                _data = .
+ *(vtable)
+ *(.data*)
+ .data.SystemCoreClock
+                0x10000000        0x4 ./cmsis/system_LPC11xx.o
+                0x10000000                SystemCoreClock
+                0x10000004                _edata = .
+
+.bss            0x10000004       0x80 load address 0x000014bc
+                0x10000004                _bss = .
+ *(.bss*)
+ .bss.ADCIntDone
+                0x10000004        0x4 ./driver/adc.o
+                0x10000004                ADCIntDone
+ .bss.OverRunCounter
+                0x10000008        0x4 ./driver/adc.o
+                0x10000008                OverRunCounter
+ .bss.debug_write_buf
+                0x1000000c       0x54 ./driver/debug_printf.o
+ .bss.debug_buf_read_index
+                0x10000060        0x1 ./driver/debug_printf.o
+ .bss.debug_buf_write_index
+                0x10000061        0x1 ./driver/debug_printf.o
+ *(COMMON)
+ *fill*         0x10000062        0x2 00
+ COMMON         0x10000064       0x20 ./driver/adc.o
+                0x10000064                ADCValue
+                0x10000084                _ebss = .
+
+.cr_heap        0x10000084        0x0 load address 0x000014bc
+                0x10000084                end = .
+                0x10000084                _pvHeapStart = .
+                0x10002000                _vRamTop = __top_RamLoc8
+                0x10002000                _vStackTop = _vRamTop
+OUTPUT(adc.axf elf32-littlearm)
+
+.debug_info     0x00000000     0x2120
+ .debug_info    0x00000000      0x1ec ./startup/cr_startup_lpc11.o
+ .debug_info    0x000001ec      0x217 ./src/adc_main.o
+ .debug_info    0x00000403      0xb20 ./driver/adc.o
+ .debug_info    0x00000f23       0x92 ./driver/crp.o
+ .debug_info    0x00000fb5      0x257 ./driver/debug_printf.o
+ .debug_info    0x0000120c      0x2ae ./cmsis/core_cm0.o
+ .debug_info    0x000014ba      0x588 ./cmsis/system_LPC11xx.o
+ .debug_info    0x00001a42      0x257 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_info    0x00001c99      0x2c0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_info    0x00001f59      0x1c7 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_abbrev   0x00000000      0x9c9
+ .debug_abbrev  0x00000000       0xb4 ./startup/cr_startup_lpc11.o
+ .debug_abbrev  0x000000b4       0xe7 ./src/adc_main.o
+ .debug_abbrev  0x0000019b      0x19b ./driver/adc.o
+ .debug_abbrev  0x00000336       0x51 ./driver/crp.o
+ .debug_abbrev  0x00000387      0x120 ./driver/debug_printf.o
+ .debug_abbrev  0x000004a7       0xaf ./cmsis/core_cm0.o
+ .debug_abbrev  0x00000556      0x13d ./cmsis/system_LPC11xx.o
+ .debug_abbrev  0x00000693      0x15f C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_abbrev  0x000007f2      0x11e C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_abbrev  0x00000910       0xb9 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_loc      0x00000000      0xfc5
+ .debug_loc     0x00000000      0x140 ./startup/cr_startup_lpc11.o
+ .debug_loc     0x00000140       0xe2 ./src/adc_main.o
+ .debug_loc     0x00000222      0x10c ./driver/adc.o
+ .debug_loc     0x0000032e      0x124 ./driver/debug_printf.o
+ .debug_loc     0x00000452      0x112 ./cmsis/core_cm0.o
+ .debug_loc     0x00000564       0x98 ./cmsis/system_LPC11xx.o
+ .debug_loc     0x000005fc      0x4ad C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_loc     0x00000aa9      0x2de C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_loc     0x00000d87      0x23e C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_aranges  0x00000000      0x250
+ .debug_aranges
+                0x00000000       0x50 ./startup/cr_startup_lpc11.o
+ .debug_aranges
+                0x00000050       0x38 ./src/adc_main.o
+ .debug_aranges
+                0x00000088       0x40 ./driver/adc.o
+ .debug_aranges
+                0x000000c8       0x40 ./driver/debug_printf.o
+ .debug_aranges
+                0x00000108       0x70 ./cmsis/core_cm0.o
+ .debug_aranges
+                0x00000178       0x28 ./cmsis/system_LPC11xx.o
+ .debug_aranges
+                0x000001a0       0x30 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_aranges
+                0x000001d0       0x38 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_aranges
+                0x00000208       0x48 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_ranges   0x00000000      0x1c0
+ .debug_ranges  0x00000000       0x40 ./startup/cr_startup_lpc11.o
+ .debug_ranges  0x00000040       0x28 ./src/adc_main.o
+ .debug_ranges  0x00000068       0x30 ./driver/adc.o
+ .debug_ranges  0x00000098       0x30 ./driver/debug_printf.o
+ .debug_ranges  0x000000c8       0x60 ./cmsis/core_cm0.o
+ .debug_ranges  0x00000128       0x18 ./cmsis/system_LPC11xx.o
+ .debug_ranges  0x00000140       0x20 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_ranges  0x00000160       0x28 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_ranges  0x00000188       0x38 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_line     0x00000000     0x2697
+ .debug_line    0x00000000      0x3da ./startup/cr_startup_lpc11.o
+ .debug_line    0x000003da      0x48d ./src/adc_main.o
+ .debug_line    0x00000867      0x40f ./driver/adc.o
+ .debug_line    0x00000c76      0x359 ./driver/crp.o
+ .debug_line    0x00000fcf      0x4ae ./driver/debug_printf.o
+ .debug_line    0x0000147d      0x3cd ./cmsis/core_cm0.o
+ .debug_line    0x0000184a      0x3cc ./cmsis/system_LPC11xx.o
+ .debug_line    0x00001c16      0x460 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_line    0x00002076      0x4ad C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_line    0x00002523      0x174 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_macinfo  0x00000000    0x2f936
+ .debug_macinfo
+                0x00000000     0x3e81 ./startup/cr_startup_lpc11.o
+ .debug_macinfo
+                0x00003e81     0x62d8 ./src/adc_main.o
+ .debug_macinfo
+                0x0000a159     0x5f36 ./driver/adc.o
+ .debug_macinfo
+                0x0001008f     0x5ece ./driver/crp.o
+ .debug_macinfo
+                0x00015f5d     0x6063 ./driver/debug_printf.o
+ .debug_macinfo
+                0x0001bfc0     0x3c50 ./cmsis/core_cm0.o
+ .debug_macinfo
+                0x0001fc10     0x5eed ./cmsis/system_LPC11xx.o
+ .debug_macinfo
+                0x00025afd     0x3dd1 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_macinfo
+                0x000298ce     0x3de0 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_macinfo
+                0x0002d6ae     0x2288 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+
+.debug_str      0x00000000      0xd02
+ .debug_str     0x00000000      0x1a3 ./startup/cr_startup_lpc11.o
+                                0x1d7 (size before relaxing)
+ .debug_str     0x000001a3       0xa8 ./src/adc_main.o
+                                0x1ba (size before relaxing)
+ .debug_str     0x0000024b      0x6b3 ./driver/adc.o
+                                0x7e7 (size before relaxing)
+ .debug_str     0x000008fe       0x19 ./driver/crp.o
+                                0x127 (size before relaxing)
+ .debug_str     0x00000917       0xee ./driver/debug_printf.o
+                                0x208 (size before relaxing)
+ .debug_str     0x00000a05       0xce ./cmsis/core_cm0.o
+                                0x1ec (size before relaxing)
+ .debug_str     0x00000ad3       0x49 ./cmsis/system_LPC11xx.o
+                                0x413 (size before relaxing)
+ .debug_str     0x00000b1c       0xd3 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+                                0x1e5 (size before relaxing)
+ .debug_str     0x00000bef       0xad C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+                                0x202 (size before relaxing)
+ .debug_str     0x00000c9c       0x66 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+                                0x132 (size before relaxing)
+
+.comment        0x00000000       0xe0
+ .comment       0x00000000       0x70 ./startup/cr_startup_lpc11.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 ./src/adc_main.o
+ .comment       0x00000000       0x71 ./driver/adc.o
+ .comment       0x00000000       0x71 ./driver/crp.o
+ .comment       0x00000000       0x71 ./driver/debug_printf.o
+ .comment       0x00000000       0x71 ./cmsis/core_cm0.o
+ .comment       0x00000000       0x71 ./cmsis/system_LPC11xx.o
+ .comment       0x00000000       0x71 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .comment       0x00000000       0x71 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .comment       0x00000000       0x71 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .comment       0x00000070       0x70 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+
+.ARM.attributes
+                0x00000000       0x2f
+ .ARM.attributes
+                0x00000000       0x31 ./startup/cr_startup_lpc11.o
+ .ARM.attributes
+                0x00000031       0x31 ./src/adc_main.o
+ .ARM.attributes
+                0x00000062       0x31 ./driver/adc.o
+ .ARM.attributes
+                0x00000093       0x31 ./driver/crp.o
+ .ARM.attributes
+                0x000000c4       0x31 ./driver/debug_printf.o
+ .ARM.attributes
+                0x000000f5       0x31 ./cmsis/core_cm0.o
+ .ARM.attributes
+                0x00000126       0x31 ./cmsis/system_LPC11xx.o
+ .ARM.attributes
+                0x00000157       0x31 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .ARM.attributes
+                0x00000188       0x31 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .ARM.attributes
+                0x000001b9       0x31 C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)
+ .ARM.attributes
+                0x000001ea       0x31 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+ .ARM.attributes
+                0x0000021b       0x21 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+ .ARM.attributes
+                0x0000023c       0x21 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+ .ARM.attributes
+                0x0000025d       0x31 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+ .ARM.attributes
+                0x0000028e       0x21 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+
+.debug_frame    0x00000000      0x564
+ .debug_frame   0x00000000       0xd8 ./startup/cr_startup_lpc11.o
+ .debug_frame   0x000000d8       0x94 ./src/adc_main.o
+ .debug_frame   0x0000016c       0xac ./driver/adc.o
+ .debug_frame   0x00000218       0xb0 ./driver/debug_printf.o
+ .debug_frame   0x000002c8       0xc0 ./cmsis/core_cm0.o
+ .debug_frame   0x00000388       0x48 ./cmsis/system_LPC11xx.o
+ .debug_frame   0x000003d0       0x6c C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_nofloat.o)
+ .debug_frame   0x0000043c       0x7c C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_printf_support.o)
+ .debug_frame   0x000004b8       0xac C:\Users\David\Documents\GitHub\373proj\Xpresso\Joystick\lib_small_printf_m0\Lib\liblib_small_printf_m0.a(small_utils.o)

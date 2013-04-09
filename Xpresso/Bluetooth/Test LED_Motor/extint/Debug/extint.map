@@ -309,21 +309,21 @@ OUTPUT(extint.axf elf32-littlearm)
  .debug_macinfo
                 0x0001f314     0x5eed ./cmsis/system_LPC11xx.o
 
-.debug_str      0x00000000      0x8d7
- .debug_str     0x00000000      0x1ac ./startup/cr_startup_lpc11.o
-                                0x1e0 (size before relaxing)
- .debug_str     0x000001ac       0x64 ./src/extint_main.o
-                                0x172 (size before relaxing)
- .debug_str     0x00000210       0x10 ./driver/can.o
-                                0x11e (size before relaxing)
- .debug_str     0x00000220       0x19 ./driver/crp.o
-                                0x130 (size before relaxing)
- .debug_str     0x00000239      0x577 ./driver/gpio.o
-                                0x6d4 (size before relaxing)
- .debug_str     0x000007b0       0xce ./cmsis/core_cm0.o
-                                0x1f5 (size before relaxing)
- .debug_str     0x0000087e       0x59 ./cmsis/system_LPC11xx.o
-                                0x41c (size before relaxing)
+.debug_str      0x00000000      0x8e1
+ .debug_str     0x00000000      0x1b6 ./startup/cr_startup_lpc11.o
+                                0x1ea (size before relaxing)
+ .debug_str     0x000001b6       0x64 ./src/extint_main.o
+                                0x17c (size before relaxing)
+ .debug_str     0x0000021a       0x10 ./driver/can.o
+                                0x128 (size before relaxing)
+ .debug_str     0x0000022a       0x19 ./driver/crp.o
+                                0x13a (size before relaxing)
+ .debug_str     0x00000243      0x577 ./driver/gpio.o
+                                0x6de (size before relaxing)
+ .debug_str     0x000007ba       0xce ./cmsis/core_cm0.o
+                                0x1ff (size before relaxing)
+ .debug_str     0x00000888       0x59 ./cmsis/system_LPC11xx.o
+                                0x426 (size before relaxing)
 
 .comment        0x00000000       0xe0
  .comment       0x00000000       0x70 ./startup/cr_startup_lpc11.o

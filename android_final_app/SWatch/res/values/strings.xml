@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SWatch</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="headlines">Get Headlines</string>
+    <string name="weather">Get Weather</string>
+    <string name="save">Save</string>
+    <string name="title_activity_weather">WeatherActivity</string>
+    <string name="weather_textview">WEATHER</string>
+    <string name="ascii">ASCII</string>
+    <string name="title_activity_headlines">HeadlinesActivity</string>
+    <string name="headline_textview">HEADLINES</string>
+    <string name="headlines_hint">Number of headlines</string>
+    <string name="weather_hint">Zipcode</string>
+
+</resources>
