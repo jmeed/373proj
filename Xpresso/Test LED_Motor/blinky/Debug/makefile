@@ -44,7 +44,7 @@ clean:
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size blinky.axf; arm-none-eabi-objcopy -O binary blinky.axf blinky.bin ; checksum -p LPC1115_303 -d blinky.bin;
+	-arm-none-eabi-size blinky.axf; arm-none-eabi-objcopy -O binary blinky.axf blinky.bin ; checksum -p LPC1114_302 -d blinky.bin;
 	-@echo ' '
 
 .PHONY: all clean dependents

@@ -97,15 +97,15 @@ int main (void)
   /* Initialize GPIO (sets up clock) */
   GPIOInit();
   /* Set LED port pin to output */
-  GPIOSetDir( 2, 7, 1 );
+  GPIOSetDir( 3, 0, 1 );
   GPIOSetDir( 2, 8, 1 );
   Init7Segment();
 
   while (1)                                /* Loop forever */
   {
-	  GPIOSetValue( 2, 7, LED_ON );
+	  GPIOSetValue( 3, 0, LED_ON );
 	  GPIOSetValue( 2, 8, LED_ON );
-	  GPIOSetValue( 2, 7, LED_OFF );
+	  GPIOSetValue( 3, 0, LED_OFF );
 	  GPIOSetValue( 2, 8, LED_OFF );
 	/* Each time we wake up... */
 	/* Check TimeTick to see whether to set or clear the LED I/O pin */
