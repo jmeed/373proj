@@ -14,5 +14,16 @@
     <string name="headline_textview">HEADLINES</string>
     <string name="headlines_hint">Number of headlines</string>
     <string name="weather_hint">Zipcode</string>
+    <string name="title_other_devices">Other Devices</string>
+    <string name="button_scan">Scan</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="none_paired">No Device Paired</string>
+    <string name="scanning">Scanning….</string>
+    <string name="none_found">No Device Found</string>
+    <string name="select_device">Select Device</string>
+    <string name="title_activity_bt">BTActivity</string>
+    <string name="get_time">Send Current Time</string>
+    <string name="title_activity_time">TimeActivity</string>
+    <string name="time_textview">CURRENT TIME</string>
 
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" 
-    android:background="@color/black" >
+    android:background="@color/white" >
 
     <EditText
         android:id="@+id/zip_code"
@@ -72,5 +72,13 @@
         android:layout_above="@+id/analogClock1"
         android:layout_alignRight="@+id/save_weather"
         android:text="@string/save" />
+
+    <Button
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/analogClock1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/get_time" />
 
 </RelativeLayout>
