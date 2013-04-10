@@ -812,27 +812,27 @@ END GROUP
                 0x0000000010002000                PROVIDE (_vStackTop, (__top_RamLoc8 - 0x0))
 OUTPUT(i2c.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x1dc0
+.debug_info     0x0000000000000000     0x1d67
  .debug_info    0x0000000000000000      0x1ec ./startup/cr_startup_lpc11.o
- .debug_info    0x00000000000001ec      0x567 ./src/i2c_main.o
- .debug_info    0x0000000000000753       0x29 ./src/shared.o
- .debug_info    0x000000000000077c       0x70 ./driver/can.o
- .debug_info    0x00000000000007ec       0x92 ./driver/crp.o
- .debug_info    0x000000000000087e       0x70 ./driver/gpio.o
- .debug_info    0x00000000000008ee      0xc9c ./driver/i2c.o
- .debug_info    0x000000000000158a      0x2ae ./cmsis/core_cm0.o
- .debug_info    0x0000000000001838      0x588 ./cmsis/system_LPC11xx.o
+ .debug_info    0x00000000000001ec      0x50e ./src/i2c_main.o
+ .debug_info    0x00000000000006fa       0x29 ./src/shared.o
+ .debug_info    0x0000000000000723       0x70 ./driver/can.o
+ .debug_info    0x0000000000000793       0x92 ./driver/crp.o
+ .debug_info    0x0000000000000825       0x70 ./driver/gpio.o
+ .debug_info    0x0000000000000895      0xc9c ./driver/i2c.o
+ .debug_info    0x0000000000001531      0x2ae ./cmsis/core_cm0.o
+ .debug_info    0x00000000000017df      0x588 ./cmsis/system_LPC11xx.o
 
-.debug_abbrev   0x0000000000000000      0x708
+.debug_abbrev   0x0000000000000000      0x6b3
  .debug_abbrev  0x0000000000000000       0xb4 ./startup/cr_startup_lpc11.o
- .debug_abbrev  0x00000000000000b4      0x204 ./src/i2c_main.o
- .debug_abbrev  0x00000000000002b8       0x16 ./src/shared.o
- .debug_abbrev  0x00000000000002ce       0x2c ./driver/can.o
- .debug_abbrev  0x00000000000002fa       0x51 ./driver/crp.o
- .debug_abbrev  0x000000000000034b       0x2c ./driver/gpio.o
- .debug_abbrev  0x0000000000000377      0x1a5 ./driver/i2c.o
- .debug_abbrev  0x000000000000051c       0xaf ./cmsis/core_cm0.o
- .debug_abbrev  0x00000000000005cb      0x13d ./cmsis/system_LPC11xx.o
+ .debug_abbrev  0x00000000000000b4      0x1af ./src/i2c_main.o
+ .debug_abbrev  0x0000000000000263       0x16 ./src/shared.o
+ .debug_abbrev  0x0000000000000279       0x2c ./driver/can.o
+ .debug_abbrev  0x00000000000002a5       0x51 ./driver/crp.o
+ .debug_abbrev  0x00000000000002f6       0x2c ./driver/gpio.o
+ .debug_abbrev  0x0000000000000322      0x1a5 ./driver/i2c.o
+ .debug_abbrev  0x00000000000004c7       0xaf ./cmsis/core_cm0.o
+ .debug_abbrev  0x0000000000000576      0x13d ./cmsis/system_LPC11xx.o
 
 .debug_loc      0x0000000000000000      0x686
  .debug_loc     0x0000000000000000      0x140 ./startup/cr_startup_lpc11.o
@@ -860,53 +860,53 @@ OUTPUT(i2c.axf elf32-littlearm)
  .debug_ranges  0x00000000000000e0       0x60 ./cmsis/core_cm0.o
  .debug_ranges  0x0000000000000140       0x18 ./cmsis/system_LPC11xx.o
 
-.debug_line     0x0000000000000000     0x2021
+.debug_line     0x0000000000000000     0x2020
  .debug_line    0x0000000000000000      0x3fd ./startup/cr_startup_lpc11.o
- .debug_line    0x00000000000003fd      0x541 ./src/i2c_main.o
- .debug_line    0x000000000000093e       0x3c ./src/shared.o
- .debug_line    0x000000000000097a      0x373 ./driver/can.o
- .debug_line    0x0000000000000ced      0x37c ./driver/crp.o
- .debug_line    0x0000000000001069      0x374 ./driver/gpio.o
- .debug_line    0x00000000000013dd      0x465 ./driver/i2c.o
- .debug_line    0x0000000000001842      0x3f0 ./cmsis/core_cm0.o
- .debug_line    0x0000000000001c32      0x3ef ./cmsis/system_LPC11xx.o
+ .debug_line    0x00000000000003fd      0x540 ./src/i2c_main.o
+ .debug_line    0x000000000000093d       0x3c ./src/shared.o
+ .debug_line    0x0000000000000979      0x373 ./driver/can.o
+ .debug_line    0x0000000000000cec      0x37c ./driver/crp.o
+ .debug_line    0x0000000000001068      0x374 ./driver/gpio.o
+ .debug_line    0x00000000000013dc      0x465 ./driver/i2c.o
+ .debug_line    0x0000000000001841      0x3f0 ./cmsis/core_cm0.o
+ .debug_line    0x0000000000001c31      0x3ef ./cmsis/system_LPC11xx.o
 
-.debug_macinfo  0x0000000000000000    0x2ddd8
+.debug_macinfo  0x0000000000000000    0x2e078
  .debug_macinfo
                 0x0000000000000000     0x3e81 ./startup/cr_startup_lpc11.o
  .debug_macinfo
                 0x0000000000003e81     0x6700 ./src/i2c_main.o
  .debug_macinfo
-                0x000000000000a581     0x226b ./src/shared.o
+                0x000000000000a581     0x250b ./src/shared.o
  .debug_macinfo
-                0x000000000000c7ec     0x5d8d ./driver/can.o
+                0x000000000000ca8c     0x5d8d ./driver/can.o
  .debug_macinfo
-                0x0000000000012579     0x5eda ./driver/crp.o
+                0x0000000000012819     0x5eda ./driver/crp.o
  .debug_macinfo
-                0x0000000000018453     0x5d8d ./driver/gpio.o
+                0x00000000000186f3     0x5d8d ./driver/gpio.o
  .debug_macinfo
-                0x000000000001e1e0     0x60bb ./driver/i2c.o
+                0x000000000001e480     0x60bb ./driver/i2c.o
  .debug_macinfo
-                0x000000000002429b     0x3c50 ./cmsis/core_cm0.o
+                0x000000000002453b     0x3c50 ./cmsis/core_cm0.o
  .debug_macinfo
-                0x0000000000027eeb     0x5eed ./cmsis/system_LPC11xx.o
+                0x000000000002818b     0x5eed ./cmsis/system_LPC11xx.o
 
 .debug_str      0x0000000000000000      0xc55
  .debug_str     0x0000000000000000      0x1ac ./startup/cr_startup_lpc11.o
                                         0x1e6 (size before relaxing)
- .debug_str     0x00000000000001ac      0x22d ./src/i2c_main.o
-                                        0x35d (size before relaxing)
- .debug_str     0x00000000000003d9       0x10 ./src/shared.o
+ .debug_str     0x00000000000001ac      0x226 ./src/i2c_main.o
+                                        0x356 (size before relaxing)
+ .debug_str     0x00000000000003d2       0x10 ./src/shared.o
                                          0xab (size before relaxing)
- .debug_str     0x00000000000003e9       0x10 ./driver/can.o
+ .debug_str     0x00000000000003e2       0x10 ./driver/can.o
                                         0x124 (size before relaxing)
- .debug_str     0x00000000000003f9       0x19 ./driver/crp.o
+ .debug_str     0x00000000000003f2       0x19 ./driver/crp.o
                                         0x136 (size before relaxing)
- .debug_str     0x0000000000000412       0x11 ./driver/gpio.o
+ .debug_str     0x000000000000040b       0x11 ./driver/gpio.o
                                         0x125 (size before relaxing)
- .debug_str     0x0000000000000423      0x721 ./driver/i2c.o
+ .debug_str     0x000000000000041c      0x721 ./driver/i2c.o
                                         0x89b (size before relaxing)
- .debug_str     0x0000000000000b44       0xb8 ./cmsis/core_cm0.o
+ .debug_str     0x0000000000000b3d       0xbf ./cmsis/core_cm0.o
                                         0x1fb (size before relaxing)
  .debug_str     0x0000000000000bfc       0x59 ./cmsis/system_LPC11xx.o
                                         0x422 (size before relaxing)
