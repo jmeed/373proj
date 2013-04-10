@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/screen.c \
 ../src/uart_main.c 
 
 OBJS += \
+./src/screen.o \
 ./src/uart_main.o 
 
 C_DEPS += \
+./src/screen.d \
 ./src/uart_main.d 
 
 

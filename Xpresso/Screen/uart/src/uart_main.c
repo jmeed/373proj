@@ -21,9 +21,10 @@
 #include "target_config.h"
 
 #include "uart.h"
+#include "screen.h"
 
 extern volatile uint32_t UARTCount;
-extern volatile uint8_t UARTBuffer[BUFSIZE];
+extern volatile uint8_t UARTBuffer[BUFSIZE];	//This may need to be larger
 
 int main (void) {
 	  /* Basic chip initialization is taken care of in SystemInit() called
