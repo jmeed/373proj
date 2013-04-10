@@ -16,7 +16,7 @@
  * notification. NXP Semiconductors also make no representation or
  * warranty that such application will be suitable for the specified
  * use without further testing or modification.
-****************************************************************************/
+ ****************************************************************************/
 #include "driver_config.h"
 #include "target_config.h"
 
@@ -78,8 +78,14 @@ extern volatile uint8_t I2CSlaveBuffer[BUFSIZE];
 extern volatile uint32_t I2CMasterState;
 extern volatile uint32_t I2CReadLength, I2CWriteLength;
 
-char msg[BUFSIZE];
-uint32_t msg_count;
+char msg_g[BUFSIZE];
+uint32_t msg_count_g;
+
+uint8_t is_running_on_battery_g;
+
+uint16_t x_g;
+uint16_t y_g;
+uint16_t z_g;
 
 uint32_t write_byte_to_register(uint8_t addr, uint8_t reg, uint8_t value);
 uint32_t send_i2c_msg(uint8_t addr, uint8_t reg);
@@ -87,54 +93,55 @@ uint8_t read_byte_from_register(uint8_t r_addr, uint8_t w_addr, uint8_t reg);
 uint32_t uartConnected();
 void process_bl_msg();
 void send_bl_msg();
-uint8_t configure_i2c();
+void configure_i2c_devices();
+void set_up_i2c();
+uint8_t is_running_on_battery();
+uint16_t get_current_voltage();
+uint16_t get_acc_direction(uint8_t reg);
+void update_acc_data();
 
 /*******************************************************************************
-**   Main Function  main()
-*******************************************************************************/
+ **   Main Function  main()
+ *******************************************************************************/
 int main (void)
 {
-	  /* Basic chip initialization is taken care of in SystemInit() called
-	   * from the startup code. SystemInit() and chip settings are defined
-	   * in the CMSIS system_<part family>.c file.
-	   */
+	/* Basic chip initialization is taken care of in SystemInit() called
+	 * from the startup code. SystemInit() and chip settings are defined
+	 * in the CMSIS system_<part family>.c file.
+	 */
 	printf("I2C to UART for Bluetooth started \n");
-  uint32_t i;
 
-  if ( I2CInit( (uint32_t)I2CMASTER ) == FALSE )	/* initialize I2c */
-  {
-	while ( 1 );				/* Fatal error */
-  }
+	set_up_i2c();
+	while(1) {
+		// Check the Bluetooth
+		while(read_byte_from_register(BL_RAADR, BL_WAADR, LSR) & 0x01) {
+			msg_g[msg_count_g] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
+			msg_count_g++;
+			if(msg_g[msg_count_g - 1] == '\0') {
+				printf("%s\n", msg_g);
+				fflush(stdout);
+				process_bl_msg();
+				msg_count_g = 0;
+			}
+		}
+
+		// Check the accelerometer
+		update_acc_data();
+		printf("x: %d\ty: %d\tz: %d\n", x_g, y_g, z_g);
+
+		// Check the fuel gauge
+		if(is_running_on_battery()) {
+			printf("%d%%\n", is_running_on_battery_g);
+		} else {
+			printf("voltage: %d\n", get_current_voltage());
+		}
 
 
-
-  configure_i2c();
-  printf("I2C configured\n");
-  while(1) {
-	  // Check the Bluetooth
-	  while(read_byte_from_register(BL_RAADR, BL_WAADR, LSR) & 0x01) {
-		  msg[msg_count] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
-		  msg_count++;
-		  if(msg[msg_count - 1] == '\0') {
-			  printf("%s\n", msg);
-			  fflush(stdout);
-			  process_bl_msg();
-			  msg_count = 0;
-		  }
-	  }
-
-	  // Check the accelerometer
-
-
-	  // Check the fuel gauge
-	  printf("%d", read_byte_from_register(FG_RAADR, FG_WAADR, 0x02));
-	  printf("%d\n", read_byte_from_register(FG_RAADR, FG_WAADR, 0x03));
-	  fflush(stdout);
-
-	  // Sleep
-	  int i;
-	  for ( i = 0; i < 0x200000; i++ );
-  }
+		fflush(stdout);
+		// Sleep
+		int i;
+		for ( i = 0; i < 0x200000; i++ );
+	}
 
 
 
@@ -148,7 +155,7 @@ int main (void)
 
 
 
-  /* In order to start the I2CEngine, the all the parameters 
+	/* In order to start the I2CEngine, the all the parameters
   must be set in advance, including I2CWriteLength, I2CReadLength,
   I2CCmd, and the I2cMasterBuffer which contains the stream
   command/data to the I2c slave device. 
@@ -164,194 +171,192 @@ int main (void)
   start and the device address with RD bit set, the content of the 
   reading will be filled in I2CMasterBuffer index at 
   I2CMasterBuffer[I2CWriteLength+2]. 
-  
+
   e.g. Start, DevAddr(W), WRByte1...WRByteN, Repeated-Start, DevAddr(R), 
   RDByte1...RDByteN Stop. The content of the reading will be filled 
   after (I2CWriteLength + two devaddr) bytes. */
 
-  /* Write SLA(W), address and one data byte */
-//  I2CWriteLength = 6;
-//  I2CReadLength = 0;
-//  I2CMasterBuffer[0] = PCF8594_ADDR;
-//  I2CMasterBuffer[1] = 0x00;		/* address */
-//  I2CMasterBuffer[2] = 0x55;		/* Data0 */
-//  I2CMasterBuffer[3] = 0xAA;		/* Data1 */
-//  I2CMasterBuffer[4] = 0x12;		/* Data0 */
-//  I2CMasterBuffer[5] = 0x34;		/* Data1 */
-//  I2CEngine();
-//
-//  /* Be careful with below fixed delay. From device to device, or
-//  even same device with different write length, or various I2C clock,
-//  below delay length may need to be changed accordingly. Having
-//  a break point before Write/Read start will be helpful to isolate
-//  the problem. */
-//  for ( i = 0; i < 0x200000; i++ );	/* Delay after write */
-//
-//  for ( i = 0; i < BUFSIZE; i++ )
-//  {
-//	I2CSlaveBuffer[i] = 0x00;
-//  }
-  /* Write SLA(W), address, SLA(R), and read one byte back. */
-//  I2CWriteLength = 2;
-//  I2CReadLength = 4;
-//  I2CMasterBuffer[0] = PCF8594_ADDR;
-//  I2CMasterBuffer[1] = 0x1C;		/* address */
-//  I2CMasterBuffer[2] = PCF8594_ADDR | RD_BIT;
+	/* Write SLA(W), address and one data byte */
+	//  I2CWriteLength = 6;
+	//  I2CReadLength = 0;
+	//  I2CMasterBuffer[0] = PCF8594_ADDR;
+	//  I2CMasterBuffer[1] = 0x00;		/* address */
+	//  I2CMasterBuffer[2] = 0x55;		/* Data0 */
+	//  I2CMasterBuffer[3] = 0xAA;		/* Data1 */
+	//  I2CMasterBuffer[4] = 0x12;		/* Data0 */
+	//  I2CMasterBuffer[5] = 0x34;		/* Data1 */
+	//  I2CEngine();
+	//
+	//  /* Be careful with below fixed delay. From device to device, or
+	//  even same device with different write length, or various I2C clock,
+	//  below delay length may need to be changed accordingly. Having
+	//  a break point before Write/Read start will be helpful to isolate
+	//  the problem. */
+	//  for ( i = 0; i < 0x200000; i++ );	/* Delay after write */
+	//
+	//  for ( i = 0; i < BUFSIZE; i++ )
+	//  {
+	//	I2CSlaveBuffer[i] = 0x00;
+	//  }
+	/* Write SLA(W), address, SLA(R), and read one byte back. */
+	//  I2CWriteLength = 2;
+	//  I2CReadLength = 4;
+	//  I2CMasterBuffer[0] = PCF8594_ADDR;
+	//  I2CMasterBuffer[1] = 0x1C;		/* address */
+	//  I2CMasterBuffer[2] = PCF8594_ADDR | RD_BIT;
 
-  uint32_t result = 0;
+	uint32_t result = 0;
 
-//  // WHO I AM
-//  I2CWriteLength = 0;
-//  I2CReadLength = 1;
-//  I2CMasterBuffer[0] = 0x3A;
-//  I2CMasterBuffer[1] = 0x0D;
-//  I2CMasterBuffer[2] = 0x3B;
-//  result = I2CEngine();
+	//  // WHO I AM
+	//  I2CWriteLength = 0;
+	//  I2CReadLength = 1;
+	//  I2CMasterBuffer[0] = 0x3A;
+	//  I2CMasterBuffer[1] = 0x0D;
+	//  I2CMasterBuffer[2] = 0x3B;
+	//  result = I2CEngine();
 
-//  for(i = 0; i < I2CReadLength; i++) {
-//	  printf("%d", I2CSlaveBuffer[i]);
-//  }
-  // END WRITE
-// Set to active mode
-  // BEGIN WRITE
-
-
-  // Fuel gage
-
-//  while(1) {
-//	  printf("%d", read_register(0x02));
-//	  printf("%d\n", read_register(0x03));
-//	  fflush(stdout);
-//  }
+	//  for(i = 0; i < I2CReadLength; i++) {
+	//	  printf("%d", I2CSlaveBuffer[i]);
+	//  }
+	// END WRITE
+	// Set to active mode
+	// BEGIN WRITE
 
 
-  // Configure the I2C and UART
+	// Fuel gage
+
+	//  while(1) {
+	//	  printf("%d", read_register(0x02));
+	//	  printf("%d\n", read_register(0x03));
+	//	  fflush(stdout);
+	//  }
 
 
-  write_register(LCR, 0x80); // 0x80 to program baudrate
-  write_register(DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
-  write_register(DLL, 0x08); // The desired baud rate is 115200
-
-//  write_register(LCR, 0xBF); // access EFR register
-//  write_register(EFR, EFR_ENABLE_ENHANCED_FUNCTIONS); // enable enhanced registers
-//  printf("EFR %d\n", read_register(EFR));
-
-//  printf("EFR %d\n", read_register(EFR));
-//  write_register(MCR, 0x00);
-//  printf("MCR %d\n", read_register(MCR));
-//  printf("EFR %d\n", read_register(EFR));
-//  write_register(0x06, 0x48);
-//  write_register(0x07, 0x11);
-//  printf("TCR %d\n", read_register(0x06));
-//  printf("TLR %d\n", read_register(0x07));
-  write_register(LCR, 0x03); // 8 data bit, 1 stop bit, no parity
-  write_register(FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
-  write_register(FCR, 0x01); // enable FIFO mode
-  write_register(IER, 0x01); // enable RHR interrupt
-//  write_register(IOCTRL, 0x01); //
-
-//  if(!uartConnected()){
-//    assert(0);
-//    };
-//  while(1);
-  printf("LSR %d\n", read_register(LSR));
-  printf("started\n");
-  fflush(stdout);
-
-  	  for ( i = 0; i < 0x800000; i++ );
-
-  	  printf("finished\n");
-  	  fflush(stdout);
-
-  // Try to read something
-//  printf("THR %d\n", read_register(THR));
-  printf("IER %d\n", read_register(IER));
-  printf("FCR %d\n", read_register(FCR));
-  printf("IIR %d\n", read_register(IIR));
-  printf("LCR %d\n", read_register(LCR));
-  printf("MCR %d\n", read_register(MCR));
-  printf("LSR %d\n", read_register(LSR));
-//  printf("MSR %d\n", read_register(MSR));
-//  printf("SPR %d\n", read_register(SPR));
-//  printf("TXLVL %d\n", read_register(TXLVL));
-//  printf("RXLVL %d\n", read_register(RXLVL));
-//  printf("DLAB %d\n", read_register(DLAB));
-//  printf("IODIR %d\n", read_register(IODIR));
-//  printf("IOSTATE %d\n", read_register(IOSTATE));
-//  printf("IOINTMSK %d\n", read_register(IOINTMSK));
-//  printf("IOCTRL %d\n", read_register(IOCTRL));
-//  printf("EFCR %d\n", read_register(EFCR));
-
-  printf("------\n\n");
-  msg_count = 0;
-  while(1) {
-	  if(read_register(LSR) & 0x01) {
-		  msg[msg_count] = (char) read_register(RHR);
-		  msg_count++;
-		  if(msg[msg_count - 1] == '\0') {
-			  process_bl_msg();
-			  msg_count = 0;
-		  }
-//		  printf("%c", ((char) read_register(RHR)));
-//		  printf("LSR %d\n", read_register(LSR));
-//		  fflush(stdout);
-	  }
-  }
-
-  while(1);
-
-  I2CWriteLength = 3;
-  I2CReadLength = 0;
-  I2CMasterBuffer[0] = 0x90;
-  //0x01
-  I2CMasterBuffer[1] = 0x01 << 3;
-  I2CMasterBuffer[2] = 0x01;
-  result = I2CEngine();
-  //0x02
-  I2CMasterBuffer[1] = 0x02 << 3;
-  I2CMasterBuffer[2] = 0xC0;
-  result = I2CEngine();
-  //0x03
-  I2CMasterBuffer[1] = 0x03 << 3;
-  I2CMasterBuffer[2] = 0x80;
-  result = I2CEngine();
-  //for ( i = 0; i < 0x200000; i++ );
-
-  // Read 0x01
-  I2CWriteLength = 2;
-  I2CMasterBuffer[0] = 0x90;
-  I2CMasterBuffer[1] = 0x01 << 3;
-  result = I2CEngine();
-  I2CWriteLength = 0;
-  I2CReadLength = 1;
-  I2CMasterBuffer[0] = 0x91;
-  result = I2CEngine();
+	// Configure the I2C and UART
 
 
-  for ( i = 0; i < 0x20000; i++ );
-  // Read 0x02 -- UNABLE TO CONFIRM THAT THIS WRITE WORKS
- I2CWriteLength = 2;
- I2CReadLength = 0;
- I2CMasterBuffer[0] = 0x90;
- I2CMasterBuffer[1] = 0x02 << 3;
- result = I2CEngine();
- I2CWriteLength = 0;
- I2CReadLength = 1;
- I2CMasterBuffer[0] = 0x91;
- result = I2CEngine();
+	write_register(LCR, 0x80); // 0x80 to program baudrate
+	write_register(DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
+	write_register(DLL, 0x08); // The desired baud rate is 115200
 
- // Read 0x03
- I2CWriteLength = 2;
- I2CReadLength = 0;
- I2CMasterBuffer[0] = 0x90;
- I2CMasterBuffer[1] = 0x03 << 3;
- result = I2CEngine();
- I2CWriteLength = 0;
- I2CReadLength = 1;
- I2CMasterBuffer[0] = 0x91;
- result = I2CEngine();
+	//  write_register(LCR, 0xBF); // access EFR register
+	//  write_register(EFR, EFR_ENABLE_ENHANCED_FUNCTIONS); // enable enhanced registers
+	//  printf("EFR %d\n", read_register(EFR));
+
+	//  printf("EFR %d\n", read_register(EFR));
+	//  write_register(MCR, 0x00);
+	//  printf("MCR %d\n", read_register(MCR));
+	//  printf("EFR %d\n", read_register(EFR));
+	//  write_register(0x06, 0x48);
+	//  write_register(0x07, 0x11);
+	//  printf("TCR %d\n", read_register(0x06));
+	//  printf("TLR %d\n", read_register(0x07));
+	write_register(LCR, 0x03); // 8 data bit, 1 stop bit, no parity
+	write_register(FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
+	write_register(FCR, 0x01); // enable FIFO mode
+	write_register(IER, 0x01); // enable RHR interrupt
+	//  write_register(IOCTRL, 0x01); //
+
+	//  if(!uartConnected()){
+	//    assert(0);
+	//    };
+	//  while(1);
+	printf("LSR %d\n", read_register(LSR));
+	printf("started\n");
+	fflush(stdout);
+
+//	for ( i = 0; i < 0x800000; i++ );
+
+	printf("finished\n");
+	fflush(stdout);
+
+	// Try to read something
+	//  printf("THR %d\n", read_register(THR));
+	printf("IER %d\n", read_register(IER));
+	printf("FCR %d\n", read_register(FCR));
+	printf("IIR %d\n", read_register(IIR));
+	printf("LCR %d\n", read_register(LCR));
+	printf("MCR %d\n", read_register(MCR));
+	printf("LSR %d\n", read_register(LSR));
+	//  printf("MSR %d\n", read_register(MSR));
+	//  printf("SPR %d\n", read_register(SPR));
+	//  printf("TXLVL %d\n", read_register(TXLVL));
+	//  printf("RXLVL %d\n", read_register(RXLVL));
+	//  printf("DLAB %d\n", read_register(DLAB));
+	//  printf("IODIR %d\n", read_register(IODIR));
+	//  printf("IOSTATE %d\n", read_register(IOSTATE));
+	//  printf("IOINTMSK %d\n", read_register(IOINTMSK));
+	//  printf("IOCTRL %d\n", read_register(IOCTRL));
+	//  printf("EFCR %d\n", read_register(EFCR));
+
+	printf("------\n\n");
+	msg_count_g = 0;
+	while(1) {
+		if(read_register(LSR) & 0x01) {
+			msg_g[msg_count_g] = (char) read_register(RHR);
+			msg_count_g++;
+			if(msg_g[msg_count_g - 1] == '\0') {
+				process_bl_msg();
+				msg_count_g = 0;
+			}
+			//		  printf("%c", ((char) read_register(RHR)));
+			//		  printf("LSR %d\n", read_register(LSR));
+			//		  fflush(stdout);
+		}
+	}
+
+	while(1);
+
+	I2CWriteLength = 3;
+	I2CReadLength = 0;
+	I2CMasterBuffer[0] = 0x90;
+	//0x01
+	I2CMasterBuffer[1] = 0x01 << 3;
+	I2CMasterBuffer[2] = 0x01;
+	result = I2CEngine();
+	//0x02
+	I2CMasterBuffer[1] = 0x02 << 3;
+	I2CMasterBuffer[2] = 0xC0;
+	result = I2CEngine();
+	//0x03
+	I2CMasterBuffer[1] = 0x03 << 3;
+	I2CMasterBuffer[2] = 0x80;
+	result = I2CEngine();
+	//for ( i = 0; i < 0x200000; i++ );
+
+	// Read 0x01
+	I2CWriteLength = 2;
+	I2CMasterBuffer[0] = 0x90;
+	I2CMasterBuffer[1] = 0x01 << 3;
+	result = I2CEngine();
+	I2CWriteLength = 0;
+	I2CReadLength = 1;
+	I2CMasterBuffer[0] = 0x91;
+	result = I2CEngine();
 
 
+//	for ( i = 0; i < 0x20000; i++ );
+	// Read 0x02 -- UNABLE TO CONFIRM THAT THIS WRITE WORKS
+	I2CWriteLength = 2;
+	I2CReadLength = 0;
+	I2CMasterBuffer[0] = 0x90;
+	I2CMasterBuffer[1] = 0x02 << 3;
+	result = I2CEngine();
+	I2CWriteLength = 0;
+	I2CReadLength = 1;
+	I2CMasterBuffer[0] = 0x91;
+	result = I2CEngine();
+
+	// Read 0x03
+	I2CWriteLength = 2;
+	I2CReadLength = 0;
+	I2CMasterBuffer[0] = 0x90;
+	I2CMasterBuffer[1] = 0x03 << 3;
+	result = I2CEngine();
+	I2CWriteLength = 0;
+	I2CReadLength = 1;
+	I2CMasterBuffer[0] = 0x91;
+	result = I2CEngine();
 
 
 
@@ -359,120 +364,122 @@ int main (void)
 
 
 
-  while(1);
-
-  // Accelerometer
 
 
+	while(1);
 
-    I2CWriteLength = 3;
-    I2CReadLength = 0;
-    I2CMasterBuffer[0] = 0x3A;
-    I2CMasterBuffer[1] = 0x2A;
-    I2CMasterBuffer[2] = 0x01;
-    result = I2CEngine();
+	// Accelerometer
 
 
-    // END WRITE
+
+	I2CWriteLength = 3;
+	I2CReadLength = 0;
+	I2CMasterBuffer[0] = 0x3A;
+	I2CMasterBuffer[1] = 0x2A;
+	I2CMasterBuffer[2] = 0x01;
+	result = I2CEngine();
 
 
-  //while(1);
-  while(1) {
-	  int i = 0;
-	  printf("Got new input\n");
+	// END WRITE
 
 
-	  // Get X
-	  I2CWriteLength = 0;
-	  I2CReadLength = 1;
-	  I2CMasterBuffer[0] = 0x3A;
-	  I2CMasterBuffer[1] = 0x01;
-	  I2CMasterBuffer[2] = 0x3B;
-	  result = I2CEngine();
-
-	  for(i = 0; i < I2CReadLength; i++) {
-		  printf("%d", I2CSlaveBuffer[i]);
-	  }
+	//while(1);
+	while(1) {
+		int i = 0;
+		printf("Got new input\n");
 
 
-//	  I2CWriteLength = 0;
-//	  I2CReadLength = 1;
-//	  I2CMasterBuffer[0] = 0x3A;
-//	  I2CMasterBuffer[1] = 0x02;
-//	  I2CMasterBuffer[2] = 0x3B;
-//	  result = I2CEngine();
-//
-//	  for(i = 0; i < I2CReadLength; i++) {
-//		  printf("%d", I2CSlaveBuffer[i]);
-//	  }
-	  printf("\n");
+		// Get X
+		I2CWriteLength = 0;
+		I2CReadLength = 1;
+		I2CMasterBuffer[0] = 0x3A;
+		I2CMasterBuffer[1] = 0x01;
+		I2CMasterBuffer[2] = 0x3B;
+		result = I2CEngine();
 
-	  // Busy wait
-	  for (i=0; i < 0x200000; i++);
+		for(i = 0; i < I2CReadLength; i++) {
+			printf("%d", I2CSlaveBuffer[i]);
+		}
 
-  }
-  /* Check the content of the Master and slave buffer */
-  while ( 1 );
-  return 0;
+
+		//	  I2CWriteLength = 0;
+		//	  I2CReadLength = 1;
+		//	  I2CMasterBuffer[0] = 0x3A;
+		//	  I2CMasterBuffer[1] = 0x02;
+		//	  I2CMasterBuffer[2] = 0x3B;
+		//	  result = I2CEngine();
+		//
+		//	  for(i = 0; i < I2CReadLength; i++) {
+		//		  printf("%d", I2CSlaveBuffer[i]);
+		//	  }
+		printf("\n");
+
+		// Busy wait
+		for (i=0; i < 0x200000; i++);
+
+	}
+	/* Check the content of the Master and slave buffer */
+	while ( 1 );
+	return 0;
 }
 
 uint32_t send_i2c_msg(uint8_t addr, uint8_t reg) {
-	  I2CWriteLength = 2 + msg_count;
-	  I2CReadLength = 0;
-	  I2CMasterBuffer[0] = addr;
-	  I2CMasterBuffer[1] = reg;
-	  int i;
-	  for(i = 0; i < msg_count; i++) {
-		  I2CMasterBuffer[i + 2] = msg[i];
-	  }
-	  I2CEngine();
+	I2CWriteLength = 2 + msg_count_g;
+	I2CReadLength = 0;
+	I2CMasterBuffer[0] = addr;
+	I2CMasterBuffer[1] = reg;
+	int i;
+	for(i = 0; i < msg_count_g; i++) {
+		I2CMasterBuffer[i + 2] = msg_g[i];
+	}
+	I2CEngine();
 
-	  // Assert if the I2C is not in ok mode
-	  assert(I2CMasterState == I2C_OK);
-	  for ( i = 0; i < 0x200000; i++ );
-	  return I2CMasterState;
+	// Assert if the I2C is not in ok mode
+	assert(I2CMasterState == I2C_OK);
+	for ( i = 0; i < 0x200000; i++ );
+	return I2CMasterState;
 }
 
 uint32_t write_byte_to_register(uint8_t addr, uint8_t reg, uint8_t value) {
-	msg_count = 1;
-	msg[0] = value;
+	msg_count_g = 1;
+	msg_g[0] = value;
 	send_i2c_msg(addr, reg);
-	msg_count = 0;
+	msg_count_g = 0;
 	return I2CMasterState;
 }
 
 uint8_t read_byte_from_register(uint8_t r_addr, uint8_t w_addr, uint8_t reg) {
-	  I2CWriteLength = 2;
-	  I2CReadLength = 1;
-	  I2CMasterBuffer[0] = w_addr;
-	  I2CMasterBuffer[1] = reg;
-	  I2CMasterBuffer[2] = r_addr;
-	  I2CEngine();
+	I2CWriteLength = 2;
+	I2CReadLength = 1;
+	I2CMasterBuffer[0] = w_addr;
+	I2CMasterBuffer[1] = reg;
+	I2CMasterBuffer[2] = r_addr;
+	I2CEngine();
 
-	  // Assert if the I2C is not in ok mode
-	  assert(I2CMasterState == I2C_OK);
-	  return I2CSlaveBuffer[0];
+	// Assert if the I2C is not in ok mode
+	assert(I2CMasterState == I2C_OK);
+	return I2CSlaveBuffer[0];
 }
 
 uint32_t uartConnected() {
-  /*
+	/*
 
      Check that UART is connected and operational.
 
-   */
-  // Perform read/write test to check if UART is working
-  const char TEST_CHARACTER = 'H';
+	 */
+	// Perform read/write test to check if UART is working
+	const char TEST_CHARACTER = 'H';
 
-  write_register(SPR, TEST_CHARACTER);
+	write_register(SPR, TEST_CHARACTER);
 
-  return (read_register(SPR) == TEST_CHARACTER);
+	return (read_register(SPR) == TEST_CHARACTER);
 }
 
 void process_bl_msg() {
-	assert(msg_count >= 3); // Ensure that the length is at least 3/enough to cover the opcode "00\0"
+	assert(msg_count_g >= 3); // Ensure that the length is at least 3/enough to cover the opcode "00\0"
 	// The first two characters are actually the bluetooth code
-	int opcode = 10 * (msg[0] - '0');
-	opcode = opcode + (msg[1] - '0');
+	int opcode = 10 * (msg_g[0] - '0');
+	opcode = opcode + (msg_g[1] - '0');
 	printf("BL received. opcode: %d\n", opcode);
 	switch(opcode) {
 	case AUTHENTICATE:
@@ -485,7 +492,26 @@ void process_bl_msg() {
 	}
 }
 
-uint8_t configure_i2c() {
+void set_up_i2c() {
+	// Initialize I2C
+	uint32_t i;
+
+	if ( I2CInit( (uint32_t)I2CMASTER ) == FALSE )	/* initialize I2c */
+	{
+		while ( 1 );				/* Fatal error */
+	}
+
+	// Check if running on power or battery
+	if(is_running_on_battery())
+		printf("Device is running on battery\n");
+	else
+		printf("Device is running on power\n");
+
+	configure_i2c_devices();
+	printf("I2C configured\n");
+}
+
+void configure_i2c_devices() {
 	// Set up Bluetooth
 	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
 	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
@@ -494,10 +520,32 @@ uint8_t configure_i2c() {
 	write_byte_to_register(BL_WAADR, FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
 	write_byte_to_register(BL_WAADR, FCR, 0x01); // enable FIFO mode
 	write_byte_to_register(BL_WAADR, IER, 0x01); // enable RHR interrupt
-	return I2CMasterState;
+
+	// Set up the Accelerometer
+	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
+}
+
+// Return 0 if not running on battery. Else return the % of battery left
+uint8_t is_running_on_battery() {
+	is_running_on_battery_g = read_byte_from_register(FG_RAADR, FG_WAADR, 0x04);
+	return is_running_on_battery_g == 0 ? 0 : 1;
+}
+
+uint16_t get_current_voltage() {
+	return (read_byte_from_register(FG_RAADR, FG_WAADR, 0x02) << 8) + (read_byte_from_register(FG_RAADR, FG_WAADR, 0x03) << 4);
+}
+
+uint16_t get_acc_direction(uint8_t reg) {
+	return (read_byte_from_register(AC_RAADR, AC_WAADR, reg) << 4) + (read_byte_from_register(AC_RAADR, AC_WAADR, (reg + 0x01)) >> 4);
+}
+
+void update_acc_data() {
+	x_g = get_acc_direction(0x01);
+	y_g = get_acc_direction(0x03);
+	z_g = get_acc_direction(0x05);
 }
 
 
 /******************************************************************************
-**                            End Of File
-******************************************************************************/
+ **                            End Of File
+ ******************************************************************************/
