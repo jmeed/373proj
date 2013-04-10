@@ -44,7 +44,7 @@ clean:
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size extint.axf; arm-none-eabi-objcopy -O binary extint.axf extint.bin ; checksum -p LPC1115_303 -d extint.bin;
+	-arm-none-eabi-size extint.axf; arm-none-eabi-objcopy -O binary extint.axf extint.bin ; checksum -p LPC1114_302 -d extint.bin;
 	-@echo ' '
 
 .PHONY: all clean dependents

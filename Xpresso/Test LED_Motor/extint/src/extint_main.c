@@ -30,7 +30,7 @@ int main (void)
    /* use port2_1 as input event, interrupt test. */
   GPIOSetDir( PORT3, 0, 0 );
   /* port2_1, single edge trigger, active high. */
-  GPIOSetInterrupt( PORT3, 0, 1, 1, 1 );
+  GPIOSetInterrupt( PORT3, 0, 1, 1, 0 );
   GPIOIntEnable( PORT3, 0 );
 
   /* Set LED port line to output */

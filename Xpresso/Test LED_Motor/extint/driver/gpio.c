@@ -119,8 +119,8 @@ volatile uint32_t p3_1_counter  = 0;
 void PIOINT3_IRQHandler(void)
 {
   uint32_t regVal;
-  GPIOSetValue( 2, 7, LED_ON );
-  GPIOSetValue( 2, 8, LED_ON );
+//  GPIOSetValue( 2, 7, LED_ON );
+//  GPIOSetValue( 2, 8, LED_ON );
   gpio3_counter++;
   regVal = GPIOIntStatus( PORT3, 1 );
   if ( regVal )
