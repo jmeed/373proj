@@ -68,14 +68,26 @@ int main (void)
 	while(1) {
 		// Check the Bluetooth
 		while(read_byte_from_register(BL_RAADR, BL_WAADR, LSR) & 0x01) {
-			msg_g[msg_count_g] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
+			msg_g[0] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
+			printf("%s", msg_g);
+			fflush(stdout);
+
+			msg_g[0] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
+			printf("%s", msg_g);
+			fflush(stdout);
+
+			msg_g[0] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
+			printf("%s", msg_g);
+			fflush(stdout);
+
+			/*msg_g[msg_count_g] = (char) read_byte_from_register(BL_RAADR, BL_WAADR, RHR);
 			msg_count_g++;
 			if(msg_g[msg_count_g - 1] == '\0') {
 				printf("%s\n", msg_g);
 				fflush(stdout);
 				process_bl_msg();
 				msg_count_g = 0;
-			}
+			}*/
 		}
 
 		// Check the accelerometer
@@ -92,8 +104,8 @@ int main (void)
 
 		fflush(stdout);
 		// Sleep
-		int i;
-		for ( i = 0; i < 0x200000; i++ );
+		//int i;
+		//for ( i = 0; i < 0x200000; i++ );
 	}
 	return 0;
 }
