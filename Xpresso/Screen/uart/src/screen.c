@@ -19,8 +19,24 @@ extern volatile uint8_t UARTBuffer[BUFSIZE];	//This may need to be larger
 void initScreen()
 {
 	clearScreen();
+	disableScrolling();
 	mediaInit();
 	diagnosticScreen();
+}
+
+void disableScrolling()
+{
+	UARTBuffer[0] = 0x00;
+	UARTBuffer[1] = 0x0E;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3] = 0x04;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to disable scrolling");
+	UARTCount = 0;
 }
 
 void clearScreen()
@@ -55,6 +71,40 @@ void mediaInit()
 	UARTCount = 0;
 }
 
+void media_setSector(uint8_t hi, uint8_t lo)
+{
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0xB8;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3]= hi;
+	UARTBuffer[4] = 0x00;
+	UARTBuffer[5] = lo;
+	UARTCount = 6;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set media sector");
+	UARTCount = 0;
+}
+
+void media_display()
+{
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0xB3;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3]= 0x00;
+	UARTBuffer[4] = 0x00;
+	UARTBuffer[5] = 0x00;
+	UARTCount = 6;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (!(UARTBuffer[0] == 0x00 && UARTBuffer[1] == 0x00 && UARTBuffer[2] == 0x04))
+		printf("DANGER WILL ROBINSON, Failed to display media");
+	UARTCount = 0;
+}
+
 void wait()
 {
 	int i, j;
@@ -75,12 +125,14 @@ int gotACK()
 		return 0;
 }
 
-void moveCursor(uint32_t x, uint32_t y)
+void moveCursor(uint8_t x, uint8_t y)
 {
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0xE4;
-	UARTBuffer[2] = x;	//These could be incorrect syntax. Need board to test.
-	UARTBuffer[4] = y;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3] = x;	//These could be incorrect syntax. Need board to test.
+	UARTBuffer[4] = 0x00;
+	UARTBuffer[5] = y;
 	UARTCount = 6;
 	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
 	UARTCount = 0;
@@ -96,8 +148,14 @@ void writeString(char *str)
 {
 	UARTBuffer[0] = 0x00;
 	UARTBuffer[1] = 0x06;
-	UARTBuffer[2] = *str;
-	UARTCount = (sizeof(*str) + 2);	//This may also be wrong syntax
+
+	unsigned int i;
+	for (i = 0; i < strlen(str); i++)
+	{
+		UARTBuffer[2+i] = str[i];
+	}
+	UARTBuffer[i+2] = '\0';
+	UARTCount = strlen(str) + 3;	//This may also be wrong syntax
 	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
 	UARTCount = 0;
 	wait();
@@ -152,21 +210,53 @@ void diagnosticScreen()
 		printf("DANGER WILL ROBINSON, Failed to set text background color black");
 	UARTCount = 0;
 
+	//Background
+	media_setSector(0,0);
+	//media_display();
+
 	char temporary[BUFSIZE];
-	strcpy(temporary, "SMWATCH PROJECT");
+
+	strcpy(temporary, "SMWATCH PROJECT\n");
+	writeString(temporary);
 	moveCursor(2,2);
-	writeString(temporary);	//Need to check this system
-	moveCursor(4,0);
-	strcpy(temporary, "David Jackson");
+//	writeString(temporary);	//Need to check this system
+//	moveCursor(4,0);
+	strcpy(temporary, "David Jackson\n");
 	writeString(temporary);
-	moveCursor(5,0);
-	strcpy(temporary, "Jon Meed");
+//	moveCursor(5,0);
+	strcpy(temporary, "Jon Meed\n");
 	writeString(temporary);
-	moveCursor(6,0);
-	strcpy(temporary, "Filip Theodorakis");
+//	moveCursor(6,0);
+	strcpy(temporary, "Filip Theodorakis\n");
 	writeString(temporary);
-	moveCursor(7,0);
-	strcpy(temporary, "Tony Lucchesi");
+//	moveCursor(7,0);
+	strcpy(temporary, "Tony Lucchesi\n");
+	writeString(temporary);
+	strcpy(temporary, "PONIES\n");
+	writeString(temporary);
+	strcpy(temporary, "ARE\n");
+	writeString(temporary);
+	strcpy(temporary, "COOL\n");
+	writeString(temporary);
+	strcpy(temporary, "BRONIES\n");
+	writeString(temporary);
+	strcpy(temporary, "SUCK\n");
+	writeString(temporary);
+	strcpy(temporary, "DIE\n");
+	writeString(temporary);
+	strcpy(temporary, "HELLO\n");
+	writeString(temporary);
+	strcpy(temporary, "WORLD\n");
+	writeString(temporary);
+	strcpy(temporary, "4\n");
+	writeString(temporary);
+	strcpy(temporary, "3\n");
+	writeString(temporary);
+	strcpy(temporary, "2\n");
+	writeString(temporary);
+	strcpy(temporary, "1\n");
+	writeString(temporary);
+	strcpy(temporary, "0\n");
 	writeString(temporary);
 	}
 

@@ -11,7 +11,7 @@ c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2
 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
                               ./src/screen.o (strcpy)
 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strlen.o)
-                              c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o) (strlen)
+                              ./src/screen.o (strlen)
 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
                               c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o) (memset)
 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__fillbuf.o)
@@ -84,23 +84,10 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/screen.o
  .data          0x00000000        0x0 ./src/screen.o
  .bss           0x00000000        0x0 ./src/screen.o
- .text.initScreen
-                0x00000000       0x14 ./src/screen.o
- .rodata        0x00000000      0x1b8 ./src/screen.o
- .text.clearScreen
-                0x00000000       0x54 ./src/screen.o
- .text.mediaInit
-                0x00000000       0x6c ./src/screen.o
- .text.wait     0x00000000       0x30 ./src/screen.o
- .text.gotACK   0x00000000       0x20 ./src/screen.o
- .text.moveCursor
-                0x00000000       0x6c ./src/screen.o
- .text.writeString
-                0x00000000       0x64 ./src/screen.o
+ .text.media_display
+                0x00000000       0x84 ./src/screen.o
  .text.drawSquare
                 0x00000000       0x90 ./src/screen.o
- .text.diagnosticScreen
-                0x00000000      0x154 ./src/screen.o
  .text          0x00000000        0x0 ./src/uart_main.o
  .data          0x00000000        0x0 ./src/uart_main.o
  .bss           0x00000000        0x0 ./src/uart_main.o
@@ -146,18 +133,9 @@ Discarded input sections
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.lose_trailing_zeros
-                0x00000000       0x22 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.fp_round
-                0x00000000       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.pr_dec.constprop.1
-                0x00000000       0x2a c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .text.fprintf  0x00000000       0x38 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .text.printf_char
                 0x00000000       0x38 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.sprintf  0x00000000       0x78 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.fp_display
-                0x00000000      0x978 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .text.snprintf
                 0x00000000       0x6c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .text.vfprintf
@@ -165,18 +143,11 @@ Discarded input sections
  .text.vprintf  0x00000000       0x28 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .text.vsprintf
                 0x00000000       0x68 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.vsnprintf
-                0x00000000       0x5c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .text.printf   0x00000000       0x50 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
- .rodata.str1.1
-                0x00000000       0x35 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .text.no_fp_display
                 0x00000000        0x4 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
- .text.__vfprintf
-                0x00000000      0xe18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .text._fprintf
                 0x00000000       0x38 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .text._printf_char
@@ -192,8 +163,6 @@ Discarded input sections
  .text._vsnprintf
                 0x00000000       0x5c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .text._printf  0x00000000       0x50 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
- .rodata.str1.1
-                0x00000000       0x38 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
@@ -207,19 +176,15 @@ Discarded input sections
  .text.ferror   0x00000000        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
  .text.clearerr
                 0x00000000       0x10 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
- COMMON         0x00000000      0x140 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
- .text.strcpy   0x00000000       0x48 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strlen.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strlen.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strlen.o)
- .text.strlen   0x00000000       0x58 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strlen.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
- .text.memset   0x00000000        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__fillbuf.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__fillbuf.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__fillbuf.o)
@@ -231,50 +196,32 @@ Discarded input sections
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
- .text._deferredlazyseek
-                0x00000000       0x44 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
- .text.__flsbuf
-                0x00000000      0x154 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_fflush.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_fflush.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_fflush.o)
- .text._fflush  0x00000000       0x60 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_fflush.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_frexpl.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_frexpl.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_frexpl.o)
- .text._frexpl  0x00000000       0x88 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_frexpl.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_ldexpl.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_ldexpl.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_ldexpl.o)
- .text._ldexpl  0x00000000       0x68 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_ldexpl.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_writebuf.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_writebuf.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_writebuf.o)
- .text._Cwritebuf
-                0x00000000       0x6c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_writebuf.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
- .text.malloc   0x00000000       0xbc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
- .text.free     0x00000000        0xa c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
  .text.calloc   0x00000000       0x52 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
- .text._Csys_alloc
-                0x00000000       0x20 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
  .text.realloc  0x00000000       0x1e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
- .rodata.str1.1
-                0x00000000       0x18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(errno.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(errno.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(errno.o)
- .bss.errno     0x00000000        0x4 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(errno.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fseek.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fseek.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fseek.o)
- .text.fseek    0x00000000       0xf0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fseek.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(ftell.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(ftell.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(ftell.o)
- .text.ftell    0x00000000       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(ftell.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memcpy.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memcpy.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memcpy.o)
@@ -284,29 +231,20 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__init_alloc.o)
  .text._init_alloc
                 0x00000000       0x14 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__init_alloc.o)
- COMMON         0x00000000        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__init_alloc.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_hugeval.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_hugeval.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_hugeval.o)
  .rodata.__huge_val
                 0x00000000        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_hugeval.o)
- .rodata.__huge_vall
-                0x00000000        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_hugeval.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_appexit.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_appexit.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_appexit.o)
- .text.__sys_appexit
-                0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_appexit.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_flen.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_flen.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_flen.o)
- .text.__sys_flen
-                0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_flen.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_istty.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_istty.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_istty.o)
- .text.__sys_istty
-                0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_istty.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_read.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_read.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_read.o)
@@ -320,27 +258,18 @@ Discarded input sections
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_seek.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_seek.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_seek.o)
- .text.__sys_seek
-                0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_seek.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
- .text.__sys_write
-                0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_sbrk.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_sbrk.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_sbrk.o)
- .text._sbrk    0x00000000       0x40 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_sbrk.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_check_heap.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_check_heap.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_check_heap.o)
- .text.__check_heap_overflow
-                0x00000000       0x2c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_check_heap.o)
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
- .text.__aeabi_division_idivmod
-                0x00000000        0x6 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
  .text.__aeabi_division_uldivmod
                 0x00000000       0x5a c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
  .text.__aeabi_division_ldivmod
@@ -352,49 +281,27 @@ Discarded input sections
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dmul
-                0x00000000      0x180 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_ddiv
-                0x00000000      0x178 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dsub
-                0x00000000      0x1d8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dadd
-                0x00000000      0x140 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_drsub
                 0x00000000       0x28 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_dneg
                 0x00000000       0x10 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_d2f
                 0x00000000       0x5c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_d2iz
-                0x00000000       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_d2uiz
                 0x00000000       0x38 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_d2lz
                 0x00000000       0x78 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_d2ulz
                 0x00000000       0x58 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__bhs_ui2d
-                0x00000000       0x5e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__bhs_ul2d
                 0x00000000       0xb4 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_i2d
-                0x00000000       0x16 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_ui2d
                 0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_l2d
                 0x00000000       0x20 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_ul2d
                 0x00000000        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dcmpeq
-                0x00000000       0x40 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dcmplt
-                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_dcmpgt
-                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dcmple
-                0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
- .text.__aeabi_dcmpge
                 0x00000000       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
  .text.__aeabi_dcmpun
                 0x00000000       0x1c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
@@ -405,8 +312,6 @@ Discarded input sections
  .text          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
  .data          0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
  .bss           0x00000000        0x0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
- .text.__aeabi_llong_lmul
-                0x00000000       0x2e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
  .text.__aeabi_llong_llsl
                 0x00000000       0x18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
  .text.__aeabi_llong_llsr
@@ -424,8 +329,6 @@ Discarded input sections
                 0x00000000       0x2c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(memcpy.o)
  .text.__aeabi_memmove
                 0x00000000       0x1c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(memcpy.o)
- .text.__aeabi_memset_lowlevel
-                0x00000000       0x2a c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(memcpy.o)
  .text.__aeabi_memclr
                 0x00000000        0x6 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(memcpy.o)
  .text.__aeabi_memset
@@ -456,7 +359,7 @@ END GROUP
                 0x00008000                __top_MFlash32 = 0x8000
                 0x10002000                __top_RamLoc8 = 0x10002000
 
-.text           0x00000000      0x830
+.text           0x00000000     0x3970
  FILL mask 0xff
  *(.isr_vector)
  .isr_vector    0x00000000       0xc0 ./startup/cr_startup_lpc11.o
@@ -508,61 +411,220 @@ END GROUP
                 0x0000038c                I2C_IRQHandler
                 0x0000038c                WDT_IRQHandler
                 0x0000038c                PIOINT3_IRQHandler
- .text.main     0x00000394       0x58 ./src/uart_main.o
-                0x00000394                main
+ .text.initScreen
+                0x00000394       0x18 ./src/screen.o
+                0x00000394                initScreen
+ .text.disableScrolling
+                0x000003ac       0x60 ./src/screen.o
+                0x000003ac                disableScrolling
+ .text.clearScreen
+                0x0000040c       0x54 ./src/screen.o
+                0x0000040c                clearScreen
+ .text.mediaInit
+                0x00000460       0x6c ./src/screen.o
+                0x00000460                mediaInit
+ .text.media_setSector
+                0x000004cc       0x80 ./src/screen.o
+                0x000004cc                media_setSector
+ .text.wait     0x0000054c       0x30 ./src/screen.o
+                0x0000054c                wait
+ .text.gotACK   0x0000057c       0x20 ./src/screen.o
+                0x0000057c                gotACK
+ .text.moveCursor
+                0x0000059c       0x80 ./src/screen.o
+                0x0000059c                moveCursor
+ .text.writeString
+                0x0000061c       0x9c ./src/screen.o
+                0x0000061c                writeString
+ .text.diagnosticScreen
+                0x000006b8      0x274 ./src/screen.o
+                0x000006b8                diagnosticScreen
+ .text.main     0x0000092c       0x14 ./src/uart_main.o
+                0x0000092c                main
  .text.NVIC_EnableIRQ
-                0x000003ec       0x2c ./driver/uart.o
+                0x00000940       0x2c ./driver/uart.o
  .text.NVIC_DisableIRQ
-                0x00000418       0x30 ./driver/uart.o
+                0x0000096c       0x30 ./driver/uart.o
  .text.UART_IRQHandler
-                0x00000448      0x11c ./driver/uart.o
-                0x00000448                UART_IRQHandler
+                0x0000099c      0x11c ./driver/uart.o
+                0x0000099c                UART_IRQHandler
  .text.UARTInit
-                0x00000564      0x124 ./driver/uart.o
-                0x00000564                UARTInit
+                0x00000ab8      0x124 ./driver/uart.o
+                0x00000ab8                UARTInit
  .text.UARTSend
-                0x00000688       0x40 ./driver/uart.o
-                0x00000688                UARTSend
+                0x00000bdc       0x40 ./driver/uart.o
+                0x00000bdc                UARTSend
  .text.SystemCoreClockUpdate
-                0x000006c8       0xac ./cmsis/system_LPC11xx.o
-                0x000006c8                SystemCoreClockUpdate
+                0x00000c1c       0xac ./cmsis/system_LPC11xx.o
+                0x00000c1c                SystemCoreClockUpdate
  .text.__weak_main
-                0x00000774        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
-                0x00000774                __weak_main
-                0x00000774                __main
+                0x00000cc8        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__weak__main.o)
+                0x00000cc8                __weak_main
+                0x00000cc8                __main
+ .text.lose_trailing_zeros
+                0x00000cd0       0x22 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+ .text.fp_round
+                0x00000cf2       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+ .text.pr_dec.constprop.1
+                0x00000d3e       0x2a c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+ .text.sprintf  0x00000d68       0x78 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+                0x00000d68                sprintf
+ .text.fp_display
+                0x00000de0      0x978 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+ .text.vsnprintf
+                0x00001758       0x5c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+                0x00001758                vsnprintf
+ .text.printf   0x000017b4       0x50 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+                0x000017b4                printf
+ .text.__vfprintf
+                0x00001804      0xe18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
+                0x00001804                __vfprintf
+ .text.strcpy   0x0000261c       0x48 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strcpy.o)
+                0x0000261c                strcpy
+ .text.strlen   0x00002664       0x58 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(strlen.o)
+                0x00002664                strlen
+ .text.memset   0x000026bc        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(memset.o)
+                0x000026bc                memset
+ .text._deferredlazyseek
+                0x000026c4       0x44 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
+                0x000026c4                _deferredlazyseek
+ .text.__flsbuf
+                0x00002708      0x154 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_deferredlazyseek.o)
+                0x00002708                __flsbuf
+ .text._fflush  0x0000285c       0x60 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_fflush.o)
+                0x0000285c                _fflush
+ *fill*         0x000028bc        0x4 00
+ .text._frexpl  0x000028c0       0x88 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_frexpl.o)
+                0x000028c0                _frexpl
+ .text._ldexpl  0x00002948       0x68 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_ldexpl.o)
+                0x00002948                _ldexpl
+ .text._Cwritebuf
+                0x000029b0       0x6c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_writebuf.o)
+                0x000029b0                _Cwritebuf
+ .text.malloc   0x00002a1c       0xbc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
+                0x00002a1c                malloc
+ .text.free     0x00002ad8        0xa c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
+                0x00002ad8                free
+ *fill*         0x00002ae2        0x2 00
+ .text._Csys_alloc
+                0x00002ae4       0x20 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
+                0x00002ae4                _Csys_alloc
+ .text.fseek    0x00002b04       0xf0 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fseek.o)
+                0x00002b04                fseek
+ .text.ftell    0x00002bf4       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(ftell.o)
+                0x00002bf4                ftell
+ .text.__sys_appexit
+                0x00002c40        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_appexit.o)
+                0x00002c40                __sys_appexit
+                0x00002c40                __exit
+ .text.__sys_flen
+                0x00002c4c        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_flen.o)
+                0x00002c4c                __sys_flen
+ .text.__sys_istty
+                0x00002c58        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_istty.o)
+                0x00002c58                __sys_istty
+ .text.__sys_seek
+                0x00002c64        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_seek.o)
+                0x00002c64                __sys_seek
+ .text.__sys_write
+                0x00002c70        0xc c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(__sys_write.o)
+                0x00002c70                __sys_write
+                0x00002c70                __write
+ .text._sbrk    0x00002c7c       0x40 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_sbrk.o)
+                0x00002c7c                _sbrk
+ .text.__check_heap_overflow
+                0x00002cbc       0x2c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_semihost.a(_cr_check_heap.o)
+                0x00002cbc                __check_heap_overflow
+ .text.__aeabi_division_idivmod
+                0x00002ce8        0x6 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                0x00002ce8                __aeabi_idivmod
+                0x00002ce8                __aeabi_idiv
  .text.__aeabi_division_uidivmod
-                0x0000077c       0x72 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
-                0x0000077c                __aeabi_uidivmod
-                0x0000077c                __aeabi_uidiv
+                0x00002cee       0x72 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                0x00002cee                __aeabi_uidivmod
+                0x00002cee                __aeabi_uidiv
  .text.__aeabi_division_idiv0
-                0x000007ee        0x2 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
-                0x000007ee                __aeabi_idiv0
+                0x00002d60        0x2 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(division.o)
+                0x00002d60                __aeabi_idiv0
+ *fill*         0x00002d62        0x6 00
+ .text.__aeabi_dmul
+                0x00002d68      0x180 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00002d68                __aeabi_dmul
+ .text.__aeabi_ddiv
+                0x00002ee8      0x178 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00002ee8                __aeabi_ddiv
+ .text.__aeabi_dsub
+                0x00003060      0x1d8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003060                __aeabi_dsub
+ .text.__aeabi_dadd
+                0x00003238      0x140 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003238                __aeabi_dadd
+ .text.__aeabi_d2iz
+                0x00003378       0x4c c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003378                __aeabi_d2iz
+ .text.__bhs_ui2d
+                0x000033c4       0x5e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x000033c4                __bhs_ui2d
+ .text.__aeabi_i2d
+                0x00003422       0x16 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003422                __aeabi_i2d
+ .text.__aeabi_dcmpeq
+                0x00003438       0x40 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003438                __aeabi_dcmpeq
+ .text.__aeabi_dcmplt
+                0x00003478       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003478                __aeabi_dcmplt
+ .text.__aeabi_dcmple
+                0x000034dc       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x000034dc                __aeabi_dcmple
+ .text.__aeabi_dcmpge
+                0x00003540       0x64 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(double.o)
+                0x00003540                __aeabi_dcmpge
+ .text.__aeabi_llong_lmul
+                0x000035a4       0x2e c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(llong.o)
+                0x000035a4                __aeabi_lmul
+ .text.__aeabi_memset_lowlevel
+                0x000035d2       0x2a c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(memcpy.o)
+                0x000035d2                __aeabi_lowlevel_memset
  *(.rodata*)
+ .rodata        0x000035fc      0x2ac ./src/screen.o
  .rodata.CSWTCH.7
-                0x000007f0       0x40 ./cmsis/system_LPC11xx.o
+                0x000038a8       0x40 ./cmsis/system_LPC11xx.o
+ .rodata.str1.1
+                0x000038e8       0x34 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(fpprintf.o)
+                                 0x35 (size before relaxing)
+ .rodata.str1.1
+                0x0000391c       0x31 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(printf.o)
+                                 0x38 (size before relaxing)
+ .rodata.str1.1
+                0x0000394d       0x18 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(alloc.o)
+ *fill*         0x00003965        0x3 00
+ .rodata.__huge_vall
+                0x00003968        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(_hugeval.o)
+                0x00003968                __huge_vall
 
-.glue_7         0x00000830        0x0
+.glue_7         0x00003970        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00000830        0x0
+.glue_7t        0x00003970        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00000830        0x0
+.vfp11_veneer   0x00003970        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00000830        0x0
+.v4_bx          0x00003970        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x00000830                __exidx_start = .
+                0x00003970                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00000830                __exidx_end = .
-                0x00000830                _etext = .
+                0x00003970                __exidx_end = .
+                0x00003970                _etext = .
 
-.data           0x10000000        0x8 load address 0x00000830
+.data           0x10000000        0x8 load address 0x00003970
                 0x10000000                _data = .
  *(vtable)
  *(.data*)
@@ -575,34 +637,41 @@ END GROUP
                 0x10000004                SystemCoreClock
                 0x10000008                _edata = .
 
-.bss            0x10000008       0x48 load address 0x00000838
+.bss            0x10000008      0x194 load address 0x00003978
                 0x10000008                _bss = .
  *(.bss*)
  .bss.UARTCount
                 0x10000008        0x4 ./driver/uart.o
                 0x10000008                UARTCount
+ .bss.errno     0x1000000c        0x4 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(errno.o)
+                0x1000000c                errno
  *(COMMON)
- COMMON         0x1000000c       0x44 ./driver/uart.o
-                0x1000000c                UARTBuffer
-                0x1000004c                UARTStatus
-                0x10000050                _ebss = .
+ COMMON         0x10000010       0x44 ./driver/uart.o
+                0x10000010                UARTBuffer
+                0x10000050                UARTStatus
+ COMMON         0x10000054      0x140 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(stdio.o)
+                0x10000054                __Ciob
+ COMMON         0x10000194        0x8 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m\libcr_c.a(__init_alloc.o)
+                0x10000194                __heaps
+                0x10000198                __end_of_heap
+                0x1000019c                _ebss = .
 
-.cr_heap        0x10000050        0x0 load address 0x00000838
-                0x10000050                end = .
-                0x10000050                _pvHeapStart = .
+.cr_heap        0x1000019c        0x0 load address 0x00003978
+                0x1000019c                end = .
+                0x1000019c                _pvHeapStart = .
                 0x10002000                _vRamTop = __top_RamLoc8
                 0x10002000                _vStackTop = _vRamTop
 OUTPUT(uart.axf elf32-littlearm)
 
-.debug_info     0x00000000     0x1d32
+.debug_info     0x00000000     0x1dd1
  .debug_info    0x00000000      0x1ec ./startup/cr_startup_lpc11.o
- .debug_info    0x000001ec      0x2b7 ./src/screen.o
- .debug_info    0x000004a3      0x28c ./src/uart_main.o
- .debug_info    0x0000072f       0x70 ./driver/can.o
- .debug_info    0x0000079f       0x92 ./driver/crp.o
- .debug_info    0x00000831      0xccb ./driver/uart.o
- .debug_info    0x000014fc      0x2ae ./cmsis/core_cm0.o
- .debug_info    0x000017aa      0x588 ./cmsis/system_LPC11xx.o
+ .debug_info    0x000001ec      0x356 ./src/screen.o
+ .debug_info    0x00000542      0x28c ./src/uart_main.o
+ .debug_info    0x000007ce       0x70 ./driver/can.o
+ .debug_info    0x0000083e       0x92 ./driver/crp.o
+ .debug_info    0x000008d0      0xccb ./driver/uart.o
+ .debug_info    0x0000159b      0x2ae ./cmsis/core_cm0.o
+ .debug_info    0x00001849      0x588 ./cmsis/system_LPC11xx.o
 
 .debug_abbrev   0x00000000      0x6c1
  .debug_abbrev  0x00000000       0xb4 ./startup/cr_startup_lpc11.o
@@ -614,45 +683,45 @@ OUTPUT(uart.axf elf32-littlearm)
  .debug_abbrev  0x000004d5       0xaf ./cmsis/core_cm0.o
  .debug_abbrev  0x00000584      0x13d ./cmsis/system_LPC11xx.o
 
-.debug_loc      0x00000000      0x624
+.debug_loc      0x00000000      0x6b4
  .debug_loc     0x00000000      0x140 ./startup/cr_startup_lpc11.o
- .debug_loc     0x00000140      0x1ca ./src/screen.o
- .debug_loc     0x0000030a       0x2c ./src/uart_main.o
- .debug_loc     0x00000336      0x144 ./driver/uart.o
- .debug_loc     0x0000047a      0x112 ./cmsis/core_cm0.o
- .debug_loc     0x0000058c       0x98 ./cmsis/system_LPC11xx.o
+ .debug_loc     0x00000140      0x25a ./src/screen.o
+ .debug_loc     0x0000039a       0x2c ./src/uart_main.o
+ .debug_loc     0x000003c6      0x144 ./driver/uart.o
+ .debug_loc     0x0000050a      0x112 ./cmsis/core_cm0.o
+ .debug_loc     0x0000061c       0x98 ./cmsis/system_LPC11xx.o
 
-.debug_aranges  0x00000000      0x1b0
+.debug_aranges  0x00000000      0x1c8
  .debug_aranges
                 0x00000000       0x50 ./startup/cr_startup_lpc11.o
  .debug_aranges
-                0x00000050       0x60 ./src/screen.o
+                0x00000050       0x78 ./src/screen.o
  .debug_aranges
-                0x000000b0       0x20 ./src/uart_main.o
+                0x000000c8       0x20 ./src/uart_main.o
  .debug_aranges
-                0x000000d0       0x48 ./driver/uart.o
+                0x000000e8       0x48 ./driver/uart.o
  .debug_aranges
-                0x00000118       0x70 ./cmsis/core_cm0.o
+                0x00000130       0x70 ./cmsis/core_cm0.o
  .debug_aranges
-                0x00000188       0x28 ./cmsis/system_LPC11xx.o
+                0x000001a0       0x28 ./cmsis/system_LPC11xx.o
 
-.debug_ranges   0x00000000      0x150
+.debug_ranges   0x00000000      0x168
  .debug_ranges  0x00000000       0x40 ./startup/cr_startup_lpc11.o
- .debug_ranges  0x00000040       0x50 ./src/screen.o
- .debug_ranges  0x00000090       0x10 ./src/uart_main.o
- .debug_ranges  0x000000a0       0x38 ./driver/uart.o
- .debug_ranges  0x000000d8       0x60 ./cmsis/core_cm0.o
- .debug_ranges  0x00000138       0x18 ./cmsis/system_LPC11xx.o
+ .debug_ranges  0x00000040       0x68 ./src/screen.o
+ .debug_ranges  0x000000a8       0x10 ./src/uart_main.o
+ .debug_ranges  0x000000b8       0x38 ./driver/uart.o
+ .debug_ranges  0x000000f0       0x60 ./cmsis/core_cm0.o
+ .debug_ranges  0x00000150       0x18 ./cmsis/system_LPC11xx.o
 
-.debug_line     0x00000000     0x1eae
+.debug_line     0x00000000     0x1f32
  .debug_line    0x00000000      0x3da ./startup/cr_startup_lpc11.o
- .debug_line    0x000003da      0x4ad ./src/screen.o
- .debug_line    0x00000887      0x3a5 ./src/uart_main.o
- .debug_line    0x00000c2c      0x350 ./driver/can.o
- .debug_line    0x00000f7c      0x359 ./driver/crp.o
- .debug_line    0x000012d5      0x440 ./driver/uart.o
- .debug_line    0x00001715      0x3cd ./cmsis/core_cm0.o
- .debug_line    0x00001ae2      0x3cc ./cmsis/system_LPC11xx.o
+ .debug_line    0x000003da      0x538 ./src/screen.o
+ .debug_line    0x00000912      0x39e ./src/uart_main.o
+ .debug_line    0x00000cb0      0x350 ./driver/can.o
+ .debug_line    0x00001000      0x359 ./driver/crp.o
+ .debug_line    0x00001359      0x440 ./driver/uart.o
+ .debug_line    0x00001799      0x3cd ./cmsis/core_cm0.o
+ .debug_line    0x00001b66      0x3cc ./cmsis/system_LPC11xx.o
 
 .debug_macinfo  0x00000000    0x2b730
  .debug_macinfo
@@ -672,23 +741,23 @@ OUTPUT(uart.axf elf32-littlearm)
  .debug_macinfo
                 0x00025843     0x5eed ./cmsis/system_LPC11xx.o
 
-.debug_str      0x00000000      0xae4
- .debug_str     0x00000000      0x189 ./startup/cr_startup_lpc11.o
-                                0x1bd (size before relaxing)
- .debug_str     0x00000189       0xf4 ./src/screen.o
-                                0x1bb (size before relaxing)
- .debug_str     0x0000027d       0x6b ./src/uart_main.o
+.debug_str      0x00000000      0xaea
+ .debug_str     0x00000000      0x1a2 ./startup/cr_startup_lpc11.o
+                                0x1d6 (size before relaxing)
+ .debug_str     0x000001a2       0xe1 ./src/screen.o
+                                0x1ea (size before relaxing)
+ .debug_str     0x00000283       0x6b ./src/uart_main.o
                                 0x195 (size before relaxing)
- .debug_str     0x000002e8       0x10 ./driver/can.o
-                                 0xfb (size before relaxing)
- .debug_str     0x000002f8       0x19 ./driver/crp.o
-                                0x10d (size before relaxing)
- .debug_str     0x00000311      0x6bc ./driver/uart.o
-                                0x825 (size before relaxing)
- .debug_str     0x000009cd       0xce ./cmsis/core_cm0.o
-                                0x1d2 (size before relaxing)
- .debug_str     0x00000a9b       0x49 ./cmsis/system_LPC11xx.o
-                                0x3f9 (size before relaxing)
+ .debug_str     0x000002ee       0x10 ./driver/can.o
+                                0x114 (size before relaxing)
+ .debug_str     0x000002fe       0x19 ./driver/crp.o
+                                0x126 (size before relaxing)
+ .debug_str     0x00000317      0x6bc ./driver/uart.o
+                                0x83e (size before relaxing)
+ .debug_str     0x000009d3       0xce ./cmsis/core_cm0.o
+                                0x1eb (size before relaxing)
+ .debug_str     0x00000aa1       0x49 ./cmsis/system_LPC11xx.o
+                                0x412 (size before relaxing)
 
 .comment        0x00000000       0xe0
  .comment       0x00000000       0x70 ./startup/cr_startup_lpc11.o
@@ -810,10 +879,10 @@ OUTPUT(uart.axf elf32-littlearm)
  .ARM.attributes
                 0x00000718       0x21 c:/nxp/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m\libcr_eabihelpers.a(memcpy.o)
 
-.debug_frame    0x00000000      0x3f8
+.debug_frame    0x00000000      0x450
  .debug_frame   0x00000000       0xd8 ./startup/cr_startup_lpc11.o
- .debug_frame   0x000000d8      0x120 ./src/screen.o
- .debug_frame   0x000001f8       0x2c ./src/uart_main.o
- .debug_frame   0x00000224       0xcc ./driver/uart.o
- .debug_frame   0x000002f0       0xc0 ./cmsis/core_cm0.o
- .debug_frame   0x000003b0       0x48 ./cmsis/system_LPC11xx.o
+ .debug_frame   0x000000d8      0x178 ./src/screen.o
+ .debug_frame   0x00000250       0x2c ./src/uart_main.o
+ .debug_frame   0x0000027c       0xcc ./driver/uart.o
+ .debug_frame   0x00000348       0xc0 ./cmsis/core_cm0.o
+ .debug_frame   0x00000408       0x48 ./cmsis/system_LPC11xx.o

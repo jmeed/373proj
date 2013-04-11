@@ -16,8 +16,10 @@
 #include "uart.h"
 
 void initScreen();
+void disableScrolling();
 void clearScreen();
 void mediaInit();
+void media_setSector(uint8_t hi, uint8_t lo);
 void wait();
 int gotACK();
 
@@ -26,7 +28,7 @@ int gotACK();
  * x between 0 and 15 inclusive.
  * y between 0 and 17 inclusive.
  */
-void moveCursor(uint32_t x, uint32_t y);
+void moveCursor(uint8_t x, uint8_t y);
 
 /*
  * Call this to place a string of text
