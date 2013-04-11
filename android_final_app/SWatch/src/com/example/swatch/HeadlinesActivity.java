@@ -25,6 +25,8 @@ public class HeadlinesActivity extends Activity {
 			
 		}
 		
+		System.out.println("in get headlines");
+		
 		TextView headlineTextView = (TextView) findViewById(R.id.headline_string);
 		TextView headlineASCII = (TextView) findViewById(R.id.headline_ascii_string);
 		
@@ -39,6 +41,9 @@ public class HeadlinesActivity extends Activity {
     	
  		// Creating JSON Parser instance
 		JSONParser fParser = new JSONParser();
+		
+		System.out.println("created parser");
+		
 		String title = null;
 		String description = null;
 		String headlineNews = "";
@@ -65,9 +70,55 @@ public class HeadlinesActivity extends Activity {
 		
 		// Get hex value for each char
 		String ascii = "";
-		int length = 0;
-		int start_for = 0;
 		int index = 0;
+		
+		
+		int num_of_sends = (int) Math.ceil(mHeadlineNews.length()/64);
+		System.out.println("num_of_sends "+num_of_sends);
+		
+		
+		int sub_start = 0;
+		int sub_end = 0;
+		
+		for (int i = 0; i < num_of_sends + 1; i++)
+		{
+			String to_send = new String();
+			sub_start = i * 64;
+			sub_end = sub_end + 64;
+			if (sub_end <= mHeadlineNews.length())
+			{
+				System.out.println("Printing 64 "+sub_start+" " + sub_end + " " + mHeadlineNews.length());
+				to_send = mHeadlineNews.substring(sub_start, sub_end);
+			}
+			else
+			{
+				System.out.println("not printing 64 "+sub_start+" " + sub_end);
+				to_send = mHeadlineNews.substring(sub_start);
+			}
+				
+			CommThread.write(to_send.getBytes());
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		for (index = 0; index < mHeadlineNews.length(); index++)
+		{
+			char next = mHeadlineNews.charAt(index);
+			ascii = ascii + Integer.toHexString((int)next) + " ";
+		}
+		headlineASCII.setText(ascii);
+		
+		
+		
+		
+		
+		
+		/*
+		
 		while(true)
 		{
 			for (index = start_for; index < mHeadlineNews.length(); index++)
@@ -85,7 +136,11 @@ public class HeadlinesActivity extends Activity {
 				}
 			}
 			headlineASCII.setText(ascii);
-			// SEND TO SCREEN HERE
+			// SEND TO Bluetooth HERE
+			
+			//BluetoothService.sendToTarget(ascii);
+			CommThread.write(ascii.getBytes());
+			
 			ascii = "";
 			if (index >= mHeadlineNews.length())
 			{
@@ -93,7 +148,7 @@ public class HeadlinesActivity extends Activity {
 			}
 		}
 		
-		
+		*/
 	}
 
 	@Override

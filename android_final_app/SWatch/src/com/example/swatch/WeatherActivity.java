@@ -113,15 +113,56 @@ public class WeatherActivity extends Activity {
 		
 		// Get hex value for each char
 		String ascii = "";
-		int length = 0;
-		int start_for = 0;
 		int index = 0;
-		while(true)
+		
+		int num_of_sends = (int) Math.ceil(mStrWeather.length()/64);
+		System.out.println("num_of_sends "+num_of_sends);
+		
+		
+		int sub_start = 0;
+		int sub_end = 0;
+		
+		for (int i = 0; i < num_of_sends + 1; i++)
+		{
+			String to_send = new String();
+			sub_start = i * 64;
+			sub_end = sub_end + 64;
+			if (sub_end <= mStrWeather.length())
+			{
+				System.out.println("Printing 64 "+sub_start+" " + sub_end + " " + mStrWeather.length());
+				to_send = mStrWeather.substring(sub_start, sub_end);
+			}
+			else
+			{
+				System.out.println("not printing 64 "+sub_start+" " + sub_end);
+				to_send = mStrWeather.substring(sub_start);
+			}
+				
+			CommThread.write(to_send.getBytes());
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		for (index = 0; index < mStrWeather.length(); index++)
+		{
+			char next = mStrWeather.charAt(index);
+			ascii = ascii + Integer.toHexString((int)next) + " ";
+		}
+		weatherASCII.setText(ascii);
+		
+			
+		
+		
+		/*while(true)
 		{
 			for (index = start_for; index < mStrWeather.length(); index++)
 			{
 				char next = mStrWeather.charAt(index);
-				ascii = ascii + Integer.toHexString((int)next) + " ";
+				ascii = ascii + Integer.toHexString((int)next);
 				length++;
 				
 				// Split string into substrings to send to screen
@@ -133,13 +174,15 @@ public class WeatherActivity extends Activity {
 				}
 			}
 			weatherASCII.setText(ascii);
-			// SEND TO SCREEN HERE
+			// SEND TO Bluetooth HERE
+			//BluetoothService.sendToTarget(ascii);
+			CommThread.write(ascii.getBytes());
 			ascii = "";
 			if (index >= mStrWeather.length())
 			{
 				break;
 			}
-		}
+		}*/
 	}
 
 	@Override

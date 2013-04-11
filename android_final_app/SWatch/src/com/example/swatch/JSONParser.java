@@ -28,15 +28,23 @@ public class JSONParser {
 	}
 
 	public JSONObject getJSONFromUrl(String url) {
-		System.out.println("in JSONParser");
+		System.out.println("in JSONParser "+url);
 		// Making HTTP request
 		try {
 			System.out.println("in 1st try");
 			// defaultHttpClient
 			DefaultHttpClient httpClient = new DefaultHttpClient();
+			
+			System.out.println("here1");
+			
 			HttpPost httpPost = new HttpPost(url);
 
+			System.out.println("here2");
+			
 			HttpResponse httpResponse = httpClient.execute(httpPost);
+			
+			System.out.println("httpResponse!");
+			
 			HttpEntity httpEntity = httpResponse.getEntity();
 			is = httpEntity.getContent();			
 

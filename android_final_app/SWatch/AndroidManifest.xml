@@ -30,10 +30,20 @@
             android:name="com.example.swatch.HeadlinesActivity"
             android:label="@string/title_activity_headlines" >
         </activity>
+        <activity
+            android:name="com.example.swatch.BTActivity"
+            android:label="@string/title_activity_bt" >
+        </activity>
+        <activity
+            android:name="com.example.swatch.TimeActivity"
+            android:label="@string/title_activity_time" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
 </manifest>

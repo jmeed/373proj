@@ -21,9 +21,10 @@
 #include "target_config.h"
 
 #include "uart.h"
+#include "screen.h"
 
 extern volatile uint32_t UARTCount;
-extern volatile uint8_t UARTBuffer[BUFSIZE];
+extern volatile uint8_t UARTBuffer[BUFSIZE];	//This may need to be larger
 
 int main (void) {
 	  /* Basic chip initialization is taken care of in SystemInit() called
@@ -33,6 +34,7 @@ int main (void) {
 
   /* NVIC is installed inside UARTInit file. */
   UARTInit(UART_BAUD);
+  initScreen();
 
 #if MODEM_TEST
   ModemInit();
@@ -41,15 +43,7 @@ int main (void) {
   //Disable Interrupts
   //LPC_UART->IER = IER_THRE | IER_RLS;
 
-  UARTBuffer[0]=0xFF;
-  UARTBuffer[1]=0xB1;
-  UARTCount = 2;
-  UARTSend( (uint8_t *)UARTBuffer, UARTCount );
 
-  UARTBuffer[0]=0xFF;
-    UARTBuffer[1]=0xD7;
-    UARTCount = 2;
-    UARTSend( (uint8_t *)UARTBuffer, UARTCount );
   //LPC_UART->IER = IER_THRE | IER_RLS | IER_RBR;
   while(1);
 
