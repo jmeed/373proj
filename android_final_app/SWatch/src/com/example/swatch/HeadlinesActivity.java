@@ -1,5 +1,8 @@
 package com.example.swatch;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,15 +68,15 @@ public class HeadlinesActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		mHeadlineNews = "HEADLINES\n" + headlineNews;
+		// Parse string
+		String parsed = Utility.parse_string(headlineNews);
+		mHeadlineNews = "HEADLINES\n" + parsed;
 		headlineTextView.setText(mHeadlineNews);
 		
-		// Get hex value for each char
-		String ascii = "";
-		int index = 0;
 		
-		
-		int num_of_sends = (int) Math.ceil(mHeadlineNews.length()/64);
+		// COMMENT BELOW BACK IN
+		// Send over Bluetooth
+		/*int num_of_sends = (int) Math.ceil(mHeadlineNews.length()/64);
 		System.out.println("num_of_sends "+num_of_sends);
 		
 		
@@ -103,7 +106,11 @@ public class HeadlinesActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
+		
+		// Get hex value for each char
+		String ascii = "";
+		int index = 0;
 		
 		for (index = 0; index < mHeadlineNews.length(); index++)
 		{
@@ -112,43 +119,16 @@ public class HeadlinesActivity extends Activity {
 		}
 		headlineASCII.setText(ascii);
 		
-		
-		
-		
-		
-		
-		/*
-		
-		while(true)
-		{
-			for (index = start_for; index < mHeadlineNews.length(); index++)
-			{
-				char next = mHeadlineNews.charAt(index);
-				ascii = ascii + Integer.toHexString((int)next) + " ";
-				length++;
-				
-				// Split string into substrings to send to screen
-				if(length >= 253)
-				{
-					start_for = index + 1;
-					length = 0;
-					break;
-				}
-			}
-			headlineASCII.setText(ascii);
-			// SEND TO Bluetooth HERE
-			
-			//BluetoothService.sendToTarget(ascii);
-			CommThread.write(ascii.getBytes());
-			
-			ascii = "";
-			if (index >= mHeadlineNews.length())
-			{
-				break;
-			}
-		}
-		
-		*/
+		// Timer to exit the activity
+				Timer timer = new Timer();
+			    timer.schedule(new TimerTask() {
+
+			    public void run() {
+				   finish();
+				   return;
+			   }
+
+			}, 50000);
 	}
 
 	@Override

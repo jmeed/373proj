@@ -181,10 +181,10 @@ public class MainActivity extends Activity {
 	@Override
     public void onStart() {
             super.onStart();
-            CommThread.cancel();
-            dialog = ProgressDialog.show(this, "Connecting", "Searching for a Bluetooth serial port...");
-            thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, handler);
-            thread.start();
+            //CommThread.cancel();
+            //dialog = ProgressDialog.show(this, "Connecting", "Searching for a Bluetooth serial port...");
+            //thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, handler);
+            //thread.start();
     }
 	
 	@Override

@@ -1,6 +1,8 @@
 package com.example.swatch;
 
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,6 +34,18 @@ public class TimeActivity extends Activity {
 		timeTextView.setText(now);
 		timeASCII.setText(ascii);
 		CommThread.write(now.getBytes());
+		
+		Timer timer = new Timer();
+	    timer.schedule(new TimerTask() {
+
+	    public void run() {
+		   finish();
+		   return;
+	   }
+
+	}, 5000);
+		
+		
 	}
 
 	@Override
