@@ -72,41 +72,9 @@ public class HeadlinesActivity extends Activity {
 		String parsed = Utility.parse_string(headlineNews);
 		mHeadlineNews = "HEADLINES\n" + parsed;
 		headlineTextView.setText(mHeadlineNews);
-		
-		
-		// COMMENT BELOW BACK IN
+
 		// Send over Bluetooth
-		/*int num_of_sends = (int) Math.ceil(mHeadlineNews.length()/64);
-		System.out.println("num_of_sends "+num_of_sends);
-		
-		
-		int sub_start = 0;
-		int sub_end = 0;
-		
-		for (int i = 0; i < num_of_sends + 1; i++)
-		{
-			String to_send = new String();
-			sub_start = i * 64;
-			sub_end = sub_end + 64;
-			if (sub_end <= mHeadlineNews.length())
-			{
-				System.out.println("Printing 64 "+sub_start+" " + sub_end + " " + mHeadlineNews.length());
-				to_send = mHeadlineNews.substring(sub_start, sub_end);
-			}
-			else
-			{
-				System.out.println("not printing 64 "+sub_start+" " + sub_end);
-				to_send = mHeadlineNews.substring(sub_start);
-			}
-				
-			CommThread.write(to_send.getBytes());
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
+		Utility.send_over_BT(mHeadlineNews);
 		
 		// Get hex value for each char
 		String ascii = "";
@@ -120,15 +88,14 @@ public class HeadlinesActivity extends Activity {
 		headlineASCII.setText(ascii);
 		
 		// Timer to exit the activity
-				Timer timer = new Timer();
-			    timer.schedule(new TimerTask() {
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			public void run() {
+				  finish();
+				  return;
+			}
 
-			    public void run() {
-				   finish();
-				   return;
-			   }
-
-			}, 50000);
+		}, 20000);
 	}
 
 	@Override

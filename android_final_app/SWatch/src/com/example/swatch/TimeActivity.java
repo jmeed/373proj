@@ -3,10 +3,8 @@ package com.example.swatch;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.format.Time;
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -20,20 +18,22 @@ public class TimeActivity extends Activity {
 		TextView timeTextView = (TextView) findViewById(R.id.time_string);
 		TextView timeASCII = (TextView) findViewById(R.id.time_ascii_string);
 		
-		String dummy_now = "";
 		String ascii = "";
-		dummy_now = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-		String now = dummy_now.substring(0,12) + '\n' + dummy_now.substring(13);
-		for (int index = 0; index < now.length(); index++)
+		long rightNow = Calendar.getInstance().getTimeInMillis();
+		String time = String.valueOf(rightNow);
+		
+		for (int index = 0; index < time.length(); index++)
 		{
-			char next = now.charAt(index);
+			char next = time.charAt(index);
 			ascii = ascii + Integer.toHexString((int)next) + " ";
 		}
 		
 		
-		timeTextView.setText(now);
+		timeTextView.setText(time);
 		timeASCII.setText(ascii);
-		CommThread.write(now.getBytes());
+		
+		// Send over Bluetooth
+		CommThread.write(time.getBytes());
 		
 		Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
@@ -43,7 +43,7 @@ public class TimeActivity extends Activity {
 		   return;
 	   }
 
-	}, 5000);
+	}, 7000);
 		
 		
 	}

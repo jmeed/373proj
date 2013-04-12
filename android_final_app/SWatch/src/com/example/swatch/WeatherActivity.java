@@ -77,44 +77,7 @@ public class WeatherActivity extends Activity {
   		String parsed = Utility.parse_string(mStrWeather);	
   		parsed = "WEATHER\n" + parsed;
   		
-  		// COMMENT BELOW BACK IN
-		// Send over Bluetooth ----------------------------------------------
-		/*int num_of_sends = (int) Math.ceil(parsed.length()/64);
-		System.out.println("num_of_sends "+num_of_sends);
-
-		sub_start = 0;
-		sub_end = 64;
-		
-		for (int i = 0; i < num_of_sends + 1; i++)
-		{
-			String to_send = new String();
-					
-			System.out.println("Printing 64 "+sub_start+" " + sub_end + " " + parsed.length());
-			if (sub_end > parsed.length())
-				to_send = parsed.substring(sub_start);
-			else
-				to_send = parsed.substring(sub_start, sub_end);
-			
-			sub_start = sub_start + 64;
-			sub_end = sub_end + 64;
-				
-			CommThread.write(to_send.getBytes());
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
-		// END send to Bluetooth -----------------------------------------------
-  		
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-  		
+		Utility.send_over_BT(parsed);  		
   		
   		// Weather Forecast
     	final String furl = "http://api.wunderground.com/api/afd835494ae994bc/forecast/q/" + Utility.mUserZip + ".json";
@@ -161,66 +124,31 @@ public class WeatherActivity extends Activity {
 		parsed = "WEATHER\n" + parsed;
 		weatherTextView.setText(parsed);
 		
+		// Send over Bluetooth
+		Utility.send_over_BT(parsed);
+		
 		
 		// Get hex value for each char
 		String ascii = "";
 		int index = 0;
 		
-		//COMMENT BELOW BACK IN
-		/*
-		// Send over Bluetooth ----------------------------------------------
-		num_of_sends = (int) Math.ceil(mStrWeather.length()/64);
-		System.out.println("num_of_sends "+num_of_sends);
-
-		sub_start = 0;
-		sub_end = 0;
-		
-		for (int i = 0; i < num_of_sends + 1; i++)
-		{
-			String to_send = new String();
-			sub_start = i * 64;
-			sub_end = sub_end + 64;
-			if (sub_end <= mStrWeather.length())
-			{
-				System.out.println("Printing 64 "+sub_start+" " + sub_end + " " + mStrWeather.length());
-				to_send = mStrWeather.substring(sub_start, sub_end);
-			}
-			else
-			{
-				System.out.println("not printing 64 "+sub_start+" " + sub_end);
-				to_send = mStrWeather.substring(sub_start);
-			}
-				
-			CommThread.write(to_send.getBytes());
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		// END send to Bluetooth -----------------------------------------------
-		
-		*/
 		for (index = 0; index < mStrWeather.length(); index++)
 		{
-			char next = mStrWeather.charAt(index);
+			char next = parsed.charAt(index);
 			ascii = ascii + Integer.toHexString((int)next) + " ";
 		}
 		weatherASCII.setText(ascii);
-		
-		
-		
+
 		// Timer to exit the activity
 		Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
 
 	    public void run() {
-		  // finish();
-		   //return;
-	   }
+		  finish();
+		  return;
+	    }
 
-	}, 50000);
+	   }, 20000);
 		
 	}
 	

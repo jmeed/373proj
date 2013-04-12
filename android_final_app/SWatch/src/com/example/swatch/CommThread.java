@@ -24,9 +24,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Set;
-import java.util.UUID;
-
-
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -40,8 +37,8 @@ class CommThread extends Thread {
     private InputStream istream;
     private static OutputStream ostream;
     private Handler handler;
-        private ProgressDialog dialog;
-        private BluetoothAdapter adapter;
+    private ProgressDialog dialog;
+    private BluetoothAdapter adapter;
 
 
     public CommThread(BluetoothAdapter adapter, ProgressDialog dialog, Handler handler) {
@@ -118,23 +115,19 @@ class CommThread extends Thread {
                 dialog.dismiss();
 
 
-        //StringBuffer sb = new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         byte[] buffer = new byte[1024];  // buffer store for the stream
         int bytes; // bytes returned from read()
-        //String message;
-        //int idx;
-        //HashMap<String, String> hm;
-        //String[] chunks;
+        String message;
+        int idx;
+        HashMap<String, String> hm;
+        String[] chunks;
         
         while (true) {
             try {
                 // Read from the InputStream
                 bytes = istream.read(buffer);
-                handler.obtainMessage(1, bytes, 0).sendToTarget();
-                
-                
-                
-                /*sb.append(new String(buffer, 0, bytes));
+                sb.append(new String(buffer, 0, bytes));
                 while ((idx = sb.indexOf("\r\n\r\n")) > -1) {
                     message = sb.substring(0, idx);
                         sb.replace(0, idx+4, "");
@@ -145,7 +138,7 @@ class CommThread extends Thread {
                                 hm.put(chunks[0], chunks[1]);
                         }
                         handler.obtainMessage(0x2a, hm).sendToTarget();
-                }*/
+                }
             } catch (IOException e) {
                 break;
             }
