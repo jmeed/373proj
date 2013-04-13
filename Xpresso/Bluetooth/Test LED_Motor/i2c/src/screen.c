@@ -236,7 +236,7 @@ void welcomeScreen()
 	writeString(temporary);
 	}
 
-void weatherScreen()
+void weatherScreen(enum WEATHER_TYPE w)
 {
 	//Make text color white
 	UARTBuffer[0] = 0xFF;
@@ -265,28 +265,35 @@ void weatherScreen()
 	UARTCount = 0;
 
 	//Background
-	media_setSector(0x0000, CLOUDY);	//Block M
-	//media_setSector(0x0000, BLACKM); //Black M
+	switch(w) //_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY
+	{
+		case _CLOUD:
+			media_setSector(0x0000, CLOUDY);
+			break;
+		case _RAIN:
+			media_setSector(0x0000, RAIN);
+			break;
+		case _SNOW:
+			media_setSector(0x0000, SNOW);
+			break;
+		case _STORM:
+			media_setSector(0x0000, STORM);
+			break;
+		case _SUNNY:
+			media_setSector(0x0000, SUNNY);
+			break;
+		default:
+			//display black screen
+			clearScreen();
+			break;
+	}
 	media_display();
 
 	char temporary[BUFSIZEUART];
 
-	strcpy(temporary, "Mwatch\n");
+	strcpy(temporary, "Local Weather\n");
 	writeString(temporary);
-	moveCursor(2,2);
-//	writeString(temporary);	//Need to check this system
-//	moveCursor(4,0);
-	strcpy(temporary, "David Jackson\n");
-	writeString(temporary);
-//	moveCursor(5,0);
-	strcpy(temporary, "Jon Meed\n");
-	writeString(temporary);
-	moveCursor(13,0);
-	strcpy(temporary, "Filip Theodorakis\n");
-	writeString(temporary);
-	moveCursor(14,2);
-	strcpy(temporary, "Tony Lucchesi\n");
-	writeString(temporary);
+	moveCursor(3,0);
 	}
 
 void newsScreen();

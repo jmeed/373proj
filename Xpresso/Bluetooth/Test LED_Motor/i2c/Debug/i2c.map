@@ -171,8 +171,13 @@ Discarded input sections
  .data          0x0000000000000000        0x0 ./src/screen.o
  .bss           0x0000000000000000        0x0 ./src/screen.o
  .text.initScreen
+<<<<<<< HEAD
                 0x0000000000000000       0x18 ./src/screen.o
  .rodata        0x0000000000000000      0x248 ./src/screen.o
+=======
+                0x00000000       0x18 ./src/screen.o
+ .rodata        0x00000000      0x258 ./src/screen.o
+>>>>>>> e9e22b181ada00525cbe676d08e56d3f10ec099a
  .text.disableScrolling
                 0x0000000000000000       0x60 ./src/screen.o
  .text.clearScreen
@@ -194,6 +199,7 @@ Discarded input sections
  .text.welcomeScreen
                 0x0000000000000000      0x154 ./src/screen.o
  .text.weatherScreen
+<<<<<<< HEAD
                 0x0000000000000000      0x150 ./src/screen.o
  .text          0x0000000000000000        0x0 ./src/shared.o
  .data          0x0000000000000000        0x0 ./src/shared.o
@@ -201,6 +207,17 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./src/snake.o
  .data          0x0000000000000000        0x0 ./src/snake.o
  .bss           0x0000000000000000        0x0 ./src/snake.o
+=======
+                0x00000000      0x140 ./src/screen.o
+ .rodata.weatherScreen
+                0x00000000       0x14 ./src/screen.o
+ .text          0x00000000        0x0 ./src/shared.o
+ .data          0x00000000        0x0 ./src/shared.o
+ .bss           0x00000000        0x0 ./src/shared.o
+ .text          0x00000000        0x0 ./src/snake.o
+ .data          0x00000000        0x0 ./src/snake.o
+ .bss           0x00000000        0x0 ./src/snake.o
+>>>>>>> e9e22b181ada00525cbe676d08e56d3f10ec099a
  .text.main_snake
                 0x0000000000000000       0x30 ./src/snake.o
  .text.start_snake
@@ -956,6 +973,7 @@ END GROUP
                 0x0000000010002000                PROVIDE (_vStackTop, (__top_RamLoc8 - 0x0))
 OUTPUT(i2c.axf elf32-littlearm)
 
+<<<<<<< HEAD
 .debug_info     0x0000000000000000     0x368f
  .debug_info    0x0000000000000000      0x1ec ./startup/cr_startup_lpc11.o
  .debug_info    0x00000000000001ec      0x2a6 ./src/globals.o
@@ -989,6 +1007,41 @@ OUTPUT(i2c.axf elf32-littlearm)
  .debug_abbrev  0x0000000000000a15      0x1a5 ./driver/i2c.o
  .debug_abbrev  0x0000000000000bba       0xaf ./cmsis/core_cm0.o
  .debug_abbrev  0x0000000000000c69      0x13d ./cmsis/system_LPC11xx.o
+=======
+.debug_info     0x00000000     0x33f8
+ .debug_info    0x00000000      0x1ec ./startup/cr_startup_lpc11.o
+ .debug_info    0x000001ec      0x27d ./src/globals.o
+ .debug_info    0x00000469      0x165 ./src/headlines.o
+ .debug_info    0x000005ce      0x50e ./src/i2c_main.o
+ .debug_info    0x00000adc      0x3c2 ./src/screen.o
+ .debug_info    0x00000e9e       0x29 ./src/shared.o
+ .debug_info    0x00000ec7      0x165 ./src/snake.o
+ .debug_info    0x0000102c      0x165 ./src/watch.o
+ .debug_info    0x00001191      0x165 ./src/weather.o
+ .debug_info    0x000012f6       0x70 ./driver/can.o
+ .debug_info    0x00001366       0x92 ./driver/crp.o
+ .debug_info    0x000013f8      0xb2e ./driver/gpio.o
+ .debug_info    0x00001f26      0xc9c ./driver/i2c.o
+ .debug_info    0x00002bc2      0x2ae ./cmsis/core_cm0.o
+ .debug_info    0x00002e70      0x588 ./cmsis/system_LPC11xx.o
+
+.debug_abbrev   0x00000000      0xd5c
+ .debug_abbrev  0x00000000       0xb4 ./startup/cr_startup_lpc11.o
+ .debug_abbrev  0x000000b4      0x123 ./src/globals.o
+ .debug_abbrev  0x000001d7       0xa2 ./src/headlines.o
+ .debug_abbrev  0x00000279      0x1aa ./src/i2c_main.o
+ .debug_abbrev  0x00000423      0x13f ./src/screen.o
+ .debug_abbrev  0x00000562       0x16 ./src/shared.o
+ .debug_abbrev  0x00000578       0xa2 ./src/snake.o
+ .debug_abbrev  0x0000061a       0xa2 ./src/watch.o
+ .debug_abbrev  0x000006bc       0xa2 ./src/weather.o
+ .debug_abbrev  0x0000075e       0x2c ./driver/can.o
+ .debug_abbrev  0x0000078a       0x51 ./driver/crp.o
+ .debug_abbrev  0x000007db      0x1f0 ./driver/gpio.o
+ .debug_abbrev  0x000009cb      0x1a5 ./driver/i2c.o
+ .debug_abbrev  0x00000b70       0xaf ./cmsis/core_cm0.o
+ .debug_abbrev  0x00000c1f      0x13d ./cmsis/system_LPC11xx.o
+>>>>>>> e9e22b181ada00525cbe676d08e56d3f10ec099a
 
 .debug_loc      0x0000000000000000      0xf46
  .debug_loc     0x0000000000000000      0x140 ./startup/cr_startup_lpc11.o
@@ -1040,6 +1093,7 @@ OUTPUT(i2c.axf elf32-littlearm)
  .debug_ranges  0x0000000000000288       0x60 ./cmsis/core_cm0.o
  .debug_ranges  0x00000000000002e8       0x18 ./cmsis/system_LPC11xx.o
 
+<<<<<<< HEAD
 .debug_line     0x0000000000000000     0x39c8
  .debug_line    0x0000000000000000      0x3fd ./startup/cr_startup_lpc11.o
  .debug_line    0x00000000000003fd      0x395 ./src/globals.o
@@ -1058,6 +1112,26 @@ OUTPUT(i2c.axf elf32-littlearm)
  .debug_line    0x00000000000035d9      0x3ef ./cmsis/system_LPC11xx.o
 
 .debug_macinfo  0x0000000000000000    0x4adfa
+=======
+.debug_line     0x00000000     0x3765
+ .debug_line    0x00000000      0x3da ./startup/cr_startup_lpc11.o
+ .debug_line    0x000003da      0x390 ./src/globals.o
+ .debug_line    0x0000076a      0x361 ./src/headlines.o
+ .debug_line    0x00000acb      0x595 ./src/i2c_main.o
+ .debug_line    0x00001060      0x57c ./src/screen.o
+ .debug_line    0x000015dc       0x3c ./src/shared.o
+ .debug_line    0x00001618      0x359 ./src/snake.o
+ .debug_line    0x00001971      0x359 ./src/watch.o
+ .debug_line    0x00001cca      0x35d ./src/weather.o
+ .debug_line    0x00002027      0x350 ./driver/can.o
+ .debug_line    0x00002377      0x359 ./driver/crp.o
+ .debug_line    0x000026d0      0x4ba ./driver/gpio.o
+ .debug_line    0x00002b8a      0x442 ./driver/i2c.o
+ .debug_line    0x00002fcc      0x3cd ./cmsis/core_cm0.o
+ .debug_line    0x00003399      0x3cc ./cmsis/system_LPC11xx.o
+
+.debug_macinfo  0x00000000    0x4a4ec
+>>>>>>> e9e22b181ada00525cbe676d08e56d3f10ec099a
  .debug_macinfo
                 0x0000000000000000     0x3e81 ./startup/cr_startup_lpc11.o
  .debug_macinfo
@@ -1067,6 +1141,7 @@ OUTPUT(i2c.axf elf32-littlearm)
  .debug_macinfo
                 0x000000000000da8e     0x6e60 ./src/i2c_main.o
  .debug_macinfo
+<<<<<<< HEAD
                 0x00000000000148ee     0x653e ./src/screen.o
  .debug_macinfo
                 0x000000000001ae2c     0x250b ./src/shared.o
@@ -1120,6 +1195,61 @@ OUTPUT(i2c.axf elf32-littlearm)
                                         0x1f4 (size before relaxing)
  .debug_str     0x0000000000000f6b       0x59 ./cmsis/system_LPC11xx.o
                                         0x41b (size before relaxing)
+=======
+                0x0001471b     0x65c8 ./src/screen.o
+ .debug_macinfo
+                0x0001ace3     0x250b ./src/shared.o
+ .debug_macinfo
+                0x0001d1ee     0x3cb5 ./src/snake.o
+ .debug_macinfo
+                0x00020ea3     0x3cb5 ./src/watch.o
+ .debug_macinfo
+                0x00024b58     0x3cb7 ./src/weather.o
+ .debug_macinfo
+                0x0002880f     0x5e93 ./driver/can.o
+ .debug_macinfo
+                0x0002e6a2     0x60e6 ./driver/crp.o
+ .debug_macinfo
+                0x00034788     0x6066 ./driver/gpio.o
+ .debug_macinfo
+                0x0003a7ee     0x61c1 ./driver/i2c.o
+ .debug_macinfo
+                0x000409af     0x3c50 ./cmsis/core_cm0.o
+ .debug_macinfo
+                0x000445ff     0x5eed ./cmsis/system_LPC11xx.o
+
+.debug_str      0x00000000      0xfd9
+ .debug_str     0x00000000      0x1ad ./startup/cr_startup_lpc11.o
+                                0x1e7 (size before relaxing)
+ .debug_str     0x000001ad       0xd9 ./src/globals.o
+                                0x1ee (size before relaxing)
+ .debug_str     0x00000286       0x4f ./src/headlines.o
+                                0x1d3 (size before relaxing)
+ .debug_str     0x000002d5      0x1b3 ./src/i2c_main.o
+                                0x35c (size before relaxing)
+ .debug_str     0x00000488      0x102 ./src/screen.o
+                                0x2b7 (size before relaxing)
+ .debug_str     0x0000058a       0x10 ./src/shared.o
+                                 0xac (size before relaxing)
+ .debug_str     0x0000059a       0x3b ./src/snake.o
+                                0x1bf (size before relaxing)
+ .debug_str     0x000005d5       0x3b ./src/watch.o
+                                0x1bf (size before relaxing)
+ .debug_str     0x00000610       0x45 ./src/weather.o
+                                0x1c9 (size before relaxing)
+ .debug_str     0x00000655       0x10 ./driver/can.o
+                                0x125 (size before relaxing)
+ .debug_str     0x00000665       0x19 ./driver/crp.o
+                                0x137 (size before relaxing)
+ .debug_str     0x0000067e      0x5d3 ./driver/gpio.o
+                                0x737 (size before relaxing)
+ .debug_str     0x00000c51      0x270 ./driver/i2c.o
+                                0x89c (size before relaxing)
+ .debug_str     0x00000ec1       0xbf ./cmsis/core_cm0.o
+                                0x1fc (size before relaxing)
+ .debug_str     0x00000f80       0x59 ./cmsis/system_LPC11xx.o
+                                0x423 (size before relaxing)
+>>>>>>> e9e22b181ada00525cbe676d08e56d3f10ec099a
 
 .comment        0x0000000000000000       0xe0
  .comment       0x0000000000000000       0x70 ./startup/cr_startup_lpc11.o
