@@ -63,6 +63,6 @@ void snakeScreen();
 
 
 extern volatile uint32_t UARTCount;
-extern volatile uint8_t UARTBuffer[BUFSIZE];	//This may need to be larger
+extern volatile uint8_t UARTBuffer[BUFSIZEUART];	//This may need to be larger
 
 #endif /* SCREEN_H_ */
