@@ -71,13 +71,13 @@ void mediaInit()
 	UARTCount = 0;
 }
 
-void media_setSector(uint8_t hi, uint8_t lo)
+void media_setSector(uint16_t hi, uint16_t lo)
 {
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0xB8;
-	UARTBuffer[2] = 0x00;
+	UARTBuffer[2] = hi>>8;
 	UARTBuffer[3]= hi;
-	UARTBuffer[4] = 0x00;
+	UARTBuffer[4] = lo>>8;
 	UARTBuffer[5] = lo;
 	UARTCount = 6;
 	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
@@ -211,7 +211,7 @@ void welcomeScreen()
 	UARTCount = 0;
 
 	//Background
-	media_setSector(0x0000, BLOCKM);	//Block M
+	media_setSector(0x0000, SUNNY);	//Block M
 	//media_setSector(0x0000, BLACKM); //Black M
 	media_display();
 
@@ -264,7 +264,7 @@ void weatherScreen()
 	UARTCount = 0;
 
 	//Background
-	media_setSector(0x0000, BLOCKM);	//Block M
+	media_setSector(0x0000, CLOUDY);	//Block M
 	//media_setSector(0x0000, BLACKM); //Black M
 	media_display();
 
