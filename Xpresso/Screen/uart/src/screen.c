@@ -21,7 +21,7 @@ void initScreen()
 	clearScreen();
 	disableScrolling();
 	mediaInit();
-	diagnosticScreen();
+	welcomeScreen();
 }
 
 void disableScrolling()
@@ -182,7 +182,7 @@ void drawSquare(int x, int y, int size, int color)
 	UARTCount = 0;
 }
 //Screen Types
-void diagnosticScreen()
+void welcomeScreen()
 {
 	//Make text color white
 	UARTBuffer[0] = 0xFF;
@@ -211,12 +211,13 @@ void diagnosticScreen()
 	UARTCount = 0;
 
 	//Background
-	media_setSector(0,0);
-	//media_display();
+	media_setSector(0x0000, BLOCKM);	//Block M
+	//media_setSector(0x0000, BLACKM); //Black M
+	media_display();
 
 	char temporary[BUFSIZE];
 
-	strcpy(temporary, "SMWATCH PROJECT\n");
+	strcpy(temporary, "Mwatch\n");
 	writeString(temporary);
 	moveCursor(2,2);
 //	writeString(temporary);	//Need to check this system
@@ -226,12 +227,71 @@ void diagnosticScreen()
 //	moveCursor(5,0);
 	strcpy(temporary, "Jon Meed\n");
 	writeString(temporary);
-//	moveCursor(6,0);
+	moveCursor(13,0);
 	strcpy(temporary, "Filip Theodorakis\n");
 	writeString(temporary);
-//	moveCursor(7,0);
+	moveCursor(14,2);
 	strcpy(temporary, "Tony Lucchesi\n");
 	writeString(temporary);
 	}
+
+void weatherScreen()
+{
+	//Make text color white
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7F;
+	UARTBuffer[2] = 0xFF;
+	UARTBuffer[3] = 0xFF;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set text color white");
+	UARTCount = 0;
+
+	//Make text background color black
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7E;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3] = 0x00;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set text background color black");
+	UARTCount = 0;
+
+	//Background
+	media_setSector(0x0000, BLOCKM);	//Block M
+	//media_setSector(0x0000, BLACKM); //Black M
+	media_display();
+
+	char temporary[BUFSIZE];
+
+	strcpy(temporary, "Mwatch\n");
+	writeString(temporary);
+	moveCursor(2,2);
+//	writeString(temporary);	//Need to check this system
+//	moveCursor(4,0);
+	strcpy(temporary, "David Jackson\n");
+	writeString(temporary);
+//	moveCursor(5,0);
+	strcpy(temporary, "Jon Meed\n");
+	writeString(temporary);
+	moveCursor(13,0);
+	strcpy(temporary, "Filip Theodorakis\n");
+	writeString(temporary);
+	moveCursor(14,2);
+	strcpy(temporary, "Tony Lucchesi\n");
+	writeString(temporary);
+	}
+
+void newsScreen();
+void debugScreen();
+void snakeScreen();
+
+
 
 
