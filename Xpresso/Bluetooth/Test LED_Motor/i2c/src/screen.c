@@ -12,9 +12,10 @@
 #include "uart.h"
 #include "screen.h"
 #include "string.h"
+#include <stdio.h>
 
 extern volatile uint32_t UARTCount;
-extern volatile uint8_t UARTBuffer[BUFSIZE];	//This may need to be larger
+extern volatile uint8_t UARTBuffer[BUFSIZEUART];	//This may need to be larger
 
 void initScreen()
 {
@@ -215,7 +216,7 @@ void welcomeScreen()
 	//media_setSector(0x0000, BLACKM); //Black M
 	media_display();
 
-	char temporary[BUFSIZE];
+	char temporary[BUFSIZEUART];
 
 	strcpy(temporary, "Mwatch\n");
 	writeString(temporary);
@@ -268,7 +269,7 @@ void weatherScreen()
 	//media_setSector(0x0000, BLACKM); //Black M
 	media_display();
 
-	char temporary[BUFSIZE];
+	char temporary[BUFSIZEUART];
 
 	strcpy(temporary, "Mwatch\n");
 	writeString(temporary);

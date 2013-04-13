@@ -21,10 +21,15 @@
 #include <stdio.h>
 #include "globals.h"
 #include "watch.h"
+#include "screen.h"
 
 static void init_mwatch();
 static void run_mwatch();
 
+
+static void init_timer();
+static void init_gpio();
+static void init_i2c();
 
 int main(void) {
 	// Initialization
