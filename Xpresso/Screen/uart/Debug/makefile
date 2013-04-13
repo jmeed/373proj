@@ -44,7 +44,7 @@ clean:
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size uart.axf; arm-none-eabi-objcopy -O binary uart.axf uart.bin ; checksum -p LPC1115_303 -d uart.bin;
+	-arm-none-eabi-size uart.axf; arm-none-eabi-objcopy -O binary uart.axf uart.bin ; checksum -p LPC1114_302 -d uart.bin;
 	-@echo ' '
 
 .PHONY: all clean dependents

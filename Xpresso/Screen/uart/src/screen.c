@@ -232,32 +232,6 @@ void diagnosticScreen()
 //	moveCursor(7,0);
 	strcpy(temporary, "Tony Lucchesi\n");
 	writeString(temporary);
-	strcpy(temporary, "PONIES\n");
-	writeString(temporary);
-	strcpy(temporary, "ARE\n");
-	writeString(temporary);
-	strcpy(temporary, "COOL\n");
-	writeString(temporary);
-	strcpy(temporary, "BRONIES\n");
-	writeString(temporary);
-	strcpy(temporary, "SUCK\n");
-	writeString(temporary);
-	strcpy(temporary, "DIE\n");
-	writeString(temporary);
-	strcpy(temporary, "HELLO\n");
-	writeString(temporary);
-	strcpy(temporary, "WORLD\n");
-	writeString(temporary);
-	strcpy(temporary, "4\n");
-	writeString(temporary);
-	strcpy(temporary, "3\n");
-	writeString(temporary);
-	strcpy(temporary, "2\n");
-	writeString(temporary);
-	strcpy(temporary, "1\n");
-	writeString(temporary);
-	strcpy(temporary, "0\n");
-	writeString(temporary);
 	}
 
 

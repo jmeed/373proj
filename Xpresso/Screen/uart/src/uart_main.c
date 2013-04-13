@@ -33,6 +33,7 @@ int main (void) {
 	   */
 
   /* NVIC is installed inside UARTInit file. */
+  //char temporary[BUFSIZE];
   UARTInit(UART_BAUD);
   initScreen();
 
