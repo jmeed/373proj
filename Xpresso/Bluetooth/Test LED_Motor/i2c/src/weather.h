@@ -8,6 +8,6 @@
 #ifndef WEATHER_H_
 #define WEATHER_H_
 
-
+void main_watch();
 
 #endif /* WEATHER_H_ */

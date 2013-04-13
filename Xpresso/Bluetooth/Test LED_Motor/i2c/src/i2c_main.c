@@ -75,6 +75,7 @@ void run_mwatch() {
 		// Do the work for the state
 		switch (current_state) {
 		case MAIN_WATCH:
+			main_watch();
 			break;
 		case WEATHER:
 			break;
