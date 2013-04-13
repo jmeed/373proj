@@ -97,10 +97,10 @@ Common symbol       size              file
 I2CReadLength       0x4               ./driver/i2c.o
 I2CSlaveBuffer      0x40              ./driver/i2c.o
 _extra              0x4               /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(initio.o)
-current_state       0x1               ./src/i2c_main.o
-next_state          0x1               ./src/i2c_main.o
-unixtime            0x8               ./src/i2c_main.o
-run_state           0x1               ./src/i2c_main.o
+current_state       0x1               ./src/headlines.o
+next_state          0x1               ./src/headlines.o
+unixtime            0x8               ./src/headlines.o
+run_state           0x1               ./src/headlines.o
 I2CMode             0x4               ./driver/i2c.o
 msg_count_g         0x4               ./src/i2c_main.o
 I2CMasterBuffer     0x40              ./driver/i2c.o
@@ -126,6 +126,14 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./src/headlines.o
  .data          0x0000000000000000        0x0 ./src/headlines.o
  .bss           0x0000000000000000        0x0 ./src/headlines.o
+ .text.main_headlines
+                0x0000000000000000       0x30 ./src/headlines.o
+ .text.start_headlines
+                0x0000000000000000        0x8 ./src/headlines.o
+ .text.run_headlines
+                0x0000000000000000        0x8 ./src/headlines.o
+ .text.stop_headlines
+                0x0000000000000000        0x8 ./src/headlines.o
  .text          0x0000000000000000        0x0 ./src/i2c_main.o
  .data          0x0000000000000000        0x0 ./src/i2c_main.o
  .bss           0x0000000000000000        0x0 ./src/i2c_main.o
@@ -136,7 +144,7 @@ Discarded input sections
  .text.read_byte_from_register
                 0x0000000000000000       0x70 ./src/i2c_main.o
  .text.uartConnected
-                0x0000000000000000       0x34 ./src/i2c_main.o
+                0x0000000000000000        0xc ./src/i2c_main.o
  .text.process_bl_msg
                 0x0000000000000000       0x84 ./src/i2c_main.o
  .text.set_up_i2c
@@ -151,19 +159,35 @@ Discarded input sections
                 0x0000000000000000       0x44 ./src/i2c_main.o
  .text.update_acc_data
                 0x0000000000000000       0x40 ./src/i2c_main.o
+ COMMON         0x0000000000000000       0x4b ./src/i2c_main.o
  .text          0x0000000000000000        0x0 ./src/shared.o
  .data          0x0000000000000000        0x0 ./src/shared.o
  .bss           0x0000000000000000        0x0 ./src/shared.o
  .text          0x0000000000000000        0x0 ./src/snake.o
  .data          0x0000000000000000        0x0 ./src/snake.o
  .bss           0x0000000000000000        0x0 ./src/snake.o
+ .text.main_snake
+                0x0000000000000000       0x30 ./src/snake.o
+ .text.start_snake
+                0x0000000000000000        0x8 ./src/snake.o
+ .text.run_snake
+                0x0000000000000000        0x8 ./src/snake.o
+ .text.stop_snake
+                0x0000000000000000        0x8 ./src/snake.o
  .text          0x0000000000000000        0x0 ./src/watch.o
  .data          0x0000000000000000        0x0 ./src/watch.o
  .bss           0x0000000000000000        0x0 ./src/watch.o
  .text          0x0000000000000000        0x0 ./src/weather.o
  .data          0x0000000000000000        0x0 ./src/weather.o
  .bss           0x0000000000000000        0x0 ./src/weather.o
- .text.watch    0x0000000000000000        0x8 ./src/weather.o
+ .text.main_weather
+                0x0000000000000000       0x30 ./src/weather.o
+ .text.start_weather
+                0x0000000000000000        0x8 ./src/weather.o
+ .text.run_weather
+                0x0000000000000000        0x8 ./src/weather.o
+ .text.stop_weather
+                0x0000000000000000        0x8 ./src/weather.o
  .text          0x0000000000000000        0x0 ./driver/can.o
  .data          0x0000000000000000        0x0 ./driver/can.o
  .bss           0x0000000000000000        0x0 ./driver/can.o
@@ -506,7 +530,7 @@ END GROUP
                 0x00000000000000cc                __data_section_table_end = .
                 0x00000000000000cc                __bss_section_table = .
                 0x00000000000000cc        0x4 LONG 0x10000008 ADDR (.bss)
-                0x00000000000000d0        0x4 LONG 0x250 SIZEOF (.bss)
+                0x00000000000000d0        0x4 LONG 0x204 SIZEOF (.bss)
                 0x00000000000000d4                __bss_section_table_end = .
                 0x00000000000000d4                __section_table_end = .
  *(.after_vectors*)
@@ -790,7 +814,7 @@ END GROUP
                 0x0000000010000004                . = ALIGN (0x4)
                 0x0000000010000004                _edata = .
 
-.bss            0x0000000010000008      0x250 load address 0x00000000000035c8
+.bss            0x0000000010000008      0x204 load address 0x00000000000035c8
                 0x0000000010000008                _bss = .
  *(.bss*)
  .bss.I2CMasterState
@@ -806,184 +830,186 @@ END GROUP
                 0x0000000010000018                errno
  *(COMMON)
  *fill*         0x000000001000001c        0x4 00
- COMMON         0x0000000010000020       0x5f ./src/i2c_main.o
+ COMMON         0x0000000010000020       0x11 ./src/headlines.o
                 0x0000000010000020                current_state
                 0x0000000010000021                next_state
                 0x0000000010000028                unixtime
                 0x0000000010000030                run_state
-                0x0000000010000034                msg_count_g
-                0x0000000010000038                x_g
-                0x000000001000003a                z_g
-                0x000000001000003c                msg_g
-                0x000000001000007c                y_g
-                0x000000001000007e                is_running_on_battery_g
- *fill*         0x000000001000007f        0x1 00
- COMMON         0x0000000010000080       0x8c ./driver/i2c.o
-                0x0000000010000080                I2CReadLength
-                0x0000000010000084                I2CSlaveBuffer
-                0x00000000100000c4                I2CMode
-                0x00000000100000c8                I2CMasterBuffer
-                0x0000000010000108                I2CWriteLength
- COMMON         0x000000001000010c        0x4 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(initio.o)
-                0x000000001000010c                _extra
- COMMON         0x0000000010000110      0x140 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(stdio.o)
-                0x0000000010000110                __Ciob
- COMMON         0x0000000010000250        0x8 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__init_alloc.o)
-                0x0000000010000250                __heaps
-                0x0000000010000254                __end_of_heap
-                0x0000000010000258                . = ALIGN (0x4)
-                0x0000000010000258                _ebss = .
-                0x0000000010000258                PROVIDE (end, .)
+ *fill*         0x0000000010000031        0x3 00
+ COMMON         0x0000000010000034       0x8c ./driver/i2c.o
+                0x0000000010000034                I2CReadLength
+                0x0000000010000038                I2CSlaveBuffer
+                0x0000000010000078                I2CMode
+                0x000000001000007c                I2CMasterBuffer
+                0x00000000100000bc                I2CWriteLength
+ COMMON         0x00000000100000c0        0x4 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(initio.o)
+                0x00000000100000c0                _extra
+ COMMON         0x00000000100000c4      0x140 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(stdio.o)
+                0x00000000100000c4                __Ciob
+ COMMON         0x0000000010000204        0x8 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__init_alloc.o)
+                0x0000000010000204                __heaps
+                0x0000000010000208                __end_of_heap
+                0x000000001000020c                . = ALIGN (0x4)
+                0x000000001000020c                _ebss = .
+                0x000000001000020c                PROVIDE (end, .)
 
-.noinit         0x0000000010000258        0x0 load address 0x00000000000035c4
-                0x0000000010000258                _noinit = .
+.noinit         0x000000001000020c        0x0 load address 0x00000000000035c4
+                0x000000001000020c                _noinit = .
  *(.noinit*)
-                0x0000000010000258                . = ALIGN (0x4)
-                0x0000000010000258                _end_noinit = .
-                0x0000000010000258                PROVIDE (_pvHeapStart, .)
+                0x000000001000020c                . = ALIGN (0x4)
+                0x000000001000020c                _end_noinit = .
+                0x000000001000020c                PROVIDE (_pvHeapStart, .)
                 0x0000000010002000                PROVIDE (_vStackTop, (__top_RamLoc8 - 0x0))
 OUTPUT(i2c.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x1fa6
+.debug_info     0x0000000000000000     0x22e6
  .debug_info    0x0000000000000000      0x1ec ./startup/cr_startup_lpc11.o
  .debug_info    0x00000000000001ec       0x29 ./src/globals.o
- .debug_info    0x0000000000000215       0x29 ./src/headlines.o
- .debug_info    0x000000000000023e      0x52b ./src/i2c_main.o
- .debug_info    0x0000000000000769       0x29 ./src/shared.o
- .debug_info    0x0000000000000792       0x29 ./src/snake.o
- .debug_info    0x00000000000007bb      0x165 ./src/watch.o
- .debug_info    0x0000000000000920       0x42 ./src/weather.o
- .debug_info    0x0000000000000962       0x70 ./driver/can.o
- .debug_info    0x00000000000009d2       0x92 ./driver/crp.o
- .debug_info    0x0000000000000a64       0x70 ./driver/gpio.o
- .debug_info    0x0000000000000ad4      0xc9c ./driver/i2c.o
- .debug_info    0x0000000000001770      0x2ae ./cmsis/core_cm0.o
- .debug_info    0x0000000000001a1e      0x588 ./cmsis/system_LPC11xx.o
+ .debug_info    0x0000000000000215      0x165 ./src/headlines.o
+ .debug_info    0x000000000000037a      0x4d0 ./src/i2c_main.o
+ .debug_info    0x000000000000084a       0x29 ./src/shared.o
+ .debug_info    0x0000000000000873      0x165 ./src/snake.o
+ .debug_info    0x00000000000009d8      0x165 ./src/watch.o
+ .debug_info    0x0000000000000b3d      0x165 ./src/weather.o
+ .debug_info    0x0000000000000ca2       0x70 ./driver/can.o
+ .debug_info    0x0000000000000d12       0x92 ./driver/crp.o
+ .debug_info    0x0000000000000da4       0x70 ./driver/gpio.o
+ .debug_info    0x0000000000000e14      0xc9c ./driver/i2c.o
+ .debug_info    0x0000000000001ab0      0x2ae ./cmsis/core_cm0.o
+ .debug_info    0x0000000000001d5e      0x588 ./cmsis/system_LPC11xx.o
 
-.debug_abbrev   0x0000000000000000      0x831
+.debug_abbrev   0x0000000000000000      0x94c
  .debug_abbrev  0x0000000000000000       0xb4 ./startup/cr_startup_lpc11.o
  .debug_abbrev  0x00000000000000b4       0x16 ./src/globals.o
- .debug_abbrev  0x00000000000000ca       0x16 ./src/headlines.o
- .debug_abbrev  0x00000000000000e0      0x21e ./src/i2c_main.o
- .debug_abbrev  0x00000000000002fe       0x16 ./src/shared.o
- .debug_abbrev  0x0000000000000314       0x16 ./src/snake.o
- .debug_abbrev  0x000000000000032a       0xa2 ./src/watch.o
- .debug_abbrev  0x00000000000003cc       0x2b ./src/weather.o
- .debug_abbrev  0x00000000000003f7       0x2c ./driver/can.o
- .debug_abbrev  0x0000000000000423       0x51 ./driver/crp.o
- .debug_abbrev  0x0000000000000474       0x2c ./driver/gpio.o
- .debug_abbrev  0x00000000000004a0      0x1a5 ./driver/i2c.o
- .debug_abbrev  0x0000000000000645       0xaf ./cmsis/core_cm0.o
- .debug_abbrev  0x00000000000006f4      0x13d ./cmsis/system_LPC11xx.o
+ .debug_abbrev  0x00000000000000ca       0xa2 ./src/headlines.o
+ .debug_abbrev  0x000000000000016c      0x1aa ./src/i2c_main.o
+ .debug_abbrev  0x0000000000000316       0x16 ./src/shared.o
+ .debug_abbrev  0x000000000000032c       0xa2 ./src/snake.o
+ .debug_abbrev  0x00000000000003ce       0xa2 ./src/watch.o
+ .debug_abbrev  0x0000000000000470       0xa2 ./src/weather.o
+ .debug_abbrev  0x0000000000000512       0x2c ./driver/can.o
+ .debug_abbrev  0x000000000000053e       0x51 ./driver/crp.o
+ .debug_abbrev  0x000000000000058f       0x2c ./driver/gpio.o
+ .debug_abbrev  0x00000000000005bb      0x1a5 ./driver/i2c.o
+ .debug_abbrev  0x0000000000000760       0xaf ./cmsis/core_cm0.o
+ .debug_abbrev  0x000000000000080f      0x13d ./cmsis/system_LPC11xx.o
 
-.debug_loc      0x0000000000000000      0x7ae
+.debug_loc      0x0000000000000000      0x986
  .debug_loc     0x0000000000000000      0x140 ./startup/cr_startup_lpc11.o
- .debug_loc     0x0000000000000140      0x2b0 ./src/i2c_main.o
- .debug_loc     0x00000000000003f0       0xb0 ./src/watch.o
- .debug_loc     0x00000000000004a0       0x2c ./src/weather.o
- .debug_loc     0x00000000000004cc      0x138 ./driver/i2c.o
- .debug_loc     0x0000000000000604      0x112 ./cmsis/core_cm0.o
- .debug_loc     0x0000000000000716       0x98 ./cmsis/system_LPC11xx.o
+ .debug_loc     0x0000000000000140       0xb0 ./src/headlines.o
+ .debug_loc     0x00000000000001f0      0x2a4 ./src/i2c_main.o
+ .debug_loc     0x0000000000000494       0xb0 ./src/snake.o
+ .debug_loc     0x0000000000000544       0xb0 ./src/watch.o
+ .debug_loc     0x00000000000005f4       0xb0 ./src/weather.o
+ .debug_loc     0x00000000000006a4      0x138 ./driver/i2c.o
+ .debug_loc     0x00000000000007dc      0x112 ./cmsis/core_cm0.o
+ .debug_loc     0x00000000000008ee       0x98 ./cmsis/system_LPC11xx.o
 
-.debug_aranges  0x0000000000000000      0x210
+.debug_aranges  0x0000000000000000      0x298
  .debug_aranges
                 0x0000000000000000       0x50 ./startup/cr_startup_lpc11.o
  .debug_aranges
-                0x0000000000000050       0x88 ./src/i2c_main.o
+                0x0000000000000050       0x38 ./src/headlines.o
  .debug_aranges
-                0x00000000000000d8       0x38 ./src/watch.o
+                0x0000000000000088       0x88 ./src/i2c_main.o
  .debug_aranges
-                0x0000000000000110       0x20 ./src/weather.o
+                0x0000000000000110       0x38 ./src/snake.o
  .debug_aranges
-                0x0000000000000130       0x48 ./driver/i2c.o
+                0x0000000000000148       0x38 ./src/watch.o
  .debug_aranges
-                0x0000000000000178       0x70 ./cmsis/core_cm0.o
+                0x0000000000000180       0x38 ./src/weather.o
  .debug_aranges
-                0x00000000000001e8       0x28 ./cmsis/system_LPC11xx.o
+                0x00000000000001b8       0x48 ./driver/i2c.o
+ .debug_aranges
+                0x0000000000000200       0x70 ./cmsis/core_cm0.o
+ .debug_aranges
+                0x0000000000000270       0x28 ./cmsis/system_LPC11xx.o
 
-.debug_ranges   0x0000000000000000      0x1a0
+.debug_ranges   0x0000000000000000      0x208
  .debug_ranges  0x0000000000000000       0x40 ./startup/cr_startup_lpc11.o
- .debug_ranges  0x0000000000000040       0x78 ./src/i2c_main.o
- .debug_ranges  0x00000000000000b8       0x28 ./src/watch.o
- .debug_ranges  0x00000000000000e0       0x10 ./src/weather.o
- .debug_ranges  0x00000000000000f0       0x38 ./driver/i2c.o
- .debug_ranges  0x0000000000000128       0x60 ./cmsis/core_cm0.o
- .debug_ranges  0x0000000000000188       0x18 ./cmsis/system_LPC11xx.o
+ .debug_ranges  0x0000000000000040       0x28 ./src/headlines.o
+ .debug_ranges  0x0000000000000068       0x78 ./src/i2c_main.o
+ .debug_ranges  0x00000000000000e0       0x28 ./src/snake.o
+ .debug_ranges  0x0000000000000108       0x28 ./src/watch.o
+ .debug_ranges  0x0000000000000130       0x28 ./src/weather.o
+ .debug_ranges  0x0000000000000158       0x38 ./driver/i2c.o
+ .debug_ranges  0x0000000000000190       0x60 ./cmsis/core_cm0.o
+ .debug_ranges  0x00000000000001f0       0x18 ./cmsis/system_LPC11xx.o
 
-.debug_line     0x0000000000000000     0x2491
+.debug_line     0x0000000000000000     0x2e7b
  .debug_line    0x0000000000000000      0x3fd ./startup/cr_startup_lpc11.o
  .debug_line    0x00000000000003fd       0x31 ./src/globals.o
- .debug_line    0x000000000000042e       0x33 ./src/headlines.o
- .debug_line    0x0000000000000461      0x563 ./src/i2c_main.o
- .debug_line    0x00000000000009c4       0x3c ./src/shared.o
- .debug_line    0x0000000000000a00       0x2f ./src/snake.o
- .debug_line    0x0000000000000a2f      0x37c ./src/watch.o
- .debug_line    0x0000000000000dab       0x3f ./src/weather.o
- .debug_line    0x0000000000000dea      0x373 ./driver/can.o
- .debug_line    0x000000000000115d      0x37c ./driver/crp.o
- .debug_line    0x00000000000014d9      0x374 ./driver/gpio.o
- .debug_line    0x000000000000184d      0x465 ./driver/i2c.o
- .debug_line    0x0000000000001cb2      0x3f0 ./cmsis/core_cm0.o
- .debug_line    0x00000000000020a2      0x3ef ./cmsis/system_LPC11xx.o
+ .debug_line    0x000000000000042e      0x384 ./src/headlines.o
+ .debug_line    0x00000000000007b2      0x56e ./src/i2c_main.o
+ .debug_line    0x0000000000000d20       0x3c ./src/shared.o
+ .debug_line    0x0000000000000d5c      0x37c ./src/snake.o
+ .debug_line    0x00000000000010d8      0x37c ./src/watch.o
+ .debug_line    0x0000000000001454      0x380 ./src/weather.o
+ .debug_line    0x00000000000017d4      0x373 ./driver/can.o
+ .debug_line    0x0000000000001b47      0x37c ./driver/crp.o
+ .debug_line    0x0000000000001ec3      0x374 ./driver/gpio.o
+ .debug_line    0x0000000000002237      0x465 ./driver/i2c.o
+ .debug_line    0x000000000000269c      0x3f0 ./cmsis/core_cm0.o
+ .debug_line    0x0000000000002a8c      0x3ef ./cmsis/system_LPC11xx.o
 
-.debug_macinfo  0x0000000000000000    0x3a4af
+.debug_macinfo  0x0000000000000000    0x3f38d
  .debug_macinfo
                 0x0000000000000000     0x3e81 ./startup/cr_startup_lpc11.o
  .debug_macinfo
                 0x0000000000003e81     0x21fa ./src/globals.o
  .debug_macinfo
-                0x000000000000607b     0x21fa ./src/headlines.o
+                0x000000000000607b     0x3c40 ./src/headlines.o
  .debug_macinfo
-                0x0000000000008275     0x6712 ./src/i2c_main.o
+                0x0000000000009cbb     0x6722 ./src/i2c_main.o
  .debug_macinfo
-                0x000000000000e987     0x250b ./src/shared.o
+                0x00000000000103dd     0x250b ./src/shared.o
  .debug_macinfo
-                0x0000000000010e92     0x21fa ./src/snake.o
+                0x00000000000128e8     0x3c3d ./src/snake.o
  .debug_macinfo
-                0x000000000001308c     0x3c3d ./src/watch.o
+                0x0000000000016525     0x3c3d ./src/watch.o
  .debug_macinfo
-                0x0000000000016cc9     0x21fa ./src/weather.o
+                0x000000000001a162     0x3c3f ./src/weather.o
  .debug_macinfo
-                0x0000000000018ec3     0x5d8d ./driver/can.o
+                0x000000000001dda1     0x5d8d ./driver/can.o
  .debug_macinfo
-                0x000000000001ec50     0x5eda ./driver/crp.o
+                0x0000000000023b2e     0x5eda ./driver/crp.o
  .debug_macinfo
-                0x0000000000024b2a     0x5d8d ./driver/gpio.o
+                0x0000000000029a08     0x5d8d ./driver/gpio.o
  .debug_macinfo
-                0x000000000002a8b7     0x60bb ./driver/i2c.o
+                0x000000000002f795     0x60bb ./driver/i2c.o
  .debug_macinfo
-                0x0000000000030972     0x3c50 ./cmsis/core_cm0.o
+                0x0000000000035850     0x3c50 ./cmsis/core_cm0.o
  .debug_macinfo
-                0x00000000000345c2     0x5eed ./cmsis/system_LPC11xx.o
+                0x00000000000394a0     0x5eed ./cmsis/system_LPC11xx.o
 
-.debug_str      0x0000000000000000      0xce7
+.debug_str      0x0000000000000000      0xd57
  .debug_str     0x0000000000000000      0x1ac ./startup/cr_startup_lpc11.o
                                         0x1e6 (size before relaxing)
  .debug_str     0x00000000000001ac       0x11 ./src/globals.o
                                          0xac (size before relaxing)
- .debug_str     0x00000000000001bd       0x13 ./src/headlines.o
-                                         0xae (size before relaxing)
- .debug_str     0x00000000000001d0      0x244 ./src/i2c_main.o
-                                        0x374 (size before relaxing)
- .debug_str     0x0000000000000414       0x10 ./src/shared.o
+ .debug_str     0x00000000000001bd       0xbe ./src/headlines.o
+                                        0x1d2 (size before relaxing)
+ .debug_str     0x000000000000027b      0x19e ./src/i2c_main.o
+                                        0x33d (size before relaxing)
+ .debug_str     0x0000000000000419       0x10 ./src/shared.o
                                          0xab (size before relaxing)
- .debug_str     0x0000000000000424        0xf ./src/snake.o
-                                         0xaa (size before relaxing)
- .debug_str     0x0000000000000433       0x30 ./src/watch.o
+ .debug_str     0x0000000000000429       0x3b ./src/snake.o
                                         0x1be (size before relaxing)
- .debug_str     0x0000000000000463       0x11 ./src/weather.o
-                                         0xb2 (size before relaxing)
- .debug_str     0x0000000000000474       0x10 ./driver/can.o
+ .debug_str     0x0000000000000464       0x3b ./src/watch.o
+                                        0x1be (size before relaxing)
+ .debug_str     0x000000000000049f       0x45 ./src/weather.o
+                                        0x1c8 (size before relaxing)
+ .debug_str     0x00000000000004e4       0x10 ./driver/can.o
                                         0x124 (size before relaxing)
- .debug_str     0x0000000000000484       0x19 ./driver/crp.o
+ .debug_str     0x00000000000004f4       0x19 ./driver/crp.o
                                         0x136 (size before relaxing)
- .debug_str     0x000000000000049d       0x11 ./driver/gpio.o
+ .debug_str     0x000000000000050d       0x11 ./driver/gpio.o
                                         0x125 (size before relaxing)
- .debug_str     0x00000000000004ae      0x721 ./driver/i2c.o
+ .debug_str     0x000000000000051e      0x721 ./driver/i2c.o
                                         0x89b (size before relaxing)
- .debug_str     0x0000000000000bcf       0xbf ./cmsis/core_cm0.o
+ .debug_str     0x0000000000000c3f       0xbf ./cmsis/core_cm0.o
                                         0x1fb (size before relaxing)
- .debug_str     0x0000000000000c8e       0x59 ./cmsis/system_LPC11xx.o
+ .debug_str     0x0000000000000cfe       0x59 ./cmsis/system_LPC11xx.o
                                         0x422 (size before relaxing)
 
 .comment        0x0000000000000000       0xe0
@@ -1156,11 +1182,13 @@ OUTPUT(i2c.axf elf32-littlearm)
  .ARM.attributes
                 0x0000000000000a3a       0x31 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_semihost.a(_cr_check_heap.o)
 
-.debug_frame    0x0000000000000000      0x508
+.debug_frame    0x0000000000000000      0x658
  .debug_frame   0x0000000000000000       0xd8 ./startup/cr_startup_lpc11.o
- .debug_frame   0x00000000000000d8      0x1b4 ./src/i2c_main.o
- .debug_frame   0x000000000000028c       0x80 ./src/watch.o
- .debug_frame   0x000000000000030c       0x2c ./src/weather.o
- .debug_frame   0x0000000000000338       0xc8 ./driver/i2c.o
- .debug_frame   0x0000000000000400       0xc0 ./cmsis/core_cm0.o
- .debug_frame   0x00000000000004c0       0x48 ./cmsis/system_LPC11xx.o
+ .debug_frame   0x00000000000000d8       0x80 ./src/headlines.o
+ .debug_frame   0x0000000000000158      0x1b0 ./src/i2c_main.o
+ .debug_frame   0x0000000000000308       0x80 ./src/snake.o
+ .debug_frame   0x0000000000000388       0x80 ./src/watch.o
+ .debug_frame   0x0000000000000408       0x80 ./src/weather.o
+ .debug_frame   0x0000000000000488       0xc8 ./driver/i2c.o
+ .debug_frame   0x0000000000000550       0xc0 ./cmsis/core_cm0.o
+ .debug_frame   0x0000000000000610       0x48 ./cmsis/system_LPC11xx.o

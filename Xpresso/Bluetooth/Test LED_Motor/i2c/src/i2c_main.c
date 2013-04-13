@@ -20,6 +20,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "globals.h"
+#include "watch.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -278,11 +279,12 @@ uint32_t uartConnected() {
 
 	 */
 	// Perform read/write test to check if UART is working
-	const char TEST_CHARACTER = 'H';
+//	const char TEST_CHARACTER = 'H';
 
-	write_register(SPR, TEST_CHARACTER);
+//	write_register(SPR, TEST_CHARACTER);
 
-	return (read_register(SPR) == TEST_CHARACTER);
+//	return (read_register(SPR) == TEST_CHARACTER);
+	return 0;
 }
 
 void process_bl_msg() {
