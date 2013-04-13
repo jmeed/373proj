@@ -43,3 +43,6 @@ local.properties
 
 # Mac 
 *.DS_Store
+
+#debug shit
+*/Debug/*
