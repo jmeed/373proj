@@ -44,7 +44,7 @@ clean:
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size i2c.axf; arm-none-eabi-objcopy -O binary i2c.axf i2c.bin ; checksum -p LPC1114_302 -d i2c.bin;
+	-arm-none-eabi-size i2c.axf; arm-none-eabi-objcopy -O binary i2c.axf i2c.bin ; checksum -p LPC1115_303 -d i2c.bin;
 	-@echo ' '
 
 .PHONY: all clean dependents

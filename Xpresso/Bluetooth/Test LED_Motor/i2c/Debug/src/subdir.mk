@@ -4,16 +4,31 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/globals.c \
+../src/headlines.c \
 ../src/i2c_main.c \
-../src/shared.c 
+../src/shared.c \
+../src/snake.c \
+../src/watch.c \
+../src/weather.c 
 
 OBJS += \
+./src/globals.o \
+./src/headlines.o \
 ./src/i2c_main.o \
-./src/shared.o 
+./src/shared.o \
+./src/snake.o \
+./src/watch.o \
+./src/weather.o 
 
 C_DEPS += \
+./src/globals.d \
+./src/headlines.d \
 ./src/i2c_main.d \
-./src/shared.d 
+./src/shared.d \
+./src/snake.d \
+./src/watch.d \
+./src/weather.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
