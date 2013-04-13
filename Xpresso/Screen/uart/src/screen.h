@@ -15,6 +15,15 @@
 #include "target_config.h"
 #include "uart.h"
 
+//Screen image #defines. Set as y value.
+#define BLOCKM 0x0
+#define BLACKM 0x0041
+#define CLOUDY 0x0082
+#define RAIN 0x00C3
+#define SNOW 0x0104
+#define STORM 0x0145
+#define SUNNY 0x0186
+
 void initScreen();
 void disableScrolling();
 void clearScreen();
@@ -46,7 +55,12 @@ void drawSquare(int x, int y, int size, int color);
 
 
 //Screen Types
-void diagnosticScreen();
+void welcomeScreen();
+void weatherScreen();
+void newsScreen();
+void debugScreen();
+void snakeScreen();
+
 
 extern volatile uint32_t UARTCount;
 extern volatile uint8_t UARTBuffer[BUFSIZE];	//This may need to be larger
