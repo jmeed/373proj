@@ -17,8 +17,9 @@
  * warranty that such application will be suitable for the specified
  * use without further testing or modification.
 ****************************************************************************/
-#ifndef __GPIO_H 
+#ifndef __GPIO_H
 #define __GPIO_H
+#include "driver_config.h"
 #if CONFIG_ENABLE_DRIVER_GPIO==1
 
 #define PORT0		0
