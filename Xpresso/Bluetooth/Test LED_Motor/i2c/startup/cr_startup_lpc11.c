@@ -89,10 +89,10 @@ void UART_IRQHandler (void) ALIAS(IntDefaultHandler);
 void ADC_IRQHandler (void) ALIAS(IntDefaultHandler);
 void WDT_IRQHandler (void) ALIAS(IntDefaultHandler);
 void BOD_IRQHandler (void) ALIAS(IntDefaultHandler);
-void PIOINT3_IRQHandler (void) ALIAS(IntDefaultHandler);
-void PIOINT2_IRQHandler (void) ALIAS(IntDefaultHandler);
-void PIOINT1_IRQHandler (void) ALIAS(IntDefaultHandler);
-void PIOINT0_IRQHandler (void) ALIAS(IntDefaultHandler);
+WEAK void PIOINT3_IRQHandler (void) ALIAS(IntDefaultHandler);
+WEAK void PIOINT2_IRQHandler (void) ALIAS(IntDefaultHandler);
+WEAK void PIOINT1_IRQHandler (void) ALIAS(IntDefaultHandler);
+WEAK void PIOINT0_IRQHandler (void) ALIAS(IntDefaultHandler);
 void WAKEUP_IRQHandler  (void) ALIAS(IntDefaultHandler);
 
 //*****************************************************************************

@@ -22,6 +22,7 @@
 #include "globals.h"
 #include "watch.h"
 #include "screen.h"
+#include "gpio.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -62,6 +63,8 @@ void run_mwatch() {
 	while (1) {
 		// Timer
 
+
+		printf("Joystick Enum %d\n", joystick_dir);
 		// Change run state if transitioning
 		if (next_state != current_state) {
 			switch (run_state) {
@@ -104,13 +107,74 @@ void init_timer() {
 
 }
 
-void init_gpio() {
-
+void init_dir(uint32_t port, uint32_t bit){
+	GPIOSetDir( port, bit, 0 );
+	GPIOSetInterrupt( port, bit, 1, 1, 0 );
+	GPIOIntEnable( port, bit );
 }
+void init_gpio() {
+	GPIOInit();
+	init_dir(UPPORT, UPPOS);
+	init_dir(DOWNPORT, DOWNPOS);
+	init_dir(LEFTPORT, LEFTPOS);
+	init_dir(RIGHTPORT, RIGHTPOS);
+	init_dir(INPORT, INPOS);
+
+	joystick_dir = NONE;
+}
+
+//void PIOINT0_IRQHandler(void)
+//{
+//  if ( GPIOIntStatus( LEFTPORT, LEFTPOS ) )
+//  {
+//	joystick_dir = LEFT;
+//	GPIOIntClear( LEFTPORT, LEFTPOS );
+//
+//  }
+//  return;
+//}
+//void PIOINT1_IRQHandler(void)
+//{
+//  if ( GPIOIntStatus( UPPORT, UPPORT ) )
+//  {
+//	joystick_dir = UP;
+//	GPIOIntClear( UPPORT, UPPORT );
+//
+//  }
+//  if ( GPIOIntStatus( DOWNPORT, DOWNPOS ) )
+//  {
+//	joystick_dir = DOWN;
+//	GPIOIntClear( DOWNPORT, DOWNPOS );
+//
+//  }
+//  if ( GPIOIntStatus( INPORT, INPOS ) )
+//  {
+//	joystick_dir = IN;
+//	GPIOIntClear( INPORT, INPORT );
+//
+//  }
+//  return;
+//}
+//
+//void PIOINT3_IRQHandler(void)
+//{
+//  if ( GPIOIntStatus( RIGHTPORT, RIGHTPOS ) )
+//  {
+//	joystick_dir = RIGHT;
+//	GPIOIntClear( RIGHTPORT, RIGHTPOS );
+//
+//  }
+//  return;
+//}
+
+
 
 void init_i2c() {
 
+
 }
+
+
 
 
 
