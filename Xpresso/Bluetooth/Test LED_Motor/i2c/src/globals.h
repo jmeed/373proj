@@ -27,6 +27,7 @@ uint64_t unixtime;
 enum watch_state current_state;
 enum watch_state next_state;
 enum run_state run_state;
+enum WEATHER_TYPE {_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY};
 
 // Joystick definitions
 #define UPPORT 1
