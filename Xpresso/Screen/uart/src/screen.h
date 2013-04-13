@@ -16,7 +16,7 @@
 #include "uart.h"
 
 //Screen image #defines. Set as y value.
-#define BLOCKM 0x0
+#define BLOCKM 0x0000
 #define BLACKM 0x0041
 #define CLOUDY 0x0082
 #define RAIN 0x00C3
@@ -28,7 +28,7 @@ void initScreen();
 void disableScrolling();
 void clearScreen();
 void mediaInit();
-void media_setSector(uint8_t hi, uint8_t lo);
+void media_setSector(uint16_t hi, uint16_t lo);
 void wait();
 int gotACK();
 
