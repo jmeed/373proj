@@ -1,0 +1,104 @@
+=====================================================
+SGC (Serial Graphics Controller) PLATFORM OUTPUT FILE
+=====================================================
+
+*******************************************************
+* This build option is not applicable to Goldelox SGC *
+* Must set 'New image format' for usage on Picaso SGC *
+* Data:                                               *
+*  0x59, 0x06, 0x00                                   *
+* 4DSL command:                                       *
+*  Control(6,0)                                       *
+*******************************************************
+
+---------------------------------------------------------------------------------------
+File "block m.jpg" (block m.jpg)
+Sector Address 0x000000
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+4DSL command:
+NewUSDImage(0, 0, 0x000000)
+
+---------------------------------------------------------------------------------------
+File "black m.jpg" (black m.jpg)
+Sector Address 0x000041
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41
+4DSL command:
+NewUSDImage(0, 0, 0x000041)
+
+---------------------------------------------------------------------------------------
+File "cloudy.jpg" (cloudy.jpg)
+Sector Address 0x000082
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x82
+4DSL command:
+NewUSDImage(0, 0, 0x000082)
+
+---------------------------------------------------------------------------------------
+File "rain.jpg" (rain.jpg)
+Sector Address 0x0000C3
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3
+4DSL command:
+NewUSDImage(0, 0, 0x0000C3)
+
+---------------------------------------------------------------------------------------
+File "snow.jpg" (snow.jpg)
+Sector Address 0x000104
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x04
+4DSL command:
+NewUSDImage(0, 0, 0x000104)
+
+---------------------------------------------------------------------------------------
+File "storm.jpg" (storm.jpg)
+Sector Address 0x000145
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x45
+4DSL command:
+NewUSDImage(0, 0, 0x000145)
+
+---------------------------------------------------------------------------------------
+File "sunny.jpg" (sunny.jpg)
+Sector Address 0x000186
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x86
+4DSL command:
+NewUSDImage(0, 0, 0x000186)
+
