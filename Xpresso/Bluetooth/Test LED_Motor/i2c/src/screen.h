@@ -14,6 +14,8 @@
 #include "driver_config.h"
 #include "target_config.h"
 #include "uart.h"
+#include "globals.h"
+
 
 //Screen image #defines. Set as y value.
 #define BLOCKM 0x0000
@@ -56,7 +58,7 @@ void drawSquare(int x, int y, int size, int color);
 
 //Screen Types
 void welcomeScreen();
-void weatherScreen();
+void weatherScreen(enum WEATHER_TYPE w);
 void newsScreen();
 void debugScreen();
 void snakeScreen();
