@@ -40,10 +40,13 @@ int main(void) {
 
 void init_mwatch() {
 	// Init timer
+	init_timer();
 
 	// Init GPIO
+	init_gpio();
 
 	// Init I2C
+	init_i2c();
 
 	// Get the current time from Bluetooth
 
@@ -68,7 +71,7 @@ void run_mwatch() {
 				current_state = next_state;
 				break;
 			default:
-				printf("Invalid run state %dn\n", run_state);
+				printf("Invalid run state %d\n", run_state);
 				assert(0);
 			}
 		}
@@ -85,13 +88,24 @@ void run_mwatch() {
 		case HEADLINES:
 			break;
 		default:
-			printf("Invalid current state state %dn\n", current_state);
+			printf("Invalid current state state %d\n", current_state);
 			assert(0);
 		}
 	}
 }
 
 
+void init_timer() {
+
+}
+
+void init_gpio() {
+
+}
+
+void init_i2c() {
+
+}
 
 
 
