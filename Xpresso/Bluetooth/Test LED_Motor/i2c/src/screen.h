@@ -25,6 +25,11 @@
 #define SNOW 0x0104
 #define STORM 0x0145
 #define SUNNY 0x0186
+#define NEWS 0x01C7
+#define TIME1 0x0208
+#define TIME2 0x0249
+#define TIME3 0x028A
+#define TIME4 0x02CB
 
 void initScreen();
 void disableScrolling();
@@ -57,11 +62,37 @@ void drawSquare(int x, int y, int size, int color);
 
 
 //Screen Types
+/*
+ * This screen has the block M and M watch and our names
+ */
 void welcomeScreen();
+
+/*
+ * this screen displays the appropriate weather background
+ * for the enum passed in WEATHER_TYPE
+ */
 void weatherScreen(enum WEATHER_TYPE w);
+
+/*
+ * this screen displays the news background and sets cursor
+ * for news placement
+ */
 void newsScreen();
+
+/*
+ * This screen is black with green text. Cursor set for debug data.
+ */
 void debugScreen();
+
+/*
+ * Clears the screen to black for snake play
+ */
 void snakeScreen();
+
+/*
+ * Sets time screen. Places cursor ready for time data.
+ */
+void timeScreen();
 
 
 extern volatile uint32_t UARTCount;

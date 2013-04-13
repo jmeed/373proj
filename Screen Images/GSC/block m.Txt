@@ -102,3 +102,68 @@ Picaso Data:
 4DSL command:
 NewUSDImage(0, 0, 0x000186)
 
+---------------------------------------------------------------------------------------
+File "news.jpg" (news.jpg)
+Sector Address 0x0001C7
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xC7
+4DSL command:
+NewUSDImage(0, 0, 0x0001C7)
+
+---------------------------------------------------------------------------------------
+File "time1.jpg" (time1.jpg)
+Sector Address 0x000208
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x08
+4DSL command:
+NewUSDImage(0, 0, 0x000208)
+
+---------------------------------------------------------------------------------------
+File "time2.jpg" (time2.jpg)
+Sector Address 0x000249
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x49
+4DSL command:
+NewUSDImage(0, 0, 0x000249)
+
+---------------------------------------------------------------------------------------
+File "time3.jpg" (time3.jpg)
+Sector Address 0x00028A
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x8A
+4DSL command:
+NewUSDImage(0, 0, 0x00028A)
+
+---------------------------------------------------------------------------------------
+File "time4.jpg" (time4.jpg)
+Sector Address 0x0002CB
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xCB
+4DSL command:
+NewUSDImage(0, 0, 0x0002CB)
+
