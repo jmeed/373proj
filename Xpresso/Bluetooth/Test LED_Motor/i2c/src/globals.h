@@ -17,6 +17,10 @@ enum run_state {
 	START, RUN, STOP
 };
 
+enum joystick_dir {
+	UP, DOWN, LEFT, RIGHT, IN
+};
+
 
 
 uint64_t unixtime;
