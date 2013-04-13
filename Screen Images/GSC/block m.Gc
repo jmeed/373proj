@@ -40,3 +40,33 @@
 // Usage: sunny.jpg(x, y);
 #constant sunny.jpg    $media_SetSector(0x0000, 0x0186); media_Image
 
+// Image - "news.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: news.jpg(x, y);
+#constant news.jpg    $media_SetSector(0x0000, 0x01C7); media_Image
+
+// Image - "time1.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: time1.jpg(x, y);
+#constant time1.jpg    $media_SetSector(0x0000, 0x0208); media_Image
+
+// Image - "time2.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: time2.jpg(x, y);
+#constant time2.jpg    $media_SetSector(0x0000, 0x0249); media_Image
+
+// Image - "time3.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: time3.jpg(x, y);
+#constant time3.jpg    $media_SetSector(0x0000, 0x028A); media_Image
+
+// Image - "time4.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: time4.jpg(x, y);
+#constant time4.jpg    $media_SetSector(0x0000, 0x02CB); media_Image
+
