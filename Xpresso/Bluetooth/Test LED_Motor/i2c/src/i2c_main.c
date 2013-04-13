@@ -123,50 +123,6 @@ void init_gpio() {
 	joystick_dir = NONE;
 }
 
-//void PIOINT0_IRQHandler(void)
-//{
-//  if ( GPIOIntStatus( LEFTPORT, LEFTPOS ) )
-//  {
-//	joystick_dir = LEFT;
-//	GPIOIntClear( LEFTPORT, LEFTPOS );
-//
-//  }
-//  return;
-//}
-//void PIOINT1_IRQHandler(void)
-//{
-//  if ( GPIOIntStatus( UPPORT, UPPORT ) )
-//  {
-//	joystick_dir = UP;
-//	GPIOIntClear( UPPORT, UPPORT );
-//
-//  }
-//  if ( GPIOIntStatus( DOWNPORT, DOWNPOS ) )
-//  {
-//	joystick_dir = DOWN;
-//	GPIOIntClear( DOWNPORT, DOWNPOS );
-//
-//  }
-//  if ( GPIOIntStatus( INPORT, INPOS ) )
-//  {
-//	joystick_dir = IN;
-//	GPIOIntClear( INPORT, INPORT );
-//
-//  }
-//  return;
-//}
-//
-//void PIOINT3_IRQHandler(void)
-//{
-//  if ( GPIOIntStatus( RIGHTPORT, RIGHTPOS ) )
-//  {
-//	joystick_dir = RIGHT;
-//	GPIOIntClear( RIGHTPORT, RIGHTPOS );
-//
-//  }
-//  return;
-//}
-
 
 
 void init_i2c() {
