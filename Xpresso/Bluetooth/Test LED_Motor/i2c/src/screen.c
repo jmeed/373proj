@@ -9,9 +9,10 @@
  */
 #include "driver_config.h"
 #include "target_config.h"
-#include "uart.h"
+
 #include "screen.h"
 #include "string.h"
+#include "uart.h"
 #include <stdio.h>
 
 extern volatile uint32_t UARTCount;
