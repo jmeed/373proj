@@ -1,0 +1,42 @@
+// Image - "block m.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: block m.jpg(x, y);
+#constant block m.jpg    $media_SetSector(0x0000, 0x0000); media_Image
+
+// Image - "black m.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: black m.jpg(x, y);
+#constant black m.jpg    $media_SetSector(0x0000, 0x0041); media_Image
+
+// Image - "cloudy.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: cloudy.jpg(x, y);
+#constant cloudy.jpg    $media_SetSector(0x0000, 0x0082); media_Image
+
+// Image - "rain.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: rain.jpg(x, y);
+#constant rain.jpg    $media_SetSector(0x0000, 0x00C3); media_Image
+
+// Image - "snow.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: snow.jpg(x, y);
+#constant snow.jpg    $media_SetSector(0x0000, 0x0104); media_Image
+
+// Image - "storm.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: storm.jpg(x, y);
+#constant storm.jpg    $media_SetSector(0x0000, 0x0145); media_Image
+
+// Image - "sunny.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: sunny.jpg(x, y);
+#constant sunny.jpg    $media_SetSector(0x0000, 0x0186); media_Image
+

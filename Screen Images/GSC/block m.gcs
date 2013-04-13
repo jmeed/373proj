@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphics_Composer version="2.0">
+  <item type="Properties" version="2">
+    <ResX>128</ResX>
+    <ResY>128</ResY>
+  </item>
+  <item type="Image" version="2">
+    <File>block m.jpg</File>
+    <Name>block m.jpg</Name>
+    <Updated>2013/04/13 19:36:39</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>33</Left>
+      <Width>338</Width>
+      <Height>320</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>black m.jpg</File>
+    <Name>black m.jpg</Name>
+    <Updated>2013/04/13 19:40:30</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>131</Top>
+      <Left>0</Left>
+      <Width>3432</Width>
+      <Height>2160</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>cloudy.jpg</File>
+    <Name>cloudy.jpg</Name>
+    <Updated>2013/04/13 20:10:08</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>576</Width>
+      <Height>576</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>rain.jpg</File>
+    <Name>rain.jpg</Name>
+    <Updated>2013/04/13 20:06:58</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>1653</Width>
+      <Height>1355</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>snow.jpg</File>
+    <Name>snow.jpg</Name>
+    <Updated>2013/04/13 20:07:33</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>1366</Width>
+      <Height>854</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>storm.jpg</File>
+    <Name>storm.jpg</Name>
+    <Updated>2013/04/13 20:00:31</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>1920</Width>
+      <Height>1200</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>sunny.jpg</File>
+    <Name>sunny.jpg</Name>
+    <Updated>2013/04/13 20:12:02</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>1096</Width>
+      <Height>901</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+</graphics_Composer>
