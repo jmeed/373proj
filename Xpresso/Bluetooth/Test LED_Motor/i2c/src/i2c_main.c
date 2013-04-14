@@ -348,7 +348,7 @@ void process_bl_msg() {
 	opcode = opcode + (msg_g[1] - '0');
 	printf("BL received. opcode: %d\n", opcode);
 	switch (opcode) {
-	case AUTHENTICATE:
+	case 0:
 //		send_i2c_msg(BLs_WAADR, THR);
 		break;
 	default:
