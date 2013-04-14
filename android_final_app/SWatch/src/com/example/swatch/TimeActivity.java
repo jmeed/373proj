@@ -20,7 +20,7 @@ public class TimeActivity extends Activity {
 		
 		String ascii = "";
 		long rightNow = Calendar.getInstance().getTimeInMillis();
-		String time = String.valueOf(rightNow);
+		String time = String.valueOf(rightNow) + "\0";
 		
 		for (int index = 0; index < time.length(); index++)
 		{

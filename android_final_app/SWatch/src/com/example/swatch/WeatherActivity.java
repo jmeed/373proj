@@ -39,6 +39,7 @@ public class WeatherActivity extends Activity {
       	final String TAG_FEELS = "feelslike_f";
       	final String TAG_WEATHER = "weather";
       	final String TAG_WIND = "wind_string";
+      	final String TAG_CURR_ICON = "icon";
       	
    		// Creating JSON Parser instance
   		JSONParser jParser = new JSONParser();
@@ -46,6 +47,7 @@ public class WeatherActivity extends Activity {
   		String feels = null;
   		String weather = null;
   		String wind = null;
+  		String cur_icon = null;
   		
   		JSONObject wjson = jParser.getJSONFromUrl(curl);
   		try {
@@ -54,6 +56,7 @@ public class WeatherActivity extends Activity {
 			feels = observ.getString(TAG_FEELS);
 			weather = observ.getString(TAG_WEATHER);
 			wind = observ.getString(TAG_WIND);
+			cur_icon = observ.getString(TAG_CURR_ICON);
 		}
   		catch (JSONException e) {
   			e.printStackTrace();
@@ -74,11 +77,14 @@ public class WeatherActivity extends Activity {
   		if(Math.abs(tempVal - feelsVal) > 2) mStrWeather = mStrWeather + "but it feels like " + feelsVal + ", ";
   		mStrWeather = mStrWeather + "under " + weather + " skies. The wind is " + wind + ". ";
  
-  		String parsed = Utility.parse_string(mStrWeather);	
-  		parsed = "WEATHER\n" + parsed;
+  		String parsed_current = Utility.parse_string(mStrWeather);	
+  		//String parsed = "WEATHER\n" + parsed_current + "\0";	
   		
-		Utility.send_over_BT(parsed);  		
+  		String cur_icon_to_display = Utility.choose_pic(cur_icon);
+  		cur_icon_to_display = cur_icon_to_display + "\0";
   		
+  		System.out.println("icon " + cur_icon);
+  		System.out.println("icon actual " + cur_icon_to_display);
   		// Weather Forecast
     	final String furl = "http://api.wunderground.com/api/afd835494ae994bc/forecast/q/" + Utility.mUserZip + ".json";
     	
@@ -87,10 +93,12 @@ public class WeatherActivity extends Activity {
     	final String TAG_TXTFORECAST = "txt_forecast";
     	final String TAG_DAY = "forecastday";
     	final String TAG_TEXT = "fcttext";
+    	final String TAG_ICON = "icon";
     	
  		// Creating JSON Parser instance
 		JSONParser fParser = new JSONParser();
 		String fcttext = "";
+		String forecast_icon = null;
 		     		
 		JSONObject fjson = fParser.getJSONFromUrl(furl);
 		try 
@@ -100,6 +108,7 @@ public class WeatherActivity extends Activity {
 			JSONArray days = txtforecast.getJSONArray(TAG_DAY);
 			JSONObject d = days.getJSONObject(0);
 			fcttext = d.getString(TAG_TEXT);
+			forecast_icon = d.getString(TAG_ICON);
 		}
 		catch (JSONException e) {
 			e.printStackTrace();
@@ -117,16 +126,34 @@ public class WeatherActivity extends Activity {
 		mStrWeather = "";
 		
 		
+		String forecast_icon_to_display = Utility.choose_pic(forecast_icon);
+		forecast_icon_to_display = forecast_icon_to_display + "\0";
+		System.out.println("THIS IS IT "+forecast_icon_to_display);
+		
 		mStrWeather = "The forecast for today is: " + fcttext;
 		
 		// Parse string
-		parsed = Utility.parse_string(mStrWeather);
-		parsed = "WEATHER\n" + parsed;
-		weatherTextView.setText(parsed);
+		String parsed_forecast = Utility.parse_string(mStrWeather);
+		parsed_current = "WEATHER\n" + parsed_current +"\0"; 
 		
-		// Send over Bluetooth
-		Utility.send_over_BT(parsed);
+		// SEND parsed_current OVER BT
 		
+		parsed_forecast = "FORECAST\n" + parsed_forecast + "\0";
+		weatherTextView.setText(parsed_current);
+		
+		String parsed = parsed_current + parsed_forecast;
+		
+		// Send current conditions icon
+		CommThread.write(cur_icon_to_display.getBytes());
+		
+		// Send current conditions over Bluetooth
+		CommThread.write(parsed_current.getBytes());
+		
+		// Send forecast conditions icon
+		CommThread.write(forecast_icon_to_display.getBytes());
+		
+		// Send forecast over Bluetooth
+		CommThread.write(parsed_forecast.getBytes());
 		
 		// Get hex value for each char
 		String ascii = "";
@@ -152,9 +179,6 @@ public class WeatherActivity extends Activity {
 		
 	}
 	
-	
-	
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

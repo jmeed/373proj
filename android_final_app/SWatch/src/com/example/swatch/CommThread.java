@@ -47,7 +47,6 @@ class CommThread extends Thread {
         this.adapter = adapter;
     }
 
-
     public void run() {
                 if (adapter == null)
                         return;
@@ -130,6 +129,7 @@ class CommThread extends Thread {
                 sb.append(new String(buffer, 0, bytes));
                 while ((idx = sb.indexOf("\r\n\r\n")) > -1) {
                     message = sb.substring(0, idx);
+                    System.out.println("Message: "+message);
                         sb.replace(0, idx+4, "");
                         hm = new HashMap<String, String>();
                         for (String line : message.split("\n")) {

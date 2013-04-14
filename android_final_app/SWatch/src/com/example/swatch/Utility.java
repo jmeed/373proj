@@ -126,4 +126,45 @@ public class Utility {
 
 	}
 	
+	static int get_headline_lastindex(int start_index, String input)
+	{
+		int end_index = start_index;
+		for (end_index = start_index; end_index < input.length(); end_index++)
+		{
+			if (input.charAt(end_index) == '\0')
+				break;
+			
+		}
+		return end_index + 1;
+	}
+	// cloudy = 1, snowy = 0, stormy = 4, sunny = 2, rain = 3
+	static String choose_pic(String input)
+	{
+		String to_return = "nothing";
+		System.out.println("input "+input);
+		if (input.equalsIgnoreCase("chanceflurries") || input.equalsIgnoreCase("chancesnow") || input.equalsIgnoreCase("flurries") || input.equalsIgnoreCase("snow"))
+		{
+			to_return = "0";
+		}
+		else if (input.equalsIgnoreCase("cloudy") || input.equalsIgnoreCase("partlycloudy") || input.equalsIgnoreCase("fog") || input.equalsIgnoreCase("hazy") || input.equalsIgnoreCase("mostlycloudy"))
+		{
+			to_return = "1";
+		}
+		else if (input.equalsIgnoreCase("clear") || input.equalsIgnoreCase("mostlysunny") || input.equalsIgnoreCase("partlysunny") || input.equalsIgnoreCase("sunny"))
+		{
+			to_return = "2";
+		}
+		else if (input.equalsIgnoreCase("chancerain") || input.equalsIgnoreCase("rain") || input.equalsIgnoreCase("sleet"))
+		{
+			to_return = "3";
+		}
+		else
+		{
+			to_return = "4";
+		}
+		return(to_return);
+	}
+	
+	
+	
 }

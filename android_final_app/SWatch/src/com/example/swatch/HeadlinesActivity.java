@@ -61,7 +61,7 @@ public class HeadlinesActivity extends Activity {
 				title = story.getString(TAG_TITLE);
 				description = story.getString(TAG_DESCRIPTION);
 				
-				headlineNews = headlineNews + (i + 1) + ") " + title + ": " + description + "\n";
+				headlineNews = headlineNews + (i + 1) + ") " + title + ": " + description + "\n\0";
 			}
 		}
 		catch (JSONException e) {
@@ -70,11 +70,92 @@ public class HeadlinesActivity extends Activity {
 		
 		// Parse string
 		String parsed = Utility.parse_string(headlineNews);
-		mHeadlineNews = "HEADLINES\n" + parsed;
-		headlineTextView.setText(mHeadlineNews);
+		
+		
+		String h0 = "";
+		String h1 = "";
+		String h2 = "";
+		String h3 = "";
+		String h4 = "";
+		String h5 = "";
+		String h6 = "";
+		String h7 = "";
+		String h8 = "";
+		String h9 = "";
+		String h10 = "";
+		String h11 = "";
+		
+		int last_index = 0;
+		int first_index = 0;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h0 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		h0 = "HEADLILNES\n" + h0;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h1 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h2 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h3 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h4 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h5 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h6 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h7 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h8 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h9 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h10 = parsed.substring(first_index, last_index);
+		first_index = last_index + 1;
+		
+		last_index = Utility.get_headline_lastindex(first_index, parsed);
+		h11 = parsed.substring(first_index);
+		
+		System.out.println("Size of h1 "+ h1.length());
+		System.out.println("last_index " + last_index);
+		System.out.println("fist_index " + first_index);
+		
+		headlineTextView.setText(h11);
 
 		// Send over Bluetooth
-		Utility.send_over_BT(mHeadlineNews);
+		CommThread.write(h0.getBytes());
+		CommThread.write(h1.getBytes());
+		CommThread.write(h2.getBytes());
+		CommThread.write(h3.getBytes());
+		CommThread.write(h4.getBytes());
+		CommThread.write(h5.getBytes());
+		CommThread.write(h6.getBytes());
+		CommThread.write(h7.getBytes());
+		CommThread.write(h8.getBytes());
+		CommThread.write(h9.getBytes());
+		CommThread.write(h10.getBytes());
+		CommThread.write(h11.getBytes());
+		
 		
 		// Get hex value for each char
 		String ascii = "";
