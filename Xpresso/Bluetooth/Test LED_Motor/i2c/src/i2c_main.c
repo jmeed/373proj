@@ -23,6 +23,8 @@
 #include "watch.h"
 #include "screen.h"
 #include "gpio.h"
+#include "i2c.h"
+#include "bluetooth.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -130,19 +132,11 @@ void init_gpio() {
 
 
 void init_i2c() {
-//	uint32_t i2c_result = I2CInit((uint32_t) I2CMASTER);
-//	assert(i2c_result);
-//
-//	// Set up Bluetooth
-//	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
-//	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
-//	write_byte_to_register(BL_WAADR, DLL, 0x08); // The desired baud rate is 115200
-//	write_byte_to_register(BL_WAADR, LCR, 0x03); // 8 data bit, 1 stop bit, no parity
-//	write_byte_to_register(BL_WAADR, FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
-//	write_byte_to_register(BL_WAADR, FCR, 0x01); // enable FIFO mode
-//	write_byte_to_register(BL_WAADR, IER, 0x01); // enable RHR interrupt
-//
-//	// Set up the Accelerometer
+	uint32_t i2c_result = I2CInit((uint32_t) I2CMASTER);
+	assert(i2c_result);
+
+	init_bl();
+	// Set up the Accelerometer
 //	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
 }
 
