@@ -20,13 +20,15 @@
 #include <assert.h>
 #include <stdio.h>
 #include "globals.h"
-#include "watch.h"
-#include "screen.h"
+#include "screens/watch.h"
+#include "devices/screen.h"
 #include "gpio.h"
 #include "i2c.h"
-#include "bluetooth.h"
-#include "accelerometer.h"
-#include "fuel_gauge.h"
+#include "devices/bluetooth.h"
+#include "devices/accelerometer.h"
+#include "devices/fuel_gauge.h"
+#include "screens/debug.h"
+#include "screens/weather.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -73,43 +75,17 @@ void init_mwatch() {
 	// Init I2C
 	init_i2c();
 
-	//Init accelerometer
-	init_accel();
-
 	// Get the current time from Bluetooth
+
+	// Initialize the baud rate for uart
 	UARTInit(UART_BAUD);
 	// Init Screen
 	initScreen();
 }
 
 void run_mwatch() {
-	debugScreen();
 	while (1) {
 		// Timer
-		//delaySysTick(100);
-
-
-		char text[20];
-		sprintf(text ,"Joystick Enum %d\n", joystick_dir);
-		writeString(text);
-		update_acc_data();
-		sprintf(text, "Accel x: %u      \n", x_g);
-		writeString(text);
-		sprintf(text, "Accel y: %u     \n", y_g);
-		writeString(text);
-		sprintf(text, "Accel z: %u     \n", z_g);
-		writeString(text);
-		if (is_running_on_battery())
-		{
-			sprintf(text, "Battery: %u%%\n", get_power_remaining());
-			writeString(text);
-		}
-		else
-		{
-			sprintf(text, "Watch plugged in\n", get_power_remaining());
-			writeString(text);
-		}
-		moveCursor(1,0);
 
 		// Change run state if transitioning
 		if (next_state != current_state) {
@@ -136,10 +112,14 @@ void run_mwatch() {
 			main_watch();
 			break;
 		case WEATHER:
+			main_weather();
 			break;
 		case SNAKE:
 			break;
 		case HEADLINES:
+			break;
+		case DEBUGSC:
+			main_debug();
 			break;
 		default:
 			printf("Invalid current state state %d\n", current_state);
@@ -368,7 +348,7 @@ void process_bl_msg() {
 	opcode = opcode + (msg_g[1] - '0');
 	printf("BL received. opcode: %d\n", opcode);
 	switch (opcode) {
-	case AUTHENTICATE:
+	case 0:
 //		send_i2c_msg(BLs_WAADR, THR);
 		break;
 	default:

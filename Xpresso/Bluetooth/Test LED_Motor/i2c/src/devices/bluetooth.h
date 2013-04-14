@@ -9,6 +9,7 @@
 #define BLUETOOTH_H_
 
 #include <stdint.h>
+#include "i2c.h"
 
 // Bluetooth slave address
 #define BL_WAADR 0x90
@@ -45,10 +46,30 @@
 #define BL_XOFF1      0x06 << 3
 #define BL_XOFF2      0x07 << 3
 
+#define BL_BUFFER (BUFSIZE -2) // Do not change this
+
+// Buffers
+uint8_t *bl_send; // Do not change the pointer !!!
+volatile uint8_t bl_receive[BUFSIZE];
+
 void init_bl();
 
+// To send Bluetooth message put the message in the bl_send
+// The max length is BL_BUFFER
 void send_bl_message();
+
+// Return 1 if there is a bluetooth message 0 otherwise
 uint8_t is_bl_message_available();
+
+// Call this function when you want to get a bluetooth message
+// The message will return once a complete bluetooth message has been read
+// A complete message is when the Bluetooth has received the '\0' character
+// If no message is available it will return 0
+// This is a blocking function
+// It will block untill the message is received
+// The data is return to the bl_send array
+// The max received data is BUFSIZE
+// It return the length of the data it read
 uint8_t receive_bl_message();
 
 #endif /* BLUETOOTH_H_ */

@@ -291,9 +291,10 @@ public final class BluetoothService {
 			// Send the sync message
 			outputStream.write(sync_message.getBytes());
 			outputStream.flush();
-			
+			System.out.println("Waiting to receive message");
 			// Receive the sync message to ensure pairing with the right device
 			int length = readFromTarget();
+			System.out.println("Message received");
 			int opcode = process_bl_msg(length);
 			if (opcode == AUTHENTICATE) {
 				System.out.println("Success");

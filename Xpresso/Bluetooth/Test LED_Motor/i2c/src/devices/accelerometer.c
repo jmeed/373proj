@@ -7,7 +7,7 @@
 
 #include "accelerometer.h"
 #include "i2c_com.h"
-#include "globals.h"
+#include "../globals.h"
 
 void init_accel() {
 	x_g = 0;

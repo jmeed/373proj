@@ -14,7 +14,7 @@
 #include "driver_config.h"
 #include "target_config.h"
 #include "uart.h"
-#include "globals.h"
+#include "../globals.h"
 
 
 //Screen image #defines. Set as y value.
