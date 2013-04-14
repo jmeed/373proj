@@ -14,7 +14,7 @@
 
 volatile uint32_t UARTStatus;
 volatile uint8_t  UARTTxEmpty = 1;
-volatile uint8_t  UARTBuffer[BUFSIZEUART];
+volatile uint8_t  UARTBuffer[BUFSIZE];
 volatile uint32_t UARTCount = 0;
 
 #if CONFIG_UART_DEFAULT_UART_IRQHANDLER==1
@@ -54,7 +54,7 @@ void UART_IRQHandler(void)
       /* If no error on RLS, normal ready, save into the data buffer. */
       /* Note: read RBR will clear the interrupt */
       UARTBuffer[UARTCount++] = LPC_UART->RBR;
-      if (UARTCount == BUFSIZEUART)
+      if (UARTCount == BUFSIZE)
       {
         UARTCount = 0;		/* buffer overflow */
       }	
@@ -64,7 +64,7 @@ void UART_IRQHandler(void)
   {
     /* Receive Data Available */
     UARTBuffer[UARTCount++] = LPC_UART->RBR;
-    if (UARTCount == BUFSIZEUART)
+    if (UARTCount == BUFSIZE)
     {
       UARTCount = 0;		/* buffer overflow */
     }
