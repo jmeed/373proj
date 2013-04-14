@@ -20,6 +20,7 @@
 #ifndef __GPIO_H
 #define __GPIO_H
 #include "driver_config.h"
+#include "../src/globals.h"
 #if CONFIG_ENABLE_DRIVER_GPIO==1
 
 #define PORT0		0
@@ -41,6 +42,8 @@ uint32_t GPIOIntStatus( uint32_t portNum, uint32_t bitPosi );
 void GPIOIntClear( uint32_t portNum, uint32_t bitPosi );
 void GPIOSetValue( uint32_t portNum, uint32_t bitPosi, uint32_t bitVal );
 void GPIOSetDir( uint32_t portNum, uint32_t bitPosi, uint32_t dir );
+enum joystick_dir getJoyDirection();
+
 #endif
 #endif /* end __GPIO_H */
 /*****************************************************************************

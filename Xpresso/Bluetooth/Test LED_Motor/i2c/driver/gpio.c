@@ -436,6 +436,23 @@ void GPIOSetDir( uint32_t portNum, uint32_t bitPosi, uint32_t dir )
 }
 #endif
 
+/*****************************************************************************
+** Function name:		GPIOSetDir
+**
+** Descriptions:		Set the direction in GPIO port
+**
+** parameters:			port num, bit position, direction (1 out, 0 input)
+** Returned value:		None
+**
+*****************************************************************************/
+
+enum joystick_dir getJoyDirection(){
+	enum joystick_dir current_dir = joystick_dir;
+	joystick_dir = NONE;
+	return current_dir;
+}
+
+
 /******************************************************************************
 **                            End Of File
 ******************************************************************************/
