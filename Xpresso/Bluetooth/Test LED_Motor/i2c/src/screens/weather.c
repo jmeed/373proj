@@ -6,8 +6,8 @@
  */
 
 #include "weather.h"
-#include "globals.h"
-#include "bluetooth.h"
+#include "../globals.h"
+#include "../devices/bluetooth.h"
 #include "string.h"
 
 // Private functions

@@ -20,15 +20,15 @@
 #include <assert.h>
 #include <stdio.h>
 #include "globals.h"
-#include "watch.h"
-#include "screen.h"
+#include "screens/watch.h"
+#include "devices/screen.h"
 #include "gpio.h"
 #include "i2c.h"
-#include "bluetooth.h"
-#include "accelerometer.h"
-#include "fuel_gauge.h"
-#include "debug.h"
-#include "weather.h"
+#include "devices/bluetooth.h"
+#include "devices/accelerometer.h"
+#include "devices/fuel_gauge.h"
+#include "screens/debug.h"
+#include "screens/weather.h"
 
 static void init_mwatch();
 static void run_mwatch();

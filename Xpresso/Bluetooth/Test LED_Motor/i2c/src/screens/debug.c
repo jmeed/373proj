@@ -7,14 +7,14 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include "globals.h"
+#include "../globals.h"
 #include "watch.h"
-#include "screen.h"
+#include "../devices/screen.h"
 #include "gpio.h"
 #include "i2c.h"
-#include "bluetooth.h"
-#include "accelerometer.h"
-#include "fuel_gauge.h"
+#include "../devices/bluetooth.h"
+#include "../devices/accelerometer.h"
+#include "../devices/fuel_gauge.h"
 #include "debug.h"
 
 // Private functions

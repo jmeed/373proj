@@ -6,7 +6,7 @@
  */
 
 #include "snake.h"
-#include "globals.h"
+#include "../globals.h"
 
 // Private functions
 static void start_snake();

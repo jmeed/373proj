@@ -25,8 +25,8 @@
 #include <assert.h>
 #include <stdio.h>
 #include "../src/globals.h"
-#include "../src/watch.h"
-#include "../src/screen.h"
+#include "../src/screens/watch.h"
+#include "../src/devices/screen.h"
 
 
 
