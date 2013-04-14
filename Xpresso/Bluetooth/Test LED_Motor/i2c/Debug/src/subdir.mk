@@ -4,8 +4,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/bluetooth.c \
 ../src/globals.c \
 ../src/headlines.c \
+../src/i2c_com.c \
 ../src/i2c_main.c \
 ../src/screen.c \
 ../src/shared.c \
@@ -14,8 +16,10 @@ C_SRCS += \
 ../src/weather.c 
 
 OBJS += \
+./src/bluetooth.o \
 ./src/globals.o \
 ./src/headlines.o \
+./src/i2c_com.o \
 ./src/i2c_main.o \
 ./src/screen.o \
 ./src/shared.o \
@@ -24,8 +28,10 @@ OBJS += \
 ./src/weather.o 
 
 C_DEPS += \
+./src/bluetooth.d \
 ./src/globals.d \
 ./src/headlines.d \
+./src/i2c_com.d \
 ./src/i2c_main.d \
 ./src/screen.d \
 ./src/shared.d \

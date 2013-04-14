@@ -8,10 +8,6 @@
 #ifndef SHARED_H_
 #define SHARED_H_
 
-// Bluetooth slave address
-#define BL_WAADR 0x90
-#define BL_RAADR (BL_WAADR | 0x01)
-
 //Accelerometer slave address
 #define AC_WAADR 0x3A
 #define AC_RAADR (AC_WAADR | 0x01)

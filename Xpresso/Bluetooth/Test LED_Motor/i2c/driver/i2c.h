@@ -19,6 +19,9 @@
 ****************************************************************************/
 #ifndef __I2C_H 
 #define __I2C_H
+
+#include "driver_config.h"
+
 #if CONFIG_ENABLE_DRIVER_I2C==1
 
 /* If I2C SEEPROM is tested, make sure FAST_MODE_PLUS is 0.
@@ -72,6 +75,22 @@ For board to board test, this flag can be turned on. */
 #if CONFIG_I2C_DEFAULT_I2C_IRQHANDLER==1
 extern void I2C_IRQHandler( void );
 #endif
+
+extern volatile uint32_t I2CMasterState;
+extern volatile uint32_t I2CSlaveState;
+extern volatile uint32_t timeout;
+
+extern volatile uint32_t I2CMode;
+
+extern volatile uint8_t I2CMasterBuffer[BUFSIZE];
+extern volatile uint8_t I2CSlaveBuffer[BUFSIZE];
+extern volatile uint32_t I2CCount;
+extern volatile uint32_t I2CReadLength;
+extern volatile uint32_t I2CWriteLength;
+
+extern volatile uint32_t RdIndex;
+extern volatile uint32_t WrIndex;
+
 extern uint32_t I2CInit( uint32_t I2cMode );
 extern uint32_t I2CStart( void );
 extern uint32_t I2CStop( void );

@@ -109,7 +109,20 @@ void init_gpio() {
 }
 
 void init_i2c() {
-
+//	uint32_t i2c_result = I2CInit((uint32_t) I2CMASTER);
+//	assert(i2c_result);
+//
+//	// Set up Bluetooth
+//	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
+//	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
+//	write_byte_to_register(BL_WAADR, DLL, 0x08); // The desired baud rate is 115200
+//	write_byte_to_register(BL_WAADR, LCR, 0x03); // 8 data bit, 1 stop bit, no parity
+//	write_byte_to_register(BL_WAADR, FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
+//	write_byte_to_register(BL_WAADR, FCR, 0x01); // enable FIFO mode
+//	write_byte_to_register(BL_WAADR, IER, 0x01); // enable RHR interrupt
+//
+//	// Set up the Accelerometer
+//	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
 }
 
 
@@ -252,23 +265,23 @@ void update_acc_data();
 // Previous
 
 
-uint32_t send_i2c_msg(uint8_t addr, uint8_t reg) {
-	I2CWriteLength = 2 + msg_count_g;
-	I2CReadLength = 0;
-	I2CMasterBuffer[0] = addr;
-	I2CMasterBuffer[1] = reg;
-	int i;
-	for (i = 0; i < msg_count_g; i++) {
-		I2CMasterBuffer[i + 2] = msg_g[i];
-	}
-	I2CEngine();
-
-	// Assert if the I2C is not in ok mode
-	assert(I2CMasterState == I2C_OK);
-	for (i = 0; i < 0x200000; i++)
-		;
-	return I2CMasterState;
-}
+//uint32_t send_i2c_msg(uint8_t addr, uint8_t reg) {
+//	I2CWriteLength = 2 + msg_count_g;
+//	I2CReadLength = 0;
+//	I2CMasterBuffer[0] = addr;
+//	I2CMasterBuffer[1] = reg;
+//	int i;
+//	for (i = 0; i < msg_count_g; i++) {
+//		I2CMasterBuffer[i + 2] = msg_g[i];
+//	}
+//	I2CEngine();
+//
+//	// Assert if the I2C is not in ok mode
+//	assert(I2CMasterState == I2C_OK);
+//	for (i = 0; i < 0x200000; i++)
+//		;
+//	return I2CMasterState;
+//}
 
 uint32_t write_byte_to_register(uint8_t addr, uint8_t reg, uint8_t value) {
 	msg_count_g = 1;
@@ -291,21 +304,6 @@ uint8_t read_byte_from_register(uint8_t r_addr, uint8_t w_addr, uint8_t reg) {
 	return I2CSlaveBuffer[0];
 }
 
-uint32_t uartConnected() {
-	/*
-
-	 Check that UART is connected and operational.
-
-	 */
-	// Perform read/write test to check if UART is working
-//	const char TEST_CHARACTER = 'H';
-
-//	write_register(SPR, TEST_CHARACTER);
-
-//	return (read_register(SPR) == TEST_CHARACTER);
-	return 0;
-}
-
 void process_bl_msg() {
 	assert(msg_count_g >= 3);
 	// Ensure that the length is at least 3/enough to cover the opcode "00\0"
@@ -315,7 +313,7 @@ void process_bl_msg() {
 	printf("BL received. opcode: %d\n", opcode);
 	switch (opcode) {
 	case AUTHENTICATE:
-		send_i2c_msg(BL_WAADR, THR);
+//		send_i2c_msg(BLs_WAADR, THR);
 		break;
 	default:
 		printf("ERR: opcode [%d] from bluetooth receive not valid\n", opcode);
@@ -345,16 +343,16 @@ void set_up_i2c() {
 
 void configure_i2c_devices() {
 	// Set up Bluetooth
-	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
-	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
-	write_byte_to_register(BL_WAADR, DLL, 0x08); // The desired baud rate is 115200
-	write_byte_to_register(BL_WAADR, LCR, 0x03); // 8 data bit, 1 stop bit, no parity
-	write_byte_to_register(BL_WAADR, FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
-	write_byte_to_register(BL_WAADR, FCR, 0x01); // enable FIFO mode
-	write_byte_to_register(BL_WAADR, IER, 0x01); // enable RHR interrupt
-
-	// Set up the Accelerometer
-	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
+//	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
+//	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
+//	write_byte_to_register(BL_WAADR, DLL, 0x08); // The desired baud rate is 115200
+//	write_byte_to_register(BL_WAADR, LCR, 0x03); // 8 data bit, 1 stop bit, no parity
+//	write_byte_to_register(BL_WAADR, FCR, 0x06); // reset TXFIFO, reset RXFIFO, non FIFO mode
+//	write_byte_to_register(BL_WAADR, FCR, 0x01); // enable FIFO mode
+//	write_byte_to_register(BL_WAADR, IER, 0x01); // enable RHR interrupt
+//
+//	// Set up the Accelerometer
+//	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
 }
 
 // Return 0 if not running on battery. Else return the % of battery left
@@ -378,6 +376,22 @@ void update_acc_data() {
 	y_g = get_acc_direction(0x03);
 	z_g = get_acc_direction(0x05);
 }
+
+uint32_t uartConnected() {
+	/*
+
+	 Check that UART is connected and operational.
+
+	 */
+	// Perform read/write test to check if UART is working
+//	const char TEST_CHARACTER = 'H';
+
+//	write_register(SPR, TEST_CHARACTER);
+
+//	return (read_register(SPR) == TEST_CHARACTER);
+	return 0;
+}
+
 
 /******************************************************************************
  **                            End Of File

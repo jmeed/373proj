@@ -3,12 +3,12 @@
  * (C) Code Red Technologies Ltd, 2008-2013
  * Generated linker script file for LPC1115/303
  * Created from generic_c.ld (vLPCXpresso v5.1 (2 [Build 2065] [2013-02-20] ))
- * By LPCXpresso v5.1.2 [Build 2065] [2013-02-20]  on Sat Apr 13 19:31:27 EDT 2013
+ * By LPCXpresso v5.1.2 [Build 2065] [2013-02-20]  on Sat Apr 13 19:31:29 EDT 2013
  */
 
 
-INCLUDE "i2c_Debug_lib.ld"
-INCLUDE "i2c_Debug_mem.ld"
+INCLUDE "uart_Debug_lib.ld"
+INCLUDE "uart_Debug_mem.ld"
 
 ENTRY(ResetISR)
 
