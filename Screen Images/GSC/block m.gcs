@@ -165,4 +165,119 @@
     <BitDepth>16</BitDepth>
     <IgnoreScreensize>True</IgnoreScreensize>
   </item>
+  <item type="Image" version="2">
+    <File>news.jpg</File>
+    <Name>news.jpg</Name>
+    <Updated>2013/04/13 23:02:42</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>72</Top>
+      <Left>0</Left>
+      <Width>1438</Width>
+      <Height>1468</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>time1.jpg</File>
+    <Name>time1.jpg</Name>
+    <Updated>2013/04/13 23:08:56</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>488</Width>
+      <Height>400</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>time2.jpg</File>
+    <Name>time2.jpg</Name>
+    <Updated>2013/04/13 23:09:02</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>360</Width>
+      <Height>240</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>time3.jpg</File>
+    <Name>time3.jpg</Name>
+    <Updated>2013/04/13 23:09:06</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>600</Width>
+      <Height>600</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>time4.jpg</File>
+    <Name>time4.jpg</Name>
+    <Updated>2013/04/13 23:09:11</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>627</Width>
+      <Height>457</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
 </graphics_Composer>

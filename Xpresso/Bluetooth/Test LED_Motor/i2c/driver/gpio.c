@@ -22,6 +22,14 @@
 #include "driver_config.h"
 #if CONFIG_ENABLE_DRIVER_GPIO==1
 #include "gpio.h"
+#include <assert.h>
+#include <stdio.h>
+#include "../src/globals.h"
+#include "../src/watch.h"
+#include "../src/screen.h"
+
+
+
 
 #if CONFIG_GPIO_DEFAULT_PIOINT0_IRQHANDLER==1
 volatile uint32_t gpio0_counter = 0;
@@ -37,15 +45,12 @@ volatile uint32_t p0_1_counter  = 0;
 *****************************************************************************/
 void PIOINT0_IRQHandler(void)
 {
-  uint32_t regVal;
-
-  gpio0_counter++;
-  regVal = GPIOIntStatus( PORT0, 1 );
-  if ( regVal )
+  if ( GPIOIntStatus( LEFTPORT, LEFTPOS ) )
   {
-	p0_1_counter++;
-	GPIOIntClear( PORT0, 1 );
-  }		
+	joystick_dir = LEFT;
+	GPIOIntClear( LEFTPORT, LEFTPOS );
+
+  }
   return;
 }
 #endif
@@ -63,18 +68,27 @@ volatile uint32_t p1_1_counter  = 0;
 ** 
 *****************************************************************************/
 void PIOINT1_IRQHandler(void)
-{
-  uint32_t regVal;
+	{
+	  if ( GPIOIntStatus( UPPORT, UPPOS ) )
+	  {
+		joystick_dir = UP;
+		GPIOIntClear( UPPORT, UPPOS );
 
-  gpio1_counter++;
-  regVal = GPIOIntStatus( PORT1, 1 );
-  if ( regVal )
-  {
-	p1_1_counter++;
-	GPIOIntClear( PORT1, 1 );
-  }		
-  return;
-}
+	  }
+	  if ( GPIOIntStatus( DOWNPORT, DOWNPOS ) )
+	  {
+		joystick_dir = DOWN;
+		GPIOIntClear( DOWNPORT, DOWNPOS );
+
+	  }
+	  if ( GPIOIntStatus( INPORT, INPOS ) )
+	  {
+		joystick_dir = IN;
+		GPIOIntClear( INPORT, INPOS );
+
+	  }
+	  return;
+	}
 #endif
 
 #if CONFIG_GPIO_DEFAULT_PIOINT2_IRQHANDLER==1
@@ -118,17 +132,15 @@ volatile uint32_t p3_1_counter  = 0;
 *****************************************************************************/
 void PIOINT3_IRQHandler(void)
 {
-  uint32_t regVal;
-
-  gpio3_counter++;
-  regVal = GPIOIntStatus( PORT3, 1 );
-  if ( regVal )
+  if ( GPIOIntStatus( RIGHTPORT, RIGHTPOS ) )
   {
-	p3_1_counter++;
-	GPIOIntClear( PORT3, 1 );
-  }		
+	joystick_dir = RIGHT;
+	GPIOIntClear( RIGHTPORT, RIGHTPOS );
+
+  }
   return;
 }
+
 #endif //#if CONFIG_GPIO_DEFAULT_PIOINT3_IRQHANDLER==1
 
 

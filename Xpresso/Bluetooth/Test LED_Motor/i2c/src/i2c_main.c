@@ -22,6 +22,7 @@
 #include "globals.h"
 #include "watch.h"
 #include "screen.h"
+#include "gpio.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -56,11 +57,17 @@ void init_mwatch() {
 	// Get the current time from Bluetooth
 
 	// Init Screen
+	initScreen();
 }
 
 void run_mwatch() {
 	while (1) {
 		// Timer
+
+		char text[20];
+		sprintf(text ,"Joystick Enum %d\n", joystick_dir);
+		writeString(text);
+		initScreen();
 
 		// Change run state if transitioning
 		if (next_state != current_state) {
@@ -104,9 +111,23 @@ void init_timer() {
 
 }
 
-void init_gpio() {
-
+void init_dir(uint32_t port, uint32_t bit){
+	GPIOSetDir( port, bit, 0 );
+	GPIOSetInterrupt( port, bit, 1, 1, 0 );
+	GPIOIntEnable( port, bit );
 }
+void init_gpio() {
+	GPIOInit();
+	init_dir(UPPORT, UPPOS);
+	init_dir(DOWNPORT, DOWNPOS);
+	init_dir(LEFTPORT, LEFTPOS);
+	init_dir(RIGHTPORT, RIGHTPOS);
+	init_dir(INPORT, INPOS);
+
+	joystick_dir = NONE;
+}
+
+
 
 void init_i2c() {
 //	uint32_t i2c_result = I2CInit((uint32_t) I2CMASTER);
@@ -124,6 +145,8 @@ void init_i2c() {
 //	// Set up the Accelerometer
 //	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
 }
+
+
 
 
 

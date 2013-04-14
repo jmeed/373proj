@@ -18,7 +18,7 @@ enum run_state {
 };
 
 enum joystick_dir {
-	UP, DOWN, LEFT, RIGHT, IN
+	UP, DOWN, LEFT, RIGHT, IN, NONE
 };
 
 
@@ -27,6 +27,7 @@ uint64_t unixtime;
 enum watch_state current_state;
 enum watch_state next_state;
 enum run_state run_state;
+enum joystick_dir joystick_dir;
 enum WEATHER_TYPE {_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY};
 
 // Joystick definitions
@@ -40,7 +41,5 @@ enum WEATHER_TYPE {_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY};
 #define RIGHTPOS 0
 #define INPORT 1
 #define INPOS 0
-
-void enableJoystick();
 
 #endif /* GLOBALS_H_ */

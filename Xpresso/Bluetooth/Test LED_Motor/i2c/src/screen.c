@@ -9,13 +9,16 @@
  */
 #include "driver_config.h"
 #include "target_config.h"
-#include "uart.h"
+
 #include "screen.h"
 #include "string.h"
+#include "uart.h"
 #include <stdio.h>
 
 extern volatile uint32_t UARTCount;
 extern volatile uint8_t UARTBuffer[BUFSIZEUART];	//This may need to be larger
+
+int time_image = 0;
 
 void initScreen()
 {
@@ -185,6 +188,7 @@ void drawSquare(int x, int y, int size, int color)
 //Screen Types
 void welcomeScreen()
 {
+	clearScreen();
 	//Make text color white
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0x7F;
@@ -236,8 +240,9 @@ void welcomeScreen()
 	writeString(temporary);
 	}
 
-void weatherScreen()
+void weatherScreen(enum WEATHER_TYPE w)
 {
+	clearScreen();
 	//Make text color white
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0x7F;
@@ -265,34 +270,199 @@ void weatherScreen()
 	UARTCount = 0;
 
 	//Background
-	media_setSector(0x0000, CLOUDY);	//Block M
-	//media_setSector(0x0000, BLACKM); //Black M
+	switch(w) //_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY
+	{
+		case _CLOUD:
+			media_setSector(0x0000, CLOUDY);
+			break;
+		case _RAIN:
+			media_setSector(0x0000, RAIN);
+			break;
+		case _SNOW:
+			media_setSector(0x0000, SNOW);
+			break;
+		case _STORM:
+			media_setSector(0x0000, STORM);
+			break;
+		case _SUNNY:
+			media_setSector(0x0000, SUNNY);
+			break;
+		default:
+			//display black screen
+			clearScreen();
+			break;
+	}
 	media_display();
 
 	char temporary[BUFSIZEUART];
 
-	strcpy(temporary, "Mwatch\n");
+	strcpy(temporary, "Local Weather\n");
 	writeString(temporary);
-	moveCursor(2,2);
-//	writeString(temporary);	//Need to check this system
-//	moveCursor(4,0);
-	strcpy(temporary, "David Jackson\n");
-	writeString(temporary);
-//	moveCursor(5,0);
-	strcpy(temporary, "Jon Meed\n");
-	writeString(temporary);
-	moveCursor(13,0);
-	strcpy(temporary, "Filip Theodorakis\n");
-	writeString(temporary);
-	moveCursor(14,2);
-	strcpy(temporary, "Tony Lucchesi\n");
-	writeString(temporary);
+	moveCursor(3,0);
 	}
 
-void newsScreen();
-void debugScreen();
-void snakeScreen();
+void newsScreen()
+{
+	clearScreen();
+	media_setSector(0x0000, NEWS);
+	media_display();
+	moveCursor(0,0);
 
+	//Make text color white
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7F;
+	UARTBuffer[2] = 0xFF;
+	UARTBuffer[3] = 0xFF;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set text color white");
+	UARTCount = 0;
+
+	//Make text background color black
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7E;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3] = 0x00;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set text background color black");
+	UARTCount = 0;
+
+	char temporary[BUFSIZEUART];
+	strcpy(temporary, "Headlines\n");
+	writeString(temporary);
+}
+void debugScreen()
+{
+	clearScreen();
+	//Make text color green
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7F;
+	UARTBuffer[2] = 0x25;
+	UARTBuffer[3] = 0x74;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set text color green");
+	UARTCount = 0;
+
+	//Make text background color black
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7E;
+	UARTBuffer[2] = 0x00;
+	UARTBuffer[3] = 0x00;
+	UARTCount = 4;
+	UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+	UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	if (gotACK() == 0)
+		printf("DANGER WILL ROBINSON, Failed to set text background color black");
+	UARTCount = 0;
+
+	moveCursor(0,0);
+	char temporary[BUFSIZEUART];
+
+	strcpy(temporary, "Debug\n");
+	writeString(temporary);
+}
+void snakeScreen()
+{
+	//Get basic black screen for snake-ing
+	clearScreen();
+}
+
+void timeScreen()
+{
+	clearScreen();
+	switch (time_image)
+	{
+	case 0:
+		media_setSector(0x0000, TIME1);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xF6;
+		UARTBuffer[3] = 0xD6;
+		UARTCount = 4;
+		UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+		UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		if (gotACK() == 0)
+			printf("DANGER WILL ROBINSON, Failed to set text color");
+		UARTCount = 0;
+
+		moveCursor(2,5);
+		time_image++;
+		break;
+	case 1:
+		media_setSector(0x0000, TIME2);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xB7;
+		UARTBuffer[3] = 0x9F;
+		UARTCount = 4;
+		UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+		UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		if (gotACK() == 0)
+			printf("DANGER WILL ROBINSON, Failed to set text color");
+		UARTCount = 0;
+
+		moveCursor(2,2);
+		time_image++;
+		break;
+	case 2:
+		media_setSector(0x0000, TIME3);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xE6;
+		UARTBuffer[3] = 0x1E;
+		UARTCount = 4;
+		UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+		UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		if (gotACK() == 0)
+			printf("DANGER WILL ROBINSON, Failed to set text color");
+		UARTCount = 0;
+
+		moveCursor(2,2);
+		time_image++;
+		break;
+	case 3:
+		media_setSector(0x0000, TIME4);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xCE;
+		UARTBuffer[3] = 0xBC;
+		UARTCount = 4;
+		UARTSend( (uint8_t *)UARTBuffer, UARTCount );
+		UARTCount = 0; 	//reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		if (gotACK() == 0)
+			printf("DANGER WILL ROBINSON, Failed to set text color");
+		UARTCount = 0;
+
+		moveCursor(2,2);
+		time_image = 0;
+		break;
+	default:
+		clearScreen();
+		moveCursor(0,0);
+		break;
+	}
+	media_display();
+}
 
 
 
