@@ -80,6 +80,7 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.crt.advproject.config.exe.debug.1584568070.1775736737" name="timer32.h" rcbsApplicability="disable" resourcePath="driver/timer32.h" toolsToInvoke=""/>
 					<fileInfo id="com.crt.advproject.config.exe.debug.1584568070.706180770" name="uart.h" rcbsApplicability="disable" resourcePath="driver/uart.h" toolsToInvoke="">
 						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.895239103" name="Resource Custom Build Step">
 							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.464131214" name="Resource Custom Build Step Input Type">
@@ -88,15 +89,7 @@
 							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.86411262" name="Resource Custom Build Step Output Type"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.crt.advproject.config.exe.debug.1584568070.1326764398" name="uart.c" rcbsApplicability="disable" resourcePath="driver/uart.c" toolsToInvoke="com.crt.advproject.gcc.exe.debug.1507794419.957403324">
-						<tool id="com.crt.advproject.gcc.exe.debug.1507794419.957403324" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug.1507794419"/>
-						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1481465400" name="Resource Custom Build Step">
-							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1825680127" name="Resource Custom Build Step Input Type">
-								<additionalInput kind="additionalinputdependency" paths=""/>
-							</inputType>
-							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.819076386" name="Resource Custom Build Step Output Type"/>
-						</tool>
-					</fileInfo>
+					<fileInfo id="com.crt.advproject.config.exe.debug.1584568070.442715001" name="timer16.h" rcbsApplicability="disable" resourcePath="driver/timer16.h" toolsToInvoke=""/>
 					<fileInfo id="com.crt.advproject.config.exe.debug.1584568070.57842801" name="system_LPC11xx.c" rcbsApplicability="disable" resourcePath="cmsis/system_LPC11xx.c" toolsToInvoke="com.crt.advproject.gcc.exe.debug.1507794419.1957840503">
 						<tool id="com.crt.advproject.gcc.exe.debug.1507794419.1957840503" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug.1507794419">
 							<option id="gnu.c.compiler.option.optimization.flags.1068624932" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" value="-Os" valueType="string"/>
@@ -113,7 +106,7 @@
 						<entry excluding="config|cmsis|startup|driver|src|linker" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cmsis"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="config"/>
-						<entry excluding="adc.h|timer32.h|ssp.h|i2cslave.c|timer16.h|wdt.c|rs485.c|small_gpio.h|clkconfig.h|i2cslave.h|debug_printf.c|timer16.c|ssp.c|timer32.c|type.h|adc.c|wdt.h|small_gpio.c|lpc_swu.h|clkconfig.c|debug_printf.h|lpc_swu.c|rs485.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="driver"/>
+						<entry excluding="adc.h|ssp.h|i2cslave.c|wdt.c|rs485.c|small_gpio.h|clkconfig.h|i2cslave.h|debug_printf.c|ssp.c|type.h|adc.c|wdt.h|small_gpio.c|lpc_swu.h|clkconfig.c|debug_printf.h|lpc_swu.c|rs485.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="driver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="linker"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>

@@ -37,7 +37,7 @@ void disableScrolling() {
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to disable scrolling");
+		printf("DANGER WILL ROBINSON, Failed to disable scrolling\n");
 	UARTCount = 0;
 }
 
@@ -51,7 +51,7 @@ void clearScreen() {
 	wait();	//wait for screen to ACK
 
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to clear screen");
+		printf("DANGER WILL ROBINSON, Failed to clear screen\n");
 
 	UARTCount = 0;
 }
@@ -65,9 +65,9 @@ void mediaInit() {
 
 	wait();	//wait for screen to ACK
 
-	if (!(UARTBuffer[0] == 0x00 && UARTBuffer[1] == 0x00
-			&& UARTBuffer[2] == 0x04))
-		printf("DANGER WILL ROBINSON, Failed to initialize SD Card");
+//	if (!(UARTBuffer[0] == 0x00 && UARTBuffer[1] == 0x00
+//			&& UARTBuffer[2] == 0x04))
+//		printf("DANGER WILL ROBINSON, Failed to initialize SD Card\n");
 
 	UARTCount = 0;
 }
@@ -84,7 +84,7 @@ void media_setSector(uint16_t hi, uint16_t lo) {
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to set media sector");
+		printf("DANGER WILL ROBINSON, Failed to set media sector\n");
 	UARTCount = 0;
 }
 
@@ -101,7 +101,7 @@ void media_display() {
 	wait();	//wait for screen to ACK
 	if (!(UARTBuffer[0] == 0x00 && UARTBuffer[1] == 0x00
 			&& UARTBuffer[2] == 0x04))
-		printf("DANGER WILL ROBINSON, Failed to display media");
+		printf("DANGER WILL ROBINSON, Failed to display media\n");
 	UARTCount = 0;
 }
 
@@ -134,7 +134,7 @@ void moveCursor(uint8_t x, uint8_t y) {
 
 	wait();
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to move cursor");
+		printf("DANGER WILL ROBINSON, Failed to move cursor\n");
 
 	UARTCount = 0;
 }
@@ -153,7 +153,7 @@ void writeString(char *str) {
 	UARTCount = 0;
 	wait();
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to write string");
+		printf("DANGER WILL ROBINSON, Failed to write string\n");
 	UARTCount = 0;
 }
 
@@ -170,7 +170,7 @@ void drawSquare(int x, int y, int size, int color) {
 	UARTCount = 0;
 	wait();
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to draw rectangle");
+		printf("DANGER WILL ROBINSON, Failed to draw rectangle\n");
 	UARTCount = 0;
 }
 //Screen Types
@@ -186,7 +186,7 @@ void welcomeScreen() {
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to set text color white");
+		printf("DANGER WILL ROBINSON, Failed to set text color white\n");
 	UARTCount = 0;
 
 	//Make text background color black
@@ -200,11 +200,11 @@ void welcomeScreen() {
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
 		printf(
-				"DANGER WILL ROBINSON, Failed to set text background color black");
+				"DANGER WILL ROBINSON, Failed to set text background color black\n");
 	UARTCount = 0;
 
 	//Background
-	media_setSector(0x0000, SUNNY);	//Block M
+	media_setSector(0x0000, BLOCKM);	//Block M
 	//media_setSector(0x0000, BLACKM); //Black M
 	media_display();
 
@@ -240,7 +240,7 @@ void weatherScreen(enum WEATHER_TYPE w) {
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to set text color white");
+		printf("DANGER WILL ROBINSON, Failed to set text color white\n");
 	UARTCount = 0;
 
 	//Make text background color black
@@ -254,7 +254,7 @@ void weatherScreen(enum WEATHER_TYPE w) {
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
 		printf(
-				"DANGER WILL ROBINSON, Failed to set text background color black");
+				"DANGER WILL ROBINSON, Failed to set text background color black\n");
 	UARTCount = 0;
 
 	//Background
@@ -305,7 +305,7 @@ void newsScreen() {
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to set text color white");
+		printf("DANGER WILL ROBINSON, Failed to set text color white\n");
 	UARTCount = 0;
 
 	//Make text background color black
@@ -319,7 +319,7 @@ void newsScreen() {
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
 		printf(
-				"DANGER WILL ROBINSON, Failed to set text background color black");
+				"DANGER WILL ROBINSON, Failed to set text background color black\n");
 	UARTCount = 0;
 
 	char temporary[BUFSIZEUART];
@@ -338,7 +338,7 @@ void debugScreen() {
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to set text color green");
+		printf("DANGER WILL ROBINSON, Failed to set text color green\n");
 	UARTCount = 0;
 
 	//Make text background color black
@@ -352,7 +352,7 @@ void debugScreen() {
 	wait();	//wait for screen to ACK
 	if (gotACK() == 0)
 		printf(
-				"DANGER WILL ROBINSON, Failed to set text background color black");
+				"DANGER WILL ROBINSON, Failed to set text background color black\n");
 	UARTCount = 0;
 
 	moveCursor(0, 0);
@@ -381,7 +381,7 @@ void timeScreen() {
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		if (gotACK() == 0)
-			printf("DANGER WILL ROBINSON, Failed to set text color");
+			printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
 		moveCursor(2, 5);
@@ -399,7 +399,7 @@ void timeScreen() {
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		if (gotACK() == 0)
-			printf("DANGER WILL ROBINSON, Failed to set text color");
+			printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
 		moveCursor(2, 2);
@@ -417,7 +417,7 @@ void timeScreen() {
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		if (gotACK() == 0)
-			printf("DANGER WILL ROBINSON, Failed to set text color");
+			printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
 		moveCursor(2, 2);
@@ -435,7 +435,7 @@ void timeScreen() {
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		if (gotACK() == 0)
-			printf("DANGER WILL ROBINSON, Failed to set text color");
+			printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
 		moveCursor(2, 2);

@@ -35,6 +35,8 @@ static void init_timer();
 static void init_gpio();
 static void init_i2c();
 
+volatile uint32_t TimeTick = 0;
+
 int main(void) {
 	// Initialization
 	init_mwatch();
@@ -45,11 +47,24 @@ int main(void) {
 	return 0;
 }
 
+void SysTick_Handler(void)
+{
+  TimeTick++;
+}
 
+void delaySysTick(uint32_t tick)
+{
+  uint32_t timetick;
+
+  timetick = TimeTick;
+  while ((TimeTick - timetick) < tick)
+	  __WFI();
+}
 
 void init_mwatch() {
 	// Init timer
 	init_timer();
+	SysTick_Config( SysTick->CALIB + 1 );
 
 	// Init GPIO
 	init_gpio();
@@ -58,7 +73,7 @@ void init_mwatch() {
 	init_i2c();
 
 	// Get the current time from Bluetooth
-
+	UARTInit(UART_BAUD);
 	// Init Screen
 	initScreen();
 }
@@ -66,11 +81,12 @@ void init_mwatch() {
 void run_mwatch() {
 	while (1) {
 		// Timer
+		delaySysTick(100);
 
+		debugScreen();
 		char text[20];
 		sprintf(text ,"Joystick Enum %d\n", joystick_dir);
 		writeString(text);
-		initScreen();
 
 		// Change run state if transitioning
 		if (next_state != current_state) {
