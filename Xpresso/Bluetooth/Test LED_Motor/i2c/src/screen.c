@@ -107,8 +107,8 @@ void media_display() {
 
 void wait() {
 	int i, j;
-	for (i = 1; i < 200; i++) {
-		for (j = 1; j < 200; j++) {
+	for (i = 1; i < 1000; i++) {
+		for (j = 1; j < 1000; j++) {
 			;	//do nothing
 		}
 	}

@@ -10,7 +10,7 @@
 #include "i2c_com.h"
 
 void init_bl() {
-	bl_send = I2CMasterBuffer + 2;
+	bl_send = (uint8_t *) I2CMasterBuffer + 2;
 	// Set up Bluetooth
 	write_i2c_register(BL_WAADR, BL_LCR, 0x80); // 0x80 to program baudrate
 	write_i2c_register(BL_WAADR, BL_DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
@@ -25,7 +25,7 @@ void send_bl_message() {
 	// Make sure there is no NULL in the first bits
 	I2CMasterBuffer[0] = 0xFF;
 	I2CMasterBuffer[1] = 0xFF;
-	send_i2c_msg(BL_WAADR, BL_THR, (sizeof(I2CMasterBuffer) - 2));
+	send_i2c_msg(BL_WAADR, BL_THR, (sizeof((char *)I2CMasterBuffer) - 1));
 }
 
 uint8_t is_bl_message_available() {

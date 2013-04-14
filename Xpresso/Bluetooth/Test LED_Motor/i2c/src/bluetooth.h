@@ -49,7 +49,7 @@
 #define BL_BUFFER (BUFSIZE -2) // Do not change this
 
 // Buffers
-volatile uint8_t *bl_send; // Do not change the pointer !!!
+uint8_t *bl_send; // Do not change the pointer !!!
 volatile uint8_t bl_receive[BUFSIZE];
 
 void init_bl();
