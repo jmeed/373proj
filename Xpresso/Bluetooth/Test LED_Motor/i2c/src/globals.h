@@ -10,8 +10,9 @@
 
 #include <stdint.h>
 
+
 enum watch_state {
-	MAIN_WATCH, WEATHER, SNAKE, HEADLINES
+	MAIN_WATCH, WEATHER, SNAKE, HEADLINES, DEBUGSC
 };
 enum run_state {
 	START, RUN, STOP
