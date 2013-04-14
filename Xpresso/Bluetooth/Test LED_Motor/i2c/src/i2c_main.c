@@ -75,10 +75,9 @@ void init_mwatch() {
 	// Init I2C
 	init_i2c();
 
-	//Init accelerometer
-	init_accel();
-
 	// Get the current time from Bluetooth
+
+	// Initialize the baud rate for uart
 	UARTInit(UART_BAUD);
 	// Init Screen
 	initScreen();
