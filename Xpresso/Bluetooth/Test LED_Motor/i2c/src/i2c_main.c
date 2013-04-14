@@ -26,7 +26,7 @@
 #include "i2c.h"
 #include "bluetooth.h"
 #include "accelerometer.h"
-#include <string.h>
+#include "fuel_gauge.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -92,17 +92,23 @@ void run_mwatch() {
 		char text[20];
 		sprintf(text ,"Joystick Enum %d\n", joystick_dir);
 		writeString(text);
-		memset(&text[0], '\0', sizeof(text));
 		update_acc_data();
-		sprintf(text, "Accel x: %u\n", x_g);
+		sprintf(text, "Accel x: %u      \n", x_g);
 		writeString(text);
-		memset(&text[0], '\0', sizeof(text));
-		sprintf(text, "Accel y: %u\n", y_g);
+		sprintf(text, "Accel y: %u     \n", y_g);
 		writeString(text);
-		memset(&text[0], '\0', sizeof(text));
-		sprintf(text, "Accel z: %u\n", z_g);
+		sprintf(text, "Accel z: %u     \n", z_g);
 		writeString(text);
-		memset(&text[0], '\0', sizeof(text));
+		if (is_running_on_battery())
+		{
+			sprintf(text, "Battery: %u%%\n", get_power_remaining());
+			writeString(text);
+		}
+		else
+		{
+			sprintf(text, "Watch plugged in\n", get_power_remaining());
+			writeString(text);
+		}
 		moveCursor(1,0);
 
 		// Change run state if transitioning
