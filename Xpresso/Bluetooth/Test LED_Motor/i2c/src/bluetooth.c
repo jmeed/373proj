@@ -8,9 +8,9 @@
 #include "bluetooth.h"
 #include <stdio.h>
 #include "i2c_com.h"
-#include "i2c.h"
 
 void init_bl() {
+	bl_send = I2CMasterBuffer + 2;
 	// Set up Bluetooth
 	write_i2c_register(BL_WAADR, BL_LCR, 0x80); // 0x80 to program baudrate
 	write_i2c_register(BL_WAADR, BL_DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
@@ -22,7 +22,10 @@ void init_bl() {
 }
 
 void send_bl_message() {
-	send_i2c_msg(BL_WAADR, BL_THR, sizeof(I2CMasterBuffer));
+	// Make sure there is no NULL in the first bits
+	I2CMasterBuffer[0] = 0xFF;
+	I2CMasterBuffer[1] = 0xFF;
+	send_i2c_msg(BL_WAADR, BL_THR, (sizeof(I2CMasterBuffer) - 2));
 }
 
 uint8_t is_bl_message_available() {
@@ -32,11 +35,14 @@ uint8_t is_bl_message_available() {
 // Returns the number of characters it read from the Bluetooth
 // Data is available in the I2CSlaveBuffer
 uint8_t receive_bl_message() {
-	uint8_t length = 0;
+	uint8_t index = 0;
 	while(is_bl_message_available()) {
-		read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
-		length++;
+		bl_receive[index] = read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
+		index++;
+		if(bl_receive[index - 1] == '\0') { // Got the entire message
+			break;
+		}
 	}
 	printf("BL message: [%s]\n", (char *) I2CSlaveBuffer);
-	return length;
+	return index;
 }
