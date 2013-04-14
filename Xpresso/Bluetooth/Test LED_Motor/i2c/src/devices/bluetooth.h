@@ -50,7 +50,7 @@
 
 // Buffers
 uint8_t *bl_send; // Do not change the pointer !!!
-volatile uint8_t bl_receive[BUFSIZE];
+volatile char bl_receive[BUFSIZE];
 
 void init_bl();
 
@@ -71,5 +71,9 @@ uint8_t is_bl_message_available();
 // The max received data is BUFSIZE
 // It return the length of the data it read
 uint8_t receive_bl_message();
+
+// Wait untill you get a full bluetooth message. This functions is exactly as the receive_bl_message
+// except that it waits untill it gets a message
+uint8_t wait_bl_and_receive();
 
 #endif /* BLUETOOTH_H_ */

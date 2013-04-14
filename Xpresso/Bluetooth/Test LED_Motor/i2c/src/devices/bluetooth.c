@@ -37,12 +37,19 @@ uint8_t is_bl_message_available() {
 uint8_t receive_bl_message() {
 	uint8_t index = 0;
 	while(is_bl_message_available()) {
-		bl_receive[index] = read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
+		bl_receive[index] = (char) read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
 		index++;
 		if(bl_receive[index - 1] == '\0') { // Got the entire message
+			printf("BL message: [%s]\n", (char *) bl_receive);
+			fflush(stdout);
 			break;
 		}
 	}
-	printf("BL message: [%s]\n", (char *) I2CSlaveBuffer);
 	return index;
+}
+
+uint8_t wait_bl_and_receive() {
+	uint8_t result;
+	while(!(result = receive_bl_message())); // Wait until you have read non zero data
+	return result;
 }

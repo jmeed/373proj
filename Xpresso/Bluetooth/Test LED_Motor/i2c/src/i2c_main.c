@@ -191,7 +191,6 @@ void init_i2c() {
 
 #include "type.h"
 #include "i2c.h"
-#include "shared.h"
 
 extern volatile uint32_t I2CCount;
 extern volatile uint8_t I2CMasterBuffer[BUFSIZE];

@@ -48,7 +48,9 @@ void main_weather() {
 static void start_weather() {
 	strcpy((char *) bl_send, "30");
 	send_bl_message();
-
+	uint8_t result = wait_bl_and_receive();
+	uint8_t f = result;
+	f++;
 }
 
 static void run_weather() {
