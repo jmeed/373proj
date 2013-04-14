@@ -57,14 +57,18 @@ void init_mwatch() {
 	// Get the current time from Bluetooth
 
 	// Init Screen
+	initScreen();
 }
 
 void run_mwatch() {
 	while (1) {
 		// Timer
 
+		char text[20];
+		sprintf(text ,"Joystick Enum %d\n", joystick_dir);
+		writeString(text);
+		initScreen();
 
-		printf("Joystick Enum %d\n", joystick_dir);
 		// Change run state if transitioning
 		if (next_state != current_state) {
 			switch (run_state) {
