@@ -42,4 +42,9 @@ enum WEATHER_TYPE {_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY};
 #define INPORT 1
 #define INPOS 0
 
+//Accelerometer variables
+uint8_t x_g;
+uint8_t y_g;
+uint8_t z_g;
+
 #endif /* GLOBALS_H_ */

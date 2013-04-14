@@ -13,7 +13,7 @@ uint8_t is_running_on_battery() {
 }
 
 uint8_t get_power_remaining() {
-	return read_i2c_register(FG_RAADR, FG_WAADR, 0x04) == 0 ? 0 : 1;
+	return read_i2c_register(FG_RAADR, FG_WAADR, 0x04);
 }
 
 uint16_t get_current_voltage() {

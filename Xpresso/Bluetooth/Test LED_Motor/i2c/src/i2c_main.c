@@ -26,6 +26,7 @@
 #include "i2c.h"
 #include "bluetooth.h"
 #include "accelerometer.h"
+#include "fuel_gauge.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -72,6 +73,9 @@ void init_mwatch() {
 	// Init I2C
 	init_i2c();
 
+	//Init accelerometer
+	init_accel();
+
 	// Get the current time from Bluetooth
 	UARTInit(UART_BAUD);
 	// Init Screen
@@ -79,14 +83,33 @@ void init_mwatch() {
 }
 
 void run_mwatch() {
+	debugScreen();
 	while (1) {
 		// Timer
-		delaySysTick(100);
+		//delaySysTick(100);
 
-		debugScreen();
+
 		char text[20];
 		sprintf(text ,"Joystick Enum %d\n", joystick_dir);
 		writeString(text);
+		update_acc_data();
+		sprintf(text, "Accel x: %u      \n", x_g);
+		writeString(text);
+		sprintf(text, "Accel y: %u     \n", y_g);
+		writeString(text);
+		sprintf(text, "Accel z: %u     \n", z_g);
+		writeString(text);
+		if (is_running_on_battery())
+		{
+			sprintf(text, "Battery: %u%%\n", get_power_remaining());
+			writeString(text);
+		}
+		else
+		{
+			sprintf(text, "Watch plugged in\n", get_power_remaining());
+			writeString(text);
+		}
+		moveCursor(1,0);
 
 		// Change run state if transitioning
 		if (next_state != current_state) {
@@ -200,9 +223,9 @@ extern volatile uint32_t I2CReadLength, I2CWriteLength;
 char msg_g[BUFSIZE];
 uint32_t msg_count_g;
 uint8_t is_running_on_battery_g;
-uint16_t x_g;
-uint16_t y_g;
-uint16_t z_g;
+//uint16_t x_g;
+//uint16_t y_g;
+//uint16_t z_g;
 
 uint32_t write_byte_to_register(uint8_t addr, uint8_t reg, uint8_t value);
 uint32_t send_i2c_msg(uint8_t addr, uint8_t reg);

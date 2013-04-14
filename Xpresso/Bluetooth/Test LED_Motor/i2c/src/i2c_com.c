@@ -21,7 +21,7 @@ void send_i2c_msg(uint8_t w_addr, uint8_t reg, uint8_t length) {
 }
 
 void write_i2c_register(uint8_t w_addr, uint8_t reg, uint8_t value) {
-	I2CMasterBuffer[0] = value;
+	I2CMasterBuffer[2] = value;
 	send_i2c_msg(w_addr, reg, 1);
 }
 
