@@ -25,6 +25,7 @@
 #include "gpio.h"
 #include "i2c.h"
 #include "bluetooth.h"
+#include "accelerometer.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -136,8 +137,7 @@ void init_i2c() {
 	assert(i2c_result);
 
 	init_bl();
-	// Set up the Accelerometer
-//	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
+	init_accel();
 }
 
 
@@ -198,8 +198,8 @@ void configure_i2c_devices();
 void set_up_i2c();
 uint8_t is_running_on_battery();
 uint16_t get_current_voltage();
-uint16_t get_acc_direction(uint8_t reg);
-void update_acc_data();
+//uint16_t get_acc_direction(uint8_t reg);
+//void update_acc_data();
 
 /*******************************************************************************
  **   Main Function  main()
@@ -354,11 +354,11 @@ void set_up_i2c() {
 	else
 		printf("Device is running on power\n");
 
-	configure_i2c_devices();
+//	configure_i2c_devices();
 	printf("I2C configured\n");
 }
 
-void configure_i2c_devices() {
+//void configure_i2c_devices() {
 	// Set up Bluetooth
 //	write_byte_to_register(BL_WAADR, LCR, 0x80); // 0x80 to program baudrate
 //	write_byte_to_register(BL_WAADR, DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
@@ -370,29 +370,29 @@ void configure_i2c_devices() {
 //
 //	// Set up the Accelerometer
 //	write_byte_to_register(AC_WAADR, 0x2A, 0x01); // Take the accelerometer out of sleep mode
-}
+//}
 
 // Return 0 if not running on battery. Else return the % of battery left
-uint8_t is_running_on_battery() {
-	is_running_on_battery_g = read_byte_from_register(FG_RAADR, FG_WAADR, 0x04);
-	return is_running_on_battery_g == 0 ? 0 : 1;
-}
+//uint8_t is_running_on_battery() {
+//	is_running_on_battery_g = read_byte_from_register(FG_RAADR, FG_WAADR, 0x04);
+//	return is_running_on_battery_g == 0 ? 0 : 1;
+//}
+//
+//uint16_t get_current_voltage() {
+//	return (read_byte_from_register(FG_RAADR, FG_WAADR, 0x02) << 8)
+//			+ (read_byte_from_register(FG_RAADR, FG_WAADR, 0x03) << 4);
+//}
 
-uint16_t get_current_voltage() {
-	return (read_byte_from_register(FG_RAADR, FG_WAADR, 0x02) << 8)
-			+ (read_byte_from_register(FG_RAADR, FG_WAADR, 0x03) << 4);
-}
-
-uint16_t get_acc_direction(uint8_t reg) {
-	return (read_byte_from_register(AC_RAADR, AC_WAADR, reg) << 4)
-			+ (read_byte_from_register(AC_RAADR, AC_WAADR, (reg + 0x01)) >> 4);
-}
-
-void update_acc_data() {
-	x_g = get_acc_direction(0x01);
-	y_g = get_acc_direction(0x03);
-	z_g = get_acc_direction(0x05);
-}
+//uint16_t get_acc_direction(uint8_t reg) {
+//	return (read_byte_from_register(AC_RAADR, AC_WAADR, reg) << 4)
+//			+ (read_byte_from_register(AC_RAADR, AC_WAADR, (reg + 0x01)) >> 4);
+//}
+//
+//void update_acc_data() {
+//	x_g = get_acc_direction(0x01);
+//	y_g = get_acc_direction(0x03);
+//	z_g = get_acc_direction(0x05);
+//}
 
 uint32_t uartConnected() {
 	/*
