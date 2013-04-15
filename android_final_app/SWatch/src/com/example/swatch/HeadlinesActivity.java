@@ -19,15 +19,6 @@ public class HeadlinesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_headlines);
 		
-		// Ensure a valid number of headlines saved
-		if (Utility.mNumHeadlines == null)
-		{
-			Toast.makeText(HeadlinesActivity.this, "Number of headlines is invalid.  Please save number and retry.", Toast.LENGTH_SHORT).show();
-			finish();
-			return;
-			
-		}
-		
 		System.out.println("in get headlines");
 		
 		TextView headlineTextView = (TextView) findViewById(R.id.headline_string);
@@ -35,7 +26,7 @@ public class HeadlinesActivity extends Activity {
 		
 		String mHeadlineNews = "";
 		// Get current headlines
-    	final String url = "http://api.usatoday.com/articles/topnews/home?count=" + Utility.mNumHeadlines + "&days=0&page=0&encoding=json&api_key=jmfqkr26s7kh2saapy2spxxz";
+    	final String url = "http://api.usatoday.com/articles/topnews/home?count=12&days=0&page=0&encoding=json&api_key=jmfqkr26s7kh2saapy2spxxz";
     
     	// JSON Node names
     	final String TAG_STORIES = "stories";
@@ -49,28 +40,6 @@ public class HeadlinesActivity extends Activity {
 		
 		String title = null;
 		String description = null;
-		String headlineNews = "";
-		     		
-		JSONObject fjson = fParser.getJSONFromUrl(url);
-		try {
-			JSONArray stories = fjson.getJSONArray(TAG_STORIES);
-			
-			for (int i = 0; i < stories.length(); i++) {
-				
-				JSONObject story = stories.getJSONObject(i);
-				title = story.getString(TAG_TITLE);
-				description = story.getString(TAG_DESCRIPTION);
-				
-				headlineNews = headlineNews + (i + 1) + ") " + title + ": " + description + "\n\0";
-			}
-		}
-		catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
-		// Parse string
-		String parsed = Utility.parse_string(headlineNews);
-		
 		
 		String h0 = "";
 		String h1 = "";
@@ -85,79 +54,102 @@ public class HeadlinesActivity extends Activity {
 		String h10 = "";
 		String h11 = "";
 		
-		int last_index = 0;
-		int first_index = 0;
+		     		
+		JSONObject fjson = fParser.getJSONFromUrl(url);
+		try {
+			JSONArray stories = fjson.getJSONArray(TAG_STORIES);
+			
+			for (int i = 0; i < stories.length(); i++) {
+				
+				JSONObject story = stories.getJSONObject(i);
+				title = story.getString(TAG_TITLE);
+				description = story.getString(TAG_DESCRIPTION);
+				
+				if (i == 0)
+					h0 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 1)
+					h1 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 2)
+					h2 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 3)
+					h3 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 4)
+					h4 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 5)
+					h5 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 6)
+					h6 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 7)
+					h7 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 8)
+					h8 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 9)
+					h9 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 10)
+					h10 = (i + 1) + ") " + title + ": " + description + "\n\0";
+				else if (i == 11)
+					h11 = (i + 1) + ") " + title + ": " + description + "\n\0";
+			}
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h0 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
-		h0 = "HEADLILNES\n" + h0;
+		String parsed = Utility.parse_string(h0);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH0 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h1 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h1);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH1 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h2 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h2);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH2 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h3 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h3);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH3 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h4 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h4);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH4 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h5 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h5);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH5 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h6 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h6);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH6 = parsed;
 		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h7 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
+		parsed = Utility.parse_string(h7);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH7 = parsed;
+		
+		parsed = Utility.parse_string(h8);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH8 = parsed;
+		
+		parsed = Utility.parse_string(h9);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH9 = parsed;
+		
+		parsed = Utility.parse_string(h10);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH10 = parsed;
+		
+		parsed = Utility.parse_string(h11);
+		parsed = "HEADLILNES\n" + parsed;
+		Utility.mH11 = parsed;
+		
+		
+		mHeadlineNews = Utility.mH0 + Utility.mH1 + Utility.mH2 + Utility.mH3 + Utility.mH4 + Utility.mH5 + Utility.mH6 + Utility.mH7 + Utility.mH8
+				+ Utility.mH9 + Utility.mH10 + Utility.mH11;
+		
+		headlineTextView.setText(mHeadlineNews);
 
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h8 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
-		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h9 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
-		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h10 = parsed.substring(first_index, last_index);
-		first_index = last_index + 1;
-		
-		last_index = Utility.get_headline_lastindex(first_index, parsed);
-		h11 = parsed.substring(first_index);
-		
-		System.out.println("Size of h1 "+ h1.length());
-		System.out.println("last_index " + last_index);
-		System.out.println("fist_index " + first_index);
-		
-		headlineTextView.setText(h11);
-
-		// Send over Bluetooth
-		CommThread.write(h0.getBytes());
-		CommThread.write(h1.getBytes());
-		CommThread.write(h2.getBytes());
-		CommThread.write(h3.getBytes());
-		CommThread.write(h4.getBytes());
-		CommThread.write(h5.getBytes());
-		CommThread.write(h6.getBytes());
-		CommThread.write(h7.getBytes());
-		CommThread.write(h8.getBytes());
-		CommThread.write(h9.getBytes());
-		CommThread.write(h10.getBytes());
-		CommThread.write(h11.getBytes());
-		
-		
-		// Get hex value for each char
+		// Get hex value for each char for debugging
 		String ascii = "";
 		int index = 0;
 		
@@ -169,14 +161,14 @@ public class HeadlinesActivity extends Activity {
 		headlineASCII.setText(ascii);
 		
 		// Timer to exit the activity
-		Timer timer = new Timer();
+		/*Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			public void run() {
 				  finish();
 				  return;
 			}
 
-		}, 20000);
+		}, 20000);*/
 	}
 
 	@Override

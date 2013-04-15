@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -19,8 +20,7 @@ import android.bluetooth.BluetoothAdapter;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class MainActivity extends Activity {
-	
-	private Handler handler;
+
     private CommThread thread;
     private ProgressDialog dialog;
 
@@ -37,8 +37,6 @@ public class MainActivity extends Activity {
         final EditText zipCode = (EditText) findViewById(R.id.zip_code);
         Button getWeather = (Button) findViewById(R.id.get_weather);
         
-        Button saveHeadlines = (Button) findViewById(R.id.save_headlines);
-        final EditText numHeadlines = (EditText) findViewById(R.id.number_headlines);
         Button getHeadlines = (Button) findViewById(R.id.get_headlines);
         
         Button getTime = (Button) findViewById(R.id.time);
@@ -101,25 +99,10 @@ public class MainActivity extends Activity {
             	MainActivity.this.startActivity(myIntent);
             }
         });
- 
-        saveHeadlines.setOnClickListener(new View.OnClickListener() {
-        	
-            @Override
-            public void onClick(View v)
-            {
-            	Utility.mNumHeadlines = numHeadlines.getText().toString();
-            	if(Integer.parseInt(Utility.mNumHeadlines) > 12)
-            	{
-            		Toast.makeText(MainActivity.this, "Max number of headlines is 12. Number of headlines will now be set to 12.", Toast.LENGTH_LONG).show();
-            		Utility.mNumHeadlines = "12";
-            	}
-            	else
-            	{
-            		Toast.makeText(MainActivity.this, "Number of headlines set as " + Utility.mNumHeadlines, Toast.LENGTH_SHORT).show();
-            	}
-            }
-        });
      
+        
+        
+        
         getHeadlines.setOnClickListener(new View.OnClickListener() {
         	
             @Override
@@ -140,13 +123,90 @@ public class MainActivity extends Activity {
             }
         });
     }
+	
+	Handler mHandler = new Handler(){
+      	 @Override
+      	    public void handleMessage(Message msg) {
+      		byte[] readBuf = (byte[]) msg.obj;
+      		String readMessage = new String(readBuf, 0, msg.arg1);
+      		String headline = null;
+      	        switch (msg.what) 
+      	        {
+      	        case 0:
+      	        	if (readMessage.charAt(1) == '0')
+      	        	{
+      	        		Intent myIntent = new Intent(MainActivity.this, HeadlinesActivity.class);
+      	        		MainActivity.this.startActivity(myIntent);
+      	        		Utility.mHeadline_counter = -1;
+      	        	}
+      	        	else if (readMessage.charAt(1) == '1')
+      	        	{
+      	        		Utility.mHeadline_counter++;
+      	        		if (Utility.mHeadline_counter > 11)
+      	        			Utility.mHeadline_counter = 0;
+      	        		headline = Utility.get_headline(Utility.mHeadline_counter);
+      	        		System.out.println("NUM: "+Utility.mHeadline_counter);
+      	        		System.out.println("get next headline "+headline + headline.length());
+      	        		//CommThread.write(headline.getBytes());      	        		
+      	        	}
+      	        	else if (readMessage.charAt(1) == '2')
+      	        	{
+      	        		System.out.println("get previous headline "+Utility.mCurrent_cond);
+      	        		Utility.mHeadline_counter--;
+      	        		if (Utility.mHeadline_counter < 0)
+      	        			Utility.mHeadline_counter = 11;
+      	        		headline = Utility.get_headline(Utility.mHeadline_counter);
+      	        		System.out.println("NUM: "+Utility.mHeadline_counter);
+      	        		System.out.println("get next headline "+headline + headline.length());	        		
+      	        		//CommThread.write(headline.getBytes());      	        		
+      	        	}
+      	        	break;
+
+      	        case 1:
+      	        	if (readMessage.charAt(1) == '0')
+      	        	{
+      	        		Intent myIntent1 = new Intent(MainActivity.this, WeatherActivity.class);
+      	        		MainActivity.this.startActivity(myIntent1);
+      	        	}
+      	        	else if (readMessage.charAt(1) == '1')
+      	        	{
+      	        		System.out.println("send current conditions "+Utility.mCurrent_cond);
+      	        		//CommThread.write(Utility.mIcon_cur.getBytes());
+      	        		//CommThread.write(Utility.mCurrent_cond.getBytes());
+      	        	}
+      	        	else if (readMessage.charAt(1) == '2')
+      	        	{
+      	        		System.out.println("send forecast" + Utility.mForecast);
+      	        		//CommThread.write(Utility.mIcon_forecast.getBytes());
+      	        		//CommThread.write(Utility.mCurrent_cond.getBytes());
+      	        	}
+                	System.out.println("Case: weather "+ readMessage);
+  	                break;
+
+      	          case 2:
+      	        	if (readMessage.charAt(1) == '0')
+      	        	{
+      	        		Intent myIntent2 = new Intent(MainActivity.this, TimeActivity.class);
+      	        		MainActivity.this.startActivity(myIntent2);
+      	        	}
+      	        	else if (readMessage.charAt(1) == '1')
+      	        	{
+      	        		System.out.println("send TIME" + Utility.mTime);
+      	        		//CommThread.write(Utility.mTime.getBytes());
+      	        	}
+      	            break;
+
+      	        }
+      	    }
+      	};
+	
 	@Override
     public void onStart() {
             super.onStart();
             CommThread.cancel();
             dialog = ProgressDialog.show(this, "Connecting", "Searching for SMWatch...");
-            thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, handler);
-            thread.start();
+            thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler);
+           thread.start();
     }
 	
 	@Override

@@ -20,13 +20,8 @@ package com.example.swatch;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Set;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.Handler;
 import android.util.Log;
@@ -39,6 +34,7 @@ class CommThread extends Thread {
     private Handler handler;
     private ProgressDialog dialog;
     private BluetoothAdapter adapter;
+    private byte[] buffer = new byte[1024];
 
 
     public CommThread(BluetoothAdapter adapter, ProgressDialog dialog, Handler handler) {
@@ -47,12 +43,63 @@ class CommThread extends Thread {
         this.adapter = adapter;
     }
 
+
     public void run() {
                 if (adapter == null)
                         return;
 
-
-                Set<BluetoothDevice> devices = adapter.getBondedDevices();
+                
+                
+                // testing handler
+                buffer[0] = '1';
+                buffer[1] = '0';
+                buffer[2] = '\0';
+               
+                int b = Character.digit((char) buffer[0], 10);
+                System.out.println("INT "+b);
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                buffer[1] = '2';
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                buffer[1] = '1';
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                /*handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();
+                handler.obtainMessage(b, 3, -1, buffer)
+                .sendToTarget();*/
+                
+    }
+               /* Set<BluetoothDevice> devices = adapter.getBondedDevices();
                 BluetoothDevice device = null;
                 for (BluetoothDevice curDevice : devices) {
                         if (curDevice.getName().matches("RN42-CD0C")) {
@@ -112,40 +159,14 @@ class CommThread extends Thread {
         
         if (dialog != null && dialog.isShowing())
                 dialog.dismiss();
-
-
-        StringBuffer sb = new StringBuffer();
-        byte[] buffer = new byte[1024];  // buffer store for the stream
-        int bytes; // bytes returned from read()
-        String message;
-        int idx;
-        HashMap<String, String> hm;
-        String[] chunks;
-        
+     
+        // Read from Bluetooth always
         while (true) {
-            try {
-                // Read from the InputStream
-                bytes = istream.read(buffer);
-                sb.append(new String(buffer, 0, bytes));
-                while ((idx = sb.indexOf("\r\n\r\n")) > -1) {
-                    message = sb.substring(0, idx);
-                    System.out.println("Message: "+message);
-                        sb.replace(0, idx+4, "");
-                        hm = new HashMap<String, String>();
-                        for (String line : message.split("\n")) {
-                                chunks = line.trim().split("=", 2);
-                                if (chunks.length != 2) continue;
-                                hm.put(chunks[0], chunks[1]);
-                        }
-                        handler.obtainMessage(0x2a, hm).sendToTarget();
-                }
-            } catch (IOException e) {
-                break;
-            }
+        	System.out.println("in while");
+        	readFromTarget();
         }
     }
-
-
+*/
     /* Call this from the main Activity to send data to the remote device */
     public static void write(byte[] bytes) {
         try {
@@ -163,4 +184,46 @@ class CommThread extends Thread {
                         socket.close();
         } catch (IOException e) { }
     }
+    
+    public int readFromTarget() {
+		int index = 0;
+		byte[] tmp_buff = new byte[1024];
+		while(true) 
+		{
+			// Receive the sync message to ensure pairing with the right device
+			int bytes = 0; // bytes returned from read()
+			try 
+			{
+				bytes = istream.read(tmp_buff);
+
+				// Copy to permenant buffer
+				for (int i = 0; i < bytes; i++) 
+				{
+					buffer[index] = tmp_buff[i];
+					System.out.println("buffer "+index+(char)buffer[index]);
+					index++;
+				}
+				
+				// Send the obtained bytes to the UI Activity
+				// headlines = 0, weather = 1, time = 2 and buff[1] = 0
+				int activity = Character.digit((char) buffer[0], 10);
+				
+				handler.obtainMessage(activity, bytes, -1, buffer)
+	                          .sendToTarget();
+				
+
+				// If the last byte is \0 we are done
+				if(buffer[index - 1] == '\0') 
+				{
+					break;
+				}
+			} 
+			catch (IOException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return index;
+	}
 }

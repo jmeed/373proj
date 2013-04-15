@@ -32,10 +32,11 @@ public class TimeActivity extends Activity {
 		timeTextView.setText(time);
 		timeASCII.setText(ascii);
 		
-		// Send over Bluetooth
-		CommThread.write(time.getBytes());
+		// Save Time
+		Utility.mTime = time;
+		//CommThread.write(time.getBytes());
 		
-		Timer timer = new Timer();
+		/*Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
 
 	    public void run() {
@@ -43,7 +44,7 @@ public class TimeActivity extends Activity {
 		   return;
 	   }
 
-	}, 7000);
+	}, 7000);*/
 		
 		
 	}

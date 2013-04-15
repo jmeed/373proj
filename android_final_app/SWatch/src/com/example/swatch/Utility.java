@@ -5,7 +5,25 @@ public class Utility {
 	public static String mUserCity;
 	public static String mUserState;
 	public static String mUserZip;
-	public static String mNumHeadlines;
+	public static String mForecast;
+	public static String mCurrent_cond;
+	public static String mIcon_cur;
+	public static String mIcon_forecast;
+	public static String mTime;
+	public static int mHeadline_counter;
+	public static String mH0;
+	public static String mH1;
+	public static String mH2;
+	public static String mH3;
+	public static String mH4;
+	public static String mH5;
+	public static String mH6;
+	public static String mH7;
+	public static String mH8;
+	public static String mH9;
+	public static String mH10;
+	public static String mH11;
+	
 
 	static String parse_string(String to_be_parsed)
 	{
@@ -21,8 +39,6 @@ public class Utility {
 		int i_space = 18;
 		int l_space = 0;
 		boolean last_line = false;
-		
-		System.out.println("to_be_parsed size: "+to_be_parsed.length());
 		
 		while (true)
 		{
@@ -124,6 +140,54 @@ public class Utility {
 			e1.printStackTrace();
 		}
 
+	}
+	
+	static String get_headline(int head)
+	{
+		String to_return = null;
+		switch(head)
+		{
+		case 0:
+			to_return = mH0;
+			break;
+		case 1:
+			to_return = mH1;
+			break;
+		case 2:
+			to_return = mH2;
+			break;
+		case 3:
+			to_return = mH3;
+			break;
+		case 4:
+			to_return = mH4;
+			break;
+		case 5:
+			to_return = mH5;
+			break;
+		case 6:
+			to_return = mH6;
+			break;
+		case 7:
+			to_return = mH7;
+			break;
+		case 8:
+			to_return = mH8;
+			break;
+		case 9:
+			to_return = mH9;
+			break;
+		case 10:
+			to_return = mH10;
+			break;
+		case 11:
+			to_return = mH11;
+			break;
+		default:
+			to_return = null;
+			break;
+		}
+		return to_return;
 	}
 	
 	static int get_headline_lastindex(int start_index, String input)
