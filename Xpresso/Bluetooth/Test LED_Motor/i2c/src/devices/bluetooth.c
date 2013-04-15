@@ -9,8 +9,10 @@
 #include <stdio.h>
 #include "i2c_com.h"
 
+// bl_send should point to the first available byte where the message will begin
+uint8_t * const bl_send = (uint8_t *) I2CMasterBuffer + 2;
+
 void init_bl() {
-	bl_send = (uint8_t *) I2CMasterBuffer + 2;
 	// Set up Bluetooth
 	write_i2c_register(BL_WAADR, BL_LCR, 0x80); // 0x80 to program baudrate
 	write_i2c_register(BL_WAADR, BL_DLH, 0x00); // ([14.7456 * 10 ^ 6] / 1) / (115200 * 16) = 8 => 0x0008
