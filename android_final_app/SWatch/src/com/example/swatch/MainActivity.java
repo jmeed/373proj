@@ -31,7 +31,12 @@ public class MainActivity extends Activity {
 		
 		// Set thread policy to allow parsing
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy); 
+		StrictMode.setThreadPolicy(policy);
+		
+		CommThread.cancel();
+        dialog = ProgressDialog.show(this, "Connecting", "Searching for SMWatch...");
+        thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler);
+        thread.start();
 		
 		Button saveWeather = (Button) findViewById(R.id.save_weather);
         final EditText zipCode = (EditText) findViewById(R.id.zip_code);
@@ -147,7 +152,7 @@ public class MainActivity extends Activity {
       	        		headline = Utility.get_headline(Utility.mHeadline_counter);
       	        		System.out.println("NUM: "+Utility.mHeadline_counter);
       	        		System.out.println("get next headline "+headline + headline.length());
-      	        		//CommThread.write(headline.getBytes());      	        		
+      	        		CommThread.write(headline.getBytes());      	        		
       	        	}
       	        	else if (readMessage.charAt(1) == '2')
       	        	{
@@ -158,7 +163,7 @@ public class MainActivity extends Activity {
       	        		headline = Utility.get_headline(Utility.mHeadline_counter);
       	        		System.out.println("NUM: "+Utility.mHeadline_counter);
       	        		System.out.println("get next headline "+headline + headline.length());	        		
-      	        		//CommThread.write(headline.getBytes());      	        		
+      	        		CommThread.write(headline.getBytes());      	        		
       	        	}
       	        	break;
 
@@ -171,14 +176,14 @@ public class MainActivity extends Activity {
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
       	        		System.out.println("send current conditions "+Utility.mCurrent_cond);
-      	        		//CommThread.write(Utility.mIcon_cur.getBytes());
-      	        		//CommThread.write(Utility.mCurrent_cond.getBytes());
+      	        		CommThread.write(Utility.mIcon_cur.getBytes());
+      	        		CommThread.write(Utility.mCurrent_cond.getBytes());
       	        	}
       	        	else if (readMessage.charAt(1) == '2')
       	        	{
       	        		System.out.println("send forecast" + Utility.mForecast);
-      	        		//CommThread.write(Utility.mIcon_forecast.getBytes());
-      	        		//CommThread.write(Utility.mCurrent_cond.getBytes());
+      	        		CommThread.write(Utility.mIcon_forecast.getBytes());
+      	        		CommThread.write(Utility.mForecast.getBytes());
       	        	}
                 	System.out.println("Case: weather "+ readMessage);
   	                break;
@@ -192,7 +197,7 @@ public class MainActivity extends Activity {
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
       	        		System.out.println("send TIME" + Utility.mTime);
-      	        		//CommThread.write(Utility.mTime.getBytes());
+      	        		CommThread.write(Utility.mTime.getBytes());
       	        	}
       	            break;
 
@@ -203,10 +208,7 @@ public class MainActivity extends Activity {
 	@Override
     public void onStart() {
             super.onStart();
-            CommThread.cancel();
-            dialog = ProgressDialog.show(this, "Connecting", "Searching for SMWatch...");
-            thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler);
-           thread.start();
+            
     }
 	
 	@Override

@@ -23,19 +23,19 @@ public class WeatherActivity extends Activity {
 		setContentView(R.layout.activity_weather);
 		
 		// Check if zip code saved
-		/*if (Utility.mUserZip == null)
+		if (Utility.mUserZip == null)
 		{
 			Toast.makeText(WeatherActivity.this, "Zip Code is invalid.  Please save zipcode and retry.", Toast.LENGTH_SHORT).show();
 			finish();
 			return;
-		}*/
+		}
 		
 		TextView weatherTextView = (TextView) findViewById(R.id.weather_string);
 		TextView weatherASCII = (TextView) findViewById(R.id.weather_ascii_string);
 		
-		//final String curl = "http://api.wunderground.com/api/afd835494ae994bc/conditions/q/" + Utility.mUserZip + ".json";
-		final String curl = "http://api.wunderground.com/api/afd835494ae994bc/conditions/q/44145.json";
-      	String mStrWeather = "";
+		final String curl = "http://api.wunderground.com/api/afd835494ae994bc/conditions/q/" + Utility.mUserZip + ".json";
+
+		String mStrWeather = "";
       	
 		// JSON Node names
       	final String TAG_OBSERVATION = "current_observation";
@@ -91,8 +91,7 @@ public class WeatherActivity extends Activity {
   		
   		
   		// Weather Forecast
-    	//final String furl = "http://api.wunderground.com/api/afd835494ae994bc/forecast/q/" + Utility.mUserZip + ".json";
-    	final String furl = "http://api.wunderground.com/api/afd835494ae994bc/forecast/q/44145.json";
+    	final String furl = "http://api.wunderground.com/api/afd835494ae994bc/forecast/q/" + Utility.mUserZip + ".json";
     	// JSON Node names
     	final String TAG_FORECAST = "forecast";
     	final String TAG_TXTFORECAST = "txt_forecast";
@@ -160,7 +159,7 @@ public class WeatherActivity extends Activity {
 		weatherASCII.setText(ascii);
 
 		// Timer to exit the activity
-		/*Timer timer = new Timer();
+		Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
 
 	    public void run() {
@@ -168,7 +167,7 @@ public class WeatherActivity extends Activity {
 		  return;
 	    }
 
-	   }, 20000);*/
+	   }, 20000);
 		
 	}
 	

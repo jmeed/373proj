@@ -66,29 +66,29 @@ public class HeadlinesActivity extends Activity {
 				description = story.getString(TAG_DESCRIPTION);
 				
 				if (i == 0)
-					h0 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h0 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 1)
-					h1 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h1 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 2)
-					h2 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h2 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 3)
-					h3 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h3 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 4)
-					h4 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h4 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 5)
-					h5 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h5 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 6)
-					h6 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h6 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 7)
-					h7 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h7 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 8)
-					h8 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h8 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 9)
-					h9 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h9 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 10)
-					h10 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h10 = (i + 1) + ") " + title + ": " + description + "\n";
 				else if (i == 11)
-					h11 = (i + 1) + ") " + title + ": " + description + "\n\0";
+					h11 = (i + 1) + ") " + title + ": " + description + "\n";
 			}
 		}
 		catch (JSONException e) {
@@ -97,51 +97,51 @@ public class HeadlinesActivity extends Activity {
 		
 		String parsed = Utility.parse_string(h0);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH0 = parsed;
+		Utility.mH0 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h1);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH1 = parsed;
+		Utility.mH1 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h2);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH2 = parsed;
+		Utility.mH2 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h3);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH3 = parsed;
+		Utility.mH3 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h4);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH4 = parsed;
+		Utility.mH4 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h5);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH5 = parsed;
+		Utility.mH5 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h6);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH6 = parsed;
+		Utility.mH6 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h7);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH7 = parsed;
+		Utility.mH7 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h8);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH8 = parsed;
+		Utility.mH8 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h9);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH9 = parsed;
+		Utility.mH9 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h10);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH10 = parsed;
+		Utility.mH10 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h11);
 		parsed = "HEADLILNES\n" + parsed;
-		Utility.mH11 = parsed;
+		Utility.mH11 = parsed + "\0";
 		
 		
 		mHeadlineNews = Utility.mH0 + Utility.mH1 + Utility.mH2 + Utility.mH3 + Utility.mH4 + Utility.mH5 + Utility.mH6 + Utility.mH7 + Utility.mH8
@@ -161,14 +161,14 @@ public class HeadlinesActivity extends Activity {
 		headlineASCII.setText(ascii);
 		
 		// Timer to exit the activity
-		/*Timer timer = new Timer();
+		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			public void run() {
 				  finish();
 				  return;
 			}
 
-		}, 20000);*/
+		}, 20000);
 	}
 
 	@Override

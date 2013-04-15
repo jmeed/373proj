@@ -20,7 +20,7 @@ public class TimeActivity extends Activity {
 		
 		String ascii = "";
 		long rightNow = Calendar.getInstance().getTimeInMillis();
-		String time = String.valueOf(rightNow) + "\0";
+		String time = String.valueOf(rightNow);
 		
 		for (int index = 0; index < time.length(); index++)
 		{
@@ -33,10 +33,9 @@ public class TimeActivity extends Activity {
 		timeASCII.setText(ascii);
 		
 		// Save Time
-		Utility.mTime = time;
-		//CommThread.write(time.getBytes());
+		Utility.mTime = time + "\0";
 		
-		/*Timer timer = new Timer();
+		Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
 
 	    public void run() {
@@ -44,7 +43,7 @@ public class TimeActivity extends Activity {
 		   return;
 	   }
 
-	}, 7000);*/
+	}, 7000);
 		
 		
 	}

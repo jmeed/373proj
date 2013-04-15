@@ -20,8 +20,13 @@ package com.example.swatch;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Set;
+
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.Handler;
 import android.util.Log;
@@ -50,28 +55,11 @@ class CommThread extends Thread {
 
                 
                 
-                // testing handler
-                buffer[0] = '1';
-                buffer[1] = '0';
-                buffer[2] = '\0';
-               
-                int b = Character.digit((char) buffer[0], 10);
-                System.out.println("INT "+b);
+                
+                /*buffer[1] = '1';
                 handler.obtainMessage(b, 3, -1, buffer)
                 .sendToTarget();
-                try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-                buffer[1] = '2';
                 handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                buffer[1] = '1';
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                /*handler.obtainMessage(b, 3, -1, buffer)
                 .sendToTarget();
                 handler.obtainMessage(b, 3, -1, buffer)
                 .sendToTarget();
@@ -98,8 +86,8 @@ class CommThread extends Thread {
                 handler.obtainMessage(b, 3, -1, buffer)
                 .sendToTarget();*/
                 
-    }
-               /* Set<BluetoothDevice> devices = adapter.getBondedDevices();
+    
+                Set<BluetoothDevice> devices = adapter.getBondedDevices();
                 BluetoothDevice device = null;
                 for (BluetoothDevice curDevice : devices) {
                         if (curDevice.getName().matches("RN42-CD0C")) {
@@ -159,14 +147,38 @@ class CommThread extends Thread {
         
         if (dialog != null && dialog.isShowing())
                 dialog.dismiss();
-     
+     try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+     // testing handler
+        buffer[0] = '2';
+        buffer[1] = '0';
+        buffer[2] = '\0';
+       
+        int b = Character.digit((char) buffer[0], 10);
+        System.out.println("INT "+b);
+        handler.obtainMessage(b, 3, -1, buffer)
+        .sendToTarget();
+        try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        buffer[1] = '1';
+        handler.obtainMessage(b, 3, -1, buffer)
+        .sendToTarget();
+        
         // Read from Bluetooth always
         while (true) {
         	System.out.println("in while");
         	readFromTarget();
         }
     }
-*/
+
     /* Call this from the main Activity to send data to the remote device */
     public static void write(byte[] bytes) {
         try {
