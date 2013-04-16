@@ -50,7 +50,7 @@ uint8_t receive_bl_message() {
 			bl_receive[index] = (char) read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
 			index++;
 			if(bl_receive[index - 1] == '\0') { // Got the entire message
-				printf("BL msg received: [%s]\n", (char *) bl_receive);
+				printf("BL msg received of size: %d\n", index);
 				fflush(stdout);
 				break;
 			}
@@ -78,7 +78,7 @@ uint8_t wait_bl_and_receive(uint8_t opcode_requested) {
 
 	switch(opcode_received) {
 	default:
-		printf("ERR: opcode [%d] from bluetooth receive not valid\n", opcode_received);
+		printf("ERR: opcode [%d] from Bluetooth receive not valid\n", opcode_received);
 		assert(0);
 		break;
 	}
