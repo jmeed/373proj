@@ -116,7 +116,7 @@ public class WeatherActivity extends Activity {
 			e.printStackTrace();
 		}
         
-		fcttext = fcttext.replaceAll("([0-9]+)F", "$1");
+		/*fcttext = fcttext.replaceAll("([0-9]+)F", "$1");
 		fcttext = fcttext.replaceAll("[Mm][Pp][Hh]", "miles per hour");
 		for(int i = 0; i < 2; i++) 
 		{
@@ -124,10 +124,11 @@ public class WeatherActivity extends Activity {
 			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)S([NSEW]*[ \t\n\f\r])", "$1 south $2");
 			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)E([NSEW]*[ \t\n\f\r])", "$1 east $2");
 			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)W([NSEW]*[ \t\n\f\r])", "$1 west $2");
-		}
+		}*/
 		mStrWeather = "";
 		
-		mStrWeather = "The forecast for today is: " + fcttext;
+		mStrWeather = fcttext;
+		//mStrWeather = mStrWeather.substring(0, 170);
 		
 		// Parse forecast string and save
 		String parsed_forecast = Utility.parse_string(mStrWeather);

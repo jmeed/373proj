@@ -19,7 +19,7 @@ public class TimeActivity extends Activity {
 		TextView timeASCII = (TextView) findViewById(R.id.time_ascii_string);
 		
 		String ascii = "";
-		long rightNow = Calendar.getInstance().getTimeInMillis();
+		long rightNow = Calendar.getInstance().getTimeInMillis()/1000;
 		String time = String.valueOf(rightNow);
 		
 		for (int index = 0; index < time.length(); index++)
