@@ -16,7 +16,7 @@
 
 #define UART_BAUD 6830
 //#define UART_BAUD_FAST 115200
-#define UART_BAUD_FAST 89536
+#define UART_BAUD_FAST 86400
 
 #define LED_PORT 0		// Port for led
 #define LED_BIT 7		// Bit on port for led

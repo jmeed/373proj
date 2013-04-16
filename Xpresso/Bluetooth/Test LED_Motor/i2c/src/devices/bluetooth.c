@@ -51,7 +51,6 @@ uint8_t receive_bl_message() {
 			index++;
 			if(bl_receive[index - 1] == '\0') { // Got the entire message
 				printf("BL msg received of size: %d\n", index);
-				fflush(stdout);
 				break;
 			}
 			// If we have gotten 64 characters but not null than we want to send an ack and read the rest of them again

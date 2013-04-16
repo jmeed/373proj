@@ -21,8 +21,8 @@ extern volatile uint8_t UARTBuffer[BUFSIZEUART];	//This may need to be larger
 int time_image = 0;
 
 void initScreen() {
-	setBaudRate();
-	UARTInit(UART_BAUD_FAST);
+	//setBaudRate();
+	//UARTInit(UART_BAUD_FAST);
 	clearScreen();
 	disableScrolling();
 	mediaInit();
@@ -53,7 +53,13 @@ void setBaudRate()
 	UARTCount = 4;
 	UARTSend((uint8_t *) UARTBuffer, UARTCount);
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
-	wait();	//wait for screen to ACK
+	//wait();	//wait for screen to ACK
+	int i, j;
+	for (i = 1; i < 1000; i++) {
+		for (j = 1; j < 1000; j++) {
+			;	//do nothing
+		}
+	}
 	//if (gotACK() == 0)
 		//printf("DANGER WILL ROBINSON, Failed to set baud rate\n");
 	UARTCount = 0;
@@ -124,12 +130,15 @@ void media_display() {
 }
 
 void wait() {
-	int i, j;
-	for (i = 1; i < 1000; i++) {
-		for (j = 1; j < 1000; j++) {
-			;	//do nothing
-		}
+	while (UARTCount == 0) { // Wait for an interupt
 	}
+	UARTCount = 0;
+//	int i, j;
+//	for (i = 1; i < 1000; i++) {
+//		for (j = 1; j < 1000; j++) {
+//			;	//do nothing
+//		}
+//	}
 }
 
 int gotACK() {

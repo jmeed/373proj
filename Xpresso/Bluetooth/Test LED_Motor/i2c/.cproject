@@ -184,14 +184,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.crt.advproject.config.exe.release.1418659525.1595542672" name="uart.h" rcbsApplicability="disable" resourcePath="driver/uart.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="config"/>
 						<entry excluding="src|config_old|startup|config|linker|driver|cmsis" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="wdt.h|wdt.c|uart.h|uart.c|type.h|timer32.h|timer32.c|timer16.h|timer16.c|ssp.h|ssp.c|small_gpio.h|small_gpio.c|rs485.h|rs485.c|lpc_swu.h|lpc_swu.c|i2cslave.h|i2cslave.c|debug_printf.h|debug_printf.c|clkconfig.h|clkconfig.c|adc.h|adc.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="driver"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
-						<entry excluding="config" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="linker"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cmsis"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="config"/>
+						<entry excluding="wdt.h|wdt.c|type.h|timer32.h|timer32.c|timer16.h|timer16.c|ssp.h|ssp.c|small_gpio.h|small_gpio.c|rs485.h|rs485.c|lpc_swu.h|lpc_swu.c|i2cslave.h|i2cslave.c|debug_printf.h|debug_printf.c|clkconfig.h|clkconfig.c|adc.h|adc.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="driver"/>
+						<entry excluding="config" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="linker"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

@@ -31,7 +31,6 @@ void UART_IRQHandler(void)
 {
   uint8_t IIRValue, LSRValue;
   uint8_t Dummy = Dummy;
-
   IIRValue = LPC_UART->IIR;
     
   IIRValue >>= 1;			/* skip pending bit in IIR */
