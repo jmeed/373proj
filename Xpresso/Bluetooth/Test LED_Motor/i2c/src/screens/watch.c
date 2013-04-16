@@ -17,6 +17,7 @@
 #include "../devices/accelerometer.h"
 #include "../devices/fuel_gauge.h"
 #include "debug.h"
+#include <string.h>
 
 // Private functions
 static void start_watch();
