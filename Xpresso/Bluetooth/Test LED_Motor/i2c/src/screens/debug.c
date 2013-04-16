@@ -7,7 +7,7 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include "../globals.h"
+#include "../devices/joystick.h"
 #include "watch.h"
 #include "../devices/screen.h"
 #include "gpio.h"
@@ -25,7 +25,7 @@ void main_debug() {
 		run_state = RUN;
 	}
 
-	enum joystick_dir curJoy  = getJoyDirection();
+	enum Joystick_dir curJoy  = getJoyDirection();
 	switch (curJoy) {
 	case IN:
 		next_state = MAIN_WATCH;

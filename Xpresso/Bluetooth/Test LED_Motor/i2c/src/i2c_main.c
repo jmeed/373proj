@@ -20,6 +20,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "globals.h"
+#include "devices/joystick.h"
 #include "screens/watch.h"
 #include "devices/screen.h"
 #include "gpio.h"

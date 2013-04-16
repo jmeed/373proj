@@ -24,7 +24,7 @@
 #include "gpio.h"
 #include <assert.h>
 #include <stdio.h>
-#include "../src/globals.h"
+#include "../src/devices/joystick.h"
 #include "../src/screens/watch.h"
 #include "../src/devices/screen.h"
 
@@ -47,7 +47,7 @@ void PIOINT0_IRQHandler(void)
 {
   if ( GPIOIntStatus( LEFTPORT, LEFTPOS ) )
   {
-	joystick_dir = LEFT;
+	joystick_dir = RIGHT;
 	GPIOIntClear( LEFTPORT, LEFTPOS );
 
   }
@@ -134,7 +134,7 @@ void PIOINT3_IRQHandler(void)
 {
   if ( GPIOIntStatus( RIGHTPORT, RIGHTPOS ) )
   {
-	joystick_dir = RIGHT;
+	joystick_dir = LEFT;
 	GPIOIntClear( RIGHTPORT, RIGHTPOS );
 
   }
@@ -445,12 +445,6 @@ void GPIOSetDir( uint32_t portNum, uint32_t bitPosi, uint32_t dir )
 ** Returned value:		None
 **
 *****************************************************************************/
-
-enum joystick_dir getJoyDirection(){
-	enum joystick_dir current_dir = joystick_dir;
-	joystick_dir = NONE;
-	return current_dir;
-}
 
 
 /******************************************************************************

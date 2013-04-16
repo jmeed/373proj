@@ -11,7 +11,7 @@
 #include "target_config.h"
 
 #include "screen.h"
-#include "string.h"
+#include <string.h>
 #include "uart.h"
 #include <stdio.h>
 
@@ -228,7 +228,7 @@ void welcomeScreen() {
 	writeString(temporary);
 }
 
-void weatherScreen(enum WEATHER_TYPE w) {
+void weatherScreen(enum WEATHER_TYPE w, char * weather_title) {
 	clearScreen();
 	//Make text color white
 	UARTBuffer[0] = 0xFF;
@@ -284,7 +284,7 @@ void weatherScreen(enum WEATHER_TYPE w) {
 
 	char temporary[BUFSIZEUART];
 
-	strcpy(temporary, "Local Weather\n");
+	strcpy(temporary, weather_title);
 	writeString(temporary);
 	moveCursor(3, 0);
 }

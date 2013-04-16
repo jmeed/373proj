@@ -6,14 +6,19 @@
  */
 
 #include "weather.h"
-#include "../globals.h"
+#include "../devices/joystick.h"
 #include "../devices/bluetooth.h"
+#include "../devices/screen.h"
 #include "string.h"
+#include "i2c.h"
+#include "gpio.h"
+#include <stdio.h>
 
 // Private functions
 static void start_weather();
 static void run_weather();
 static void stop_weather();
+static void get_weather(uint8_t opcode);
 
 void main_weather() {
 //	if (run_state == START){
@@ -46,17 +51,77 @@ void main_weather() {
 }
 
 static void start_weather() {
-	strcpy((char *) bl_send, "30");
-	send_bl_message();
-	uint8_t result = wait_bl_and_receive();
-	uint8_t f = result;
-	f++;
+	get_weather(11);
 }
 
 static void run_weather() {
+	enum Joystick_dir curJoy = getJoyDirection();
+	switch (curJoy) {
+	case RIGHT:
+		get_weather(12);
+		break;
+	case LEFT:
+		get_weather(11);
+	case IN:
+		next_state = MAIN_WATCH;
+	default:
+		break;
+	}
+//	enum Joystick_dir curJoy;
+//	while(1)
+//	{
+//		curJoy = getJoyDirection();
+//		switch (curJoy) {
+//		case RIGHT:
+//			strcpy((char *) bl_send, "11");
+//			send_bl_message();
+//			wait_bl_and_receive(11);
+//			break;
+//		case LEFT:
+//			strcpy((char *) bl_send, "12");
+//			send_bl_message();
+//			uint8_t f = wait_bl_and_receive(12);
+//			f = f;
+//			printf("Should have gotten received %d\n", f);
+//			writeString((char *) bl_receive);
+//			break;
+//		case NONE:
+//
+//		default:
+//			break;
+//		}
+//	}
 
 }
 
 static void stop_weather() {
 
+}
+
+static void get_weather(uint8_t opcode) {
+	char * opcode_char;
+	char * title;
+	char * navigation;
+	if(opcode == 11) {
+		opcode_char = "11";
+		title = "Current Weather\n";
+		navigation = "-> Forecast";
+	} else {
+		opcode_char = "12";
+		title = "Forecast\n";
+		navigation = "<- Current Weather";
+	}
+
+
+	strcpy((char *) bl_send, "10");
+	send_bl_message();
+	strcpy((char *) bl_send, opcode_char);
+	send_bl_message();
+	wait_bl_and_receive(opcode);
+	enum WEATHER_TYPE weather = bl_receive[2] - '0';
+	weatherScreen(weather, title);
+	char * weather_explanation = (char *) bl_receive + 3;
+	writeString(weather_explanation);
+	moveCursor(15, 0);
+	writeString(navigation);
 }

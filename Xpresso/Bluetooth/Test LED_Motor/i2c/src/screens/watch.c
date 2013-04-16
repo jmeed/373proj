@@ -8,7 +8,7 @@
 #include "watch.h"
 #include <assert.h>
 #include <stdio.h>
-#include "../globals.h"
+#include "../devices/joystick.h"
 #include "watch.h"
 #include "../devices/screen.h"
 #include "gpio.h"
@@ -24,24 +24,10 @@ static void run_watch();
 static void stop_watch();
 
 void main_watch() {
-	enum joystick_dir curJoy ;
-	curJoy = getJoyDirection();
-	switch (curJoy) {
-	case LEFT:
-		next_state = DEBUGSC;
-		run_state = START;
-		break;
-	case RIGHT:
-		next_state = WEATHER;
-		run_state = START;
-	default:
-		break;
-	}
-
-
 	switch (run_state) {
 	case START:
 		start_watch();
+		run_state = RUN;
 		break;
 	case RUN:
 		run_watch();
@@ -54,11 +40,23 @@ void main_watch() {
 
 static void start_watch() {
 	timeScreen();
-	run_state = RUN;
+	strcpy((char *) bl_send, "20");
+	send_bl_message();
+	wait_bl_and_receive(20);
+
 }
 
 static void run_watch() {
-
+	enum Joystick_dir curJoy = getJoyDirection();
+	switch (curJoy) {
+	case LEFT:
+		next_state = DEBUGSC;
+		break;
+	case DOWN:
+		next_state = WEATHER;
+	default:
+		break;
+	}
 }
 
 static void stop_watch() {

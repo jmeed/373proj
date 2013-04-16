@@ -29,7 +29,7 @@ For board to board test, this flag can be turned on. */
 
 #define FAST_MODE_PLUS	0
 
-#define BUFSIZE             64
+#define BUFSIZE             256
 #define MAX_TIMEOUT		0x00FFFFFF
 
 #define I2CMASTER		0x01

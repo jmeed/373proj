@@ -71,7 +71,7 @@ void welcomeScreen();
  * this screen displays the appropriate weather background
  * for the enum passed in WEATHER_TYPE
  */
-void weatherScreen(enum WEATHER_TYPE w);
+void weatherScreen(enum WEATHER_TYPE w, char * weather_title);
 
 /*
  * this screen displays the news background and sets cursor
