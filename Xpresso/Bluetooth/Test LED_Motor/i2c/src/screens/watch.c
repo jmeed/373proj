@@ -77,7 +77,7 @@ static void get_time() {
 
 	uint8_t seconds = unixtime % 60;
 	uint8_t minutes = (unixtime / 60) % 60;
-	uint8_t hours = (unixtime / (60 * 24)) % 24 - 6;
+	uint8_t hours = (unixtime / (60 * 24)) % 24 - 7;
 
 	uint8_t increment = 0;
 	if (hours < 10) {

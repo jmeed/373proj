@@ -56,8 +56,6 @@ uint8_t receive_bl_message() {
 			}
 			// If we have gotten 64 characters but not null than we want to send an ack and read the rest of them again
 			if(index % 64 == 0) {
-				printf("received 64 without finishing the entire message\n");
-				fflush(stdout);
 				// Send an ack
 				strcpy((char *) bl_send, "33");
 				send_bl_message();
