@@ -32,6 +32,7 @@
 #define TIME4 0x02CB
 
 void initScreen();
+void setBaudRate();
 void disableScrolling();
 void clearScreen();
 void mediaInit();
