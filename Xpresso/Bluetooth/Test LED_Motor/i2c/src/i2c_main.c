@@ -30,6 +30,9 @@
 #include "devices/fuel_gauge.h"
 #include "screens/debug.h"
 #include "screens/weather.h"
+#include "timer32.h"
+#include <stdlib.h>
+#include "screens/headlines.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -43,7 +46,7 @@ volatile uint32_t TimeTick = 0;
 
 int main(void) {
 	// Initialization
-	init_mwatch();
+ 	init_mwatch();
 
 	// Main run loop
 	run_mwatch();
@@ -69,7 +72,9 @@ void init_mwatch() {
 	// Init timer
 	init_timer();
 	SysTick_Config( SysTick->CALIB + 1 );
-
+//	init_timer32(0 , 0);
+//	enable_timer32(0);
+//	unixtime = 0;
 	// Init GPIO
 	init_gpio();
 
@@ -118,6 +123,7 @@ void run_mwatch() {
 		case SNAKE:
 			break;
 		case HEADLINES:
+			main_headlines();
 			break;
 		case DEBUGSC:
 			main_debug();

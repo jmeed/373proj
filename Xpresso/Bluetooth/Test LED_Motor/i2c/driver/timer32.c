@@ -22,6 +22,8 @@
 #include "driver_config.h"
 #if CONFIG_ENABLE_DRIVER_TIMER32==1
 #include "timer32.h"
+#include "../src/globals.h"
+#include <stdlib.h>
 
 /* ===================
  * CodeRed - Modified file to extract out interrupt handler related code,
@@ -98,6 +100,10 @@ void TIMER32_0_IRQHandler(void)
 {  
   if ( LPC_TMR32B0->IR & 0x01 )
   {  
+	  if(timer32_0_counter%6 == 0) {
+		  unixtime += 1000;
+			itoa(unixtime, unixtime_str, 10);
+	  }
 	LPC_TMR32B0->IR = 1;				/* clear interrupt flag */
 	timer32_0_counter++;
   }

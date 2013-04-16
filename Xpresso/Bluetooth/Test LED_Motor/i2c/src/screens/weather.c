@@ -62,8 +62,10 @@ static void run_weather() {
 		break;
 	case LEFT:
 		get_weather(11);
+		break;
 	case IN:
 		next_state = MAIN_WATCH;
+		break;
 	default:
 		break;
 	}

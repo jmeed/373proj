@@ -286,7 +286,7 @@ void weatherScreen(enum WEATHER_TYPE w, char * weather_title) {
 
 	strcpy(temporary, weather_title);
 	writeString(temporary);
-	moveCursor(3, 0);
+	moveCursor(2, 0);
 }
 
 void newsScreen() {
