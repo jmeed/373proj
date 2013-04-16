@@ -196,8 +196,8 @@ void drawSquare(int x, int y, int size, int color) {
 	UARTSend((uint8_t *) UARTBuffer, UARTCount);
 	UARTCount = 0;
 	wait();
-	if (gotACK() == 0)
-		printf("DANGER WILL ROBINSON, Failed to draw rectangle\n");
+//	if (gotACK() == 0)
+//		printf("DANGER WILL ROBINSON, Failed to draw rectangle\n");
 	UARTCount = 0;
 }
 //Screen Types

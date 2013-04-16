@@ -107,7 +107,7 @@ void run_mwatch() {
 				current_state = next_state;
 				break;
 			default:
-				printf("Invalid run state %d\n", run_state);
+//				printf("Invalid run state %d\n", run_state);
 				assert(0);
 			}
 		}
@@ -129,7 +129,7 @@ void run_mwatch() {
 			main_debug();
 			break;
 		default:
-			printf("Invalid current state state %d\n", current_state);
+//			printf("Invalid current state state %d\n", current_state);
 			assert(0);
 		}
 	}
