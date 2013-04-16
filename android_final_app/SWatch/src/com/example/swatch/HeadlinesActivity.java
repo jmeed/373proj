@@ -96,51 +96,39 @@ public class HeadlinesActivity extends Activity {
 		}
 		
 		String parsed = Utility.parse_string(h0);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH0 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h1);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH1 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h2);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH2 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h3);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH3 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h4);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH4 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h5);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH5 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h6);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH6 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h7);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH7 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h8);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH8 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h9);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH9 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h10);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH10 = parsed + "\0";
 		
 		parsed = Utility.parse_string(h11);
-		parsed = "HEADLILNES\n" + parsed;
 		Utility.mH11 = parsed + "\0";
 		
 		

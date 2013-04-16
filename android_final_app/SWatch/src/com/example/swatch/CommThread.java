@@ -40,7 +40,7 @@ class CommThread extends Thread {
     private ProgressDialog dialog;
     private BluetoothAdapter adapter;
     private byte[] buffer = new byte[1024];
-
+    
 
     public CommThread(BluetoothAdapter adapter, ProgressDialog dialog, Handler handler) {
         this.handler = handler;
@@ -154,7 +154,7 @@ class CommThread extends Thread {
 		e1.printStackTrace();
 	}
      // testing handler
-        buffer[0] = '2';
+       /* buffer[0] = '2';
         buffer[1] = '0';
         buffer[2] = '\0';
        
@@ -170,12 +170,15 @@ class CommThread extends Thread {
 		}
         buffer[1] = '1';
         handler.obtainMessage(b, 3, -1, buffer)
-        .sendToTarget();
-        
+        .sendToTarget();*/
+        int act = -1;
         // Read from Bluetooth always
         while (true) {
         	System.out.println("in while");
-        	readFromTarget();
+             	
+        	act = readFromTarget();
+        	handler.obtainMessage(act, buffer)
+            .sendToTarget();
         }
     }
 
@@ -198,44 +201,82 @@ class CommThread extends Thread {
     }
     
     public int readFromTarget() {
+		int activity = -1;
+		buffer[2] = '1';
+		
 		int index = 0;
 		byte[] tmp_buff = new byte[1024];
-		while(true) 
-		{
+		while(true) {
 			// Receive the sync message to ensure pairing with the right device
 			int bytes = 0; // bytes returned from read()
-			try 
-			{
+			try {
 				bytes = istream.read(tmp_buff);
-
+				
 				// Copy to permenant buffer
-				for (int i = 0; i < bytes; i++) 
-				{
+				for (int i = 0; i < bytes; i++) {
 					buffer[index] = tmp_buff[i];
-					System.out.println("buffer "+index+(char)buffer[index]);
 					index++;
 				}
 				
-				// Send the obtained bytes to the UI Activity
-				// headlines = 0, weather = 1, time = 2 and buff[1] = 0
-				int activity = Character.digit((char) buffer[0], 10);
-				
-				handler.obtainMessage(activity, bytes, -1, buffer)
-	                          .sendToTarget();
-				
-
 				// If the last byte is \0 we are done
-				if(buffer[index - 1] == '\0') 
-				{
+				if(buffer[index - 1] == '\0') {
+					// Print
+					System.out.print("Just read: ");
+					for(int i = 0; i < index; i++) {
+						System.out.print((char) buffer[i]);
+					}
+					System.out.println("");
 					break;
 				}
-			} 
-			catch (IOException e) 
-			{
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return index;
+		activity = Character.digit((char) buffer[0], 10);
+		
+//		while(true) 
+//		{
+//			// Receive the sync message to ensure pairing with the right device
+//			int bytes = 0; // bytes returned from read()
+//			try 
+//			{
+//				bytes = istream.read(tmp_buff);
+//				System.out.println("BYTE LENGTH "+bytes);
+//				System.out.println("BYTES RCVD: "+(char)tmp_buff[0]+(char)tmp_buff[1]+(char)tmp_buff[2]);
+//				// Copy to permenant buffer
+//				if (bytes == 3)
+//				{
+//					for (int i = 0; i < 3; i++) 
+//					{
+//						buffer[i] = tmp_buff[i];
+//						System.out.println("buffer "+i+" "+(char)buffer[i]);
+//					}
+//					activity = Character.digit((char) buffer[0], 10);
+//					tmp_buff = null;
+//					break;
+//				}
+//				
+//				// Send the obtained bytes to the UI Activity
+//				// headlines = 0, weather = 1, time = 2 and buff[1] = 0
+//				
+//				
+//				
+//				// If the last byte is \0 we are done
+//				/*if(buffer[2] == '\0') 
+//				{
+//					System.out.println("Sending to target "+(char)buffer[0]+(char)buffer[1]+(char)buffer[2]);
+//					tmp_buff = null;
+//					break;
+//				}*/
+//			
+//			} 
+//			catch (IOException e) 
+//			{
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+		return activity;
 	}
 }

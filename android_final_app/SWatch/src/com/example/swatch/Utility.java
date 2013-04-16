@@ -23,7 +23,33 @@ public class Utility {
 	public static String mH9;
 	public static String mH10;
 	public static String mH11;
+	public static String to_send_0;
+	public static String to_send_1;
+	public static String to_send_2;
+	public static String to_send_3;
+	public static int how_many_sends_total;
+	public static int how_many_sends;
 	
+	static String get_to_send()
+	{
+		String to_return = null;
+		switch(how_many_sends)
+		{
+		case 0:
+			to_return = to_send_0;
+			break;
+		case 1:
+			to_return = to_send_1;
+			break;
+		case 2:
+			to_return = to_send_2;
+			break;
+		case 3:
+			to_return = to_send_3;
+			break;
+		}
+		return to_return;
+	}
 
 	static String parse_string(String to_be_parsed)
 	{
@@ -99,20 +125,22 @@ public class Utility {
 	}
 
 	
-	static void send_over_BT(String to_send)
+	static void set_BT(String to_send)
 	{
-		// Send over Bluetooth ----------------------------------------------
+		// Resize if necessary
+		if (to_send.length() > 188)
+			to_send = to_send.substring(0, 188);
+		// Save strings ----------------------------------------------
 		int num_of_sends = (int) Math.ceil((double)to_send.length()/64.0);
 		System.out.println("num_of_sends "+num_of_sends);
-
+		how_many_sends_total = num_of_sends;
 		int sub_start = 0;
 		int sub_end = 64;
 		
 		for (int i = 0; i < num_of_sends; i++)
 		{
 			String sending = new String();
-						
-			System.out.println("Printing 64 "+sub_start+" " + sub_end + " " + to_send.length());
+			
 			if (sub_end > to_send.length())
 				sending = to_send.substring(sub_start);
 			else
@@ -121,25 +149,29 @@ public class Utility {
 			sub_start = sub_start + 64;
 			sub_end = sub_end + 64;
 			
-			// Actually send data
-			CommThread.write(sending.getBytes());
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (i == 0)
+			{
+				to_send_0 = sending;
+				System.out.print("to_send_0: "+to_send_0);
 			}
+			else if (i == 1)
+			{
+				to_send_1 = sending;
+				System.out.print("to_send_1: "+to_send_1);
+			}
+			else if (i == 2)
+			{
+				to_send_2 = sending;
+				System.out.print("to_send_2: "+to_send_2);
+			}
+			else
+			{
+				to_send_3 = sending;
+				System.out.print("to_send_3: "+to_send_2);
+			}
+		
 		}
-		// END send to Bluetooth -----------------------------------------------
-			
-	  	// Sleep so processor can get string
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		// END save to strings -----------------------------------------------
 	}
 	
 	static String get_headline(int head)
@@ -208,23 +240,23 @@ public class Utility {
 		System.out.println("input "+input);
 		if (input.equalsIgnoreCase("chanceflurries") || input.equalsIgnoreCase("chancesnow") || input.equalsIgnoreCase("flurries") || input.equalsIgnoreCase("snow"))
 		{
-			to_return = "0";
+			to_return = "2";
 		}
 		else if (input.equalsIgnoreCase("cloudy") || input.equalsIgnoreCase("partlycloudy") || input.equalsIgnoreCase("fog") || input.equalsIgnoreCase("hazy") || input.equalsIgnoreCase("mostlycloudy"))
 		{
-			to_return = "1";
+			to_return = "0";
 		}
 		else if (input.equalsIgnoreCase("clear") || input.equalsIgnoreCase("mostlysunny") || input.equalsIgnoreCase("partlysunny") || input.equalsIgnoreCase("sunny"))
 		{
-			to_return = "2";
+			to_return = "4";
 		}
 		else if (input.equalsIgnoreCase("chancerain") || input.equalsIgnoreCase("rain") || input.equalsIgnoreCase("sleet"))
 		{
-			to_return = "3";
+			to_return = "1";
 		}
 		else
 		{
-			to_return = "4";
+			to_return = "3";
 		}
 		return(to_return);
 	}

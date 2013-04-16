@@ -77,17 +77,15 @@ public class WeatherActivity extends Activity {
 			wind = wind.replaceAll("([ \t\n\f\r][NSEW]*)W([NSEW]*[ \t\n\f\r])", "$1 west $2");
 		}
   		
-  		mStrWeather = "Currently, the temperature in " + Utility.mUserCity + " is " + tempVal + " degrees, ";
-  		if(Math.abs(tempVal - feelsVal) > 2) mStrWeather = mStrWeather + "but it feels like " + feelsVal + ", ";
-  		mStrWeather = mStrWeather + "under " + weather + " skies. The wind is " + wind + ". ";
+  		mStrWeather = "Weather for " + Utility.mUserCity + "\n"+ tempVal + " F\n" + "Feels like " + feelsVal + " F ";
  
   		// Parse current conditions and save
   		String parsed_current = Utility.parse_string(mStrWeather);	
-  		Utility.mCurrent_cond = "WEATHER\n" + parsed_current +"\0"; 
+  		Utility.mCurrent_cond = parsed_current +"\0"; 
   		
   		// Save cur_icon
   		String cur_icon_to_display = Utility.choose_pic(cur_icon);
-  		Utility.mIcon_cur = cur_icon_to_display + "\0";
+  		Utility.mIcon_cur = cur_icon_to_display;
   		
   		
   		// Weather Forecast
@@ -118,7 +116,7 @@ public class WeatherActivity extends Activity {
 			e.printStackTrace();
 		}
         
-		fcttext = fcttext.replaceAll("([0-9]+)F", "$1");
+		/*fcttext = fcttext.replaceAll("([0-9]+)F", "$1");
 		fcttext = fcttext.replaceAll("[Mm][Pp][Hh]", "miles per hour");
 		for(int i = 0; i < 2; i++) 
 		{
@@ -126,18 +124,20 @@ public class WeatherActivity extends Activity {
 			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)S([NSEW]*[ \t\n\f\r])", "$1 south $2");
 			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)E([NSEW]*[ \t\n\f\r])", "$1 east $2");
 			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)W([NSEW]*[ \t\n\f\r])", "$1 west $2");
-		}
+		}*/
 		mStrWeather = "";
 		
-		mStrWeather = "The forecast for today is: " + fcttext;
+		mStrWeather = fcttext;
+		//mStrWeather = mStrWeather.substring(0, 170);
 		
 		// Parse forecast string and save
 		String parsed_forecast = Utility.parse_string(mStrWeather);
-		Utility.mForecast = "FORECAST\n" + parsed_forecast + "\0";
+		Utility.mForecast = parsed_forecast + "\0";
 		
 		// Save forecast icon
 		String forecast_icon_to_display = Utility.choose_pic(forecast_icon);
-		Utility.mIcon_forecast = forecast_icon_to_display + "\0";
+		System.out.println("Forecast icon: "+forecast_icon_to_display);
+		Utility.mIcon_forecast = forecast_icon_to_display;
 		
 		
 		
