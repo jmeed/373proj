@@ -11,7 +11,7 @@
 #include <stdint.h>
 
 //Accelerometer slave address
-#define AC_WAADR 0x3A
+#define AC_WAADR 0xA6
 #define AC_RAADR (AC_WAADR | 0x01)
 
 void init_accel();

@@ -164,4 +164,13 @@ void init_i2c() {
 
 	init_bl();
 	init_accel();
+
+	while(1) {
+		update_acc_data();
+		printf("x: %d\ty: %d\tz: %d\n", x_g, y_g, z_g);
+		int i = 0;
+		for(; i < 1000000; i++) {
+
+		}
+	}
 }
