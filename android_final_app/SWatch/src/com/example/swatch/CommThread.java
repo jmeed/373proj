@@ -90,7 +90,7 @@ class CommThread extends Thread {
                 Set<BluetoothDevice> devices = adapter.getBondedDevices();
                 BluetoothDevice device = null;
                 for (BluetoothDevice curDevice : devices) {
-                        if (curDevice.getName().matches("RN42-CD0C")) {
+                        if (curDevice.getName().matches("RN42-21EE")) {
                                 device = curDevice;
                                 System.out.println("Device found. Breaking!");
                                 break;

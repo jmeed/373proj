@@ -22,7 +22,7 @@ int time_image = 0;
 
 void initScreen() {
 	//setBaudRate();
-	//UARTInit(UART_BAUD_FAST);
+//	UARTInit(UART_BAUD_FAST);
 	clearScreen();
 	disableScrolling();
 	mediaInit();

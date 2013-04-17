@@ -29,7 +29,7 @@ void send_bl_message() {
 	// Make sure there is no NULL in the first bits
 	I2CMasterBuffer[0] = 0xFF;
 	I2CMasterBuffer[1] = 0xFF;
-//	printf("BL msg send: [%s]\n", (char *) bl_send);
+	printf("BL msg send: [%s]\n", (char *) bl_send);
 	send_i2c_msg(BL_WAADR, BL_THR, (sizeof((char *)I2CMasterBuffer) - 1));
 }
 
@@ -50,7 +50,7 @@ uint8_t receive_bl_message() {
 			bl_receive[index] = (char) read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
 			index++;
 			if(bl_receive[index - 1] == '\0') { // Got the entire message
-//				printf("BL msg received of size: %d\n", index);
+				printf("BL msg received: [%s]\n", (char *) bl_receive);
 				break;
 			}
 			// If we have gotten 64 characters but not null than we want to send an ack and read the rest of them again
