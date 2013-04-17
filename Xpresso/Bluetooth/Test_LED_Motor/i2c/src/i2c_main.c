@@ -46,7 +46,7 @@ volatile uint32_t TimeTick = 0;
 
 int main(void) {
 	// Initialization
- 	init_mwatch();
+  	init_mwatch();
 
 	// Main run loop
 	run_mwatch();
@@ -71,9 +71,10 @@ void delaySysTick(uint32_t tick)
 void init_mwatch() {
 	// Init timer
 	init_timer();
-	SysTick_Config( SysTick->CALIB + 1 );
-//	init_timer32(0 , 0);
-//	enable_timer32(0);
+//	SysTick_Config( SysTick->CALIB + 1 );
+	init_timer32(0 , 0x8FFFFFF);
+	enable_timer32(0);
+//	while(1);
 //	unixtime = 0;
 	// Init GPIO
 	init_gpio();
@@ -162,15 +163,17 @@ void init_i2c() {
 	uint32_t i2c_result = I2CInit((uint32_t) I2CMASTER);
 	assert(i2c_result);
 
+	get_current_voltage();
+
 	init_bl();
 	init_accel();
 
-	while(1) {
-		update_acc_data();
-		printf("x: %d\ty: %d\tz: %d\n", x_g, y_g, z_g);
-		int i = 0;
-		for(; i < 1000000; i++) {
-
-		}
-	}
+//	while(1) {
+//		update_acc_data();
+//		printf("x: %d\ty: %d\tz: %d\n", x_g, y_g, z_g);
+//		int i = 0;
+//		for(; i < 1000000; i++) {
+//
+//		}
+//	}
 }

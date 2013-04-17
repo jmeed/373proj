@@ -14,11 +14,20 @@
 #include <string.h>
 #include "uart.h"
 #include <stdio.h>
+#include "timer32.h"
 
 extern volatile uint32_t UARTCount;
 extern volatile uint8_t UARTBuffer[BUFSIZEUART];	//This may need to be larger
 
 int time_image = 0;
+
+static void send();
+
+static void send() {
+	disable_timer32(0);
+	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	enable_timer32(0);
+}
 
 void initScreen() {
 	//setBaudRate();
@@ -35,7 +44,7 @@ void disableScrolling() {
 	UARTBuffer[2] = 0x00;
 	UARTBuffer[3] = 0x04;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -51,7 +60,7 @@ void setBaudRate()
 	UARTBuffer[2] = 0x00;
 	UARTBuffer[3] = 0x19;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	//wait();	//wait for screen to ACK
 	int i, j;
@@ -69,7 +78,7 @@ void clearScreen() {
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0xD7;
 	UARTCount = 2;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 
 	wait();	//wait for screen to ACK
@@ -84,7 +93,7 @@ void mediaInit() {
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0xB1;
 	UARTCount = 2;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 
 	wait();	//wait for screen to ACK
@@ -104,7 +113,7 @@ void media_setSector(uint16_t hi, uint16_t lo) {
 	UARTBuffer[4] = lo >> 8;
 	UARTBuffer[5] = lo;
 	UARTCount = 6;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -120,7 +129,7 @@ void media_display() {
 	UARTBuffer[4] = 0x00;
 	UARTBuffer[5] = 0x00;
 	UARTCount = 6;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (!(UARTBuffer[0] == 0x00 && UARTBuffer[1] == 0x00
@@ -130,9 +139,11 @@ void media_display() {
 }
 
 void wait() {
+	disable_timer32(0);
 	while (UARTCount == 0) { // Wait for an interupt
 	}
 	UARTCount = 0;
+	enable_timer32(0);
 //	int i, j;
 //	for (i = 1; i < 1000; i++) {
 //		for (j = 1; j < 1000; j++) {
@@ -156,7 +167,7 @@ void moveCursor(uint8_t x, uint8_t y) {
 	UARTBuffer[4] = 0x00;
 	UARTBuffer[5] = y;
 	UARTCount = 6;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0;
 
 	wait();
@@ -176,7 +187,7 @@ void writeString(char *str) {
 	}
 	UARTBuffer[i + 2] = '\0';
 	UARTCount = strlen(str) + 3;	//This may also be wrong syntax
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0;
 	wait();
 	//if (gotACK() == 0)
@@ -193,7 +204,7 @@ void drawSquare(int x, int y, int size, int color) {
 	UARTBuffer[8] = y + 4;
 	UARTBuffer[10] = color;
 	UARTCount = 12;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0;
 	wait();
 //	if (gotACK() == 0)
@@ -209,7 +220,7 @@ void welcomeScreen() {
 	UARTBuffer[2] = 0xFF;
 	UARTBuffer[3] = 0xFF;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -222,7 +233,7 @@ void welcomeScreen() {
 	UARTBuffer[2] = 0x00;
 	UARTBuffer[3] = 0x00;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -262,7 +273,7 @@ void weatherScreen(enum WEATHER_TYPE w, char * weather_title) {
 	UARTBuffer[2] = 0xFF;
 	UARTBuffer[3] = 0xFF;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -275,7 +286,7 @@ void weatherScreen(enum WEATHER_TYPE w, char * weather_title) {
 	UARTBuffer[2] = 0x00;
 	UARTBuffer[3] = 0x00;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -326,7 +337,7 @@ void newsScreen() {
 	UARTBuffer[2] = 0xFF;
 	UARTBuffer[3] = 0xFF;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -339,7 +350,7 @@ void newsScreen() {
 	UARTBuffer[2] = 0x00;
 	UARTBuffer[3] = 0x00;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -358,7 +369,7 @@ void debugScreen() {
 	UARTBuffer[2] = 0x25;
 	UARTBuffer[3] = 0x74;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -371,7 +382,7 @@ void debugScreen() {
 	UARTBuffer[2] = 0x00;
 	UARTBuffer[3] = 0x00;
 	UARTCount = 4;
-	UARTSend((uint8_t *) UARTBuffer, UARTCount);
+	send();
 	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 	wait();	//wait for screen to ACK
 	//if (gotACK() == 0)
@@ -400,7 +411,7 @@ void timeScreen() {
 		UARTBuffer[2] = 0xF6;
 		UARTBuffer[3] = 0xD6;
 		UARTCount = 4;
-		UARTSend((uint8_t *) UARTBuffer, UARTCount);
+		send();
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		//if (gotACK() == 0)
@@ -418,7 +429,7 @@ void timeScreen() {
 		UARTBuffer[2] = 0xB7;
 		UARTBuffer[3] = 0x9F;
 		UARTCount = 4;
-		UARTSend((uint8_t *) UARTBuffer, UARTCount);
+		send();
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		//if (gotACK() == 0)
@@ -436,7 +447,7 @@ void timeScreen() {
 		UARTBuffer[2] = 0xE6;
 		UARTBuffer[3] = 0x1E;
 		UARTCount = 4;
-		UARTSend((uint8_t *) UARTBuffer, UARTCount);
+		send();
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		//if (gotACK() == 0)
@@ -454,7 +465,7 @@ void timeScreen() {
 		UARTBuffer[2] = 0xCE;
 		UARTBuffer[3] = 0xBC;
 		UARTCount = 4;
-		UARTSend((uint8_t *) UARTBuffer, UARTCount);
+		send();
 		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
 		wait();	//wait for screen to ACK
 		//if (gotACK() == 0)
