@@ -81,6 +81,10 @@ static void get_time() {
 	send_bl_message();
 	wait_bl_and_receive(20);
 	unixtime = atol((((char *)bl_receive) + 2));
+
+	// Subtract from Greenwich time
+	unixtime -= (6 * 60 * 60);
+
 	last_bl_time_update = unixtime;
 }
 
