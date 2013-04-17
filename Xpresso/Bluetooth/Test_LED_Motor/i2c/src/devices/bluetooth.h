@@ -71,7 +71,7 @@ uint8_t is_bl_message_available();
 // The data is return to the bl_send array
 // The max received data is BUFSIZE
 // It return the length of the data it read
-uint8_t receive_bl_message();
+int16_t receive_bl_message();
 
 // Wait untill you get a full bluetooth message. This functions is exactly as the receive_bl_message
 // except that it waits untill it gets a message

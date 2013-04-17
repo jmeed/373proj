@@ -40,8 +40,8 @@ uint8_t is_bl_message_available() {
 
 // Returns the number of characters it read from the Bluetooth
 // Data is available in the I2CSlaveBuffer
-uint8_t receive_bl_message() {
-	uint8_t index = 0;
+int16_t receive_bl_message() {
+	int16_t index = 0;
 	uint64_t start = unixtime;
 	while(unixtime - start <= BL_TIMEOUT) {
 		if(is_bl_message_available()) {
@@ -64,7 +64,7 @@ uint8_t receive_bl_message() {
 }
 
 uint8_t get_bl_msg_and_process(uint8_t opcode_requested) {
-	uint8_t result = receive_bl_message();
+	int16_t result = receive_bl_message();
 
 	if(result == -1) {
 		printf("BL timeout for opcode %d\n", opcode_requested);
