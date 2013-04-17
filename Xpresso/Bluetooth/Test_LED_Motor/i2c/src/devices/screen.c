@@ -24,9 +24,7 @@ int time_image = 0;
 static void send();
 
 static void send() {
-	disable_timer32(0);
 	UARTSend((uint8_t *) UARTBuffer, UARTCount);
-	enable_timer32(0);
 }
 
 void initScreen() {
@@ -139,11 +137,9 @@ void media_display() {
 }
 
 void wait() {
-	disable_timer32(0);
 	while (UARTCount == 0) { // Wait for an interupt
 	}
 	UARTCount = 0;
-	enable_timer32(0);
 //	int i, j;
 //	for (i = 1; i < 1000; i++) {
 //		for (j = 1; j < 1000; j++) {

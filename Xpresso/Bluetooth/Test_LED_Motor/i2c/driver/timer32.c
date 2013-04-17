@@ -101,7 +101,6 @@ void TIMER32_0_IRQHandler(void)
 {  
   if ( LPC_TMR32B0->IR & 0x01 )
   {  
-	  printf("%d\n", timer32_0_counter);
 	LPC_TMR32B0->IR = 1;				/* clear interrupt flag */
 	timer32_0_counter++;
   }

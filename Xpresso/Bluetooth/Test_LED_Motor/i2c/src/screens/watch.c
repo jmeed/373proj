@@ -27,6 +27,7 @@ static void start_watch();
 static void run_watch();
 static void stop_watch();
 static void get_time();
+static void print_time();
 
 void main_watch() {
 	switch (run_state) {
@@ -49,7 +50,13 @@ static void start_watch() {
 }
 
 static void run_watch() {
-	get_time();
+
+	if(unixtime - last_bl_time_update > 60) {
+		get_time();
+	}
+
+	print_time();
+
 	enum Joystick_dir curJoy = getJoyDirection();
 	switch (curJoy) {
 	case LEFT:
@@ -74,7 +81,10 @@ static void get_time() {
 	send_bl_message();
 	wait_bl_and_receive(20);
 	unixtime = atol((((char *)bl_receive) + 2));
+	last_bl_time_update = unixtime;
+}
 
+static void print_time() {
 	uint8_t seconds = unixtime % 60;
 	uint8_t minutes = (unixtime / 60) % 60;
 	uint8_t hours = (unixtime / (60 * 24)) % 24 - 7;

@@ -8,6 +8,10 @@
 #ifndef WATCH_H_
 #define WATCH_H_
 
+#include <stdint.h>
+
+uint64_t last_bl_time_update;
+
 void main_watch();
 
 

@@ -42,38 +42,47 @@ static void init_timer();
 static void init_gpio();
 static void init_i2c();
 
-volatile uint32_t TimeTick = 0;
+//volatile uint32_t TimeTick = 0;
 
 int main(void) {
+//	I2CInit((uint32_t) I2CMASTER);
+//	init_bl();
+//	init_accel();
+//	get_current_voltage();
+//	while(1);
 	// Initialization
   	init_mwatch();
 
 	// Main run loop
 	run_mwatch();
-
 	return 0;
 }
 
 void SysTick_Handler(void)
 {
-  TimeTick++;
+    static uint64_t milli;
+    if(milli == 132) {
+    	unixtime++;
+    	milli = 0;
+    } else {
+    	milli++;
+    }
 }
-
-void delaySysTick(uint32_t tick)
-{
-  uint32_t timetick;
-
-  timetick = TimeTick;
-  while ((TimeTick - timetick) < tick)
-	  __WFI();
-}
+//
+//void delaySysTick(uint32_t tick)
+//{
+//  uint32_t timetick;
+//
+//  timetick = TimeTick;
+//  while ((TimeTick - timetick) < tick)
+//	  __WFI();
+//}
 
 void init_mwatch() {
 	// Init timer
 	init_timer();
-//	SysTick_Config( SysTick->CALIB + 1 );
-	init_timer32(0 , 0x8FFFFFF);
-	enable_timer32(0);
+	SysTick_Config( SysTick->CALIB + 1 );
+//	init_timer32(0 , 0);
 //	while(1);
 //	unixtime = 0;
 	// Init GPIO
@@ -163,7 +172,7 @@ void init_i2c() {
 	uint32_t i2c_result = I2CInit((uint32_t) I2CMASTER);
 	assert(i2c_result);
 
-	get_current_voltage();
+//	get_current_voltage();
 
 	init_bl();
 	init_accel();
