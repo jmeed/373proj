@@ -31,6 +31,8 @@
 #define TIME3 0x028A
 #define TIME4 0x02CB
 
+#define SCREEN_TIMEOUT 3
+
 void initScreen();
 void setBaudRate();
 void disableScrolling();

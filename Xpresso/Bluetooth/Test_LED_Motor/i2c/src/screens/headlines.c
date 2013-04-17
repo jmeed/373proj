@@ -68,7 +68,7 @@ static void get_headline(uint8_t opcode) {
 	}
 	strcpy((char *) bl_send, opcode_str);
 	send_bl_message();
-	wait_bl_and_receive(opcode);
+	get_bl_msg_and_process(opcode);
 	newsScreen();
 	char * headline = (char *) bl_receive + 2;
 	writeString(headline);

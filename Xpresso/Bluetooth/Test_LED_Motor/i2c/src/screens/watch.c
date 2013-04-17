@@ -79,7 +79,7 @@ static void run_watch() {
 static void get_time() {
 	strcpy((char *) bl_send, "20");
 	send_bl_message();
-	wait_bl_and_receive(20);
+	get_bl_msg_and_process(20);
 	unixtime = atol((((char *)bl_receive) + 2));
 
 	// Subtract from Greenwich time

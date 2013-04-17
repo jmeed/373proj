@@ -69,31 +69,6 @@ static void run_weather() {
 	default:
 		break;
 	}
-//	enum Joystick_dir curJoy;
-//	while(1)
-//	{
-//		curJoy = getJoyDirection();
-//		switch (curJoy) {
-//		case RIGHT:
-//			strcpy((char *) bl_send, "11");
-//			send_bl_message();
-//			wait_bl_and_receive(11);
-//			break;
-//		case LEFT:
-//			strcpy((char *) bl_send, "12");
-//			send_bl_message();
-//			uint8_t f = wait_bl_and_receive(12);
-//			f = f;
-//			printf("Should have gotten received %d\n", f);
-//			writeString((char *) bl_receive);
-//			break;
-//		case NONE:
-//
-//		default:
-//			break;
-//		}
-//	}
-
 }
 
 static void stop_weather() {
@@ -119,7 +94,7 @@ static void get_weather(uint8_t opcode) {
 	send_bl_message();
 	strcpy((char *) bl_send, opcode_char);
 	send_bl_message();
-	wait_bl_and_receive(opcode);
+	get_bl_msg_and_process(opcode);
 	enum WEATHER_TYPE weather = bl_receive[2] - '0';
 	weatherScreen(weather, title);
 	char * weather_explanation = (char *) bl_receive + 3;

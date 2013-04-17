@@ -10,6 +10,7 @@
 #include <string.h>
 #include <assert.h>
 #include "i2c_com.h"
+#include "../globals.h"
 
 // bl_send should point to the first available byte where the message will begin
 uint8_t * const bl_send = (uint8_t *) I2CMasterBuffer + 2;
@@ -41,16 +42,13 @@ uint8_t is_bl_message_available() {
 // Data is available in the I2CSlaveBuffer
 uint8_t receive_bl_message() {
 	uint8_t index = 0;
-
-	// If there is no message to receive just return 0
-	if(!is_bl_message_available()) return 0;
-
-	while(1) {
+	uint64_t start = unixtime;
+	while(unixtime - start <= BL_TIMEOUT) {
 		if(is_bl_message_available()) {
 			bl_receive[index] = (char) read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
 			index++;
 			if(bl_receive[index - 1] == '\0') { // Got the entire message
-				printf("BL msg received: [%s]\n", (char *) bl_receive);
+				printf("BL msg rcv size: [%d]\n", index);
 				break;
 			}
 			// If we have gotten 64 characters but not null than we want to send an ack and read the rest of them again
@@ -61,26 +59,32 @@ uint8_t receive_bl_message() {
 			}
 		}
 	}
+	if(unixtime - start >= 3) index = -1;
 	return index;
 }
 
-uint8_t wait_bl_and_receive(uint8_t opcode_requested) {
-	uint8_t result;
-	while(!(result = receive_bl_message())); // Wait until you have read non zero data
+uint8_t get_bl_msg_and_process(uint8_t opcode_requested) {
+	uint8_t result = receive_bl_message();
+
+	if(result == -1) {
+		printf("BL timeout for opcode %d\n", opcode_requested);
+		assert(0);
+	}
 
 	// Ensure we got the message we asked for
 	uint8_t opcode_received = 10 * (bl_receive[0] - '0');
 	opcode_received = opcode_received + (bl_receive[1] - '0');
-//	printf("BL received. opcode: %d\n", opcode_received);
 
 	if(opcode_received == opcode_requested) return result;
 
+	/*
+	// If we get phone call working
 	switch(opcode_received) {
 	default:
-//		printf("ERR: opcode [%d] from Bluetooth receive not valid\n", opcode_received);
 		assert(0);
 		break;
 	}
+	*/
 
 	return result;
 }

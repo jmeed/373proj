@@ -14,6 +14,7 @@
 #include <string.h>
 #include "uart.h"
 #include <stdio.h>
+#include <assert.h>
 #include "timer32.h"
 
 extern volatile uint32_t UARTCount;
@@ -137,15 +138,15 @@ void media_display() {
 }
 
 void wait() {
-	while (UARTCount == 0) { // Wait for an interupt
+	uint64_t start = unixtime;
+	while (UARTCount == 0 && unixtime - start < SCREEN_TIMEOUT);// Wait for an interupt
+
+	if(unixtime - start >= SCREEN_TIMEOUT) {
+		printf("Didn't get screen ACK. Screen must have frozen. Restart the screen!\n");
+		assert(0);
 	}
+
 	UARTCount = 0;
-//	int i, j;
-//	for (i = 1; i < 1000; i++) {
-//		for (j = 1; j < 1000; j++) {
-//			;	//do nothing
-//		}
-//	}
 }
 
 int gotACK() {

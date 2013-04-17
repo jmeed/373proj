@@ -81,7 +81,6 @@ void SysTick_Handler(void)
 void init_mwatch() {
 	// Init timer
 	init_timer();
-	SysTick_Config( SysTick->CALIB + 1 );
 //	init_timer32(0 , 0);
 //	while(1);
 //	unixtime = 0;
@@ -147,7 +146,8 @@ void run_mwatch() {
 
 
 void init_timer() {
-
+	SysTick_Config( SysTick->CALIB + 1 );
+	unixtime = 0;
 }
 
 void init_dir(uint32_t port, uint32_t bit){
