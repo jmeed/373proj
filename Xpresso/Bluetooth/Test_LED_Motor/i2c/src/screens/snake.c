@@ -26,7 +26,7 @@ struct dll * front, * back;
 static void draw_snake_square(struct dll *square);
 static void create_food();
 static void clear_snake_square(struct dll *square);
-static uint8_t random();
+static uint8_t rand_lim(uint8_t lower,uint8_t upper);
 
 void main_snake() {
 	switch (run_state) {
@@ -43,17 +43,12 @@ void main_snake() {
 	}
 }
 
-static uint8_t random() {
-	srand(time(NULL));
-	return rand();
-}
-
 static void start_snake() {
 	clearScreen();
 	drawSquare(0, 0, 127, 127, 0xffff);
 	front = malloc(sizeof(struct dll));
-	front->x = random(); //random number between 0
-	front->y = random(); //random number between 62
+	front->x = rand_lim(1, 126); //random number between 0
+	front->y = rand_lim(1, 126); //random number between 62
 	front->f = NULL;
 	back = malloc(sizeof(struct dll));
 	back->x = front->x + 1;
@@ -113,3 +108,16 @@ static void clear_snake_square(struct dll *square) {
 	free(square);
 }
 
+static uint8_t rand_lim(uint8_t lower,uint8_t upper) {
+/* return a random number between 0 and limit inclusive.
+ */
+
+    int divisor = RAND_MAX/(upper+1);
+    uint8_t retval;
+
+    do {
+        retval = rand() / divisor;
+    } while (retval > upper || retval < lower);
+
+    return retval;
+}
