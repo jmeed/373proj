@@ -55,6 +55,7 @@ void textSize(uint16_t width, uint16_t height);
  * Moves cursor (line, column)
  * x between 0 and 15 inclusive.
  * y between 0 and 17 inclusive.
+ * X AND Y ARE SWITCHED!!!!!!!!!!!!!!
  */
 void moveCursor(uint8_t x, uint8_t y);
 

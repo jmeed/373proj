@@ -70,8 +70,7 @@ static void run_watch() {
 		next_state = HEADLINES;
 		break;
 	case NONE:
-		moveCursor(7,4);
-		writeString(unixtime_str);
+		print_time();
 	default:
 		break;
 	}
@@ -118,8 +117,8 @@ static void print_time() {
 	}
 
 	itoa(seconds, (unixtime_str + increment), 10);
-
-	moveCursor(7,4);
+	textSize(2,2);
+	moveCursor(3,1);
 	writeString(unixtime_str);
 }
 

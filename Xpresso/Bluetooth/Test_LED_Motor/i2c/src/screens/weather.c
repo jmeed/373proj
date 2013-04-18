@@ -39,7 +39,7 @@ void main_weather() {
 
 static void start_weather() {
 	get_weather(B_WEATHER_CURR);
-	print_weather("Current Weather\n", "-> Forecast");
+	print_weather("Current Weather\n", "^ Forecast");
 }
 
 static void run_weather() {
@@ -47,11 +47,11 @@ static void run_weather() {
 	switch (curJoy) {
 	case RIGHT:
 		get_weather(B_WEATHER_CURR);
-		print_weather("Current Weather\n", "-> Forecast");
+		print_weather("Current Weather\n", "^ Forecast");
 		break;
 	case LEFT:
 		get_weather(B_WEATHER_FOR);
-		print_weather("Forecast\n", "<- Current Weather");
+		print_weather("Forecast\n", "v Current Weather");
 		break;
 	case IN:
 		next_state = MAIN_WATCH;

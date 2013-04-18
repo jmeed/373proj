@@ -9,7 +9,8 @@ C_SRCS += \
 ../src/devices/fuel_gauge.c \
 ../src/devices/i2c_com.c \
 ../src/devices/joystick.c \
-../src/devices/screen.c 
+../src/devices/screen.c \
+../src/devices/vibrator.c 
 
 OBJS += \
 ./src/devices/accelerometer.o \
@@ -17,7 +18,8 @@ OBJS += \
 ./src/devices/fuel_gauge.o \
 ./src/devices/i2c_com.o \
 ./src/devices/joystick.o \
-./src/devices/screen.o 
+./src/devices/screen.o \
+./src/devices/vibrator.o 
 
 C_DEPS += \
 ./src/devices/accelerometer.d \
@@ -25,7 +27,8 @@ C_DEPS += \
 ./src/devices/fuel_gauge.d \
 ./src/devices/i2c_com.d \
 ./src/devices/joystick.d \
-./src/devices/screen.d 
+./src/devices/screen.d \
+./src/devices/vibrator.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -47,6 +47,11 @@ static void init_i2c();
 //volatile uint32_t TimeTick = 0;
 
 int main(void) {
+	volatile int wait_c = 48000000;
+	int i = 0;
+	for(wait_c; wait_c >= 0; wait_c--) {
+		i++;
+	}
 //	I2CInit((uint32_t) I2CMASTER);
 //	init_bl();
 //	init_accel();

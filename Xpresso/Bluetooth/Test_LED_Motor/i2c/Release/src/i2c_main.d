@@ -6,7 +6,7 @@ src/i2c_main.d: ../src/i2c_main.c ../src/globals.h \
  ../driver/i2c.h ../src/devices/bluetooth.h \
  ../src/devices/accelerometer.h ../src/devices/fuel_gauge.h \
  ../src/screens/debug.h ../src/screens/weather.h ../driver/timer32.h \
- ../src/screens/headlines.h
+ ../src/screens/headlines.h ../src/devices/vibrator.h
 
 ../src/globals.h:
 
@@ -49,3 +49,5 @@ src/i2c_main.d: ../src/i2c_main.c ../src/globals.h \
 ../driver/timer32.h:
 
 ../src/screens/headlines.h:
+
+../src/devices/vibrator.h:

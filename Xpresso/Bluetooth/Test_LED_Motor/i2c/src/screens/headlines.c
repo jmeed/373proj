@@ -34,19 +34,17 @@ void main_headlines() {
 }
 
 static void start_headlines() {
-	strcpy((char *) bl_send, "00");
-	send_bl_message();
-	get_headline(01);
+	get_headline(B_HEAD_INIT);
 }
 
 static void run_headlines() {
 	enum Joystick_dir curJoy = getJoyDirection();
 	switch (curJoy) {
 	case RIGHT:
-		get_headline(01);
+		get_headline(B_HEAD_NEXT);
 		break;
 	case LEFT:
-		get_headline(02);
+		get_headline(B_HEAD_PREV);
 		break;
 	case IN:
 		next_state = MAIN_WATCH;
@@ -60,13 +58,7 @@ static void stop_headlines() {
 }
 
 static void get_headline(uint8_t opcode) {
-	char * opcode_str;
-	if(opcode == 1) {
-		opcode_str = "01";
-	} else {
-		opcode_str = "02";
-	}
-	strcpy((char *) bl_send, opcode_str);
+	set_bl_opcode(opcode);
 	send_bl_message();
 	get_bl_msg_and_process(opcode);
 	newsScreen();
