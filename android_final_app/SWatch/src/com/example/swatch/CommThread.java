@@ -24,14 +24,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
 
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 class CommThread extends Thread {
     private static BluetoothSocket socket;
     private static InputStream istream;
@@ -124,7 +127,6 @@ class CommThread extends Thread {
         // Read from Bluetooth always
         while (true) {
         	System.out.println("in while");
-             	
         	act = readFromTarget();
         	handler.obtainMessage(act, buffer)
             .sendToTarget();
@@ -151,12 +153,37 @@ class CommThread extends Thread {
     
     public static void ensure_connection()
     {
+    	
+    	Thread check = new Thread()
+    	{
+    		 @Override
+    	      public void run() {
+    			 while(true)
+    			 {
+    				 if (!socket.isConnected())
+    			    	{
+    			    		System.out.println("socket is not connected");
+    			    		
+    			    	}
+    			 }
+    		 }
+    	};
+    	check.start();
+    }
+    
+    public static void ensure_connection_helper()
+    {
     	if (socket != null)
     		return;
     	else
     	{
+    		System.out.println("Reconnecting connecting");
     		if (adapter == null)
-                return;
+    		{
+    			System.out.println("Adapter is null. Error!");
+    			return;
+    		}
+    	
         
         Set<BluetoothDevice> devices = adapter.getBondedDevices();
         BluetoothDevice device = null;

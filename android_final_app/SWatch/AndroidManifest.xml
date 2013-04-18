@@ -38,6 +38,10 @@
             android:name="com.example.swatch.TimeActivity"
             android:label="@string/title_activity_time" >
         </activity>
+        <activity
+            android:name="com.example.swatch.MusicActivity"
+            android:label="@string/title_activity_music" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

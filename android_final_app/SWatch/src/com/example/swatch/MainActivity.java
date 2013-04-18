@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
@@ -21,8 +22,8 @@ import android.bluetooth.BluetoothAdapter;
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class MainActivity extends Activity {
 
-    private CommThread thread;
-    private ProgressDialog dialog;
+	public CommThread thread;
+    public ProgressDialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class MainActivity extends Activity {
 		Button saveWeather = (Button) findViewById(R.id.save_weather);
         final EditText zipCode = (EditText) findViewById(R.id.zip_code);
         Button getWeather = (Button) findViewById(R.id.get_weather);
+       Button startMusic = (Button) findViewById(R.id.start_music);
         
         Button getHeadlines = (Button) findViewById(R.id.get_headlines);
         
@@ -105,8 +107,15 @@ public class MainActivity extends Activity {
             }
         });
      
-        
-        
+        startMusic.setOnClickListener(new View.OnClickListener() {
+        	
+            @Override
+            public void onClick(View v)
+            {
+            	Intent myIntent = new Intent(MainActivity.this, MusicActivity.class);
+            	MainActivity.this.startActivity(myIntent);
+            }
+        });
         
         getHeadlines.setOnClickListener(new View.OnClickListener() {
         	
@@ -141,7 +150,6 @@ public class MainActivity extends Activity {
   				finish();
   				return;
   	        }
-      		CommThread.ensure_connection();
       		
       		System.out.println("READ MESS MAIN "+readMessage);
       		String headline = null;
@@ -151,7 +159,11 @@ public class MainActivity extends Activity {
       	        	if (readMessage.charAt(1) == '0')
       	        	{
       	        		if (Utility.how_many_sends >= Utility.how_many_sends_total)
-        	        		  break;
+      	        		{
+      	        			String error = "Bluetooth error\nError code 0r327\0";
+      	        			CommThread.write(error.getBytes());
+      	        			break;
+      	        		}
         	        	  String to_send = null;
         	        	  to_send = Utility.get_to_send();
         	        	  CommThread.write(to_send.getBytes());
@@ -164,12 +176,12 @@ public class MainActivity extends Activity {
       	        	}
       	        	break;
       	        case 2:
-      	        	if (readMessage.charAt(2) == '0')
+      	        	if (readMessage.charAt(1) == '0')
       	        	{
       	        		Intent myIntent = new Intent(MainActivity.this, HeadlinesActivity.class);
       	        		MainActivity.this.startActivity(myIntent);
       	        	}
-      	        	else if (readMessage.charAt(2) == '1')
+      	        	else if (readMessage.charAt(1) == '1')
       	        	{
       	        		Utility.mHeadline_counter++;
       	        		if (Utility.mHeadline_counter < 0)
@@ -206,7 +218,8 @@ public class MainActivity extends Activity {
       	          case 4:
       	        	if (readMessage.charAt(1) == '0')
       	        	{
-      	        		
+      	        		Intent myIntent3 = new Intent(MainActivity.this, MusicActivity.class);
+      	        		MainActivity.this.startActivity(myIntent3);
       	        	}
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
@@ -228,7 +241,28 @@ public class MainActivity extends Activity {
 	@Override
     public void onStart() {
             super.onStart();
-            
+            /*new CountDownTimer(30000, 1000) {
+            	public void onFinish(){
+            		CommThread.cancel();
+            		//dialog = ProgressDialog.show();
+            		try {
+						Thread.sleep(3);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            		thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler);
+            		thread.start();
+            		this.start();
+            	}
+
+				@Override
+				public void onTick(long arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+               
+             }.start();*/
     }
 	
 	@Override

@@ -36,6 +36,7 @@ public class TimeActivity extends Activity {
 		Utility.mTime = "01" + time + "\0";
 		CommThread.write(Utility.mTime.getBytes());
 		
+		System.out.println(Utility.mTime);
 		Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
 
