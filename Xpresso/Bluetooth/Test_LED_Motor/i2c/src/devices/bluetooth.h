@@ -49,6 +49,25 @@
 #define BL_BUFFER (BUFSIZE -2) // Do not change this
 #define BL_TIMEOUT	3
 
+
+// Opcodes
+#define B_ACK			0	// ACK
+#define	B_TIME			1	// Current time
+
+#define B_PHONE			10	// Phone call
+
+#define B_HEAD_INIT	20	// Headlines init
+#define	B_HEAD_NEXT	21	// Headlines next
+#define B_HEAD_PREV	22	// Headlines prev
+
+#define B_WEATHER_CURR	30	// Weather current
+#define	B_WEATHER_FOR	31	// Weather forecast
+
+#define B_MUSIC_INIT	40	// Music init
+#define B_MUSIC_TOGGLE	41	// Music toggle
+#define	B_MUSIC_NEXT	42	// Music next
+#define B_MUSIC_PREV	43	// Music prev
+
 // Buffers
 extern uint8_t * const bl_send; // Do not change the pointer !!!
 volatile char bl_receive[BUFSIZE];
@@ -76,5 +95,7 @@ int16_t receive_bl_message();
 // Wait untill you get a full bluetooth message. This functions is exactly as the receive_bl_message
 // except that it waits untill it gets a message
 uint8_t get_bl_msg_and_process(uint8_t opcode_requested);
+
+void set_bl_opcode(uint8_t opcode);
 
 #endif /* BLUETOOTH_H_ */

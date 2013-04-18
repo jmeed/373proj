@@ -11,6 +11,7 @@
 #include <assert.h>
 #include "i2c_com.h"
 #include "../globals.h"
+#include <stdlib.h>
 
 // bl_send should point to the first available byte where the message will begin
 uint8_t * const bl_send = (uint8_t *) I2CMasterBuffer + 2;
@@ -87,4 +88,13 @@ uint8_t get_bl_msg_and_process(uint8_t opcode_requested) {
 	*/
 
 	return result;
+}
+
+void set_bl_opcode(uint8_t opcode) {
+	if(opcode < 10 ) {
+		bl_send[0] = '0';
+		itoa(opcode, (char *) (bl_send + 1), 10);
+	} else {
+		itoa(opcode, (char *) bl_send, 10);
+	}
 }

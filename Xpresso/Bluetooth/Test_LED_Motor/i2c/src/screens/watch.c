@@ -77,13 +77,13 @@ static void run_watch() {
 }
 
 static void get_time() {
-	strcpy((char *) bl_send, "20");
+	set_bl_opcode(B_TIME);
 	send_bl_message();
 	get_bl_msg_and_process(20);
 	unixtime = atol((((char *)bl_receive) + 2));
 
 	// Subtract from Greenwich time
-	unixtime -= (6 * 60 * 60);
+//	unixtime -= (6 * 60 * 60);
 
 	last_bl_time_update = unixtime;
 }

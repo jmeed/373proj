@@ -51,7 +51,6 @@ int main(void) {
 //	init_bl();
 //	init_accel();
 //	get_current_voltage();
-//	while(1);
 	// Initialization
   	init_mwatch();
 
