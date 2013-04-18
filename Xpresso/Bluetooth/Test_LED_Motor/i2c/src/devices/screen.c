@@ -220,14 +220,19 @@ void writeString(char *str) {
 	UARTCount = 0;
 }
 
-void drawSquare(int x, int y, int size, int color) {
+void drawSquare(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color) {
 	UARTBuffer[0] = 0xFF;
-	UARTBuffer[1] = 0xCE;
-	UARTBuffer[2] = x;
-	UARTBuffer[4] = y;
-	UARTBuffer[6] = x + 4;
-	UARTBuffer[8] = y + 4;
-	UARTBuffer[10] = color;
+	UARTBuffer[1] = 0xCF;
+	UARTBuffer[2] = x1 >> 8;
+	UARTBuffer[3] = x1;
+	UARTBuffer[4] = y1 >> 8;
+	UARTBuffer[5] = y1;
+	UARTBuffer[6] = x2 >> 8;
+	UARTBuffer[7] = x2;
+	UARTBuffer[8] = y2 >> 8;
+	UARTBuffer[9] = y2;
+	UARTBuffer[10] = color >> 8;
+	UARTBuffer[11] = color;
 	UARTCount = 12;
 	send();
 	UARTCount = 0;
@@ -506,5 +511,21 @@ void timeScreen() {
 		break;
 	}
 	media_display();
+}
+
+uint16_t get_pixel(uint16_t x, uint16_t y) {
+	//set text width
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0xC0;
+	UARTBuffer[2] = x >> 8;
+	UARTBuffer[3] = x;
+	UARTBuffer[4] = y >> 8;
+	UARTBuffer[5] = y;
+	UARTCount = 6;
+	send();
+	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	UARTCount = 0;
+	return ((UARTBuffer[1] << 8) + UARTBuffer[2]);
 }
 

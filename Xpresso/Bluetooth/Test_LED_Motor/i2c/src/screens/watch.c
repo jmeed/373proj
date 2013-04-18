@@ -63,6 +63,9 @@ static void run_watch() {
 	case LEFT:
 		next_state = DEBUGSC;
 		break;
+	case RIGHT:
+		next_state = SNAKE;
+		break;
 	case DOWN:
 		next_state = WEATHER;
 		break;
@@ -77,9 +80,12 @@ static void run_watch() {
 }
 
 static void get_time() {
-	set_bl_opcode(B_TIME);
-	send_bl_message();
-	get_bl_msg_and_process(20);
+	int8_t time_result = -1;
+	while(time_result == -1) {
+		set_bl_opcode(B_TIME);
+		send_bl_message();
+		time_result =  get_bl_msg_and_process(B_TIME);
+	}
 	unixtime = atol((((char *)bl_receive) + 2));
 
 	// Subtract from Greenwich time

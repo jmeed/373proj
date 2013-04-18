@@ -34,6 +34,7 @@
 #include <stdlib.h>
 #include "screens/headlines.h"
 #include "devices/vibrator.h"
+#include "screens/snake.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -43,15 +44,18 @@ static void vibrator_check();
 static void init_timer();
 static void init_gpio();
 static void init_i2c();
+static void check_snake();
 
 //volatile uint32_t TimeTick = 0;
 
 int main(void) {
-	volatile int wait_c = 48000000;
-	int i = 0;
-	for(wait_c; wait_c >= 0; wait_c--) {
-		i++;
-	}
+//	volatile int wait_c = 48000000;
+//	int i = 0;
+//	for(wait_c; wait_c >= 0; wait_c--) {
+//		i++;
+//	}
+
+
 //	I2CInit((uint32_t) I2CMASTER);
 //	init_bl();
 //	init_accel();
@@ -111,6 +115,10 @@ void run_mwatch() {
 	if(tick) {
 		// Check the vibrator
 		vibrator_check();
+
+		// Tick of the snake
+		check_snake();
+
 		tick = 0;
 	}
 
@@ -145,6 +153,7 @@ void run_mwatch() {
 			main_weather();
 			break;
 		case SNAKE:
+			main_snake();
 			break;
 		case HEADLINES:
 			main_headlines();
@@ -212,5 +221,24 @@ void vibrator_check() {
 			GPIOSetValue( VIB_F_PORT, VIB_F_POS, VIB_OFF );
 			GPIOSetValue( VIB_S_PORT, VIB_S_POS, VIB_OFF );
 		}
+	}
+}
+
+static void check_snake() {
+	enum Joystick_dir direction = getJoyDirection();
+	switch (direction){ //get the current direction
+	case UP:
+		break;
+	case DOWN:
+		break;
+	case RIGHT:
+		add_snake_square(1, -1);
+		break;
+	case LEFT:
+		break;
+	case IN:
+		break;
+	case NONE:
+		break;
 	}
 }

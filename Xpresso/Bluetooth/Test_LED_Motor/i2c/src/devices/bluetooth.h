@@ -94,7 +94,7 @@ int16_t receive_bl_message();
 
 // Wait untill you get a full bluetooth message. This functions is exactly as the receive_bl_message
 // except that it waits untill it gets a message
-uint8_t get_bl_msg_and_process(uint8_t opcode_requested);
+int8_t get_bl_msg_and_process(uint8_t opcode_requested);
 
 void set_bl_opcode(uint8_t opcode);
 

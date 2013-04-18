@@ -31,7 +31,7 @@ void send_bl_message() {
 	// Make sure there is no NULL in the first bits
 	I2CMasterBuffer[0] = 0xFF;
 	I2CMasterBuffer[1] = 0xFF;
-//	printf("BL msg send: [%s]\n", (char *) bl_send);
+	printf("BL msg send: [%s]\n", (char *) bl_send);
 	send_i2c_msg(BL_WAADR, BL_THR, (sizeof((char *)I2CMasterBuffer) - 1));
 }
 
@@ -44,12 +44,12 @@ uint8_t is_bl_message_available() {
 int16_t receive_bl_message() {
 	int16_t index = 0;
 	uint64_t start = unixtime;
-	while(1) {
+	while(unixtime - start <= BL_TIMEOUT) {
 		if(is_bl_message_available()) {
 			bl_receive[index] = (char) read_i2c_register(BL_RAADR, BL_WAADR, BL_RHR);
 			index++;
 			if(bl_receive[index - 1] == '\0') { // Got the entire message
-//				printf("BL msg rcv size: [%d]\n", index);
+				printf("BL msg rcv size: [%d]\n", index);
 				break;
 			}
 			// If we have gotten 64 characters but not null than we want to send an ack and read the rest of them again
@@ -65,12 +65,14 @@ int16_t receive_bl_message() {
 	return index;
 }
 
-uint8_t get_bl_msg_and_process(uint8_t opcode_requested) {
+int8_t get_bl_msg_and_process(uint8_t opcode_requested) {
 	int16_t result = receive_bl_message();
 
+
 	if(result == -1) {
+		return -1;
 //		printf("BL timeout for opcode %d\n", opcode_requested);
-		assert(0);
+//		assert(0);
 	}
 
 	// Ensure we got the message we asked for

@@ -71,7 +71,7 @@ void writeString(char *str);
  * y between 0 and 124 inclusive.
  * color between 0x0000 0xffff
  */
-void drawSquare(int x, int y, int size, int color);
+void drawSquare(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
 
 
 //Screen Types
@@ -106,6 +106,8 @@ void snakeScreen();
  * Sets time screen. Places cursor ready for time data.
  */
 void timeScreen();
+
+uint16_t get_pixel(uint16_t x, uint16_t y);
 
 
 extern volatile uint32_t UARTCount;
