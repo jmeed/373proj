@@ -14,8 +14,15 @@
 #define AC_WAADR 0xA6
 #define AC_RAADR (AC_WAADR | 0x01)
 
+#define ABOUT 50
+
+enum Acc_direction {AC_NORMAL, AC_LEFT, AC_FRONT, AC_RIGHT, AC_BACK};
+
 void init_accel();
-uint8_t get_acc_direction(uint8_t reg);
+int16_t get_acc_direction(uint8_t reg);
 void update_acc_data();
+enum Acc_direction get_current_orientation();
+
+
 
 #endif /* ACCELEROMETER_H_ */

@@ -28,8 +28,8 @@ enum run_state run_state;
 enum WEATHER_TYPE {_CLOUD, _RAIN, _SNOW, _STORM, _SUNNY};
 
 //Accelerometer variables
-uint8_t x_g;
-uint8_t y_g;
-uint8_t z_g;
+int16_t x_g;
+int16_t y_g;
+int16_t z_g;
 
 #endif /* GLOBALS_H_ */

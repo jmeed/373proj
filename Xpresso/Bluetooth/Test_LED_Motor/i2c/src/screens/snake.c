@@ -10,6 +10,8 @@
 #include <time.h>
 #include "../globals.h"
 #include "../devices/screen.h"
+#include "../devices/joystick.h"
+#include "../devices/accelerometer.h"
 
 // Private functions
 static void start_snake();
@@ -56,10 +58,67 @@ static void start_snake() {
 	back->f = front;
 	draw_snake_square(front);
 	draw_snake_square(back);
+	s_dir = S_L;
+	s_tick = 0;
 }
 
 static void run_snake() {
+	if (s_tick) {
+		enum Joystick_dir direction = getJoyDirection();
+		switch (direction){ //get the current direction
+		case UP:
+			break;
+		case DOWN:
+			break;
+		case RIGHT:
+	//		add_snake_square(1, -1);
+			break;
+		case LEFT:
+			break;
+		case IN:
+			next_state = MAIN_WATCH;
+			break;
+		case NONE:
+	//		add_snake_square(1, -1);
+			break;
+		}
 
+
+		// Check accelerometer
+		enum Acc_direction acc_dir = get_current_orientation();
+
+		switch (acc_dir){ //get the current direction
+		case AC_NORMAL:
+			break;
+		case AC_LEFT:
+			break;
+		case AC_FRONT:
+			break;
+		case AC_RIGHT:
+			break;
+		case AC_BACK:
+			break;
+		}
+
+
+
+		// Update the square based on the direction
+		switch (s_dir){ //get the current direction
+		case S_U:
+			add_snake_square(0, -1);
+			break;
+		case S_R:
+			add_snake_square(1, 0);
+			break;
+		case S_D:
+			add_snake_square(0, 1);
+			break;
+		case S_L:
+			add_snake_square(-1, 0);
+			break;
+		}
+		s_tick = 0;
+	}
 }
 
 static void stop_snake() {
@@ -77,20 +136,26 @@ static void create_food() {
 
 void add_snake_square(int8_t x, int8_t y) {
 	x = front->x + x;
+	if (x == 0) {
+		x = x;
+	}
 	y = front->y + y;
-	if (get_pixel(x,y) == 0xFFFF) { //ran into wall or snake tail;
+	if (get_pixel(x,y) == 0xCAFF) { //ran into wall or snake tail;
+		x = x;
 		// Die
 		return;
 	}
 	struct dll * newHead;
 	newHead = malloc(sizeof(struct dll));
-	newHead->x = x; //random number between 0
-	newHead->y = y;//random number between 62
+	newHead->x = x;
+	newHead->y = y;
 	newHead->f = NULL;
 	front->f = newHead;
 	front = newHead;
 	draw_snake_square(newHead);
-	if (get_pixel(x,y) == 0x0000) { //not ran into food
+	uint16_t f = get_pixel(x,y);
+	f = f;
+	if (get_pixel(x,y) == 0xCA00) { //not ran into food
 		struct dll * tempBack;
 		tempBack = back;
 		back = back->f;
@@ -104,7 +169,7 @@ void add_snake_square(int8_t x, int8_t y) {
 }
 
 static void clear_snake_square(struct dll *square) {
-	drawSquare(square->x, square->y, square->x+1, square->y+1, 0xFFFF); //draw a 2x2 square starting at x,y
+	drawSquare(square->x, square->y, square->x+1, square->y+1, 0x0000); //draw a 2x2 square starting at x,y
 	free(square);
 }
 

@@ -75,6 +75,9 @@ void SysTick_Handler(void)
     	unixtime++;
     	milli = 0;
     	tick = 1;
+    } else if(milli % 66) {
+    	s_tick = 1;
+    	milli++;
     } else {
     	milli++;
     }
@@ -111,18 +114,19 @@ void init_mwatch() {
 
 void run_mwatch() {
 
-	// Do tick checking stuff
-	if(tick) {
-		// Check the vibrator
-		vibrator_check();
-
-		// Tick of the snake
-		check_snake();
-
-		tick = 0;
-	}
-
 	while (1) {
+
+		// Do tick checking stuff
+		if(tick) {
+			// Check the vibrator
+			vibrator_check();
+
+			// Tick of the snake
+			check_snake();
+
+			tick = 0;
+		}
+
 		// Timer
 
 		// Change run state if transitioning
@@ -225,20 +229,4 @@ void vibrator_check() {
 }
 
 static void check_snake() {
-	enum Joystick_dir direction = getJoyDirection();
-	switch (direction){ //get the current direction
-	case UP:
-		break;
-	case DOWN:
-		break;
-	case RIGHT:
-		add_snake_square(1, -1);
-		break;
-	case LEFT:
-		break;
-	case IN:
-		break;
-	case NONE:
-		break;
-	}
 }

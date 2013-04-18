@@ -516,7 +516,7 @@ void timeScreen() {
 uint16_t get_pixel(uint16_t x, uint16_t y) {
 	//set text width
 	UARTBuffer[0] = 0xFF;
-	UARTBuffer[1] = 0xC0;
+	UARTBuffer[1] = 0xCA;
 	UARTBuffer[2] = x >> 8;
 	UARTBuffer[3] = x;
 	UARTBuffer[4] = y >> 8;
