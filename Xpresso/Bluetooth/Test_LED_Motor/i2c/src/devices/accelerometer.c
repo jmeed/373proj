@@ -12,7 +12,7 @@
 #include "i2c.h"
 #include <stdio.h>
 
-static uint8_t is_about(uint8_t des_axes, uint8_t cur_axes);
+//static uint8_t is_about(uint8_t des_axes, uint8_t cur_axes);
 
 void init_accel() {
 	x_g = 0;
@@ -37,7 +37,7 @@ void update_acc_data() {
 
 enum Acc_direction get_current_orientation() {
 	update_acc_data();
-	printf("x: %d\ty: %d\tz: %d\n", x_g, y_g, z_g);
+//	printf("x: %d\ty: %d\tz: %d\n", x_g, y_g, z_g);
 
 
 	// Check x
@@ -68,23 +68,23 @@ enum Acc_direction get_current_orientation() {
 }
 
 
-static uint8_t is_about(uint8_t des_axes, uint8_t cur_axes) {
-	uint8_t wrap = 0;
-	uint8_t lower = cur_axes - ABOUT;
-	uint8_t upper = cur_axes + ABOUT;
-//	printf("lower: %d\t upper: %d\n", lower, upper);
-	if((upper <  cur_axes) || lower >  cur_axes) {
-		lower = cur_axes + ABOUT;
-		upper = cur_axes - ABOUT;
-		wrap = 1;
-	}
-
-	if(wrap) {
-		return !(des_axes >= lower && des_axes <= upper);
-	} else {
-		return (des_axes >= lower && des_axes <= upper);
-	}
-}
+//static uint8_t is_about(uint8_t des_axes, uint8_t cur_axes) {
+//	uint8_t wrap = 0;
+//	uint8_t lower = cur_axes - ABOUT;
+//	uint8_t upper = cur_axes + ABOUT;
+////	printf("lower: %d\t upper: %d\n", lower, upper);
+//	if((upper <  cur_axes) || lower >  cur_axes) {
+//		lower = cur_axes + ABOUT;
+//		upper = cur_axes - ABOUT;
+//		wrap = 1;
+//	}
+//
+//	if(wrap) {
+//		return !(des_axes >= lower && des_axes <= upper);
+//	} else {
+//		return (des_axes >= lower && des_axes <= upper);
+//	}
+//}
 
 
 

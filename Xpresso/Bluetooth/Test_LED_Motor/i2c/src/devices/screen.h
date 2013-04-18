@@ -73,6 +73,8 @@ void writeString(char *str);
  */
 void drawSquare(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
 
+void drawFillSquare(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
+
 
 //Screen Types
 /*

@@ -241,6 +241,30 @@ void drawSquare(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t col
 //		printf("DANGER WILL ROBINSON, Failed to draw rectangle\n");
 	UARTCount = 0;
 }
+
+
+void drawFillSquare(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color) {
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0xCE;
+	UARTBuffer[2] = x1 >> 8;
+	UARTBuffer[3] = x1;
+	UARTBuffer[4] = y1 >> 8;
+	UARTBuffer[5] = y1;
+	UARTBuffer[6] = x2 >> 8;
+	UARTBuffer[7] = x2;
+	UARTBuffer[8] = y2 >> 8;
+	UARTBuffer[9] = y2;
+	UARTBuffer[10] = color >> 8;
+	UARTBuffer[11] = color;
+	UARTCount = 12;
+	send();
+	UARTCount = 0;
+	wait();
+//	if (gotACK() == 0)
+//		printf("DANGER WILL ROBINSON, Failed to draw rectangle\n");
+	UARTCount = 0;
+}
+
 //Screen Types
 void welcomeScreen() {
 	clearScreen();

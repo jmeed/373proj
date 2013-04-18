@@ -49,11 +49,11 @@ static void start_snake() {
 	clearScreen();
 	drawSquare(0, 0, 127, 127, 0xffff);
 	front = malloc(sizeof(struct dll));
-	front->x = rand_lim(1, 126); //random number between 0
-	front->y = rand_lim(1, 126); //random number between 62
+	front->x = rand_lim(1, 124); //random number between 0
+	front->y = rand_lim(1, 124); //random number between 62
 	front->f = NULL;
 	back = malloc(sizeof(struct dll));
-	back->x = front->x + 1;
+	back->x = front->x + 3;
 	back->y = front->y;
 	back->f = front;
 	draw_snake_square(front);
@@ -64,26 +64,6 @@ static void start_snake() {
 
 static void run_snake() {
 	if (s_tick) {
-		enum Joystick_dir direction = getJoyDirection();
-		switch (direction){ //get the current direction
-		case UP:
-			break;
-		case DOWN:
-			break;
-		case RIGHT:
-	//		add_snake_square(1, -1);
-			break;
-		case LEFT:
-			break;
-		case IN:
-			next_state = MAIN_WATCH;
-			break;
-		case NONE:
-	//		add_snake_square(1, -1);
-			break;
-		}
-
-
 		// Check accelerometer
 		enum Acc_direction acc_dir = get_current_orientation();
 
@@ -91,12 +71,16 @@ static void run_snake() {
 		case AC_NORMAL:
 			break;
 		case AC_LEFT:
+			s_dir = S_U;
 			break;
 		case AC_FRONT:
+			s_dir = S_R;
 			break;
 		case AC_RIGHT:
+			s_dir = S_D;
 			break;
 		case AC_BACK:
+			s_dir = S_L;
 			break;
 		}
 
@@ -105,16 +89,16 @@ static void run_snake() {
 		// Update the square based on the direction
 		switch (s_dir){ //get the current direction
 		case S_U:
-			add_snake_square(0, -1);
+			add_snake_square(0, -3);
 			break;
 		case S_R:
-			add_snake_square(1, 0);
+			add_snake_square(3, 0);
 			break;
 		case S_D:
-			add_snake_square(0, 1);
+			add_snake_square(0, 3);
 			break;
 		case S_L:
-			add_snake_square(-1, 0);
+			add_snake_square(-3, 0);
 			break;
 		}
 		s_tick = 0;
@@ -127,7 +111,7 @@ static void stop_snake() {
 
 
 static void draw_snake_square(struct dll *square) {
-	drawSquare(square->x, square->y, square->x+1, square->y+1, 0xffff);
+	drawFillSquare(square->x, square->y, square->x+3, square->y+3, 0xffff);
 }
 
 static void create_food() {
@@ -141,8 +125,14 @@ void add_snake_square(int8_t x, int8_t y) {
 	}
 	y = front->y + y;
 	if (get_pixel(x,y) == 0xCAFF) { //ran into wall or snake tail;
-		x = x;
-		// Die
+		textSize(2,2);
+		moveCursor(3,1);
+		writeString("You lost :(");
+		uint64_t start_s = unixtime;
+		while(unixtime - start_s < 3) {
+
+		}
+		next_state = MAIN_WATCH;
 		return;
 	}
 	struct dll * newHead;
@@ -169,7 +159,7 @@ void add_snake_square(int8_t x, int8_t y) {
 }
 
 static void clear_snake_square(struct dll *square) {
-	drawSquare(square->x, square->y, square->x+1, square->y+1, 0x0000); //draw a 2x2 square starting at x,y
+	drawFillSquare(square->x, square->y, square->x+3, square->y+3, 0x0000); //draw a 2x2 square starting at x,y
 	free(square);
 }
 
