@@ -21,21 +21,6 @@ static void stop_weather();
 static void get_weather(uint8_t opcode);
 
 void main_weather() {
-//	if (run_state == START){
-//		weatherScreen();
-//		run_state = RUN;
-//	}
-//
-//	enum joystick_dir curJoy ;
-//	curJoy = getJoyDirection();
-//	switch (curJoy) {
-//	case IN:
-//		next_state = MAIN_WATCH;
-//		break;
-//	default:
-//		break;
-//	}
-
 	switch (run_state) {
 	case START:
 		start_weather();
@@ -51,7 +36,7 @@ void main_weather() {
 }
 
 static void start_weather() {
-	get_weather(11);
+	get_weather(10);
 }
 
 static void run_weather() {
@@ -61,7 +46,7 @@ static void run_weather() {
 		get_weather(12);
 		break;
 	case LEFT:
-		get_weather(11);
+		get_weather(10);
 		break;
 	case IN:
 		next_state = MAIN_WATCH;
@@ -79,8 +64,8 @@ static void get_weather(uint8_t opcode) {
 	char * opcode_char;
 	char * title;
 	char * navigation;
-	if(opcode == 11) {
-		opcode_char = "11";
+	if(opcode == 10) {
+		opcode_char = "10";
 		title = "Current Weather\n";
 		navigation = "-> Forecast";
 	} else {
@@ -90,8 +75,6 @@ static void get_weather(uint8_t opcode) {
 	}
 
 
-	strcpy((char *) bl_send, "10");
-	send_bl_message();
 	strcpy((char *) bl_send, opcode_char);
 	send_bl_message();
 	get_bl_msg_and_process(opcode);

@@ -20,6 +20,7 @@ enum run_state {
 
 
 uint64_t unixtime;
+uint8_t tick;
 char unixtime_str[12];
 enum watch_state current_state;
 enum watch_state next_state;

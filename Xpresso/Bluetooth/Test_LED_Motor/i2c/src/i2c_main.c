@@ -33,9 +33,11 @@
 #include "timer32.h"
 #include <stdlib.h>
 #include "screens/headlines.h"
+#include "devices/vibrator.h"
 
 static void init_mwatch();
 static void run_mwatch();
+static void vibrator_check();
 
 
 static void init_timer();
@@ -64,6 +66,7 @@ void SysTick_Handler(void)
     if(milli == 132) {
     	unixtime++;
     	milli = 0;
+    	tick = 1;
     } else {
     	milli++;
     }
@@ -99,6 +102,14 @@ void init_mwatch() {
 }
 
 void run_mwatch() {
+
+	// Do tick checking stuff
+	if(tick) {
+		// Check the vibrator
+		vibrator_check();
+		tick = 0;
+	}
+
 	while (1) {
 		// Timer
 
@@ -163,6 +174,10 @@ void init_gpio() {
 	init_dir(RIGHTPORT, RIGHTPOS);
 	init_dir(INPORT, INPOS);
 
+	// Vibrator
+	GPIOSetDir( VIB_F_PORT, VIB_F_POS, 1 );
+	GPIOSetDir( VIB_S_PORT, VIB_S_POS, 1 );
+
 	joystick_dir = NONE;
 }
 
@@ -185,4 +200,13 @@ void init_i2c() {
 //
 //		}
 //	}
+}
+
+void vibrator_check() {
+	if(vib_start_time != -1) {
+		if(unixtime - vib_start_time > vib_duration) {
+			GPIOSetValue( VIB_F_PORT, VIB_F_POS, VIB_OFF );
+			GPIOSetValue( VIB_S_PORT, VIB_S_POS, VIB_OFF );
+		}
+	}
 }
