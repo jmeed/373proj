@@ -43,6 +43,15 @@ void wait();
 int gotACK();
 
 /*
+ * Set test size of watch
+ * width is in [1, 16] (default 1)
+ * height is in [1,16] (default 1)
+ * text size is a multiple of the default;
+ * that is, 5 means text is 5x size of default.
+ */
+void textSize(uint16_t width, uint16_t height);
+
+/*
  * Moves cursor (line, column)
  * x between 0 and 15 inclusive.
  * y between 0 and 17 inclusive.

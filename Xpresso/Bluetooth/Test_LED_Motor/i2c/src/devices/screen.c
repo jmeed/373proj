@@ -156,6 +156,34 @@ int gotACK() {
 		return 0;
 }
 
+void textSize(uint16_t width, uint16_t height) {
+	//set text width
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7C;
+	UARTBuffer[2] = width >> 8;
+	UARTBuffer[3] = width;
+	UARTCount = 4;
+	send();
+	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	//if (gotACK() == 0)
+		//printf("DANGER WILL ROBINSON, Failed to set text width\n");
+	UARTCount = 0;
+
+	//set text height
+	UARTBuffer[0] = 0xFF;
+	UARTBuffer[1] = 0x7B;
+	UARTBuffer[2] = height >> 8;
+	UARTBuffer[3] = height;
+	UARTCount = 4;
+	send();
+	UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
+	wait();	//wait for screen to ACK
+	//if (gotACK() == 0)
+		//printf("DANGER WILL ROBINSON, Failed to set text height\n");
+	UARTCount = 0;
+}
+
 void moveCursor(uint8_t x, uint8_t y) {
 	UARTBuffer[0] = 0xFF;
 	UARTBuffer[1] = 0xE4;
