@@ -77,16 +77,20 @@ public class WeatherActivity extends Activity {
 			wind = wind.replaceAll("([ \t\n\f\r][NSEW]*)W([NSEW]*[ \t\n\f\r])", "$1 west $2");
 		}
   		
-  		mStrWeather = "Weather for " + Utility.mUserCity + "\n"+ tempVal + " F\n" + "Feels like " + feelsVal + " F ";
+  		mStrWeather = Utility.mUserCity + "\n"+ tempVal + " F\n" + "Feels like " + feelsVal + " F";
  
   		// Parse current conditions and save
-  		String parsed_current = Utility.parse_string(mStrWeather);	
-  		Utility.mCurrent_cond = parsed_current +"\0"; 
+  		//String parsed_current = Utility.parse_string(mStrWeather);	
+  		Utility.mCurrent_cond = mStrWeather +"\0"; 
+  		System.out.println("HERE "+ Utility.mCurrent_cond);
   		
   		// Save cur_icon
   		String cur_icon_to_display = Utility.choose_pic(cur_icon);
   		Utility.mIcon_cur = cur_icon_to_display;
-  		
+
+  		Utility.set_BT("10"+Utility.mIcon_cur+Utility.mCurrent_cond);
+  		CommThread.write(Utility.to_send_0.getBytes());
+  		Utility.how_many_sends = 1;
   		
   		// Weather Forecast
     	final String furl = "http://api.wunderground.com/api/afd835494ae994bc/forecast/q/" + Utility.mUserZip + ".json";
@@ -116,19 +120,9 @@ public class WeatherActivity extends Activity {
 			e.printStackTrace();
 		}
         
-		/*fcttext = fcttext.replaceAll("([0-9]+)F", "$1");
-		fcttext = fcttext.replaceAll("[Mm][Pp][Hh]", "miles per hour");
-		for(int i = 0; i < 2; i++) 
-		{
-			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)N([NSEW]*[ \t\n\f\r])", "$1 north $2");
-			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)S([NSEW]*[ \t\n\f\r])", "$1 south $2");
-			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)E([NSEW]*[ \t\n\f\r])", "$1 east $2");
-			fcttext = fcttext.replaceAll("([ \t\n\f\r][NSEW]*)W([NSEW]*[ \t\n\f\r])", "$1 west $2");
-		}*/
 		mStrWeather = "";
 		
 		mStrWeather = fcttext;
-		//mStrWeather = mStrWeather.substring(0, 170);
 		
 		// Parse forecast string and save
 		String parsed_forecast = Utility.parse_string(mStrWeather);
@@ -138,9 +132,6 @@ public class WeatherActivity extends Activity {
 		String forecast_icon_to_display = Utility.choose_pic(forecast_icon);
 		System.out.println("Forecast icon: "+forecast_icon_to_display);
 		Utility.mIcon_forecast = forecast_icon_to_display;
-		
-		
-		
 		
 		// Create hex string for debugging
 		// Get hex value for each char

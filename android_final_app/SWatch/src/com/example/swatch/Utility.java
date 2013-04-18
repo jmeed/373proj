@@ -2,9 +2,9 @@ package com.example.swatch;
 
 public class Utility {
 	
-	public static String mUserCity;
-	public static String mUserState;
-	public static String mUserZip;
+	public static String mUserCity = "Ann Arbor";
+	public static String mUserState = "MI";
+	public static String mUserZip = "48104";
 	public static String mForecast;
 	public static String mCurrent_cond;
 	public static String mIcon_cur;
