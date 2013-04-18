@@ -21,6 +21,8 @@ public class HeadlinesActivity extends Activity {
 		
 		System.out.println("in get headlines");
 		
+		Utility.mHeadline_counter = -1;
+		
 		TextView headlineTextView = (TextView) findViewById(R.id.headline_string);
 		TextView headlineASCII = (TextView) findViewById(R.id.headline_ascii_string);
 		
@@ -97,6 +99,14 @@ public class HeadlinesActivity extends Activity {
 		
 		String parsed = Utility.parse_string(h0);
 		Utility.mH0 = parsed + "\0";
+		
+		Utility.mHeadline_counter++;
+		String headline = Utility.get_headline(Utility.mHeadline_counter);
+  		//System.out.println("NUM: "+Utility.mHeadline_counter);
+  		//System.out.println("get next headline "+headline + headline.length());
+  		Utility.set_BT("00"+headline);
+  		CommThread.write(Utility.to_send_0.getBytes());
+  		Utility.how_many_sends = 1;  	        		
 		
 		parsed = Utility.parse_string(h1);
 		Utility.mH1 = parsed + "\0";

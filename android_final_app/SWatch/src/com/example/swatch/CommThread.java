@@ -34,12 +34,12 @@ import android.util.Log;
 
 class CommThread extends Thread {
     private static BluetoothSocket socket;
-    private InputStream istream;
+    private static InputStream istream;
     private static OutputStream ostream;
-    private Handler handler;
-    private ProgressDialog dialog;
-    private BluetoothAdapter adapter;
-    private byte[] buffer = new byte[1024];
+    private static Handler handler;
+    private static ProgressDialog dialog;
+    private static BluetoothAdapter adapter;
+    private static byte[] buffer = new byte[1024];
     
 
     public CommThread(BluetoothAdapter adapter, ProgressDialog dialog, Handler handler) {
@@ -52,41 +52,7 @@ class CommThread extends Thread {
     public void run() {
                 if (adapter == null)
                         return;
-
                 
-                
-                
-                /*buffer[1] = '1';
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();
-                handler.obtainMessage(b, 3, -1, buffer)
-                .sendToTarget();*/
-                
-    
                 Set<BluetoothDevice> devices = adapter.getBondedDevices();
                 BluetoothDevice device = null;
                 for (BluetoothDevice curDevice : devices) {
@@ -153,24 +119,7 @@ class CommThread extends Thread {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
-     // testing handler
-       /* buffer[0] = '2';
-        buffer[1] = '0';
-        buffer[2] = '\0';
-       
-        int b = Character.digit((char) buffer[0], 10);
-        System.out.println("INT "+b);
-        handler.obtainMessage(b, 3, -1, buffer)
-        .sendToTarget();
-        try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        buffer[1] = '1';
-        handler.obtainMessage(b, 3, -1, buffer)
-        .sendToTarget();*/
+    
         int act = -1;
         // Read from Bluetooth always
         while (true) {
@@ -200,7 +149,78 @@ class CommThread extends Thread {
         } catch (IOException e) { }
     }
     
-    public int readFromTarget() {
+    public static void ensure_connection()
+    {
+    	if (socket != null)
+    		return;
+    	else
+    	{
+    		if (adapter == null)
+                return;
+        
+        Set<BluetoothDevice> devices = adapter.getBondedDevices();
+        BluetoothDevice device = null;
+        for (BluetoothDevice curDevice : devices) {
+                if (curDevice.getName().matches("RN42-21EE")) {
+                        device = curDevice;
+                        System.out.println("Device found. Breaking!");
+                        break;
+                }
+        }
+        if (device == null)
+        {
+                device = adapter.getRemoteDevice("00:06:66:03:A7:52");
+                System.out.println("Device not found");
+        }
+
+        try 
+        {
+        	Method m = null;
+			try {
+				m = device.getClass().getMethod("createRfcommSocket", new Class[] {int.class});
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            socket = (BluetoothSocket) m.invoke(device, 1);
+                socket.connect();
+        } catch (IOException e) 
+        {
+                socket = null;
+                System.out.println("socket unsuccessfully created");
+        } catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        if (socket == null) return;
+
+
+        InputStream tmpIn = null;
+        OutputStream tmpOut = null;
+
+
+        try {
+        	tmpIn = socket.getInputStream();
+        	tmpOut = socket.getOutputStream();
+        } catch (IOException e) { }
+
+
+        istream = tmpIn;
+        ostream = tmpOut;
+
+        if (dialog != null && dialog.isShowing())
+        	dialog.dismiss();
+    	}
+    	return;
+    }
+    
+    public static int readFromTarget() {
 		int activity = -1;
 		buffer[2] = '1';
 		
@@ -234,49 +254,6 @@ class CommThread extends Thread {
 			}
 		}
 		activity = Character.digit((char) buffer[0], 10);
-		
-//		while(true) 
-//		{
-//			// Receive the sync message to ensure pairing with the right device
-//			int bytes = 0; // bytes returned from read()
-//			try 
-//			{
-//				bytes = istream.read(tmp_buff);
-//				System.out.println("BYTE LENGTH "+bytes);
-//				System.out.println("BYTES RCVD: "+(char)tmp_buff[0]+(char)tmp_buff[1]+(char)tmp_buff[2]);
-//				// Copy to permenant buffer
-//				if (bytes == 3)
-//				{
-//					for (int i = 0; i < 3; i++) 
-//					{
-//						buffer[i] = tmp_buff[i];
-//						System.out.println("buffer "+i+" "+(char)buffer[i]);
-//					}
-//					activity = Character.digit((char) buffer[0], 10);
-//					tmp_buff = null;
-//					break;
-//				}
-//				
-//				// Send the obtained bytes to the UI Activity
-//				// headlines = 0, weather = 1, time = 2 and buff[1] = 0
-//				
-//				
-//				
-//				// If the last byte is \0 we are done
-//				/*if(buffer[2] == '\0') 
-//				{
-//					System.out.println("Sending to target "+(char)buffer[0]+(char)buffer[1]+(char)buffer[2]);
-//					tmp_buff = null;
-//					break;
-//				}*/
-//			
-//			} 
-//			catch (IOException e) 
-//			{
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 		return activity;
 	}
 }

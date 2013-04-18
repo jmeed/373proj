@@ -33,7 +33,7 @@ public class TimeActivity extends Activity {
 		timeASCII.setText(ascii);
 		
 		// Save Time
-		Utility.mTime = "20" + time + "\0";
+		Utility.mTime = "01" + time + "\0";
 		CommThread.write(Utility.mTime.getBytes());
 		
 		Timer timer = new Timer();

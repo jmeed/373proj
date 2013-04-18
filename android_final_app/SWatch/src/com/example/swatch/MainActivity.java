@@ -141,6 +141,8 @@ public class MainActivity extends Activity {
   				finish();
   				return;
   	        }
+      		CommThread.ensure_connection();
+      		
       		System.out.println("READ MESS MAIN "+readMessage);
       		String headline = null;
       	        switch (msg.what) 
@@ -148,38 +150,47 @@ public class MainActivity extends Activity {
       	        case 0:
       	        	if (readMessage.charAt(1) == '0')
       	        	{
-      	        		Intent myIntent = new Intent(MainActivity.this, HeadlinesActivity.class);
-      	        		MainActivity.this.startActivity(myIntent);
-      	        		Utility.mHeadline_counter = -1;
+      	        		if (Utility.how_many_sends >= Utility.how_many_sends_total)
+        	        		  break;
+        	        	  String to_send = null;
+        	        	  to_send = Utility.get_to_send();
+        	        	  CommThread.write(to_send.getBytes());
+        	        	  Utility.how_many_sends++;
       	        	}
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
+      	        		Intent myIntent2 = new Intent(MainActivity.this, TimeActivity.class);
+      	        		MainActivity.this.startActivity(myIntent2);   		
+      	        	}
+      	        	break;
+      	        case 2:
+      	        	if (readMessage.charAt(2) == '0')
+      	        	{
+      	        		Intent myIntent = new Intent(MainActivity.this, HeadlinesActivity.class);
+      	        		MainActivity.this.startActivity(myIntent);
+      	        	}
+      	        	else if (readMessage.charAt(2) == '1')
+      	        	{
       	        		Utility.mHeadline_counter++;
-      	        		if (Utility.mHeadline_counter > 11)
-      	        			Utility.mHeadline_counter = 0;
+      	        		if (Utility.mHeadline_counter < 0)
+      	        			Utility.mHeadline_counter = 11;
       	        		headline = Utility.get_headline(Utility.mHeadline_counter);
-      	        		System.out.println("NUM: "+Utility.mHeadline_counter);
-      	        		System.out.println("get next headline "+headline + headline.length());
-      	        		Utility.set_BT("01"+headline);
+      	        		Utility.set_BT("21"+headline);
       	        		CommThread.write(Utility.to_send_0.getBytes());
-      	        		Utility.how_many_sends = 1;  	        		
+      	        		Utility.how_many_sends = 1;      	
       	        	}
       	        	else if (readMessage.charAt(1) == '2')
       	        	{
-      	        		System.out.println("get previous headline "+Utility.mCurrent_cond);
       	        		Utility.mHeadline_counter--;
       	        		if (Utility.mHeadline_counter < 0)
       	        			Utility.mHeadline_counter = 11;
       	        		headline = Utility.get_headline(Utility.mHeadline_counter);
-      	        		System.out.println("NUM: "+Utility.mHeadline_counter);
-      	        		System.out.println("get next headline "+headline + headline.length());	        		
-      	        		Utility.set_BT("02"+headline);
+      	        		Utility.set_BT("22"+headline);
       	        		CommThread.write(Utility.to_send_0.getBytes());
-      	        		Utility.how_many_sends = 1;      	        		
+      	        		Utility.how_many_sends = 1;    	        		
       	        	}
       	        	break;
-      	        
-      	        case 1:
+      	        case 3:
       	        	if (readMessage.charAt(1) == '0')
       	        	{
       	        		Intent myIntent1 = new Intent(MainActivity.this, WeatherActivity.class);
@@ -187,43 +198,29 @@ public class MainActivity extends Activity {
       	        	}
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
-      	        		System.out.println("send current conditions "+Utility.mCurrent_cond);
-      	        		//CommThread.write(Utility.mIcon_cur.getBytes());
-      	        		//CommThread.write(Utility.mCurrent_cond.getBytes());
-      	        		Utility.set_BT("11"+Utility.mIcon_cur+Utility.mCurrent_cond);
+      	        		Utility.set_BT("31" + Utility.mIcon_forecast + Utility.mForecast);
       	        		CommThread.write(Utility.to_send_0.getBytes());
       	        		Utility.how_many_sends = 1;
+      	        	}
+  	                break;
+      	          case 4:
+      	        	if (readMessage.charAt(1) == '0')
+      	        	{
+      	        		
+      	        	}
+      	        	else if (readMessage.charAt(1) == '1')
+      	        	{
+      	        		
       	        	}
       	        	else if (readMessage.charAt(1) == '2')
       	        	{
-      	        		System.out.println("send forecast" + Utility.mForecast);
-      	        		//CommThread.write(Utility.mIcon_forecast.getBytes());
-      	        		//CommThread.write(Utility.mForecast.getBytes());
-      	        		Utility.set_BT("12"+Utility.mIcon_forecast+Utility.mForecast);
-      	        		CommThread.write(Utility.to_send_0.getBytes());
-      	        		Utility.how_many_sends = 1;
+      	        		
       	        	}
-                	System.out.println("Case: weather "+ readMessage);
-  	                break;
-
-      	          case 2:
-      	        	if (readMessage.charAt(1) == '0')
+      	        	else if (readMessage.charAt(1) == '3')
       	        	{
-      	        		Intent myIntent2 = new Intent(MainActivity.this, TimeActivity.class);
-      	        		MainActivity.this.startActivity(myIntent2);
+      	        		
       	        	}
       	            break;
-      	          case 3:
-      	        	  System.out.println("how many sends "+Utility.how_many_sends);
-      	        	  
-      	        	  if (Utility.how_many_sends >= Utility.how_many_sends_total)
-      	        		  break;
-      	        	  String to_send = null;
-      	        	  to_send = Utility.get_to_send();
-      	        	  System.out.println("Sending from ack "+to_send);
-      	        	  CommThread.write(to_send.getBytes());
-      	        	  Utility.how_many_sends++;
-      	        	  break;
       	        }
       	    }
       	};
