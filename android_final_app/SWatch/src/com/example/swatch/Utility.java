@@ -128,8 +128,11 @@ public class Utility {
 	static void set_BT(String to_send)
 	{
 		// Resize if necessary
-		if (to_send.length() > 188)
-			to_send = to_send.substring(0, 188);
+		if (to_send.length() > 172)
+		{
+			to_send = to_send.substring(0, 170);
+			to_send = to_send + '\0';
+		}
 		// Save strings ----------------------------------------------
 		int num_of_sends = (int) Math.ceil((double)to_send.length()/64.0);
 		System.out.println("num_of_sends "+num_of_sends);

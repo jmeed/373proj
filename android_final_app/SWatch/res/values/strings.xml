@@ -25,5 +25,7 @@
     <string name="get_time">Send Current Time</string>
     <string name="title_activity_time">TimeActivity</string>
     <string name="time_textview">CURRENT TIME</string>
+    <string name="title_activity_music">MusicActivity</string>
+    <string name="music">Music</string>
 
 </resources>

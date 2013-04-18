@@ -104,7 +104,7 @@ public class HeadlinesActivity extends Activity {
 		String headline = Utility.get_headline(Utility.mHeadline_counter);
   		//System.out.println("NUM: "+Utility.mHeadline_counter);
   		//System.out.println("get next headline "+headline + headline.length());
-  		Utility.set_BT("00"+headline);
+  		Utility.set_BT("20"+headline);
   		CommThread.write(Utility.to_send_0.getBytes());
   		Utility.how_many_sends = 1;  	        		
 		
