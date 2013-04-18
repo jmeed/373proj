@@ -47,6 +47,7 @@ void main_watch() {
 static void start_watch() {
 	timeScreen();
 	get_time();
+	print_time();
 }
 
 static void run_watch() {
@@ -83,7 +84,7 @@ static void get_time() {
 	unixtime = atol((((char *)bl_receive) + 2));
 
 	// Subtract from Greenwich time
-//	unixtime -= (6 * 60 * 60);
+	unixtime -= (4 * 60 * 60);
 
 	last_bl_time_update = unixtime;
 }
@@ -91,7 +92,7 @@ static void get_time() {
 static void print_time() {
 	uint8_t seconds = unixtime % 60;
 	uint8_t minutes = (unixtime / 60) % 60;
-	uint8_t hours = (unixtime / (60 * 24)) % 24;
+	uint8_t hours = (unixtime / (60 * 60)) % 24;
 
 	uint8_t increment = 0;
 	if (hours < 10) {
@@ -123,5 +124,5 @@ static void print_time() {
 }
 
 static void stop_watch() {
-
+	textSize(1,1);
 }

@@ -427,6 +427,7 @@ void snakeScreen() {
 
 void timeScreen() {
 	clearScreen();
+//	textSize(2,2);
 	switch (time_image) {
 	case 0:
 		media_setSector(0x0000, TIME1);
@@ -443,7 +444,7 @@ void timeScreen() {
 			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
-		moveCursor(2, 5);
+		moveCursor(0, 2);
 		time_image++;
 		break;
 	case 1:
@@ -461,7 +462,7 @@ void timeScreen() {
 			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
-		moveCursor(2, 2);
+		moveCursor(0, 2);
 		time_image++;
 		break;
 	case 2:
@@ -479,7 +480,7 @@ void timeScreen() {
 			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
-		moveCursor(2, 2);
+		moveCursor(0, 2);
 		time_image++;
 		break;
 	case 3:
@@ -497,7 +498,7 @@ void timeScreen() {
 			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
 		UARTCount = 0;
 
-		moveCursor(2, 2);
+		moveCursor(0, 2);
 		time_image = 0;
 		break;
 	default:

@@ -47,7 +47,7 @@
 #define BL_XOFF2      0x07 << 3
 
 #define BL_BUFFER (BUFSIZE -2) // Do not change this
-#define BL_TIMEOUT	3
+#define BL_TIMEOUT	4
 
 
 // Opcodes

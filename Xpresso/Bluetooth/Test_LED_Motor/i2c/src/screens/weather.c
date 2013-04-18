@@ -38,7 +38,8 @@ void main_weather() {
 }
 
 static void start_weather() {
-	get_weather(10);
+	get_weather(B_WEATHER_CURR);
+	print_weather("Current Weather\n", "-> Forecast");
 }
 
 static void run_weather() {
