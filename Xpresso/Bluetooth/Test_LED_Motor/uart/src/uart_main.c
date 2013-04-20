@@ -69,7 +69,7 @@ void process_bl_msg() {
 	// The first two characters are actually the bluetooth code
 	int opcode = 10 * (UARTBuffer[0] - '0');
 	opcode = opcode + (UARTBuffer[1] - '0');
-	printf("BL received. opcode: %d\n", opcode);
+//	printf("BL received. opcode: %d\n", opcode);
 	switch(opcode) {
 	case AUTHENTICATE:
 		UARTSend((uint8_t *) UARTBuffer, UARTCount);
@@ -77,7 +77,7 @@ void process_bl_msg() {
 		LPC_UART ->IER = ENABLE_IRQ; /* Re-enable RBR */
 		break;
 	default:
-		printf("ERR: opcode [%d] from bluetooth receive not valid\n", opcode);
+//		printf("ERR: opcode [%d] from bluetooth receive not valid\n", opcode);
 		assert(0);
 		break;
 	}

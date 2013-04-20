@@ -142,7 +142,7 @@ void wait() {
 	while (UARTCount == 0 && unixtime - start < SCREEN_TIMEOUT);// Wait for an interupt
 
 	if(unixtime - start >= SCREEN_TIMEOUT) {
-		printf("Didn't get screen ACK. Screen must have frozen. Restart the screen!\n");
+//		printf("Didn't get screen ACK. Screen must have frozen. Restart the screen!\n");
 		assert(0);
 	}
 

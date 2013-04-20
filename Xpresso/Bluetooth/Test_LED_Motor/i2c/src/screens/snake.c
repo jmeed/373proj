@@ -106,7 +106,11 @@ static void run_snake() {
 }
 
 static void stop_snake() {
-
+	while(front) {
+		struct dll * tmp = front->f;
+		free(front);
+		front = tmp;
+	}
 }
 
 
@@ -127,11 +131,11 @@ void add_snake_square(int8_t x, int8_t y) {
 	if (get_pixel(x,y) == 0xCAFF) { //ran into wall or snake tail;
 		textSize(2,2);
 		moveCursor(3,1);
-		writeString("You lost :(");
+		writeString("You lost\n :(");
 		uint64_t start_s = unixtime;
-		while(unixtime - start_s < 3) {
-
-		}
+//		while(unixtime - start_s < 3) {
+//
+//		}
 		next_state = MAIN_WATCH;
 		return;
 	}

@@ -44,16 +44,16 @@ void main_debug() {
 	writeString(text);
 	sprintf(text, "Accel z: %u     \n", z_g);
 	writeString(text);
-	if (is_running_on_battery())
-	{
-		sprintf(text, "Battery: %u%%\n", get_power_remaining());
-		writeString(text);
-	}
-	else
-	{
-		sprintf(text, "Watch plugged in\n", get_power_remaining());
-		writeString(text);
-	}
+//	if (is_running_on_battery())
+//	{
+//		sprintf(text, "Battery: %u%%\n", get_power_remaining());
+//		writeString(text);
+//	}
+//	else
+//	{
+//		sprintf(text, "Watch plugged in\n", get_power_remaining());
+//		writeString(text);
+//	}
 	moveCursor(1,0);
 
 }
