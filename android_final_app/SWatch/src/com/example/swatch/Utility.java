@@ -113,7 +113,7 @@ public class Utility {
 			
 			// Append newline to end
 			s = s.append(to_be_parsed.substring(sub_start, sub_end) + '\n');
-			
+
 			sub_start = sub_end;
 			sub_end = sub_end + 18;
 			parsed = parsed + s.toString();
@@ -128,11 +128,29 @@ public class Utility {
 	static void set_BT(String to_send)
 	{
 		// Resize if necessary
-		if (to_send.length() > 172)
+		// Get number of newlines
+		int num_new_lines = 0;
+		int index = 0;
+		boolean too_long = false;
+		for (index = 0; index < to_send.length(); index++)
 		{
-			to_send = to_send.substring(0, 170);
-			to_send = to_send + '\0';
+			if (to_send.charAt(index) == '\n')
+				num_new_lines++;
+			if (num_new_lines == 15)
+			{
+				too_long = true;
+				break;
+			}
 		}
+		
+		if (too_long)
+		{
+			to_send = to_send.substring(0, index) + '\0';
+			System.out.println("Resulting string "+to_send);
+		}
+		
+		// END Resize ------------------------------------------------
+			
 		// Save strings ----------------------------------------------
 		int num_of_sends = (int) Math.ceil((double)to_send.length()/64.0);
 		System.out.println("num_of_sends "+num_of_sends);
@@ -259,7 +277,7 @@ public class Utility {
 		}
 		else
 		{
-			to_return = "3";
+			to_return = "3)";
 		}
 		return(to_return);
 	}

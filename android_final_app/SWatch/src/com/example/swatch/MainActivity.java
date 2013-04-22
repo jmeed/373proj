@@ -184,8 +184,8 @@ public class MainActivity extends Activity {
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
       	        		Utility.mHeadline_counter++;
-      	        		if (Utility.mHeadline_counter < 0)
-      	        			Utility.mHeadline_counter = 11;
+      	        		if (Utility.mHeadline_counter > 11)
+      	        			Utility.mHeadline_counter = 0;
       	        		headline = Utility.get_headline(Utility.mHeadline_counter);
       	        		Utility.set_BT("21"+headline);
       	        		CommThread.write(Utility.to_send_0.getBytes());

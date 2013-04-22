@@ -124,9 +124,35 @@ public class WeatherActivity extends Activity {
 		
 		mStrWeather = fcttext;
 		
+		// If forecast is greater than 100 characters, parse down
+		if (mStrWeather.length() > 100)
+		{
+			int new_size = 0;
+			for (int i = 0; i < mStrWeather.length(); i++)
+			{
+				if (mStrWeather.charAt(i) == 'W')
+				{
+					if (mStrWeather.charAt(i+1) == 'i')
+					{
+						if (mStrWeather.charAt(i+2) == 'n')
+						{
+							if (mStrWeather.charAt(i+3) == 'd')
+							{
+								new_size = i;
+								break;
+							}
+						}
+					}
+				}
+			}
+			mStrWeather = mStrWeather.substring(0, new_size);
+		}
+		
 		// Parse forecast string and save
 		String parsed_forecast = Utility.parse_string(mStrWeather);
 		Utility.mForecast = parsed_forecast + "\0";
+		
+		
 		
 		// Save forecast icon
 		String forecast_icon_to_display = Utility.choose_pic(forecast_icon);
@@ -136,6 +162,8 @@ public class WeatherActivity extends Activity {
 		// Create hex string for debugging
 		// Get hex value for each char
 		String parsed = Utility.mCurrent_cond + Utility.mForecast;
+		
+		System.out.println("Forecast Length: "+Utility.mForecast.length());
 		
 		weatherTextView.setText(parsed);
 		
