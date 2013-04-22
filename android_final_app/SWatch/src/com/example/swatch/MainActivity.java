@@ -11,7 +11,10 @@ import android.os.StrictMode;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -25,12 +28,53 @@ public class MainActivity extends Activity {
 	public CommThread thread;
     public ProgressDialog dialog;
     public Activity activity;
+    public String track;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		setContentView(R.layout.activity_main);
+		
+		BroadcastReceiver mReceiver = new BroadcastReceiver() {
+			 
+	        @Override
+	        public void onReceive(Context arg0, Intent intent) {
+	 
+	            String action = intent.getAction();
+	            String cmd = intent.getStringExtra("command");
+//	            Log.d("mIntentReceiver.onReceive ", action + " / " + cmd);
+	            String artist = intent.getStringExtra("artist");
+	            String album = intent.getStringExtra("album");
+	            track = intent.getStringExtra("track");
+//	            Log.d("Music", artist + ":" + album + ":" + track);
+	 
+	            // have fun with it <img src="http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1129645325g" alt=":)" class="wp-smiley" scale="0"> 
+	        }
+		};
+		
+		// Music
+		IntentFilter iF = new IntentFilter();
+		 
+        // Read action when music player changed current song
+        // I just try it with stock music player form android
+ 
+        // stock music player
+        iF.addAction("com.android.music.metachanged");
+ 
+        // MIUI music player
+        iF.addAction("com.miui.player.metachanged");
+ 
+        // HTC music player
+        iF.addAction("com.htc.music.metachanged");
+ 
+        // WinAmp
+        iF.addAction("com.nullsoft.winamp.metachanged");
+ 
+        // MyTouch4G
+        iF.addAction("com.real.IMP.metachanged");
+ 
+        registerReceiver(mReceiver, iF);
 		
 		// Set thread policy to allow parsing
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -228,20 +272,38 @@ public class MainActivity extends Activity {
       	          case 4:
       	        	if (readMessage.charAt(1) == '0')
       	        	{
-      	        		Intent myIntent3 = new Intent(MainActivity.this, MusicActivity.class);
-      	        		MainActivity.this.startActivity(myIntent3);
+      	        		Intent i = new Intent("com.android.music.musicservicecommand");
+      	        		i.putExtra("command", "pause");
+      	        		sendBroadcast(i);
+      	        		System.out.println(track);
+      	        		Utility.set_BT("40" + track);
+      	        		CommThread.write(Utility.to_send_0.getBytes());
+      	        		Utility.how_many_sends = 1;
+      	        		
       	        	}
       	        	else if (readMessage.charAt(1) == '1')
       	        	{
-      	        		
+      	        		Intent i = new Intent("com.android.music.musicservicecommand");
+      	        		i.putExtra("command", "play");
+      	        		sendBroadcast(i);
       	        	}
       	        	else if (readMessage.charAt(1) == '2')
       	        	{
-      	        		
+      	        		Intent i = new Intent("com.android.music.musicservicecommand");
+      	        		i.putExtra("command", "pause");
+      	        		sendBroadcast(i);
       	        	}
       	        	else if (readMessage.charAt(1) == '3')
       	        	{
-      	        		
+      	        		Intent i = new Intent("com.android.music.musicservicecommand");
+      	        		i.putExtra("command", "next");
+      	        		sendBroadcast(i);
+      	        	}
+      	        	else if (readMessage.charAt(1) == '4')
+      	        	{
+      	        		Intent i = new Intent("com.android.music.musicservicecommand");
+      	        		i.putExtra("command", "previous");
+      	        		sendBroadcast(i);
       	        	}
       	            break;
       	        }

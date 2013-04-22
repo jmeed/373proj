@@ -35,6 +35,7 @@
 #include "screens/headlines.h"
 #include "devices/vibrator.h"
 #include "screens/snake.h"
+#include "screens/music.h"
 
 static void init_mwatch();
 static void run_mwatch();
@@ -49,11 +50,11 @@ static void check_snake();
 //volatile uint32_t TimeTick = 0;
 
 int main(void) {
-	volatile int wait_c = 48000000;
-	int i = 0;
-	for(wait_c; wait_c >= 0; wait_c--) {
-		i++;
-	}
+//	volatile int wait_c = 48000000;
+//	int i = 0;
+//	for(wait_c; wait_c >= 0; wait_c--) {
+//		i++;
+//	}
 
 
 //	I2CInit((uint32_t) I2CMASTER);
@@ -164,6 +165,8 @@ void run_mwatch() {
 			break;
 		case DEBUGSC:
 			main_debug();
+		case MUSIC:
+			main_music();
 			break;
 		default:
 //			printf("Invalid current state state %d\n", current_state);

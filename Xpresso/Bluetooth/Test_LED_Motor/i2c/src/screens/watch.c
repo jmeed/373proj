@@ -61,7 +61,7 @@ static void run_watch() {
 	enum Joystick_dir curJoy = getJoyDirection();
 	switch (curJoy) {
 	case LEFT:
-		next_state = DEBUGSC;
+		next_state = MUSIC;
 		break;
 	case RIGHT:
 		next_state = SNAKE;

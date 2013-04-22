@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/screens/debug.c \
 ../src/screens/headlines.c \
+../src/screens/music.c \
 ../src/screens/snake.c \
 ../src/screens/watch.c \
 ../src/screens/weather.c 
@@ -13,6 +14,7 @@ C_SRCS += \
 OBJS += \
 ./src/screens/debug.o \
 ./src/screens/headlines.o \
+./src/screens/music.o \
 ./src/screens/snake.o \
 ./src/screens/watch.o \
 ./src/screens/weather.o 
@@ -20,6 +22,7 @@ OBJS += \
 C_DEPS += \
 ./src/screens/debug.d \
 ./src/screens/headlines.d \
+./src/screens/music.d \
 ./src/screens/snake.d \
 ./src/screens/watch.d \
 ./src/screens/weather.d 
