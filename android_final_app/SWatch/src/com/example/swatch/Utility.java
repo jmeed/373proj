@@ -145,7 +145,7 @@ public class Utility {
 		
 		if (too_long)
 		{
-			to_send = to_send.substring(0, index) + '\0';
+			to_send = to_send.substring(0, index-3) + "...\0";
 			System.out.println("Resulting string "+to_send);
 		}
 		
