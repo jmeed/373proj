@@ -30,6 +30,9 @@
 #define TIME2 0x0249
 #define TIME3 0x028A
 #define TIME4 0x02CB
+#define MUSIC1 0x030C
+#define MUSIC2 0x034D
+#define MUSIC3 0x038E
 
 #define SCREEN_TIMEOUT 3
 
@@ -108,6 +111,11 @@ void snakeScreen();
  * Sets time screen. Places cursor ready for time data.
  */
 void timeScreen();
+
+/*
+ * Sets music screen. Cycles between 3 defined backgrounds.
+ */
+void musicScreen();
 
 uint16_t get_pixel(uint16_t x, uint16_t y);
 

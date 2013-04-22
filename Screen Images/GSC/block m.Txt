@@ -167,3 +167,42 @@ Picaso Data:
 4DSL command:
 NewUSDImage(0, 0, 0x0002CB)
 
+---------------------------------------------------------------------------------------
+File "music1.jpg" (music1.jpg)
+Sector Address 0x00030C
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x0C
+4DSL command:
+NewUSDImage(0, 0, 0x00030C)
+
+---------------------------------------------------------------------------------------
+File "music2.jpg" (music2.jpg)
+Sector Address 0x00034D
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x4D
+4DSL command:
+NewUSDImage(0, 0, 0x00034D)
+
+---------------------------------------------------------------------------------------
+File "music3.jpg" (music3.jpg)
+Sector Address 0x00038E
+X = 0 Y = 0 Width = 128 Height = 128 Bits = 16
+
+Display Image from Memory Card (Serial Command):
+Syntax:
+@, I, x, y, SectorAdd(hi), SectorAdd(mid), SectorAdd(lo)
+Picaso Data:
+0x40, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x8E
+4DSL command:
+NewUSDImage(0, 0, 0x00038E)
+

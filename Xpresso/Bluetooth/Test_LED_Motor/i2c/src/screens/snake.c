@@ -7,11 +7,13 @@
 
 #include "snake.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 #include "../globals.h"
 #include "../devices/screen.h"
 #include "../devices/joystick.h"
 #include "../devices/accelerometer.h"
+#include "../devices/vibrator.h"
 
 // Private functions
 static void start_snake();
@@ -25,15 +27,18 @@ struct dll{
 
 struct dll * front, * back;
 
+uint32_t snake_timer;
+
 static void draw_snake_square(struct dll *square);
 static void create_food();
 static void clear_snake_square(struct dll *square);
-static uint8_t rand_lim(uint8_t lower,uint8_t upper);
+//static uint8_t rand_lim(uint8_t lower,uint8_t upper);
 
 void main_snake() {
 	switch (run_state) {
 	case START:
 		start_snake();
+		snake_timer = 0;
 		run_state = RUN;
 		break;
 	case RUN:
@@ -48,9 +53,12 @@ void main_snake() {
 static void start_snake() {
 	clearScreen();
 	drawSquare(0, 0, 127, 127, 0xffff);
+	drawSquare(1, 1, 126, 126, 0xffff);
+	drawSquare(2, 2, 125, 125, 0xffff);
+
 	front = malloc(sizeof(struct dll));
-	front->x = rand_lim(1, 124); //random number between 0
-	front->y = rand_lim(1, 124); //random number between 62
+	front->x = 64; //random number between 0
+	front->y = 64; //random number between 62
 	front->f = NULL;
 	back = malloc(sizeof(struct dll));
 	back->x = front->x + 3;
@@ -63,6 +71,7 @@ static void start_snake() {
 }
 
 static void run_snake() {
+	snake_timer = snake_timer +1;
 	if (s_tick) {
 		// Check accelerometer
 		enum Acc_direction acc_dir = get_current_orientation();
@@ -128,10 +137,12 @@ void add_snake_square(int8_t x, int8_t y) {
 		x = x;
 	}
 	y = front->y + y;
-	if (get_pixel(x,y) == 0xCAFF) { //ran into wall or snake tail;
+//	printf("debug pixel: %h\n",get_pixel(x,y));
+	if (get_pixel(x,y) == 0xCAFF || x <=0 || x >=128 || y >= 128 || y <=0) { //ran into wall or snake tail;
 		textSize(2,2);
 		moveCursor(3,1);
 		writeString("You lost\n :(");
+		vibrate(2);
 		uint64_t start_s = unixtime;
 		while(unixtime - start_s < 3) {
 
@@ -149,7 +160,7 @@ void add_snake_square(int8_t x, int8_t y) {
 	draw_snake_square(newHead);
 	uint16_t f = get_pixel(x,y);
 	f = f;
-	if (get_pixel(x,y) == 0xCA00) { //not ran into food
+	if (get_pixel(x,y) == 0xCA00 && snake_timer%20 !=0) { //not ran into food
 		struct dll * tempBack;
 		tempBack = back;
 		back = back->f;
@@ -167,16 +178,16 @@ static void clear_snake_square(struct dll *square) {
 	free(square);
 }
 
-static uint8_t rand_lim(uint8_t lower,uint8_t upper) {
-/* return a random number between 0 and limit inclusive.
- */
-
-    int divisor = RAND_MAX/(upper+1);
-    uint8_t retval;
-
-    do {
-        retval = rand() / divisor;
-    } while (retval > upper || retval < lower);
-
-    return retval;
-}
+//static uint8_t rand_lim(uint8_t lower,uint8_t upper) {
+///* return a random number between 0 and limit inclusive.
+// */
+//
+//    int divisor = RAND_MAX/(upper+1);
+//    uint8_t retval;
+//
+//    do {
+//        retval = rand() / divisor;
+//    } while (retval > upper || retval < lower);
+//
+//    return retval;
+//}

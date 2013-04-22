@@ -70,3 +70,21 @@
 // Usage: time4.jpg(x, y);
 #constant time4.jpg    $media_SetSector(0x0000, 0x02CB); media_Image
 
+// Image - "music1.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: music1.jpg(x, y);
+#constant music1.jpg    $media_SetSector(0x0000, 0x030C); media_Image
+
+// Image - "music2.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: music2.jpg(x, y);
+#constant music2.jpg    $media_SetSector(0x0000, 0x034D); media_Image
+
+// Image - "music3.jpg" Size 128x128
+// Width  = 128
+// Height = 128
+// Usage: music3.jpg(x, y);
+#constant music3.jpg    $media_SetSector(0x0000, 0x038E); media_Image
+

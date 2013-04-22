@@ -168,7 +168,7 @@
   <item type="Image" version="2">
     <File>news.jpg</File>
     <Name>news.jpg</Name>
-    <Updated>2013/04/13 23:02:42</Updated>
+    <Updated>2013/04/13 23:37:22</Updated>
     <Position>
       <Top>0</Top>
       <Left>0</Left>
@@ -191,7 +191,7 @@
   <item type="Image" version="2">
     <File>time1.jpg</File>
     <Name>time1.jpg</Name>
-    <Updated>2013/04/13 23:08:56</Updated>
+    <Updated>2013/04/13 23:37:22</Updated>
     <Position>
       <Top>0</Top>
       <Left>0</Left>
@@ -214,7 +214,7 @@
   <item type="Image" version="2">
     <File>time2.jpg</File>
     <Name>time2.jpg</Name>
-    <Updated>2013/04/13 23:09:02</Updated>
+    <Updated>2013/04/13 23:37:22</Updated>
     <Position>
       <Top>0</Top>
       <Left>0</Left>
@@ -237,7 +237,7 @@
   <item type="Image" version="2">
     <File>time3.jpg</File>
     <Name>time3.jpg</Name>
-    <Updated>2013/04/13 23:09:06</Updated>
+    <Updated>2013/04/13 23:37:22</Updated>
     <Position>
       <Top>0</Top>
       <Left>0</Left>
@@ -260,7 +260,7 @@
   <item type="Image" version="2">
     <File>time4.jpg</File>
     <Name>time4.jpg</Name>
-    <Updated>2013/04/13 23:09:11</Updated>
+    <Updated>2013/04/13 23:37:22</Updated>
     <Position>
       <Top>0</Top>
       <Left>0</Left>
@@ -272,6 +272,75 @@
       <Left>0</Left>
       <Width>627</Width>
       <Height>457</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>music1.jpg</File>
+    <Name>music1.jpg</Name>
+    <Updated>2013/04/22 22:34:52</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>307</Left>
+      <Width>973</Width>
+      <Height>801</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>music2.jpg</File>
+    <Name>music2.jpg</Name>
+    <Updated>2013/04/22 22:35:02</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Source>
+    <Pannable>False</Pannable>
+    <Tiled>
+      <Enabled>False</Enabled>
+    </Tiled>
+    <BitDepth>16</BitDepth>
+    <IgnoreScreensize>True</IgnoreScreensize>
+  </item>
+  <item type="Image" version="2">
+    <File>music3.jpg</File>
+    <Name>music3.jpg</Name>
+    <Updated>2013/04/22 22:35:51</Updated>
+    <Position>
+      <Top>0</Top>
+      <Left>0</Left>
+      <Width>128</Width>
+      <Height>128</Height>
+    </Position>
+    <Source>
+      <Top>3</Top>
+      <Left>0</Left>
+      <Width>1279</Width>
+      <Height>1021</Height>
     </Source>
     <Pannable>False</Pannable>
     <Tiled>
