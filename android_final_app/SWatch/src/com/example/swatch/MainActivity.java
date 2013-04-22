@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
     public ProgressDialog dialog;
     public Activity activity;
     public String track;
+    public boolean updated;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends Activity {
 	            String artist = intent.getStringExtra("artist");
 	            String album = intent.getStringExtra("album");
 	            track = intent.getStringExtra("track");
+	            updated = true;
 //	            Log.d("Music", artist + ":" + album + ":" + track);
 	 
 	            // have fun with it <img src="http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1129645325g" alt=":)" class="wp-smiley" scale="0"> 
@@ -286,24 +288,40 @@ public class MainActivity extends Activity {
       	        		Intent i = new Intent("com.android.music.musicservicecommand");
       	        		i.putExtra("command", "play");
       	        		sendBroadcast(i);
+      	        		System.out.println(track);
+      	        		Utility.set_BT("41" + track);
+      	        		CommThread.write(Utility.to_send_0.getBytes());
+      	        		Utility.how_many_sends = 1;
       	        	}
       	        	else if (readMessage.charAt(1) == '2')
       	        	{
       	        		Intent i = new Intent("com.android.music.musicservicecommand");
       	        		i.putExtra("command", "pause");
       	        		sendBroadcast(i);
+      	        		System.out.println(track);
+      	        		Utility.set_BT("42" + track);
+      	        		CommThread.write(Utility.to_send_0.getBytes());
+      	        		Utility.how_many_sends = 1;
       	        	}
       	        	else if (readMessage.charAt(1) == '3')
       	        	{
       	        		Intent i = new Intent("com.android.music.musicservicecommand");
       	        		i.putExtra("command", "next");
       	        		sendBroadcast(i);
+      	        		System.out.println(track);
+      	        		Utility.set_BT("43" + track);
+      	        		CommThread.write(Utility.to_send_0.getBytes());
+      	        		Utility.how_many_sends = 1;
       	        	}
       	        	else if (readMessage.charAt(1) == '4')
       	        	{
       	        		Intent i = new Intent("com.android.music.musicservicecommand");
       	        		i.putExtra("command", "previous");
       	        		sendBroadcast(i);
+      	        		System.out.println(track);
+      	        		Utility.set_BT("44" + track);
+      	        		CommThread.write(Utility.to_send_0.getBytes());
+      	        		Utility.how_many_sends = 1;
       	        	}
       	            break;
       	        }

@@ -81,18 +81,42 @@ static void run_music() {
 	case RIGHT: // Next
 		itoa(43, (char *) bl_send, 10);
 		send_bl_message();
+		get_bl_msg_and_process(43);
+
+		// Track name
+		textSize(1,1);
+		moveCursor(2,1);
+		writeString((char *) &bl_receive[2]);
 		break;
 	case LEFT: // Prev
 		itoa(44, (char *) bl_send, 10);
 		send_bl_message();
+		get_bl_msg_and_process(44);
+
+		// Track name
+		textSize(1,1);
+		moveCursor(2,1);
+		writeString((char *) &bl_receive[2]);
 		break;
-	case UP: // Pause
+	case UP: // Play
 		itoa(41, (char *) bl_send, 10);
 		send_bl_message();
+		get_bl_msg_and_process(41);
+
+		// Track name
+		textSize(1,1);
+		moveCursor(2,1);
+		writeString((char *) &bl_receive[2]);
 		break;
 	case DOWN: // Pause
 		itoa(42, (char *) bl_send, 10);
 		send_bl_message();
+		get_bl_msg_and_process(42);
+
+		// Track name
+		textSize(1,1);
+		moveCursor(2,1);
+		writeString((char *) &bl_receive[2]);
 		break;
 	case IN:
 		next_state = MAIN_WATCH;
