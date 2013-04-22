@@ -24,12 +24,18 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -40,93 +46,127 @@ class CommThread extends Thread {
 	private static Handler handler;
 	private static ProgressDialog dialog;
 	private static BluetoothAdapter adapter;
+	private static Context context;
+	private static MainActivity activity;
 	private static byte[] buffer = new byte[1024];
 
 	public CommThread(BluetoothAdapter adapter, ProgressDialog dialog,
-			Handler handler) {
+			Handler handler, Context context, MainActivity activity) {
 		this.handler = handler;
 		this.dialog = dialog;
 		this.adapter = adapter;
+		this.context = context;
+		this.activity = activity;
 	}
 
 	public void run() {
-		if (adapter == null)
-			return;
+		while(true) {
+			if (adapter == null)
+				return;
+			CommThread.cancel();
+			buffer[0] = 's';
+			buffer[1] = 'h';
+			buffer[2] = 'o';
+			buffer[3] = 'w';
+			handler.obtainMessage(0, buffer).sendToTarget();
 
-		Set<BluetoothDevice> devices = adapter.getBondedDevices();
-		BluetoothDevice device = null;
-		for (BluetoothDevice curDevice : devices) {
-			if (curDevice.getName().matches("RN42-21EE")) {
-				device = curDevice;
-				System.out.println("Device found. Breaking!");
-				break;
+			Set<BluetoothDevice> devices = adapter.getBondedDevices();
+			BluetoothDevice device = null;
+			for (BluetoothDevice curDevice : devices) {
+				if (curDevice.getName().matches("RN42-21EE")) {
+					device = curDevice;
+					System.out.println("Device found. Breaking!");
+					break;
+				}
 			}
-		}
-		if (device == null) {
-			device = adapter.getRemoteDevice("00:06:66:03:A7:52");
-			System.out.println("Device not found");
-		}
+			if (device == null) {
+				device = adapter.getRemoteDevice("00:06:66:03:A7:52");
+				System.out.println("Device not found");
+			}
 
-		while (true) {
-			try {
-				Method m = null;
+			BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+				@Override
+				public void onReceive(Context arg0, Intent arg1) {
+					// TODO Auto-generated method stub
+					String msg = arg1.getAction();
+					if (msg == "android.bluetooth.device.action.ACL_DISCONNECTED") {
+						System.out.println("Disconnected!!!");
+					}
+
+				}
+			};
+
+			context.registerReceiver(mReceiver, new IntentFilter(
+					BluetoothDevice.ACTION_ACL_CONNECTED));
+			context.registerReceiver(mReceiver, new IntentFilter(
+					BluetoothDevice.ACTION_ACL_DISCONNECTED));
+
+			while (true) {
 				try {
-					m = device.getClass().getMethod("createRfcommSocket",
-							new Class[] { int.class });
-				} catch (NoSuchMethodException e) {
+					Method m = null;
+					try {
+						m = device.getClass().getMethod("createRfcommSocket",
+								new Class[] { int.class });
+					} catch (NoSuchMethodException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					socket = (BluetoothSocket) m.invoke(device, 1);
+
+					// socket =
+					// device.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
+					socket.connect();
+					break;
+				} catch (IOException e) {
+					socket = null;
+					System.out.println("socket unsuccessfully created");
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				socket = (BluetoothSocket) m.invoke(device, 1);
-
-				// socket =
-				// device.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
-				socket.connect();
-				break;
-			} catch (IOException e) {
-				socket = null;
-				System.out.println("socket unsuccessfully created");
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		}
-		if (socket == null)
-			return;
+			if (socket == null)
+				return;
 
-		InputStream tmpIn = null;
-		OutputStream tmpOut = null;
+			InputStream tmpIn = null;
+			OutputStream tmpOut = null;
 
-		try {
-			tmpIn = socket.getInputStream();
-			tmpOut = socket.getOutputStream();
-		} catch (IOException e) {
-		}
+			try {
+				tmpIn = socket.getInputStream();
+				tmpOut = socket.getOutputStream();
+			} catch (IOException e) {
+			}
 
-		istream = tmpIn;
-		ostream = tmpOut;
+			istream = tmpIn;
+			ostream = tmpOut;
 
-		if (dialog != null && dialog.isShowing())
-			dialog.dismiss();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+			if (activity.dialog != null && activity.dialog.isShowing())
+				activity.dialog.dismiss();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
-		int act = -1;
-		// Read from Bluetooth always
-		while (true) {
-			System.out.println("in while");
-			act = readFromTarget();
-			handler.obtainMessage(act, buffer).sendToTarget();
+			int act = -1;
+			// Read from Bluetooth always
+			while (true) {
+				System.out.println("in while");
+				act = readFromTarget();
+				if (act == -2) {
+					break; // Break if reading failed. This means disconnection was
+							// detected
+				}
+				handler.obtainMessage(act, buffer).sendToTarget();
+			}
 		}
 	}
 
@@ -227,8 +267,8 @@ class CommThread extends Thread {
 			istream = tmpIn;
 			ostream = tmpOut;
 
-			if (dialog != null && dialog.isShowing())
-				dialog.dismiss();
+			if (activity.dialog != null && activity.dialog.isShowing())
+				activity.dialog.dismiss();
 		}
 		return;
 	}
@@ -264,6 +304,7 @@ class CommThread extends Thread {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return -2;
 			}
 		}
 		activity = Character.digit((char) buffer[0], 10);

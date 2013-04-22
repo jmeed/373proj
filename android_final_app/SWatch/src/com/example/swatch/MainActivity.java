@@ -24,20 +24,17 @@ public class MainActivity extends Activity {
 
 	public CommThread thread;
     public ProgressDialog dialog;
+    public Activity activity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		activity = this;
 		setContentView(R.layout.activity_main);
 		
 		// Set thread policy to allow parsing
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-		
-		CommThread.cancel();
-        dialog = ProgressDialog.show(this, "Connecting", "Searching for SMWatch...");
-        thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler);
-        thread.start();
 		
 		Button saveWeather = (Button) findViewById(R.id.save_weather);
         final EditText zipCode = (EditText) findViewById(R.id.zip_code);
@@ -136,6 +133,13 @@ public class MainActivity extends Activity {
             	MainActivity.this.startActivity(myIntent);
             }
         });
+        
+//		CommThread.cancel();
+		dialog = ProgressDialog.show(this, "Connecting", "Searching for SMWatch...");
+        thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler, getApplicationContext(), this);
+        thread.start();
+//        thread.join();
+        
     }
 	
 	Handler mHandler = new Handler(){
@@ -149,6 +153,12 @@ public class MainActivity extends Activity {
   	        	Toast.makeText(MainActivity.this, "Application Error. Error code: 0b758x", Toast.LENGTH_SHORT).show();
   				finish();
   				return;
+  	        } else if (readMessage.startsWith(new String("show"))) {
+  	        	if(!dialog.isShowing()) {
+  	        		System.out.println("Showing dialog!");
+  	        		dialog = ProgressDialog.show(activity, "Connecting", "Searching for SMWatch...");
+  	        	}
+  	        	return;
   	        }
       		
       		System.out.println("READ MESS MAIN "+readMessage);
