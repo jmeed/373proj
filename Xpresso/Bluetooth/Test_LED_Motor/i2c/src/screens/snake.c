@@ -143,7 +143,7 @@ void add_snake_square(int8_t x, int8_t y) {
 		moveCursor(3,1);
 		writeString("You lost\n :(");
 		vibrate(2);
-		uint64_t start_s = unixtime;
+//		uint64_t start_s = unixtime;
 //		while(unixtime - start_s < 3) {
 //
 //		}

@@ -318,6 +318,11 @@ void welcomeScreen() {
 	moveCursor(14, 2);
 	strcpy(temporary, "Tony Lucchesi\n");
 	writeString(temporary);
+	volatile int wait_c = 4800000;
+	int i = 0;
+	for (wait_c; wait_c >= 0; wait_c--) {
+		i++;
+	}
 }
 
 void weatherScreen(enum WEATHER_TYPE w, char * weather_title) {

@@ -5,7 +5,7 @@ src/screens/music.d: ../src/screens/music.c ../src/screens/music.h \
  ../config/system_LPC11xx.h ../src/screens/../devices/screen.h \
  ../config/target_config.h ../driver/uart.h \
  ../src/screens/../devices/../globals.h ../driver/gpio.h \
- ../driver/../src/globals.h
+ ../driver/../src/globals.h ../src/screens/../devices/accelerometer.h
 
 ../src/screens/music.h:
 
@@ -34,3 +34,5 @@ src/screens/music.d: ../src/screens/music.c ../src/screens/music.h \
 ../driver/gpio.h:
 
 ../driver/../src/globals.h:
+
+../src/screens/../devices/accelerometer.h:

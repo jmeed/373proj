@@ -8,6 +8,7 @@
 #define MUSIC_H_
 
 void main_music();
+int music_tick;
 
 
 #endif /* MUSIC_H_ */

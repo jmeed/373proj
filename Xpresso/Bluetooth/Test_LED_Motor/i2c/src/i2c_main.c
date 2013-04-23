@@ -82,6 +82,9 @@ void SysTick_Handler(void)
     } else {
     	milli++;
     }
+    if(milli % 50 == 0) {
+    	music_tick = 1;
+    }
 }
 //
 //void delaySysTick(uint32_t tick)
