@@ -64,14 +64,14 @@ static void start_music() {
 	// Next
 	textSize(1,1);
 	moveCursor(5,7);
-	char * next = ">|";
+	char * next = "<|";
 	textSize(2,2);
 	writeString((char *) next);
 
 	// Prev
 	textSize(1,1);
 	moveCursor(11,7);
-	char * prev = "<|";
+	char * prev = ">|";
 	textSize(2,2);
 	writeString((char *) prev);
 }
@@ -88,11 +88,31 @@ static void run_music() {
 		textSize(1,1);
 		moveCursor(2,1);
 		writeString((char *) &bl_receive[2]);
+
+		// TONY
+		itoa(45, (char *) bl_send, 10);
+		send_bl_message();
+		get_bl_msg_and_process(45);
+
+		// Track name
+		textSize(1,1);
+		moveCursor(2,1);
+		writeString((char *) &bl_receive[2]);
 		break;
 	case LEFT: // Prev
 		itoa(44, (char *) bl_send, 10);
 		send_bl_message();
 		get_bl_msg_and_process(44);
+
+		// Track name
+		textSize(1,1);
+		moveCursor(2,1);
+		writeString((char *) &bl_receive[2]);
+
+		// TONY
+		itoa(45, (char *) bl_send, 10);
+		send_bl_message();
+		get_bl_msg_and_process(45);
 
 		// Track name
 		textSize(1,1);

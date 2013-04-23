@@ -144,10 +144,11 @@ void add_snake_square(int8_t x, int8_t y) {
 		writeString("You lost\n :(");
 		vibrate(2);
 		uint64_t start_s = unixtime;
-		while(unixtime - start_s < 3) {
-
-		}
+//		while(unixtime - start_s < 3) {
+//
+//		}
 		next_state = MAIN_WATCH;
+		run_state = START;
 		return;
 	}
 	struct dll * newHead;
