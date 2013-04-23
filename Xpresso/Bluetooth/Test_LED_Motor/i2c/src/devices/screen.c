@@ -21,6 +21,7 @@ extern volatile uint32_t UARTCount;
 extern volatile uint8_t UARTBuffer[BUFSIZEUART];	//This may need to be larger
 
 int time_image = 0;
+int music_image = 0;
 
 static void send();
 
@@ -528,6 +529,71 @@ void timeScreen() {
 
 		moveCursor(0, 2);
 		time_image = 0;
+		break;
+	default:
+		clearScreen();
+		moveCursor(0, 0);
+		break;
+	}
+	media_display();
+}
+
+void musicScreen() {
+	clearScreen();
+
+	switch (music_image) {
+	case 0:
+		media_setSector(0x0000, MUSIC1);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xF6;
+		UARTBuffer[3] = 0xD6;
+		UARTCount = 4;
+		send();
+		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		//if (gotACK() == 0)
+			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
+		UARTCount = 0;
+		moveCursor(0, 0);
+		music_image++;
+		break;
+	case 1:
+		media_setSector(0x0000, MUSIC2);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xB7;
+		UARTBuffer[3] = 0x9F;
+		UARTCount = 4;
+		send();
+		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		//if (gotACK() == 0)
+			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
+		UARTCount = 0;
+
+		moveCursor(0, 2);
+		music_image++;
+		break;
+	case 2:
+		media_setSector(0x0000, MUSIC3);
+		//Set text Color
+		UARTBuffer[0] = 0xFF;
+		UARTBuffer[1] = 0x7F;
+		UARTBuffer[2] = 0xE6;
+		UARTBuffer[3] = 0x1E;
+		UARTCount = 4;
+		send();
+		UARTCount = 0; //reset counter, this assumes this is faster than screen can ACK
+		wait();	//wait for screen to ACK
+		//if (gotACK() == 0)
+			//printf("DANGER WILL ROBINSON, Failed to set text color\n");
+		UARTCount = 0;
+
+		moveCursor(0, 2);
+		music_image = 0;
 		break;
 	default:
 		clearScreen();

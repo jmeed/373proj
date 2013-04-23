@@ -36,7 +36,8 @@ void main_music() {
 }
 
 static void start_music() {
-	clearScreen();
+	//clearScreen();
+	musicScreen();
 	itoa(40, (char *) bl_send, 10);
 	send_bl_message();
 	get_bl_msg_and_process(40);
