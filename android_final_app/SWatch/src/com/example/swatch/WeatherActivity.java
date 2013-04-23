@@ -88,7 +88,7 @@ public class WeatherActivity extends Activity {
   		String cur_icon_to_display = Utility.choose_pic(cur_icon);
   		Utility.mIcon_cur = cur_icon_to_display;
 
-  		Utility.set_BT("10"+Utility.mIcon_cur+Utility.mCurrent_cond);
+  		Utility.set_BT("30"+Utility.mIcon_cur+Utility.mCurrent_cond);
   		CommThread.write(Utility.to_send_0.getBytes());
   		Utility.how_many_sends = 1;
   		

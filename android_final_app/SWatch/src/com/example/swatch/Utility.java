@@ -124,11 +124,19 @@ public class Utility {
 		return parsed;
 	}
 
+	static void clear_BT()
+	{
+		to_send_0 = null;
+		to_send_1 = null;
+		to_send_2 = null;
+		to_send_3 = null;
+	}
 	
 	static void set_BT(String to_send)
 	{
 		// Resize if necessary
 		// Get number of newlines
+		clear_BT();
 		int num_new_lines = 0;
 		int index = 0;
 		boolean too_long = false;

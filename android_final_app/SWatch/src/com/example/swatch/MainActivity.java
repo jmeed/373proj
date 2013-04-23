@@ -29,34 +29,35 @@ public class MainActivity extends Activity {
     public ProgressDialog dialog;
     public Activity activity;
     public String track;
-    public boolean updated;
+    public IntentFilter iF;
+    public BroadcastReceiver mReceiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		activity = this;
 		setContentView(R.layout.activity_main);
+		// Set thread policy to allow parsing
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 		
-		BroadcastReceiver mReceiver = new BroadcastReceiver() {
+		
+		mReceiver = new BroadcastReceiver() {
 			 
 	        @Override
 	        public void onReceive(Context arg0, Intent intent) {
 	 
 	            String action = intent.getAction();
 	            String cmd = intent.getStringExtra("command");
-//	            Log.d("mIntentReceiver.onReceive ", action + " / " + cmd);
 	            String artist = intent.getStringExtra("artist");
 	            String album = intent.getStringExtra("album");
-	            track = intent.getStringExtra("track");
-	            updated = true;
-//	            Log.d("Music", artist + ":" + album + ":" + track);
-	 
+	            track = intent.getStringExtra("track") + '\0';
 	            // have fun with it <img src="http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1129645325g" alt=":)" class="wp-smiley" scale="0"> 
 	        }
 		};
 		
 		// Music
-		IntentFilter iF = new IntentFilter();
+		iF = new IntentFilter();
 		 
         // Read action when music player changed current song
         // I just try it with stock music player form android
@@ -64,28 +65,14 @@ public class MainActivity extends Activity {
         // stock music player
         iF.addAction("com.android.music.metachanged");
  
-        // MIUI music player
-        iF.addAction("com.miui.player.metachanged");
- 
-        // HTC music player
-        iF.addAction("com.htc.music.metachanged");
- 
-        // WinAmp
-        iF.addAction("com.nullsoft.winamp.metachanged");
- 
-        // MyTouch4G
-        iF.addAction("com.real.IMP.metachanged");
- 
+     
+        
         registerReceiver(mReceiver, iF);
 		
-		// Set thread policy to allow parsing
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy);
 		
 		Button saveWeather = (Button) findViewById(R.id.save_weather);
         final EditText zipCode = (EditText) findViewById(R.id.zip_code);
         Button getWeather = (Button) findViewById(R.id.get_weather);
-       Button startMusic = (Button) findViewById(R.id.start_music);
         
         Button getHeadlines = (Button) findViewById(R.id.get_headlines);
         
@@ -150,16 +137,6 @@ public class MainActivity extends Activity {
             }
         });
      
-        startMusic.setOnClickListener(new View.OnClickListener() {
-        	
-            @Override
-            public void onClick(View v)
-            {
-            	Intent myIntent = new Intent(MainActivity.this, MusicActivity.class);
-            	MainActivity.this.startActivity(myIntent);
-            }
-        });
-        
         getHeadlines.setOnClickListener(new View.OnClickListener() {
         	
             @Override
@@ -181,7 +158,7 @@ public class MainActivity extends Activity {
         });
         
 //		CommThread.cancel();
-		dialog = ProgressDialog.show(this, "Connecting", "Searching for SMWatch...");
+		dialog = ProgressDialog.show(this, "Connecting", "Searching for M-Watch...");
         thread = new CommThread(BluetoothAdapter.getDefaultAdapter(), dialog, mHandler, getApplicationContext(), this);
         thread.start();
 //        thread.join();
@@ -192,6 +169,7 @@ public class MainActivity extends Activity {
       	 @Override
       	    public void handleMessage(Message msg) {
       		byte[] readBuf = (byte[]) msg.obj;
+      		//Utility.clear_BT();
       		String readMessage = new String(readBuf);
       		if(readMessage.length() < 3)
   	        {
@@ -202,7 +180,7 @@ public class MainActivity extends Activity {
   	        } else if (readMessage.startsWith(new String("show"))) {
   	        	if(!dialog.isShowing()) {
   	        		System.out.println("Showing dialog!");
-  	        		dialog = ProgressDialog.show(activity, "Connecting", "Searching for SMWatch...");
+  	        		dialog = ProgressDialog.show(activity, "Connecting", "Searching for M-Watch...");
   	        	}
   	        	return;
   	        }
@@ -317,9 +295,15 @@ public class MainActivity extends Activity {
       	        	{
       	        		Intent i = new Intent("com.android.music.musicservicecommand");
       	        		i.putExtra("command", "previous");
-      	        		sendBroadcast(i);
       	        		System.out.println(track);
       	        		Utility.set_BT("44" + track);
+      	        		CommThread.write(Utility.to_send_0.getBytes());
+      	        		Utility.how_many_sends = 1;
+      	        	}
+      	        	else if (readMessage.charAt(1) == '5')
+      	        	{
+      	        		System.out.println("THE 45: " + track);
+      	        		Utility.set_BT("45" + track);
       	        		CommThread.write(Utility.to_send_0.getBytes());
       	        		Utility.how_many_sends = 1;
       	        	}
